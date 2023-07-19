@@ -1,0 +1,85 @@
+.textfield {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--text-font);
+    font-size: var(--text-size-sm);
+    /* width: 100%; */
+    flex: 1;
+    resize: none; /* applicable to textarea only */
+}
+
+.textfield.lg {
+    font-family: var(--text-font);
+    font-size: var(--text-size-lg);
+    /* font-weight: 700; */
+}
+
+.textfield.md {
+    font-family: var(--text-font);
+    font-size: var(--text-size-md);
+    /* font-weight: 700; */
+}
+.textfield.sm {
+    font-family: var(--text-font);
+    font-size: var(--text-size-sm);
+    /* font-weight: 700; */
+}
+.textfield.xs {
+    font-family: var(--text-font);
+    font-size: var(--text-size-xs);
+    /* font-weight: 700; */
+}
+@media only screen and (max-width: 600px) {
+    .textfield.lg.res {
+        font-size: var(--text-size-md);
+    }
+    .textfield.md.res {
+        font-size: var(--text-size-sm);
+    }
+    .textfield.sm.res {
+        font-size: var(--text-size-xs);
+    }
+}
+
+.pxs {
+    padding: var(--xs) var(--sm);
+}
+.psm {
+    padding: var(--sm) calc(var(--sm) + var(--xs));
+}
+.pmd {
+    padding: var(--md) calc(var(--md) + var(--sm));
+}
+.plg {
+    padding: var(--lg) calc(var(--lg) + var(--md));
+}
+.pxl {
+    padding: var(--xl) calc(var(--xl) + var(--lg));
+}
+
+.noselect {
+    user-select: none;
+}
+
+/* --- MODIFIERS --- */
+.br {
+    border-radius: var(--rounding);
+}
+
+/* --- THEMING --- */
+.primary {
+    background: var(--primary-bg);
+}
+.secondary {
+    background: var(--secondary-bg);
+}
+.tertiary {
+    background: var(--tertiary-bg);
+}
+.accent {
+    background: var(--accent-bg);
+}
+.focus {
+    background: var(--focus-bg);
+}

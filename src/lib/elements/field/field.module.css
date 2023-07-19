@@ -1,0 +1,104 @@
+.field {
+    display: flex;
+    flex: 1;
+}
+
+/* --- LAYOUT --- */
+.rel {
+    position: relative;
+}
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.trim {
+    overflow: hidden;
+}
+.s {
+    flex: none;
+}
+.col {
+    flex-direction: column;
+}
+.gxs {
+    gap: var(--xs);
+}
+.gsm {
+    gap: var(--sm);
+}
+.gmd {
+    gap: var(--md);
+}
+.glg {
+    gap: var(--lg);
+}
+.c {
+    justify-content: center;
+    align-items: center;
+}
+.jcs {
+    justify-content: start;
+}
+.jcc {
+    justify-content: center;
+}
+.jce {
+    justify-content: end;
+}
+.ais {
+    align-items: start;
+}
+.aic {
+    align-items: center;
+}
+.aie {
+    align-items: end;
+}
+.pxs {
+    padding: var(--xs);
+}
+.psm {
+    padding: var(--sm);
+}
+.pmd {
+    padding: var(--md);
+}
+.plg {
+    padding: var(--lg);
+}
+.pxl {
+    padding: var(--xl);
+}
+
+/* --- MODIFIERS --- */
+.br {
+    border-radius: var(--rounding);
+}
+
+/* --- THEMING --- */
+.primary {
+    background-color: var(--primary-bg);
+}
+.secondary {
+    background-color: var(--secondary-bg);
+}
+.tertiary {
+    background-color: var(--tertiary-bg);
+}
+.accent {
+    background-color: var(--accent-bg);
+}
+.focus {
+    background-color: var(--focus-bg);
+}
+.illume {
+    background-color: var(--illume-bg);
+}
+
+/* --- EFFECTS --- */
+.a {
+    transition: var(--transition);
+}

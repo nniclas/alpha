@@ -1,27 +1,37 @@
-import type { Component } from 'solid-js';
+import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+// common css resources
+import './lib/styles/easing.css'
+import './lib/styles/transitions.css'
+import './lib/styles/fonts.css'
+import './lib/styles/themes/lite.css' // todo make dynamic, // const [theme, setTheme] = createStore<String>('lite')
 
-const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
-  );
-};
+import Field from './lib/elements/field/field'
+import { Header } from './components/header/header'
+import { Footer } from './components/footer/footer'
 
-export default App;
+import { Route, Router, Routes } from '@solidjs/router' // 👈 Import the router
+import { Dashboard } from 'routes/dashboard'
+import { Login } from 'routes/login'
+
+export const App: Component = () => {
+    return (
+        <Field col bg='hsl(200, 18%, 12%)' trim>
+            <Field s col>
+                <Header />
+            </Field>
+            <Field rel col>
+                <Router>
+                    <Routes>
+                        <Route path='/' component={App} />
+                        <Route path='/login' component={Login} />
+                        <Route path='/dashboard' component={Dashboard} />
+                    </Routes>
+                </Router>
+            </Field>
+            <Field s col>
+                <Footer />
+            </Field>
+        </Field>
+    )
+}

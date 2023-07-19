@@ -1,0 +1,69 @@
+.text {
+    font-family: var(--text-font);
+    font-size: var(--text-size-sm);
+}
+
+.text.lg {
+    font-family: var(--text-font);
+    font-size: var(--text-size-lg);
+    /* font-weight: 700; */
+}
+
+.text.md {
+    font-family: var(--text-font);
+    font-size: var(--text-size-md);
+    /* font-weight: 700; */
+}
+.text.sm {
+    font-family: var(--text-font);
+    font-size: var(--text-size-sm);
+    /* font-weight: 700; */
+}
+.text.xs {
+    font-family: var(--text-font);
+    font-size: var(--text-size-xs);
+    /* font-weight: 700; */
+}
+.text.xxs {
+    font-family: var(--text-font);
+    font-size: var(--text-size-xxs);
+    /* font-weight: 700; */
+}
+@media only screen and (max-width: 600px) {
+    .text.lg.res {
+        font-size: var(--text-size-md);
+    }
+    .text.md.res {
+        font-size: var(--text-size-sm);
+    }
+    .text.sm.res {
+        font-size: var(--text-size-xs);
+    }
+    .text.xs.res {
+        font-size: var(--text-size-xxs);
+    }
+}
+
+.noselect {
+    user-select: none;
+}
+
+/* --- THEMING --- */
+.primary {
+    color: var(--primary-color);
+}
+.secondary {
+    color: var(--secondary-color);
+}
+.tertiary {
+    color: var(--tertiary-color);
+}
+.accent {
+    color: var(--accent-color);
+}
+.focus {
+    color: var(--focus-bg);
+}
+.illume {
+    color: var(--illume-bg);
+}

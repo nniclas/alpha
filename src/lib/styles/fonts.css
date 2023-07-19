@@ -1,0 +1,32 @@
+@import url('https://fontlibrary.org//face/metropolis');
+@import url('http://fonts.cdnfonts.com/css/sofia-pro'); /* https://www.cdnfonts.com/sofia-pro.font */
+
+@font-face {
+    font-family: Singularity;
+    src: url('../../assets/fonts/singularity.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sofia Pro Light'; /* weight 300 */
+    src: url('../../assets/fonts/Sofia Pro Light Az.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sofia Pro Regular'; /* weight 400 */
+    src: url('../../assets/fonts/Sofia Pro Regular Az.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sofia Pro Medium'; /* weight 500 */
+    src: url('../../assets/fonts/Sofia Pro Medium Az.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sofia Pro SemiBold'; /* weight 600 */
+    src: url('../../assets/fonts/Sofia Pro Semi Bold Az.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Sofia Pro Bold'; /* weight 700 */
+    src: url('../../assets//fonts/Sofia Pro Bold Az.woff') format('woff');
+}

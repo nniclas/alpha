@@ -1,0 +1,94 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.btn.br {
+    border-radius: var(--rounding);
+}
+
+.btn.sm {
+    width: 128px;
+    height: 32px;
+}
+.btn.md {
+    width: 168px;
+    height: 64px;
+}
+.btn.lg {
+    width: 256px;
+    height: 96px;
+}
+@media only screen and (max-width: 600px) {
+    .btn.sm.res {
+        width: 96px;
+        height: 24px;
+    }
+    .btn.md.res {
+        width: 128px;
+        height: 48px;
+    }
+    .btn.lg.res {
+        width: 192px;
+        height: 64px;
+    }
+}
+
+.btn:hover,
+.btn:active {
+    background-color: var(--secondary-bg);
+}
+
+/* --- THEMING --- */
+.primary {
+    background-color: var(--primary-bg);
+    color: var(--primary-color);
+}
+.secondary {
+    background-color: var(--secondary-bg);
+    color: var(--secondary-color);
+}
+.tertiary {
+    background-color: var(--tertiary-bg);
+    color: var(--tertiary-color);
+}
+.accent {
+    background-color: var(--accent-bg);
+    color: var(--accent-color);
+}
+.primary:hover,
+.primary:active {
+    background-color: var(--primary-color);
+    color: var(--primary-bg);
+}
+.secondary:hover,
+.secondary:active {
+    background-color: var(--secondary-color);
+    color: var(--secondary-bg);
+}
+
+.tertiary:hover,
+.tertiary:active {
+    background-color: var(--tertiary-color);
+    color: var(--tertiary-bg);
+}
+
+.accent:hover,
+.accent:active {
+    background-color: var(--accent-color);
+    color: var(--accent-bg);
+}
+
+/* used with no bg and on hover only */
+.focus:hover,
+.focus:active {
+    background-color: var(--focus-bg);
+}
+.illume:hover,
+.illume:active {
+    background-color: var(--illume-bg);
+}

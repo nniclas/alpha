@@ -1,0 +1,53 @@
+:root {
+    /* PALETTE */
+    --color-lightest: hsl(160, 4%, 80%);
+    --color-lite123: hsl(160, 4%, 70%);
+    --color-lighter: hsl(160, 4%, 55%);
+    --color-light: hsl(160, 4%, 45%);
+
+    --color-strong: hsl(160, 18%, 40%);
+    --color-stronger: hsl(160, 18%, 30%);
+    --color-strongest: hsl(200, 18%, 18%);
+
+    --color-black: hsl(160, 4%, 8%);
+
+    --color-accent: hsl(50, 36%, 62%);
+    --color-accent-light: hsl(50, 36%, 72%);
+
+    --color-tr-light: rgba(255, 255, 255, 0.1);
+    --color-tr-dark: rgba(0, 0, 0, 0.1);
+
+    /* THEME VARIANTS */
+    --primary-bg: var(--color-lightest);
+    --primary-color: var(--color-lighter);
+    --secondary-bg: var(--color-strongest);
+    --secondary-color: var(--color-black);
+    --tertiary-bg: var(--color-light);
+    --tertiary-color: var(--color-lightest);
+    --accent-bg: var(--color-accent);
+    --accent-color: var(--color-accent);
+    --focus-bg: var(--color-tr-dark);
+    --illume-bg: var(--color-tr-light);
+
+    /* LAYOUT */
+    --xs: 8px;
+    --sm: 16px;
+    --md: 32px;
+    --lg: 64px;
+    --xl: 128px;
+    --xxl: 256px;
+    --xxxl: 512px;
+    --rounding: 12px;
+    --border: none;
+
+    /* TEXT */
+    --text-font: 'Sofia Pro Light';
+    --text-size-xxs: 12px;
+    --text-size-xs: 14px;
+    --text-size-sm: 18px;
+    --text-size-md: 24px;
+    --text-size-lg: 32px;
+
+    /* MISC */
+    --transition: 0.4s ease all; /* "all"...? */
+}

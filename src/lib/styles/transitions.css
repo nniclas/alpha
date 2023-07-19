@@ -1,0 +1,61 @@
+/* 
+    ///
+    solid-transition-group basic transitions 
+    ///
+*/
+
+/* --- */
+.bump-fade-enter-active,
+.bump-fade-exit-active {
+    transition: opacity 0.3s, transform 0.3s;
+}
+.bump-fade-enter,
+.bump-fade-exit-to {
+    transform: translateY(10px);
+    opacity: 0;
+}
+.bump-fade-enter {
+    transform: translateY(10px);
+}
+
+/* --- */
+.slide-fade-enter-active,
+.slide-fade-exit-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+.slide-fade-enter,
+.slide-fade-exit-to {
+    transform: translateX(20px);
+    opacity: 0;
+}
+.slide-fade-enter {
+    transform: translateX(20px);
+}
+
+/* --- */
+.foo-enter-active,
+.foo-exit-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+.foo-enter,
+.foo-exit-to {
+    transform: translateY(20px);
+    opacity: 0;
+}
+.foo-enter {
+    transform: translateY(20px);
+}
+
+/* --- */
+.bar-enter-active,
+.bar-exit-active {
+    transition: opacity 0.5s, transform 0.5s;
+}
+.bar-enter,
+.bar-exit-to {
+    transform: translateY(-10px);
+    opacity: 0;
+}
+.bar-enter {
+    transform: translateY(-10px);
+}
