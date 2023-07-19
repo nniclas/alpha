@@ -1,0 +1,29 @@
+
+
+### GET ALL ENTRIES
+GET https://localhost:7276/entries HTTP/1.1
+
+
+
+### ADD NEW ENTRY
+POST https://localhost:7276/entries HTTP/1.1
+content-type: application/json
+
+{
+    "unitId": 2, "eventId": 3, "userId": 1, "measure": null, "tag": 3, "notes": null
+}
+
+
+### GET ALL UNITS
+GET https://localhost:7276/units HTTP/1.1
+
+
+
+### GET ALL EVENTS
+GET https://localhost:7276/events HTTP/1.1
+
+
+
+### GET ALL USERS
+GET https://localhost:7276/users HTTP/1.1
+
