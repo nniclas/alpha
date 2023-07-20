@@ -27,9 +27,9 @@ export const get = async <T>(path: string, auth?: boolean): Promise<T> => {
         })
 }
 
-export const put = async <T>(path: string, data: T): Promise<T> => {
+export const post = async <T>(path: string, data: T): Promise<T> => {
     return await instance
-        .put(`${path}`, data, {
+        .post(`${path}`, data, {
             headers: authHeaders(),
         })
         .then((result) => {
@@ -40,9 +40,9 @@ export const put = async <T>(path: string, data: T): Promise<T> => {
         })
 }
 
-export const post = async <T>(path: string, data: T): Promise<T> => {
+export const put = async <T>(path: string, data: T): Promise<T> => {
     return await instance
-        .post(`${path}`, data, {
+        .put(`${path}`, data, {
             headers: authHeaders(),
         })
         .then((result) => {

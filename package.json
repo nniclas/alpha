@@ -29,6 +29,7 @@
         "solid-icons": "^1.0.4",
         "solid-js": "^1.7.6",
         "solid-transition-group": "^0.2.2",
-        "uuid": "^9.0.0"
+        "uuid": "^9.0.0",
+        "vite-plugin-solid-svg": "^0.6.4"
     }
 }

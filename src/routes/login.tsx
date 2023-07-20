@@ -1,5 +1,6 @@
 import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 import { Outlet, useNavigate } from '@solidjs/router'
+import BG from '../assets/bg.svg?component-solid'
 
 // common css resources
 import '../lib/styles/easing.css'
@@ -21,5 +22,10 @@ export const Login: Component = () => {
         }
     })
 
-    return <Field>login page</Field>
+    return (
+        <Field>
+            <BG />
+            login page
+        </Field>
+    )
 }

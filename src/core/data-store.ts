@@ -5,55 +5,49 @@ import { Unit } from 'types/unit'
 import { User } from 'types/user'
 import { Entry } from 'types/entry'
 
+const getItems = async <T>(path: string): Promise<T> => {
+    return await get<T>(path)
+}
+
+const addItem = async <T>(item: T, path: string, refetch?: () => void) => {
+    await post<T>(path, item)
+    refetch?.()
+}
+
+const updateItem = async <T>(item: T, path: string, refetch?: () => void) => {
+    await put<T>(path, item)
+    refetch?.()
+}
+
+const deleteItem = async (path: string, refetch?: () => void) => {
+    await del(path)
+    refetch?.()
+}
+
 function createDataState() {
     const [units, setUnits] = createSignal<Unit[]>([])
-    const [events, setEvents] = createSignal<Event[]>([])
-    const [entries, setEntries] = createSignal<Entry[]>([])
-    const [users, setUsers] = createSignal<User[]>([])
     const [selectedUnit, setSelectedUnit] = createSignal<Unit>()
+    // const [events, setEvents] = createSignal<Event[]>([])
+    // const [entries, setEntries] = createSignal<Entry[]>([])
+    // const [users, setUsers] = createSignal<User[]>([])
 
-    const getUnits = async () => {
-        const units = await get<Unit[]>(`units`)
-        setUnits(units)
-    }
-
-    const getUnit = async (id: string) => {
-        const unit = await get<Unit>(`units/${id}`)
-
-        // first check if existing?????????
-        setSelectedUnit(unit)
-    }
-
-    // const selectActivity = (id: string) => {
-    //     setActivity(activities().find((a) => a.id == id))
-    // }
-
-    // const addActivity = async (a: Activity, refetch = true) => {
-    //     await addStoredActivity(a).then(() => {
-    //         if (refetch) getActivities()
-    //     })
-    // }
-
-    // const updateActivity = async (a: Activity, refetch = true) => {
-    //     await updateStoredActivity(a).then(() => {
-    //         if (refetch) getActivities()
-    //     })
-    // }
-
-    // const deleteActivity = async (id: string, refetch = true) => {
-    //     await deleteStoredActivity(id).then(() => {
-    //         if (refetch) getActivities()
-    //     })
-    // }
+    const getUnits = async () => setUnits(await getItems<Unit[]>('units'))
+    const getUnit = async (id: number) =>
+        setSelectedUnit(await getItems<Unit>(`units/${id}`))
+    const addUnit = async (unit: Unit) =>
+        addItem(unit, 'units', () => getUnits())
+    const updateUnit = async (unit: Unit) =>
+        updateItem(unit, 'units', () => getUnits())
+    const deleteUnit = async (id: number) =>
+        deleteItem(`units/${id}`, () => getUnits())
 
     return {
-        // activities,
-        // getActivities,
-        // activity,
-        // selectActivity,
-        // addActivity,
-        // updateActivity,
-        // deleteActivity,
+        units,
+        getUnits,
+        getUnit,
+        addUnit,
+        updateUnit,
+        deleteUnit,
     }
 }
 
