@@ -5,7 +5,7 @@ export interface BaseArgs {
     id?: string
 
     onClick?: (e: MouseEvent) => void
-    onScroll?: (e: UIEvent) => void
+    onScroll?: (e: Event) => void
     onResize?: (e: any) => void
 
     onPointerDown?: (e: PointerEvent) => void

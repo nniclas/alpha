@@ -1,4 +1,4 @@
-import { customStyles, scopeStyles } from '../../../core/utils'
+import { customStyles, scopeStyles } from '../../utils'
 import styles from './text.module.css'
 import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'

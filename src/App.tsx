@@ -1,6 +1,7 @@
 import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 
 // common css resources
+import './lib/styles/index.css'
 import './lib/styles/easing.css'
 import './lib/styles/transitions.css'
 import './lib/styles/fonts.css'
@@ -11,21 +12,26 @@ import { Header } from './components/header/header'
 import { Footer } from './components/footer/footer'
 
 import { Route, Router, Routes } from '@solidjs/router' // 👈 Import the router
-import { Dashboard } from 'routes/dashboard'
-import { Login } from 'routes/login'
+import { Dashboard } from './routes/dashboard/dashboard'
+import { Login } from './routes/login/login'
+
+// import BG from './assets/bg2.svg?component-solid'
 
 export const App: Component = () => {
     return (
-        <Field col bg='hsl(200, 18%, 12%)' trim>
+        // <Field>
+        //     <BG />
+        // </Field>
+        <Field layer col bg='hsl(200, 18%, 22%)' trim>
             <Field s col>
                 <Header />
             </Field>
             <Field rel col>
                 <Router>
                     <Routes>
-                        <Route path='/' component={App} />
+                        {/* <Route path='/' component={App} /> */}
                         <Route path='/login' component={Login} />
-                        <Route path='/dashboard' component={Dashboard} />
+                        {/* <Route path='/dashboard' component={Dashboard} /> */}
                     </Routes>
                 </Router>
             </Field>

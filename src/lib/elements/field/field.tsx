@@ -4,7 +4,7 @@ import {
     isObjectWithProps,
     replaceWithLayeredStyles,
     scopeStyles,
-} from '../../../core/utils'
+} from '../../utils'
 import { styleMap } from './style-map'
 import './field.module.css'
 import styles from './field.module.css'
@@ -12,9 +12,7 @@ import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import { FieldArgs } from '../../types/field-args'
 import { EffectArgs } from '../../types/effect-args'
-// import { resizeObserver } from '../../../app'
-import { createEffect, createSignal, onMount } from 'solid-js'
-import { RES_BREAKPOINT } from '../../../common/vars'
+import { createSignal, onMount } from 'solid-js'
 
 export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const ssDefault = scopeStyles(styles, a)

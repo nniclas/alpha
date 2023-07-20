@@ -3,7 +3,7 @@ import {
     isCompact,
     isObjectWithProps,
     scopeStyles,
-} from '../../../core/utils'
+} from '../../utils'
 import styles from './button.module.css'
 import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
