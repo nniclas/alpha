@@ -16,3 +16,13 @@
     /* filter: brightness(1.1) saturate(0);
     mix-blend-mode: multiply; */
 }
+
+.cover {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: hsl(200, 18%, 22%);
+}
