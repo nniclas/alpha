@@ -7,8 +7,10 @@ import '../../lib/styles/fonts.css'
 import '../../lib/styles/themes/lite.css' // todo make dynamic, // const [theme, setTheme] = createStore<String>('lite')
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
+import appStore from '../../core/app-store'
 
 export const Dashboard: Component = () => {
+    console.log(appStore.session()?.token, appStore.session()?.username)
     return (
         <Field pmd c>
             <Text md color='hsl(200, 12%, 62%)'>

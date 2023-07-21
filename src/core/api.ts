@@ -1,17 +1,16 @@
 import axios, { AxiosError, ResponseType } from 'axios'
+import appStore from '../core/app-store'
 
 const authHeaders = () => {
     return {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        Authorization: `Bearer ${appStore.session()?.token}`,
     }
 }
 
 const instance = axios.create({
     baseURL: import.meta.env.VITE_API_ENDPOINT,
 })
-
-console.log(import.meta.env.VITE_API_ENDPOINT)
 
 export const get = async <T>(path: string, auth?: boolean): Promise<T> => {
     return await instance

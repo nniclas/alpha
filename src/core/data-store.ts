@@ -1,9 +1,9 @@
 import { createSignal, createMemo, createRoot } from 'solid-js'
 // import { Activity } from 'types/activity'
 import { get, post, put, del } from './api'
-import { Unit } from 'types/unit'
-import { User } from 'types/user'
-import { Entry } from 'types/entry'
+import { Unit } from 'types/entities/unit'
+import { User } from 'types/entities/user'
+import { Entry } from 'types/entities/entry'
 
 const getItems = async <T>(path: string): Promise<T> => {
     return await get<T>(path)

@@ -10,25 +10,34 @@ import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
 
+import appStore from '../../core/app-store'
+
 export const Header: Component = () => {
     const navigate = useNavigate()
 
     const logOut = () => {
-        sessionStorage.removeItem('token')
+        appStore.removeSession()
         navigate('/login', { replace: true })
     }
 
     return (
-        <Field pmd secondary>
+        <Field s h={300} pmd secondary>
             <Text md color='hsl(200, 12%, 42%)'>
                 HEADER
             </Text>
             <Field jce>
-                <Button sm tertiary onClick={logOut}>
-                    <Text xs color='hsl(200, 12%, 22%)'>
-                        Sign out
-                    </Text>
-                </Button>
+                <Field s col gsm>
+                    <Field s>
+                        <Text sm color='hsl(200, 12%, 42%)'>
+                            {appStore.session()?.username}
+                        </Text>
+                    </Field>
+                    <Button sm tertiary onClick={logOut}>
+                        <Text xs color='hsl(200, 12%, 22%)'>
+                            Sign out
+                        </Text>
+                    </Button>
+                </Field>
             </Field>
         </Field>
     )

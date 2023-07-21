@@ -1,4 +1,5 @@
 import { post } from './api'
+import appStore from '../core/app-store'
 
 export const signIn = async (email: string, password: string) => {
     const token = await post<any>('account/signin', {
@@ -6,7 +7,7 @@ export const signIn = async (email: string, password: string) => {
         Password: password,
     })
     if (token) {
-        sessionStorage.setItem('token', token)
+        appStore.updateSession(token, email)
         return token
     }
 }

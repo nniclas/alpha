@@ -48,12 +48,6 @@ export const Login: Component = () => {
             navigate('/dashboard', { replace: true })
     }
 
-    createEffect(() => {
-        // if (sessionStorage.getItem('token')) {
-        //     navigate('/home', { replace: true })
-        // }
-    })
-
     // login page covers the full window
     return (
         <Field rel class={styles.cover}>
