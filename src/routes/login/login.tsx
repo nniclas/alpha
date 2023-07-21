@@ -57,11 +57,27 @@ export const Login: Component = () => {
     // login page covers the full window
     return (
         <Field rel class={styles.cover}>
-            <Field layer jcc ais>
+            <Field layer jcs ais>
                 <Field s pmd h={400} aic>
-                    <Text md color='hsl(200, 12%, 42%)'>
-                        Remote operate | Monitor activity | Handle reports
-                    </Text>
+                    <Field s col>
+                        <img
+                            src='src/assets/icons/cogs.png'
+                            style='width:180px;'
+                        />
+                        <Field c p='16px 48px' gmd>
+                            <Text
+                                lg
+                                color='hsl(50, 36%, 62%)'
+                                style='letter-spacing:32px'
+                            >
+                                ALPHA
+                            </Text>
+                            <Text sm color='hsl(200, 12%, 42%)'>
+                                Remote configuration and operating technical
+                                tool.
+                            </Text>
+                        </Field>
+                    </Field>
                 </Field>
             </Field>
             <Layout
@@ -76,12 +92,9 @@ export const Login: Component = () => {
                 }
                 rslot={
                     <Field col ais jce style='z-index:1; margin-left:-100px;'>
-                        <Field s col pmd>
-                            <Text lg color='hsl(200, 18%, 62%)'>
-                                ALPHA
-                            </Text>
-                            <Text sm color='hsl(200, 18%, 38%)'>
-                                Technical configuration tool
+                        <Field s col psm>
+                            <Text sm color='hsl(200, 18%, 42%)'>
+                                Account
                             </Text>
                         </Field>
                         <Field
@@ -97,6 +110,7 @@ export const Login: Component = () => {
                             <Field s>
                                 <Textfield
                                     placeholder='Email'
+                                    value={email()}
                                     primary
                                     psm
                                     color='hsl(200, 18%, 32%)'
@@ -107,6 +121,7 @@ export const Login: Component = () => {
                                 <Textfield
                                     password
                                     placeholder='Password'
+                                    value={password()}
                                     primary
                                     psm
                                     color='hsl(200, 18%, 32%)'

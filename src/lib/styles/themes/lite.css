@@ -22,7 +22,7 @@
     --primary-color: var(--color-lighter);
     --secondary-bg: var(--color-strongest);
     --secondary-color: var(--color-black);
-    --tertiary-bg: var(--color-light);
+    --tertiary-bg: var(--color-accent);
     --tertiary-color: var(--color-lightest);
     --accent-bg: var(--color-accent);
     --accent-color: var(--color-accent);
@@ -44,7 +44,7 @@
     --text-font: 'Sofia Pro Regular';
     --text-size-xxs: 12px;
     --text-size-xs: 14px;
-    --text-size-sm: 18px;
+    --text-size-sm: 16px;
     --text-size-md: 24px;
     --text-size-lg: 36px;
 
