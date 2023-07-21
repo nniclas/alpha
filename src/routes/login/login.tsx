@@ -54,20 +54,24 @@ export const Login: Component = () => {
         <Field rel class={styles.cover}>
             <Field layer jcs ais>
                 <Field s pmd h={400} aic>
-                    <Field s col>
+                    <Field s col gsm>
                         <img
                             src='src/assets/icons/cogs.png'
                             style='width:180px;'
                         />
-                        <Field c p='16px 48px' gmd>
+                        <Field p='16px 48px' gmd col>
                             <Text
-                                lg
+                                md
                                 color='hsl(50, 36%, 62%)'
                                 style='letter-spacing:32px'
                             >
                                 ALPHA
                             </Text>
-                            <Text sm color='hsl(200, 12%, 42%)'>
+                            <Text
+                                sm
+                                color='hsl(200, 12%, 42%)'
+                                style='letter-spacing:1px'
+                            >
                                 Remote configuration and operating technical
                                 tool.
                             </Text>
@@ -92,7 +96,6 @@ export const Login: Component = () => {
                                 Account
                             </Text>
                         </Field>
-
                         <Transition name='slide-fade'>
                             <Field
                                 col
@@ -138,21 +141,6 @@ export const Login: Component = () => {
                                 </Field>
                             </Field>
                         </Transition>
-
-                        {/* <Text
-                            lg
-                            tertiary
-                            style='letter-spacing:2px;opacity:0.25;color:black'
-                        >
-                            ALPHA
-                        </Text> */}
-                        {/* <Field col gmd>
-                            <Text>stuff</Text>
-                            <Button tertiary br md>
-                                <Text>hello there</Text>
-                            </Button>
-                        </Field> */}
-                        {/* <Text>•</Text> */}
                     </Field>
                 }
             />

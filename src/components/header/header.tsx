@@ -41,7 +41,25 @@ export const Header: Component = () => {
 
     return (
         <Field s h={300} pmd secondary>
-            <Field c>
+            <Field col>
+                <Field col gxs>
+                    <Text md tertiary>
+                        Units
+                    </Text>
+                    <Field gsm aic p='0 2px'>
+                        <Field s jcc>
+                            <Field
+                                s
+                                style='border-radius:16px; background:green; width:12px; height:12px'
+                            />
+                        </Field>
+                        <Field s>
+                            <Text sm primary>
+                                All units functional and in full operation
+                            </Text>
+                        </Field>
+                    </Field>
+                </Field>
                 <AnimArray
                     items={dataStore.units()}
                     template={unitTemplate}
