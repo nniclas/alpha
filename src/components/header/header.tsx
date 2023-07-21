@@ -9,8 +9,9 @@ import '../../lib/styles/themes/lite.css' // todo make dynamic, // const [theme,
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
-
 import appStore from '../../core/app-store'
+
+import Logo from '../../assets/logo.svg?component-solid'
 
 export const Header: Component = () => {
     const navigate = useNavigate()
@@ -22,13 +23,13 @@ export const Header: Component = () => {
 
     return (
         <Field s h={300} pmd secondary>
-            <Text md color='hsl(200, 12%, 42%)'>
-                HEADER
-            </Text>
             <Field jce>
                 <Field s col gsm>
-                    <Field s>
-                        <Text sm color='hsl(200, 12%, 42%)'>
+                    <Field s w={100} h={100}>
+                        <Logo />
+                    </Field>
+                    <Field s c>
+                        <Text xs color='hsl(200, 12%, 62%)'>
                             {appStore.session()?.username}
                         </Text>
                     </Field>
