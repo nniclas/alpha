@@ -41,12 +41,12 @@
     --border: none;
 
     /* TEXT */
-    --text-font: 'Sofia Pro Light';
+    --text-font: 'Sofia Pro Regular';
     --text-size-xxs: 12px;
     --text-size-xs: 14px;
     --text-size-sm: 18px;
     --text-size-md: 24px;
-    --text-size-lg: 32px;
+    --text-size-lg: 36px;
 
     /* MISC */
     --transition: 0.4s ease all; /* "all"...? */
