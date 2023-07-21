@@ -8,10 +8,10 @@ const authHeaders = () => {
 }
 
 const instance = axios.create({
-    baseURL: import.meta.env.API_ENDPOINT,
+    baseURL: import.meta.env.VITE_API_ENDPOINT,
 })
 
-console.log(import.meta.env.API_ENDPOINT)
+console.log(import.meta.env.VITE_API_ENDPOINT)
 
 export const get = async <T>(path: string, auth?: boolean): Promise<T> => {
     return await instance

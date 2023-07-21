@@ -13,6 +13,7 @@ import Text from '../../lib/elements/text/text'
 import styles from './login.module.css'
 import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
+import { get, post } from '../../core/api'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (
@@ -37,10 +38,18 @@ const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
 }
 
 export const Login: Component = () => {
-    // const navigate = useNavigate()
-    const logIn = () => {
-        // sessionStorage.setItem('token', 'mytokenisawesome')
-        // navigate('/home', { replace: true })
+    const navigate = useNavigate()
+
+    const logIn = async () => {
+        const token = await post<any>('account/signin', {
+            Email: 'john@doe.com',
+            Password: 'eple',
+        })
+
+        console.log(token)
+
+        // sessionStorage.setItem('token', token)
+        navigate('/home', { replace: true })
     }
 
     createEffect(() => {
@@ -107,7 +116,7 @@ export const Login: Component = () => {
                             </Field>
                             <Field jce>
                                 <Field s>
-                                    <Button tertiary md>
+                                    <Button tertiary md onClick={logIn}>
                                         <Text color='hsl(200, 18%, 22%)'>
                                             Sign in
                                         </Text>

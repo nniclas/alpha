@@ -6,7 +6,14 @@ import '../../lib/styles/transitions.css'
 import '../../lib/styles/fonts.css'
 import '../../lib/styles/themes/lite.css' // todo make dynamic, // const [theme, setTheme] = createStore<String>('lite')
 import Field from '../../lib/elements/field/field'
+import Text from '../../lib/elements/text/text'
 
 export const Footer: Component = () => {
-    return <Field>footer component</Field>
+    return (
+        <Field pmd secondary>
+            <Text md color='hsl(200, 12%, 42%)'>
+                FOOTER
+            </Text>
+        </Field>
+    )
 }

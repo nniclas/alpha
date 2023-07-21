@@ -27,3 +27,16 @@ GET https://localhost:7276/events HTTP/1.1
 ### GET ALL USERS
 GET https://localhost:7276/users HTTP/1.1
 
+
+
+
+
+
+### SIGN IN // demo@user.com:bananer, john@doe.com:eple, jane@doe.com:saft
+POST https://localhost:7276/account/signin HTTP/1.1
+content-type: application/json
+
+{
+    "email": "jane@doe.com", "password": "saft" 
+}
+

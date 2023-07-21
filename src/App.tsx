@@ -22,22 +22,22 @@ export const App: Component = () => {
         // <Field>
         //     <BG />
         // </Field>
-        <Field layer col bg='hsl(200, 18%, 22%)' trim>
-            <Field s col>
-                <Header />
-            </Field>
-            <Field rel col>
-                <Router>
+        <Router>
+            <Field layer col bg='hsl(200, 18%, 22%)' trim>
+                <Field s col>
+                    <Header />
+                </Field>
+                <Field rel col>
                     <Routes>
                         {/* <Route path='/' component={App} /> */}
                         <Route path='/login' component={Login} />
-                        {/* <Route path='/dashboard' component={Dashboard} /> */}
+                        <Route path='/dashboard' component={Dashboard} />
                     </Routes>
-                </Router>
+                </Field>
+                <Field s col>
+                    <Footer />
+                </Field>
             </Field>
-            <Field s col>
-                <Footer />
-            </Field>
-        </Field>
+        </Router>
     )
 }
