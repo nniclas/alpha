@@ -5,19 +5,14 @@ import { createEffect } from 'solid-js'
 /// https://www.thisdot.co/blog/how-to-authenticate-your-solidjs-routes-with-solid-router/
 
 export default function RouteGuard() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const token = sessionStorage.getItem('token')
 
-    // createEffect(() => {
-    //     if (!token) {
-    //         navigate('/signin', { replace: true })
-    //     }
-    // })
+    createEffect(() => {
+        if (!token) {
+            navigate('/login', { replace: true })
+        }
+    })
 
-    return (
-        <div>
-            {/* <Header /> */}
-            <Outlet />
-        </div>
-    )
+    return <Outlet />
 }

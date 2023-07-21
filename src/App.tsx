@@ -14,6 +14,7 @@ import { Footer } from './components/footer/footer'
 import { Route, Router, Routes } from '@solidjs/router' // 👈 Import the router
 import { Dashboard } from './routes/dashboard/dashboard'
 import { Login } from './routes/login/login'
+import RouteGuard from './components/route-guard'
 
 // import BG from './assets/bg2.svg?component-solid'
 
@@ -31,7 +32,9 @@ export const App: Component = () => {
                     <Routes>
                         {/* <Route path='/' component={App} /> */}
                         <Route path='/login' component={Login} />
-                        <Route path='/dashboard' component={Dashboard} />
+                        <Route path='/' component={RouteGuard}>
+                            <Route path='/dashboard' component={Dashboard} />
+                        </Route>
                     </Routes>
                 </Field>
                 <Field s col>

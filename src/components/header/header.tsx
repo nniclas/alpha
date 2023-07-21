@@ -15,7 +15,7 @@ export const Header: Component = () => {
 
     const logOut = () => {
         sessionStorage.removeItem('token')
-        navigate('/signin', { replace: true })
+        navigate('/login', { replace: true })
     }
 
     return (

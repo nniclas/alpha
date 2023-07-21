@@ -3,6 +3,8 @@ export interface TextFieldArgs {
     multiline?: boolean
     w?: number | string
     color?: string
+    placeholder?: string
+    password?: boolean
 
     pxs?: boolean // padding
     psm?: boolean

@@ -29,12 +29,13 @@ export default (
 
     return (
         <input
-            type='text'
+            type={a.password ? 'password' : 'text'}
             class={`${styles.textfield} ${ss}`}
             style={cs}
             {...a}
             onInput={(v: any) => a.change?.(v.target.value)}
             value={a.value as string}
+            placeholder={a.placeholder ?? ''}
         >
             {a.children}
         </input>

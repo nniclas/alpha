@@ -13,7 +13,7 @@ import Text from '../../lib/elements/text/text'
 import styles from './login.module.css'
 import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
-import { get, post } from '../../core/api'
+import { signIn } from '../../core/auth'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (
@@ -40,16 +40,12 @@ const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
 export const Login: Component = () => {
     const navigate = useNavigate()
 
+    const [email, setEmail] = createSignal<string>('john@doe.com') /////////////////////// remove default
+    const [password, setPassword] = createSignal<string>('eple') ///////////////////////// remove default
+
     const logIn = async () => {
-        const token = await post<any>('account/signin', {
-            Email: 'john@doe.com',
-            Password: 'eple',
-        })
-
-        console.log(token)
-
-        // sessionStorage.setItem('token', token)
-        navigate('/home', { replace: true })
+        if (await signIn(email(), password()))
+            navigate('/dashboard', { replace: true })
     }
 
     createEffect(() => {
@@ -100,18 +96,21 @@ export const Login: Component = () => {
                             </Field>
                             <Field s>
                                 <Textfield
+                                    placeholder='Email'
                                     primary
                                     psm
                                     color='hsl(200, 18%, 32%)'
-                                    value='demo@user.com'
+                                    change={(v) => setEmail(v)}
                                 />
                             </Field>
                             <Field s>
                                 <Textfield
+                                    password
+                                    placeholder='Password'
                                     primary
                                     psm
                                     color='hsl(200, 18%, 32%)'
-                                    value='demo'
+                                    change={(v) => setPassword(v)}
                                 />
                             </Field>
                             <Field jce>
