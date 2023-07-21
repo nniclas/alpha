@@ -10,8 +10,26 @@ import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
+import dataStore from '../../core/data-store'
 
 import Logo from '../../assets/logo.svg?component-solid'
+import AnimArray from '../../components/anim-array/anim-array'
+import { Unit } from '../../types/entities/unit'
+
+const unitTemplate = (u: Unit) => {
+    return (
+        <Field s col gsm pmd>
+            <Field s w={140} h={80} tertiary pmd br col>
+                <Text md secondary>
+                    {u.name}
+                </Text>
+                <Text md secondary>
+                    {u.state}
+                </Text>
+            </Field>
+        </Field>
+    )
+}
 
 export const Header: Component = () => {
     const navigate = useNavigate()
@@ -23,7 +41,31 @@ export const Header: Component = () => {
 
     return (
         <Field s h={300} pmd secondary>
-            <Field jce>
+            <Field c>
+                <AnimArray
+                    items={dataStore.units()}
+                    template={unitTemplate}
+                    // units={dataState
+                    //     .activities()
+                    //     .map((a) => ({ id: a.id!, element: activityElement(a) }))}
+                />
+
+                {/* <For each={dataStore.units()}>
+                        {(u, i) => (
+                            <Field s col gsm pmd>
+                                <Field s w={140} h={80} tertiary pmd br col>
+                                    <Text md secondary>
+                                        {u.name}
+                                    </Text>
+                                    <Text md secondary>
+                                        {u.state}
+                                    </Text>
+                                </Field>
+                            </Field>
+                        )}
+                    </For> */}
+            </Field>
+            <Field s jce>
                 <Field s col gsm>
                     <Field s w={100} h={100}>
                         <Logo />

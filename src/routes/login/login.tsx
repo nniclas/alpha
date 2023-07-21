@@ -14,6 +14,7 @@ import styles from './login.module.css'
 import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
+import { Transition } from 'solid-transition-group'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (
@@ -91,47 +92,52 @@ export const Login: Component = () => {
                                 Account
                             </Text>
                         </Field>
-                        <Field
-                            col
-                            s
-                            gsm
-                            plg
-                            style='width:340px; background:hsla(200, 18%, 20%,0.8)'
-                        >
-                            <Field s psm>
-                                <Text color='hsl(200, 18%, 62%)'>Sign in</Text>
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    placeholder='Email'
-                                    value={email()}
-                                    primary
-                                    psm
-                                    color='hsl(200, 18%, 32%)'
-                                    change={(v) => setEmail(v)}
-                                />
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    password
-                                    placeholder='Password'
-                                    value={password()}
-                                    primary
-                                    psm
-                                    color='hsl(200, 18%, 32%)'
-                                    change={(v) => setPassword(v)}
-                                />
-                            </Field>
-                            <Field jce>
+
+                        <Transition name='slide-fade'>
+                            <Field
+                                col
+                                s
+                                gsm
+                                plg
+                                style='width:340px; background:hsla(200, 18%, 20%,0.8); transition:1s ease all'
+                            >
+                                <Field s psm>
+                                    <Text color='hsl(200, 18%, 62%)'>
+                                        Sign in
+                                    </Text>
+                                </Field>
                                 <Field s>
-                                    <Button tertiary md onClick={logIn}>
-                                        <Text color='hsl(200, 18%, 22%)'>
-                                            Sign in
-                                        </Text>
-                                    </Button>
+                                    <Textfield
+                                        placeholder='Email'
+                                        value={email()}
+                                        primary
+                                        psm
+                                        color='hsl(200, 18%, 32%)'
+                                        change={(v) => setEmail(v)}
+                                    />
+                                </Field>
+                                <Field s>
+                                    <Textfield
+                                        password
+                                        placeholder='Password'
+                                        value={password()}
+                                        primary
+                                        psm
+                                        color='hsl(200, 18%, 32%)'
+                                        change={(v) => setPassword(v)}
+                                    />
+                                </Field>
+                                <Field jce>
+                                    <Field s>
+                                        <Button tertiary md onClick={logIn}>
+                                            <Text color='hsl(200, 18%, 22%)'>
+                                                Sign in
+                                            </Text>
+                                        </Button>
+                                    </Field>
                                 </Field>
                             </Field>
-                        </Field>
+                        </Transition>
 
                         {/* <Text
                             lg
