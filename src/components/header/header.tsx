@@ -15,17 +15,22 @@ import dataStore from '../../core/data-store'
 import Logo from '../../assets/logo.svg?component-solid'
 import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
+import { StateIcon } from '../../components/state-icon/state-icon'
+import { UnitMeter } from '../../components/unit-meter/unit-meter'
 
 const unitTemplate = (u: Unit) => {
     return (
         <Field s col gsm pmd>
-            <Field s w={140} h={80} tertiary pmd br col>
-                <Text md secondary>
-                    {u.name}
-                </Text>
-                <Text md secondary>
-                    {u.state}
-                </Text>
+            <Field s w={140} h={80} pmd col primary gsm>
+                <Field s>
+                    <Text sm primary>
+                        {u.name}
+                    </Text>
+                </Field>
+                <Field s c gsm>
+                    <StateIcon state={u.state} />
+                    <UnitMeter value={73} />
+                </Field>
             </Field>
         </Field>
     )

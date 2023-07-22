@@ -50,12 +50,13 @@
 .bar-enter-active,
 .bar-exit-active {
     transition: opacity 0.5s, transform 0.5s;
+    transition-timing-function: ease-out;
 }
 .bar-enter,
 .bar-exit-to {
-    transform: translateY(-10px);
+    transform: translateY(-30px);
     opacity: 0;
 }
 .bar-enter {
-    transform: translateY(-10px);
+    transform: translateY(-30px);
 }
