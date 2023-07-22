@@ -2,6 +2,7 @@ import { createSignal, createRoot, createEffect } from 'solid-js'
 import { Session } from 'types/session'
 function createDataState() {
     const [session, setSession] = createSignal<Session>()
+    const [section, setSection] = createSignal<number>(0) // 0 operation / 1 log
 
     createEffect(() => {
         // reassign to data store if browser refreshes
@@ -27,6 +28,8 @@ function createDataState() {
         session,
         updateSession,
         removeSession,
+        section,
+        setSection,
     }
 }
 

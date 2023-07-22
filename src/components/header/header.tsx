@@ -1,11 +1,6 @@
 import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 import { Outlet, useNavigate } from '@solidjs/router'
 
-// common css resources
-import '../../lib/styles/easing.css'
-import '../../lib/styles/transitions.css'
-import '../../lib/styles/fonts.css'
-import '../../lib/styles/themes/lite.css' // todo make dynamic, // const [theme, setTheme] = createStore<String>('lite')
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
@@ -29,7 +24,7 @@ const unitTemplate = (u: Unit) => {
                 </Field>
                 <Field s c gsm>
                     <StateIcon state={u.state} />
-                    <UnitMeter value={73} />
+                    <UnitMeter value={73} scale={10} />
                 </Field>
             </Field>
         </Field>
