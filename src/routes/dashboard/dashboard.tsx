@@ -11,7 +11,7 @@ import { Unit } from 'types/entities/unit'
 const flexClosed = 'flex-grow:0.3' // enable animation of flex-grow, must be higher than 0
 const flexOpen = 'flex-grow:1'
 const style =
-    'min-width:256px; transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
+    'min-width:400px; transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
 export const Dashboard: Component = () => {
     // const [page, setPage] = createSignal<any[]>([])

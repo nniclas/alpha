@@ -20,6 +20,13 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
 
+    // when manually using class prop
+    let ac
+    if (a.class) {
+        ac = a.class
+        delete a.class
+    }
+
     /////////// custom styles responsive handling ////////////
     if (isObjectWithProps(a.res)) {
         const ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
@@ -49,5 +56,5 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     }
     //////////////////////////////////////////////////////////
 
-    return <div class={`${styles.field} ${ss()}`} style={cs()} {...a} />
+    return <div class={`${styles.field} ${ss()} ${ac}`} style={cs()} {...a} />
 }

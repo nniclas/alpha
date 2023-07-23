@@ -21,7 +21,7 @@
 /* --- */
 .slide-fade-enter-active,
 .slide-fade-exit-active {
-    transition: opacity 1s, transform 1s;
+    transition: opacity 0.5s, transform 0.5s;
 }
 .slide-fade-enter,
 .slide-fade-exit-to {

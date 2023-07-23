@@ -9,16 +9,22 @@ import { FiSettings } from 'solid-icons/fi'
 import { UnitMeter } from '../../../components/unit-meter/unit-meter'
 import { CircularMeter } from '../../../components/circular-meter/circular-meter'
 import { Unit } from 'types/entities/unit'
+import { Transition } from 'solid-transition-group'
+import styles from './operation.module.css'
 
 interface Args {
     unit?: Unit
 }
 
 export const Operation = (a: Args) => {
-    createEffect(() => {})
+    createEffect(() => {
+        // console.log(appStore.section())
+    })
+
+    // console.log(appStore.section(), a.unit?.name)
 
     return (
-        <Field pmd col gmd>
+        <Field pmd col glg>
             <Field s gsm>
                 <Field s h={30} c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />
@@ -33,38 +39,54 @@ export const Operation = (a: Args) => {
                 </Field>
             </Field>
 
-            <Field p='0 64px'>
-                <Field col gmd>
+            <Field a style={`padding:0 ${appStore.section() == 0 ? 64 : 32}px`}>
+                <Field col glg>
                     <Field s col gsm>
                         <Text sm primary>
                             Signal strength
                         </Text>
-                        <UnitMeter
-                            value={machineDataStore.signalStrength()}
-                            meterColor='hsl(200, 12%, 28%)'
-                            valueColor='hsl(50, 36%, 62%)'
-                        />
+                        <Field h={64}>
+                            <Transition name='foo'>
+                                {appStore.section() == 0 && (
+                                    <UnitMeter
+                                        value={machineDataStore.signalStrength()}
+                                        meterColor='hsl(200, 12%, 28%)'
+                                        valueColor='hsl(50, 36%, 62%)'
+                                    />
+                                )}
+                            </Transition>
+                        </Field>
                     </Field>
                     <Field s col gsm>
                         <Text sm primary>
                             Battery level
                         </Text>
-                        <UnitMeter
-                            value={machineDataStore.batteryLevel()}
-                            meterColor='hsl(200, 12%, 28%)'
-                            valueColor='hsl(50, 36%, 62%)'
-                        />
+                        <Field h={64}>
+                            <Transition name='foo'>
+                                {appStore.section() == 0 && (
+                                    <UnitMeter
+                                        value={machineDataStore.batteryLevel()}
+                                        meterColor='hsl(200, 12%, 28%)'
+                                        valueColor='hsl(50, 36%, 62%)'
+                                    />
+                                )}
+                            </Transition>
+                        </Field>
                     </Field>
                 </Field>
                 <Field s col gsm jcs>
                     <Text sm primary>
                         Processor usage
                     </Text>
-                    <CircularMeter
-                        value={machineDataStore.processorUsage()}
-                        meterColor='hsl(200, 18%, 28%)'
-                        valueColor='hsl(50, 36%, 62%)'
-                    />
+                    <Transition name='foo'>
+                        {appStore.section() == 0 && (
+                            <CircularMeter
+                                value={machineDataStore.processorUsage()}
+                                meterColor='hsl(200, 18%, 28%)'
+                                valueColor='hsl(50, 36%, 62%)'
+                            />
+                        )}
+                    </Transition>
                 </Field>
             </Field>
         </Field>
