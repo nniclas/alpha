@@ -12,10 +12,18 @@ import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
 import { StateIcon } from '../../components/state-icon/state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
+import machineDataStore from '../../core/machine-data-store'
 
 const unitTemplate = (u: Unit) => {
     return (
-        <Button onClick={() => dataStore.selectUnit(u.id)}>
+        <Button
+            style={`border: ${u.selected ? 2 : 0}px solid green `}
+            onClick={() => {
+                dataStore.selectUnit(u.id)
+                // u.selected = true
+                // machineDataStore.setPollingActive(false)
+            }}
+        >
             <Field s col gsm pxs>
                 <Field s w={140} h={80} pmd col primary gsm>
                     <Field s>

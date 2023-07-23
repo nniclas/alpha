@@ -31,22 +31,11 @@ function createDataState() {
     // const [entries, setEntries] = createSignal<Entry[]>([])
     // const [users, setUsers] = createSignal<User[]>([])
 
-    createEffect(() => {
-        if (units() && units().length) {
-            setSelectedUnit(units()[0])
-        }
-    })
+    createEffect(() => {})
 
     const getUnits = async () => {
         const unitss = await getItems<Unit[]>('units')
         setUnits(unitss)
-
-        ////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // setTimeout(() => {
-        //     setSelectedUnit(unitss[0]) // every fetch-all-units will reset selected unit
-        // }, 1000)
     }
     const selectUnit = async (id: number) => {
         setSelectedUnit(units().find((u) => u.id == id))

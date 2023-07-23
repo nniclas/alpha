@@ -5,8 +5,13 @@ import Text from '../../../lib/elements/text/text'
 import appStore from '../../../core/app-store'
 import dataStore from '../../../core/data-store'
 import { FiSettings, FiZap } from 'solid-icons/fi'
+import { Unit } from 'types/entities/unit'
 
-export const Actions: Component = () => {
+interface Args {
+    unit?: Unit
+}
+
+export const Actions = (a: Args) => {
     createEffect(() => {})
 
     return (

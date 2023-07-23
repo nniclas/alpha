@@ -16,19 +16,35 @@ function createDataState() {
     const [processorUsage, setProcessorUsage] = createSignal<number>(0) // processor usage of current monitored unit
     const [batteryLevel, setBatteryLevel] = createSignal<number>(0) // battery level of current monitored unit
 
+    const [i1, setI1] = createSignal<NodeJS.Timer>()
+    const [i2, setI2] = createSignal<NodeJS.Timer>()
+    const [i3, setI3] = createSignal<NodeJS.Timer>()
+
     createEffect(() => {
         if (pollingActive()) {
-            setInterval(() => {
+            const i1 = setInterval(() => {
                 setSignalStrength(getSignalStrength(0, signalStrength()))
             }, 3200)
+            setI1(i1)
 
-            setInterval(() => {
+            const i2 = setInterval(() => {
                 setProcessorUsage(getProcessorUsage(0, processorUsage()))
             }, 1100)
+            setI2(i2)
 
-            setInterval(() => {
+            const i3 = setInterval(() => {
                 setBatteryLevel(getBatteryLevel(0, batteryLevel()))
             }, 5000)
+            setI3(i3)
+        }
+
+        if (!pollingActive()) {
+            clearInterval(i1())
+            clearInterval(i2())
+            clearInterval(i3())
+            setSignalStrength(0)
+            setProcessorUsage(0)
+            setBatteryLevel(0)
         }
     })
 

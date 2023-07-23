@@ -8,8 +8,13 @@ import machineDataStore from '../../../core/machine-data-store'
 import { FiSettings } from 'solid-icons/fi'
 import { UnitMeter } from '../../../components/unit-meter/unit-meter'
 import { CircularMeter } from '../../../components/circular-meter/circular-meter'
+import { Unit } from 'types/entities/unit'
 
-export const Operation: Component = () => {
+interface Args {
+    unit?: Unit
+}
+
+export const Operation = (a: Args) => {
     createEffect(() => {})
 
     return (
@@ -21,6 +26,11 @@ export const Operation: Component = () => {
                 <Text primary md>
                     Operation
                 </Text>
+                <Field aic>
+                    <Text tertiary sm>
+                        {dataStore.selectedUnit()?.name}
+                    </Text>
+                </Field>
             </Field>
 
             <Field p='0 64px'>

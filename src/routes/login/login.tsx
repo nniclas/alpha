@@ -91,51 +91,48 @@ export const Login: Component = () => {
                                 Account
                             </Text>
                         </Field>
-                        <Transition name='slide-fade'>
-                            <Field
-                                col
-                                s
-                                gsm
-                                plg
-                                style='width:340px; background:hsla(200, 18%, 20%,0.8); transition:1s ease all'
-                            >
-                                <Field s psm>
-                                    <Text color='hsl(200, 18%, 62%)'>
-                                        Sign in
-                                    </Text>
-                                </Field>
+
+                        <Field
+                            col
+                            s
+                            gsm
+                            plg
+                            style='width:340px; background:hsla(200, 18%, 20%,0.8); transition:1s ease all'
+                        >
+                            <Field s psm>
+                                <Text color='hsl(200, 18%, 62%)'>Sign in</Text>
+                            </Field>
+                            <Field s>
+                                <Textfield
+                                    placeholder='Email'
+                                    value={email()}
+                                    primary
+                                    psm
+                                    color='hsl(200, 18%, 32%)'
+                                    change={(v) => setEmail(v)}
+                                />
+                            </Field>
+                            <Field s>
+                                <Textfield
+                                    password
+                                    placeholder='Password'
+                                    value={password()}
+                                    primary
+                                    psm
+                                    color='hsl(200, 18%, 32%)'
+                                    change={(v) => setPassword(v)}
+                                />
+                            </Field>
+                            <Field jce>
                                 <Field s>
-                                    <Textfield
-                                        placeholder='Email'
-                                        value={email()}
-                                        primary
-                                        psm
-                                        color='hsl(200, 18%, 32%)'
-                                        change={(v) => setEmail(v)}
-                                    />
-                                </Field>
-                                <Field s>
-                                    <Textfield
-                                        password
-                                        placeholder='Password'
-                                        value={password()}
-                                        primary
-                                        psm
-                                        color='hsl(200, 18%, 32%)'
-                                        change={(v) => setPassword(v)}
-                                    />
-                                </Field>
-                                <Field jce>
-                                    <Field s>
-                                        <Button tertiary md onClick={logIn}>
-                                            <Text color='hsl(200, 18%, 22%)'>
-                                                Sign in
-                                            </Text>
-                                        </Button>
-                                    </Field>
+                                    <Button tertiary md onClick={logIn}>
+                                        <Text color='hsl(200, 18%, 22%)'>
+                                            Sign in
+                                        </Text>
+                                    </Button>
                                 </Field>
                             </Field>
-                        </Transition>
+                        </Field>
                     </Field>
                 }
             />
