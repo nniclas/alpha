@@ -24,7 +24,12 @@ const unitTemplate = (u: Unit) => {
                 </Field>
                 <Field s c gsm>
                     <StateIcon state={u.state} />
-                    <UnitMeter value={73} scale={10} />
+                    {/* <UnitMeter
+                        value={73}
+                        scale={10}
+                        meterColor='hsl(200, 12%, 62%)'
+                        valueColor='hsl(200, 12%, 22%)'
+                    /> */}
                 </Field>
             </Field>
         </Field>

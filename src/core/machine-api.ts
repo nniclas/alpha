@@ -13,9 +13,15 @@ export const getSignalStrength = (unitId: number, lastReading: number) => {
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    const min = lastReading == 0 ? 80 : lastReading - 3
-    const max = lastReading == 0 ? 100 : lastReading + 3
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    let min = lastReading == 0 ? 80 : lastReading - 10
+    let max = lastReading == 0 ? 100 : lastReading + 10
+    if (min < 0) min = 0
+    if (max > 100) max = 100
+
+    const v = Math.floor(Math.random() * (max - min + 1) + min)
+
+    // console.log(v)
+    return v
 }
 
 /**
@@ -29,8 +35,10 @@ export const getProcessorUsage = (unitId: number, lastReading: number) => {
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    const min = lastReading == 0 ? 20 : lastReading - 3
-    const max = lastReading == 0 ? 90 : lastReading + 3
+    let min = lastReading == 0 ? 20 : lastReading - 10
+    let max = lastReading == 0 ? 90 : lastReading + 10
+    if (min < 0) min = 0
+    if (max > 100) max = 100
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
@@ -45,7 +53,9 @@ export const getBatteryLevel = (unitId: number, lastReading: number) => {
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    const min = lastReading == 0 ? 40 : lastReading - 3
-    const max = lastReading == 0 ? 80 : lastReading + 3
+    let min = lastReading == 0 ? 40 : lastReading - 10
+    let max = lastReading == 0 ? 80 : lastReading + 10
+    if (min < 0) min = 0
+    if (max > 100) max = 100
     return Math.floor(Math.random() * (max - min + 1) + min)
 }

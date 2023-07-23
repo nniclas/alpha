@@ -30,11 +30,12 @@ export const App: Component = () => {
                     <Header />
                 </Field>
                 <Field rel col>
-                    <Transition name='bar' >
+                    <Transition name='bar'>
                         <Routes>
                             {/* <Route path='/' component={App} /> */}
                             <Route path='/login' component={Login} />
                             <Route path='/' component={RouteGuard}>
+                                <Route path='/' component={Dashboard} />
                                 <Route
                                     path='/dashboard'
                                     component={Dashboard}

@@ -7,6 +7,7 @@ import dataStore from '../../../core/data-store'
 import machineDataStore from '../../../core/machine-data-store'
 import { FiSettings } from 'solid-icons/fi'
 import { UnitMeter } from '../../../components/unit-meter/unit-meter'
+import { CircularMeter } from '../../../components/circular-meter/circular-meter'
 
 export const Operation: Component = () => {
     createEffect(() => {})
@@ -24,21 +25,34 @@ export const Operation: Component = () => {
             <Field col gmd>
                 <Field s col gsm>
                     <Text sm primary>
-                        Signal
+                        Signal strength
                     </Text>
-                    <UnitMeter value={machineDataStore.signalStrength()} />
+                    <UnitMeter
+                        value={machineDataStore.signalStrength()}
+                        meterColor='hsl(200, 12%, 28%)'
+                        valueColor='hsl(50, 36%, 62%)'
+                    />
                 </Field>
+                {/* <Field s col gsm>
+                    <Text sm primary>
+                        Battery level
+                    </Text>
+                    <UnitMeter
+                        value={machineDataStore.batteryLevel()}
+                        meterColor='hsl(200, 12%, 28%)'
+                        valueColor='hsl(50, 36%, 62%)'
+                    />
+                </Field> */}
+
                 <Field s col gsm>
                     <Text sm primary>
-                        Processor
+                        Processor usage
                     </Text>
-                    <UnitMeter value={machineDataStore.processorUsage()} />
-                </Field>
-                <Field s col gsm>
-                    <Text sm primary>
-                        Battery
-                    </Text>
-                    <UnitMeter value={machineDataStore.batteryLevel()} />
+                    <CircularMeter
+                        value={machineDataStore.processorUsage()}
+                        meterColor='hsl(200, 18%, 28%)'
+                        valueColor='hsl(50, 36%, 62%)'
+                    />
                 </Field>
             </Field>
         </Field>

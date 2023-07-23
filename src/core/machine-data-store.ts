@@ -24,10 +24,10 @@ function createDataState() {
         if (pollingActive()) {
             setInterval(() => {
                 setSignalStrength(getSignalStrength(0, signalStrength()))
-            }, 500)
+            }, 3200)
             setInterval(() => {
                 setProcessorUsage(getProcessorUsage(0, processorUsage()))
-            }, 800)
+            }, 1100)
             setInterval(() => {
                 setBatteryLevel(getBatteryLevel(0, batteryLevel()))
             }, 5000)
