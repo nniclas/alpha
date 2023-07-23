@@ -39,7 +39,12 @@ export const Operation = (a: Args) => {
                 </Field>
             </Field>
 
-            <Field a style={`padding:0 ${appStore.section() == 0 ? 64 : 32}px`}>
+            <Field
+                a
+                style={`padding:0 ${
+                    appStore.section() == 'operation' ? 64 : 32
+                }px`}
+            >
                 <Field col glg>
                     <Field s col gsm>
                         <Text sm primary>
@@ -47,7 +52,7 @@ export const Operation = (a: Args) => {
                         </Text>
                         <Field h={64}>
                             <Transition name='foo'>
-                                {appStore.section() == 0 && (
+                                {appStore.section() == 'operation' && (
                                     <UnitMeter
                                         value={machineDataStore.signalStrength()}
                                         meterColor='hsl(200, 12%, 28%)'
@@ -63,7 +68,7 @@ export const Operation = (a: Args) => {
                         </Text>
                         <Field h={64}>
                             <Transition name='foo'>
-                                {appStore.section() == 0 && (
+                                {appStore.section() == 'operation' && (
                                     <UnitMeter
                                         value={machineDataStore.batteryLevel()}
                                         meterColor='hsl(200, 12%, 28%)'
@@ -79,7 +84,7 @@ export const Operation = (a: Args) => {
                         Processor usage
                     </Text>
                     <Transition name='foo'>
-                        {appStore.section() == 0 && (
+                        {appStore.section() == 'operation' && (
                             <CircularMeter
                                 value={machineDataStore.processorUsage()}
                                 meterColor='hsl(200, 18%, 28%)'

@@ -28,14 +28,14 @@ function createDataState() {
     const [units, setUnits] = createSignal<Unit[]>([])
     const [selectedUnit, setSelectedUnit] = createSignal<Unit>()
     // const [events, setEvents] = createSignal<Event[]>([])
-    // const [entries, setEntries] = createSignal<Entry[]>([])
+    const [entries, setEntries] = createSignal<Entry[]>([])
     // const [users, setUsers] = createSignal<User[]>([])
 
     createEffect(() => {})
 
     const getUnits = async () => {
-        const unitss = await getItems<Unit[]>('units')
-        setUnits(unitss)
+        const units = await getItems<Unit[]>('units')
+        setUnits(units)
     }
     const selectUnit = async (id: number) => {
         setSelectedUnit(units().find((u) => u.id == id))
@@ -47,6 +47,11 @@ function createDataState() {
     const deleteUnit = async (id: number) =>
         deleteItem(`units/${id}`, () => getUnits())
 
+    const getEntries = async () => {
+        const entries = await getItems<Entry[]>('entries')
+        setEntries(entries)
+    }
+
     return {
         units,
         selectedUnit,
@@ -55,6 +60,8 @@ function createDataState() {
         addUnit,
         updateUnit,
         deleteUnit,
+        getEntries,
+        entries,
     }
 }
 

@@ -32,30 +32,37 @@ export const Dashboard: Component = () => {
         // )
     })
 
-    const createPage = (u: Unit) => (
-        <Field layer>
-            <For each={[<Operation unit={u} />, <Actions unit={u} />]}>
-                {(c, i) => {
-                    return (
-                        <Field
-                            trim
-                            style={
-                                appStore.section() == i()
-                                    ? [flexOpen, style].join(';')
-                                    : [flexClosed, style].join(';')
-                            }
-                            onClick={() => {
-                                appStore.setSection(i())
-                                // a.pageChanged(i())
-                            }}
-                        >
-                            {c}
-                        </Field>
-                    )
-                }}
-            </For>
-        </Field>
-    )
+    const createPage = (u: Unit) => {
+        const sections = [
+            { s: 'operation', c: <Operation unit={u} /> },
+            { s: 'actions', c: <Actions unit={u} /> },
+        ]
+
+        return (
+            <Field layer>
+                <For each={sections}>
+                    {(sec, i) => {
+                        return (
+                            <Field
+                                trim
+                                style={
+                                    appStore.section() == sec.s
+                                        ? [flexOpen, style].join(';')
+                                        : [flexClosed, style].join(';')
+                                }
+                                onClick={() => {
+                                    appStore.setSection(sec.s as any)
+                                    // a.pageChanged(i())
+                                }}
+                            >
+                                {sec.c}
+                            </Field>
+                        )
+                    }}
+                </For>
+            </Field>
+        )
+    }
 
     return (
         <Field rel>
