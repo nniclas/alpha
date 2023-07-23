@@ -22,29 +22,31 @@ export const Operation: Component = () => {
                     Operation
                 </Text>
             </Field>
-            <Field col gmd>
-                <Field s col gsm>
-                    <Text sm primary>
-                        Signal strength
-                    </Text>
-                    <UnitMeter
-                        value={machineDataStore.signalStrength()}
-                        meterColor='hsl(200, 12%, 28%)'
-                        valueColor='hsl(50, 36%, 62%)'
-                    />
-                </Field>
-                {/* <Field s col gsm>
-                    <Text sm primary>
-                        Battery level
-                    </Text>
-                    <UnitMeter
-                        value={machineDataStore.batteryLevel()}
-                        meterColor='hsl(200, 12%, 28%)'
-                        valueColor='hsl(50, 36%, 62%)'
-                    />
-                </Field> */}
 
-                <Field s col gsm>
+            <Field p='0 64px'>
+                <Field col gmd>
+                    <Field s col gsm>
+                        <Text sm primary>
+                            Signal strength
+                        </Text>
+                        <UnitMeter
+                            value={machineDataStore.signalStrength()}
+                            meterColor='hsl(200, 12%, 28%)'
+                            valueColor='hsl(50, 36%, 62%)'
+                        />
+                    </Field>
+                    <Field s col gsm>
+                        <Text sm primary>
+                            Battery level
+                        </Text>
+                        <UnitMeter
+                            value={machineDataStore.batteryLevel()}
+                            meterColor='hsl(200, 12%, 28%)'
+                            valueColor='hsl(50, 36%, 62%)'
+                        />
+                    </Field>
+                </Field>
+                <Field s col gsm jcs>
                     <Text sm primary>
                         Processor usage
                     </Text>

@@ -10,10 +10,6 @@ import {
     getBatteryLevel,
 } from './machine-api'
 
-const getItems = async <T>(path: string): Promise<T> => {
-    return await get<T>(path)
-}
-
 function createDataState() {
     const [pollingActive, setPollingActive] = createSignal<boolean>(true) // control whether to poll machine api indefinitely
     const [signalStrength, setSignalStrength] = createSignal<number>(0) // signal strength of current monitored unit
@@ -25,9 +21,11 @@ function createDataState() {
             setInterval(() => {
                 setSignalStrength(getSignalStrength(0, signalStrength()))
             }, 3200)
+
             setInterval(() => {
                 setProcessorUsage(getProcessorUsage(0, processorUsage()))
             }, 1100)
+
             setInterval(() => {
                 setBatteryLevel(getBatteryLevel(0, batteryLevel()))
             }, 5000)

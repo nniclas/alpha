@@ -12,36 +12,25 @@ interface Args {
 }
 
 export const UnitMeter = (a: Args) => {
-    const [value, setValue] = createSignal<number>(a.value)
+    const [ready, setReady] = createSignal<boolean>(false)
+    const [value, setValue] = createSignal<number>(0)
 
     createEffect(() => {
-        setValue(a.value)
+        if (!ready()) {
+            for (let i = 0; i < a.value; i++) {
+                setTimeout(() => {
+                    setValue(i)
+                    if (i == a.value - 1) setReady(true)
+                }, 8 * i)
+            }
+        }
+        if (ready()) setValue(a.value)
     })
-
-    // createEffect(() => {
-    //     const d = a.value - value()
-    //     const dabs = Math.abs(d)
-
-    //     let c = 0
-
-    //     const setLater = (action: () => void) => {
-    //         console.log(d, c)
-    //         setTimeout(() => {
-    //             if (c > 0) {
-    //                 c--
-    //                 action()
-    //             }
-    //         }, 20)
-    //     }
-
-    //     c = dabs
-    //     // setLater(() => setValue(value() + 1))
-    // })
 
     return (
         <Field rel>
-            <div class={styles.block} />
-            {/* <Field layer>
+            {/* <div class={styles.block} style={`animation:${getCssAnimValue}`} /> */}
+            <Field layer>
                 <Field style='gap:4px'>
                     <For
                         each={Array(Math.round(100 / (a.scale == 10 ? 10 : 1)))
@@ -68,7 +57,7 @@ export const UnitMeter = (a: Args) => {
                         )}
                     </For>
                 </Field>
-            </Field> */}
+            </Field>
         </Field>
     )
 }

@@ -1,4 +1,4 @@
-import { createSignal, createMemo, createRoot } from 'solid-js'
+import { createSignal, createMemo, createRoot, createEffect } from 'solid-js'
 // import { Activity } from 'types/activity'
 import { get, post, put, del } from './api'
 import { Unit } from 'types/entities/unit'
@@ -31,6 +31,12 @@ function createDataState() {
     // const [entries, setEntries] = createSignal<Entry[]>([])
     // const [users, setUsers] = createSignal<User[]>([])
 
+    createEffect(() => {
+        if (units() && units().length) {
+            setSelectedUnit(units()[0])
+        }
+    })
+
     const getUnits = async () => {
         const unitss = await getItems<Unit[]>('units')
         setUnits(unitss)
@@ -42,7 +48,7 @@ function createDataState() {
         //     setSelectedUnit(unitss[0]) // every fetch-all-units will reset selected unit
         // }, 1000)
     }
-    const getUnit = async (id: number) => {
+    const selectUnit = async (id: number) => {
         setSelectedUnit(units().find((u) => u.id == id))
     }
     const addUnit = async (unit: Unit) =>
@@ -56,7 +62,7 @@ function createDataState() {
         units,
         selectedUnit,
         getUnits,
-        getUnit,
+        selectUnit,
         addUnit,
         updateUnit,
         deleteUnit,
