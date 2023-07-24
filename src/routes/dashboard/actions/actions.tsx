@@ -27,17 +27,28 @@ export const Actions = (a: Args) => {
                     Actions
                 </Text>
             </Field>
-            <Field col gsm>
+            <Field col gsm res={{ col: false }}>
                 <For each={dataStore.entries()}>
                     {(e, i) => {
+                        const et = entryTags.find((et) => et.value == e.tag)
                         return (
-                            <Field s h={32} illume pxs aic p='8px 24px'>
+                            <Field
+                                a
+                                s
+                                illume
+                                pxs
+                                aic
+                                p='8px 24px'
+                                style={`height:${
+                                    appStore.section() == 'actions' ? 128 : 32
+                                }px; width: ${
+                                    appStore.section() == 'actions' ? 512 : 32
+                                }px`}
+                            >
                                 <Text primary xs>
-                                    {
-                                        entryTags.find(
-                                            (et) => et.value == e.tag
-                                        )?.name
-                                    }
+                                    {appStore.section() == 'actions'
+                                        ? et?.name
+                                        : et?.value}
                                 </Text>
                             </Field>
                         )

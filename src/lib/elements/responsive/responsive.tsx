@@ -1,7 +1,6 @@
 import { createEffect, createSignal, onCleanup, onMount } from 'solid-js'
-import { RES_BREAKPOINT } from '../../../common/vars'
 import Field from '../field/field'
-import { isCompact } from '../../../core/utils'
+import { isCompact } from '../../utils'
 
 interface Args {
     children?: any

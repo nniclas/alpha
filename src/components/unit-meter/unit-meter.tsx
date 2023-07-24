@@ -28,7 +28,7 @@ export const UnitMeter = (a: Args) => {
     })
 
     return (
-        <Field rel>
+        <Field rel h={8}>
             {/* <div class={styles.block} style={`animation:${getCssAnimValue}`} /> */}
             <Field layer>
                 <Field style='gap:4px'>

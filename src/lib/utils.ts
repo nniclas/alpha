@@ -52,7 +52,7 @@ export const isMobile = () => {
 export const isObjectWithProps = (o: any) =>
     typeof o === 'object' && Object.keys(o).length > 0
 
-export const isCompact = (breakPoint = 600) => {
+export const isCompact = (breakPoint = 1400) => {
     return window.innerWidth < breakPoint
 }
 

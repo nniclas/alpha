@@ -97,7 +97,7 @@ export const Login: Component = () => {
                             s
                             gsm
                             plg
-                            style='width:340px; background:hsla(200, 18%, 20%,0.8); transition:1s ease all'
+                            style='width:340px; background:hsla(200, 18%, 20%,1); transition:1s ease all'
                         >
                             <Field s psm>
                                 <Text color='hsl(200, 18%, 62%)'>Sign in</Text>

@@ -39,7 +39,7 @@ export const Dashboard: Component = () => {
         ]
 
         return (
-            <Field layer>
+            <Field layer res={{ col: true }}>
                 <For each={sections}>
                     {(sec, i) => {
                         return (

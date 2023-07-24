@@ -30,7 +30,7 @@
     font-size: var(--text-size-xs);
     /* font-weight: 700; */
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1400px) {
     .textfield.lg.res {
         font-size: var(--text-size-md);
     }

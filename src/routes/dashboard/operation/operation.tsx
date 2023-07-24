@@ -26,7 +26,7 @@ export const Operation = (a: Args) => {
     return (
         <Field pmd col glg>
             <Field s gsm>
-                <Field s h={30} c>
+                <Field s c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
                 <Text primary md>
@@ -40,17 +40,19 @@ export const Operation = (a: Args) => {
             </Field>
 
             <Field
+                res={{ col: true }}
+                gmd
                 a
                 style={`padding:0 ${
                     appStore.section() == 'operation' ? 64 : 32
                 }px`}
             >
-                <Field col glg>
+                <Field col gmd res={{ s: true }}>
                     <Field s col gsm>
                         <Text sm primary>
                             Signal strength
                         </Text>
-                        <Field h={64}>
+                        <Field>
                             <Transition name='foo'>
                                 {appStore.section() == 'operation' && (
                                     <UnitMeter
@@ -66,7 +68,7 @@ export const Operation = (a: Args) => {
                         <Text sm primary>
                             Battery level
                         </Text>
-                        <Field h={64}>
+                        <Field>
                             <Transition name='foo'>
                                 {appStore.section() == 'operation' && (
                                     <UnitMeter
