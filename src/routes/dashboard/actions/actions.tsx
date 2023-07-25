@@ -4,12 +4,21 @@ import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import appStore from '../../../core/app-store'
 import dataStore from '../../../core/data-store'
-import { FiSettings, FiZap } from 'solid-icons/fi'
+import {
+    FiBell,
+    FiOctagon,
+    FiSettings,
+    FiShuffle,
+    FiTrello,
+    FiZap,
+} from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
 import { entryTags } from '../../../common/constants'
-import { Tag } from '../../../types/tag'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
+import { Entry } from '../../../types/entities/entry'
+import { ValueNamePair } from '../../../types/_types'
+import { EntryTagIcon } from '../../../components/entry-tag-icon/entry-tag-icon'
 
 interface Args {
     unit?: Unit
@@ -20,21 +29,28 @@ export const Actions = (a: Args) => {
         dataStore.getEntries() // todo query by unit id, add to backend
     })
 
-    const FullEntry = (a: { t: Tag }) => {
+    const FullEntry = (a: { e: Entry; t: ValueNamePair }) => {
         return (
-            <Field a w={512} h={32} s illume pxs aic p='8px 24px'>
-                <Text primary xs>
-                    {a.t?.name}
+            <Field a w={512} h={32} s illume pxs aic gsm p='8px 16px'>
+                <Field s>
+                    <EntryTagIcon value={a.t.value} />
+                </Field>
+                <Field s>{a.e.tag}</Field>
+                <Text xs primary>
+                    {a.t.name}
                 </Text>
             </Field>
         )
     }
 
-    const CompactEntry = (a: { t: Tag }) => {
+    const CompactEntry = (a: { t: ValueNamePair }) => {
         return (
-            <Field a w={32} h={32} s illume pxs aic p='8px 24px'>
-                <Text primary xs>
-                    {a.t?.value}
+            <Field a w={256} h={32} s illume pxs aic gsm p='8px 16px'>
+                <Field s>
+                    <EntryTagIcon value={a.t.value} />
+                </Field>
+                <Text xs primary>
+                    {a.t.name}
                 </Text>
             </Field>
         )
@@ -67,7 +83,7 @@ export const Actions = (a: Args) => {
                             <Field a s pxs aic p='8px 24px'>
                                 <Transition name='slide-fade'>
                                     {appStore.section() == 'actions' ? (
-                                        <FullEntry t={et} />
+                                        <FullEntry e={e} t={et} />
                                     ) : (
                                         <CompactEntry t={et} />
                                     )}
