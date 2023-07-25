@@ -12,7 +12,6 @@ import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
-import machineDataStore from '../../core/machine-data-store'
 
 const unitTemplate = (u: Unit) => {
     return (

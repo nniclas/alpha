@@ -1,6 +1,7 @@
-export interface ValueNamePair {
+export interface ValueIdTitle {
     value: number
-    name: string
+    identifier: string
+    title: string
 }
 
 export interface ValueIconPair {

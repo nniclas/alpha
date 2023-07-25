@@ -1,24 +1,40 @@
-import { ValueNamePair } from 'types/_types'
+import { ValueIdTitle } from 'types/_types'
 
-export const stateTags: ValueNamePair[] = [
-    { value: 1, name: 'Idle' },
-    { value: 2, name: 'Normal operation' },
-    { value: 3, name: 'Suspended' },
-    { value: 4, name: 'Fault' },
-    { value: 5, name: 'Disengaged' },
+// names in default EN
+
+export const states: ValueIdTitle[] = [
+    { value: 1, identifier: 'IDLE', title: 'Idle' },
+    { value: 2, identifier: 'NORMAL_OPERATION', title: 'Normal operation' },
+    { value: 3, identifier: 'SUSPENDED', title: 'Suspended' },
+    { value: 4, identifier: 'FAULT', title: 'Fault' },
+    { value: 5, identifier: 'DISENGAGED', title: 'Disengaged' },
 ]
 
-export const entryTags: ValueNamePair[] = [
-    { value: 1, name: 'Periodic integrity check' },
-    { value: 2, name: 'Monthly field test' },
-    { value: 3, name: 'Deviation identified' },
-    { value: 4, name: 'Temperature alarm' },
+export const measures: ValueIdTitle[] = [
+    { value: 1, identifier: 'IGNORE', title: 'Ignore' },
+    { value: 2, identifier: 'FOLLOW_UP', title: 'Follow up' },
+    { value: 3, identifier: 'RESTORE', title: 'Restore' },
 ]
 
-export const eventTags: ValueNamePair[] = [
-    { value: 1, name: 'Routine' },
-    { value: 2, name: 'Upgrade' },
-    { value: 3, name: 'Report' },
-    { value: 4, name: 'Alert' },
-    { value: 5, name: 'Critical' },
+export const tags: ValueIdTitle[] = [
+    {
+        value: 1,
+        identifier: 'PERIODIC_INTEGRITY_CHECK',
+        title: 'Periodic integrity check',
+    },
+    { value: 2, identifier: 'MONTHLY_FIELD_TEST', title: 'Monthly field test' },
+    {
+        value: 3,
+        identifier: 'DEVIATION_IDENTIFIED',
+        title: 'Deviation identified',
+    },
+    { value: 4, identifier: 'TEMP_LOW', title: 'Temperature alarm' },
+]
+
+export const events: ValueIdTitle[] = [
+    { value: 1, identifier: 'ROUTINE', title: 'Routine' },
+    { value: 2, identifier: 'UPGRADE', title: 'Upgrade' },
+    { value: 3, identifier: 'REPORT', title: 'Report' },
+    { value: 4, identifier: 'ALERT', title: 'Alert' },
+    { value: 5, identifier: 'CRITICAL', title: 'Critical' },
 ]

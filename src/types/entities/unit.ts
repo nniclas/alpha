@@ -4,5 +4,5 @@ export interface Unit {
     state: number
 
     // frontend add-on props
-    selected?: boolean
+    selected?: boolean // todo
 }

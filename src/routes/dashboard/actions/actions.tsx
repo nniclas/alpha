@@ -16,11 +16,11 @@ import {
     FiZap,
 } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
-import { entryTags } from '../../../common/constants'
+import { tags } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import { Entry } from '../../../types/entities/entry'
-import { ValueNamePair } from '../../../types/_types'
+import { ValueIdTitle } from '../../../types/_types'
 import { EventIcon } from '../../../components/event-icon/event-icon'
 
 interface Args {
@@ -34,8 +34,7 @@ export const Actions = (a: Args) => {
         dataStore.getEntries() // todo query by unit id, add to backend
     })
 
-    const FullEntry = (a: { e: Entry; t: ValueNamePair }) => {
-        console.log(a.t.name, a.e.eventId)
+    const FullEntry = (a: { e: Entry; t: ValueIdTitle }) => {
         return (
             <Field
                 a
@@ -49,10 +48,10 @@ export const Actions = (a: Args) => {
                 p='8px 16px'
             >
                 <Field s>
-                    <EventIcon value={a.e.eventId} />
+                    <EventIcon value={a.e.event} />
                 </Field>
                 <Text xs tertiary>
-                    {a.t.name}
+                    {a.t.title}
                 </Text>
                 <Field jce gsm>
                     <Field s gsm w={400}>
@@ -76,7 +75,7 @@ export const Actions = (a: Args) => {
         )
     }
 
-    const CompactEntry = (a: { t: ValueNamePair }) => {
+    const CompactEntry = (a: { t: ValueIdTitle }) => {
         return (
             <Field
                 a
@@ -94,7 +93,7 @@ export const Actions = (a: Args) => {
                     <EventIcon value={a.t.value} />
                 </Field>
                 <Text xs tertiary>
-                    {a.t.name}
+                    {a.t.title}
                 </Text>
             </Field>
         )
@@ -122,7 +121,7 @@ export const Actions = (a: Args) => {
             >
                 <For each={dataStore.entries()}>
                     {(e, i) => {
-                        const et = entryTags.find((et) => et.value == e.tag)!
+                        const et = tags.find((t) => t.value == e.tag)!
                         return (
                             <Field a s pxs aic p='8px 24px'>
                                 <Transition name='slide-fade'>
