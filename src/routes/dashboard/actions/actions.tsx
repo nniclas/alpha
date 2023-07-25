@@ -7,6 +7,9 @@ import dataStore from '../../../core/data-store'
 import { FiSettings, FiZap } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
 import { entryTags } from '../../../common/constants'
+import { Tag } from '../../../types/tag'
+import { Transition } from 'solid-transition-group'
+import { isCompact } from '../../../lib/utils'
 
 interface Args {
     unit?: Unit
@@ -16,6 +19,26 @@ export const Actions = (a: Args) => {
     createEffect(() => {
         dataStore.getEntries() // todo query by unit id, add to backend
     })
+
+    const FullEntry = (a: { t: Tag }) => {
+        return (
+            <Field a w={512} h={32} s illume pxs aic p='8px 24px'>
+                <Text primary xs>
+                    {a.t?.name}
+                </Text>
+            </Field>
+        )
+    }
+
+    const CompactEntry = (a: { t: Tag }) => {
+        return (
+            <Field a w={32} h={32} s illume pxs aic p='8px 24px'>
+                <Text primary xs>
+                    {a.t?.value}
+                </Text>
+            </Field>
+        )
+    }
 
     return (
         <Field col focus pmd glg>
@@ -27,29 +50,28 @@ export const Actions = (a: Args) => {
                     Actions
                 </Text>
             </Field>
-            <Field col gsm res={{ col: false }}>
+            <Field
+                col
+                gsm
+                res={{ col: false }}
+                style={`flex-direction:${
+                    appStore.section() == 'actions' || !isCompact()
+                        ? 'column'
+                        : 'row'
+                } `}
+            >
                 <For each={dataStore.entries()}>
                     {(e, i) => {
-                        const et = entryTags.find((et) => et.value == e.tag)
+                        const et = entryTags.find((et) => et.value == e.tag)!
                         return (
-                            <Field
-                                a
-                                s
-                                illume
-                                pxs
-                                aic
-                                p='8px 24px'
-                                style={`height:${
-                                    appStore.section() == 'actions' ? 128 : 32
-                                }px; width: ${
-                                    appStore.section() == 'actions' ? 512 : 32
-                                }px`}
-                            >
-                                <Text primary xs>
-                                    {appStore.section() == 'actions'
-                                        ? et?.name
-                                        : et?.value}
-                                </Text>
+                            <Field a s pxs aic p='8px 24px'>
+                                <Transition name='slide-fade'>
+                                    {appStore.section() == 'actions' ? (
+                                        <FullEntry t={et} />
+                                    ) : (
+                                        <CompactEntry t={et} />
+                                    )}
+                                </Transition>
                             </Field>
                         )
                     }}
