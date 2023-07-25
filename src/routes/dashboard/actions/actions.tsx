@@ -31,7 +31,8 @@ const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Actions = (a: Args) => {
     createEffect(() => {
-        dataStore.getEntries() // todo query by unit id, add to backend
+        console.log(a.unit?.id)
+        dataStore.getEntries(a.unit?.id)
     })
 
     const FullEntry = (a: { e: Entry; t: ValueIdTitle }) => {
@@ -56,10 +57,14 @@ export const Actions = (a: Args) => {
                 <Field jce gsm>
                     <Field s gsm w={400}>
                         <Field s w={200} gsm>
-                            <FiUser {...iconStyle} />
-                            <Text xs tertiary>
-                                john dob
-                            </Text>
+                            {a.e.user && (
+                                <Field gsm>
+                                    <FiUser {...iconStyle} />
+                                    <Text xs tertiary>
+                                        {a.e.user.email}
+                                    </Text>
+                                </Field>
+                            )}
                         </Field>
 
                         <Field s w={18}>

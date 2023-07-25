@@ -47,8 +47,10 @@ function createDataState() {
     const deleteUnit = async (id: number) =>
         deleteItem(`units/${id}`, () => getUnits())
 
-    const getEntries = async () => {
-        const entries = await getItems<Entry[]>('entries')
+    const getEntries = async (unitId?: number) => {
+        const entries = await getItems<Entry[]>(
+            'entries/' + (unitId ? `byUnit/${unitId}` : '')
+        )
         setEntries(entries)
     }
 
