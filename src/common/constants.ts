@@ -9,10 +9,10 @@ export const stateTags: ValueNamePair[] = [
 ]
 
 export const entryTags: ValueNamePair[] = [
-    { value: 1, name: 'PERIODIC_INTEGRITY_CHECK' },
-    { value: 2, name: 'MONTHLY_FIELD_TEST' },
-    { value: 3, name: 'DEVIATION_IDENTIFIED' },
-    { value: 4, name: 'TEMP_LOW' },
+    { value: 1, name: 'Periodic integrity check' },
+    { value: 2, name: 'Monthly field test' },
+    { value: 3, name: 'Deviation identified' },
+    { value: 4, name: 'Temperature alarm' },
 ]
 
 export const eventTags: ValueNamePair[] = [

@@ -1,8 +1,8 @@
 export interface Entry {
     id: number
-    unitid: number
-    eventid: number
-    userid: number
+    unitId: number
+    eventId: number
+    userId: number
     measure: number
     tag: number
     notes: string

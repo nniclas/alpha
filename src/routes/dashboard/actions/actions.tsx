@@ -6,10 +6,13 @@ import appStore from '../../../core/app-store'
 import dataStore from '../../../core/data-store'
 import {
     FiBell,
+    FiMessageCircle,
     FiOctagon,
     FiSettings,
     FiShuffle,
+    FiTag,
     FiTrello,
+    FiUser,
     FiZap,
 } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
@@ -18,11 +21,13 @@ import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import { Entry } from '../../../types/entities/entry'
 import { ValueNamePair } from '../../../types/_types'
-import { EntryTagIcon } from '../../../components/entry-tag-icon/entry-tag-icon'
+import { EventIcon } from '../../../components/event-icon/event-icon'
 
 interface Args {
     unit?: Unit
 }
+
+const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Actions = (a: Args) => {
     createEffect(() => {
@@ -30,26 +35,65 @@ export const Actions = (a: Args) => {
     })
 
     const FullEntry = (a: { e: Entry; t: ValueNamePair }) => {
+        console.log(a.t.name, a.e.eventId)
         return (
-            <Field a w={512} h={32} s illume pxs aic gsm p='8px 16px'>
+            <Field
+                a
+                w={800}
+                h={32}
+                s
+                bg='hsl(200, 18%, 16%)'
+                pxs
+                aic
+                gsm
+                p='8px 16px'
+            >
                 <Field s>
-                    <EntryTagIcon value={a.t.value} />
+                    <EventIcon value={a.e.eventId} />
                 </Field>
-                <Field s>{a.e.tag}</Field>
-                <Text xs primary>
+                <Text xs tertiary>
                     {a.t.name}
                 </Text>
+                <Field jce gsm>
+                    <Field s gsm w={400}>
+                        <Field s w={200} gsm>
+                            <FiUser {...iconStyle} />
+                            <Text xs tertiary>
+                                john dob
+                            </Text>
+                        </Field>
+
+                        <Field s w={18}>
+                            {a.e.notes && <FiMessageCircle {...iconStyle} />}
+                        </Field>
+                    </Field>
+
+                    <Field s w={18}>
+                        <FiTag {...iconStyle} />
+                    </Field>
+                </Field>
             </Field>
         )
     }
 
     const CompactEntry = (a: { t: ValueNamePair }) => {
         return (
-            <Field a w={256} h={32} s illume pxs aic gsm p='8px 16px'>
+            <Field
+                a
+                w={256}
+                // w={18}
+                h={32}
+                s
+                bg='hsl(200, 18%, 16%)'
+                pxs
+                aic
+                gsm
+                p='8px 16px'
+            >
                 <Field s>
-                    <EntryTagIcon value={a.t.value} />
+                    <EventIcon value={a.t.value} />
                 </Field>
-                <Text xs primary>
+                <Text xs tertiary>
                     {a.t.name}
                 </Text>
             </Field>
