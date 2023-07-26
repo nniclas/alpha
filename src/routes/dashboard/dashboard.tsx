@@ -26,7 +26,7 @@ export const Dashboard: Component = () => {
 
     createEffect(async () => {
         await dataStore.getUnits()
-        dataStore.selectUnit(dataStore.units()[0].id)
+        // dataStore.selectUnit(dataStore.units()[0].id)
         // setPage(
         //     pages.find((p) => p.id == dataStore.selectedUnit()?.id)?.sections
         // )

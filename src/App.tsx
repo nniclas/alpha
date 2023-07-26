@@ -16,6 +16,7 @@ import { Dashboard } from './routes/dashboard/dashboard'
 import { Login } from './routes/login/login'
 import RouteGuard from './components/route-guard'
 import { Transition } from 'solid-transition-group'
+import dataStore from './core/data-store'
 
 // import BG from './assets/bg2.svg?component-solid'
 

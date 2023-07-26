@@ -7,7 +7,7 @@ import Button from '../../lib/elements/button/button'
 
 interface Args {
     //units: Unit[]
-    items: any[]
+    items?: any[]
     template: (a: any) => void
 }
 
@@ -25,29 +25,31 @@ export default (a: Args) => {
     createEffect(() => {
         // console.log(a.items)
 
-        const listIds = list().map((u) => u.id)
-        const incomingIds = a.items.map((inu) => inu.id)
+        if (a.items) {
+            const listIds = list().map((u) => u.id)
+            const incomingIds = a.items.map((inu) => inu.id)
 
-        // REMOVE
-        if (a.items.length < list().length) {
-            let indexesToRemove: number[] = []
-            listIds.forEach((id, i) => {
-                if (!incomingIds.includes(id)) {
-                    indexesToRemove.push(i)
-                }
-            })
-            remove(indexesToRemove)
-        }
+            // REMOVE
+            if (a.items.length < list().length) {
+                let indexesToRemove: number[] = []
+                listIds.forEach((id, i) => {
+                    if (!incomingIds.includes(id)) {
+                        indexesToRemove.push(i)
+                    }
+                })
+                remove(indexesToRemove)
+            }
 
-        // ADD
-        if (a.items.length > list().length) {
-            let itemsToAdd: any[] = []
-            incomingIds.forEach((id, i) => {
-                if (!listIds.includes(id)) {
-                    itemsToAdd.push(a.items[i])
-                }
-            })
-            add(itemsToAdd, true)
+            // ADD
+            if (a.items.length > list().length) {
+                let itemsToAdd: any[] = []
+                incomingIds.forEach((id, i) => {
+                    if (!listIds.includes(id)) {
+                        itemsToAdd.push(a.items![i])
+                    }
+                })
+                add(itemsToAdd, true)
+            }
         }
     })
 
@@ -76,13 +78,14 @@ export default (a: Args) => {
 
     return (
         <Field gsm>
+            {/* {a.items?.length} */}
             {/* <Button md primary onClick={() => add()}>
                 <Text secondary>Add</Text>
             </Button> */}
 
             <Field>
                 <TransitionGroup name='list-item'>
-                    <For each={list()}>
+                    <For each={a.items || list()}>
                         {(u, i) => (
                             <div class='list-item'>
                                 <Field s col psm>

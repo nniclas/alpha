@@ -31,7 +31,6 @@ const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Actions = (a: Args) => {
     createEffect(() => {
-        console.log(a.unit?.id)
         dataStore.getEntries(a.unit?.id)
     })
 
@@ -39,14 +38,13 @@ export const Actions = (a: Args) => {
         return (
             <Field
                 a
-                w={800}
-                h={32}
+                // w={800}
+                // h={32}
                 s
-                bg='hsl(200, 18%, 16%)'
+                style='width:800px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
                 pxs
                 aic
                 gsm
-                p='8px 16px'
             >
                 <Field s>
                     <EventIcon value={a.e.event} />
@@ -84,11 +82,12 @@ export const Actions = (a: Args) => {
         return (
             <Field
                 a
-                w={256}
+                // w={256}
                 // w={18}
-                h={32}
+                // h={32}
                 s
-                bg='hsl(200, 18%, 16%)'
+                // bg='hsl(200, 18%, 16%)'
+                style='width:256px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
                 pxs
                 aic
                 gsm
