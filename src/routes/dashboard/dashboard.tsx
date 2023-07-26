@@ -14,23 +14,7 @@ const style =
     'min-width:400px; transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
 export const Dashboard: Component = () => {
-    // const [page, setPage] = createSignal<any[]>([])
-
-    // const pages = dataStore.units().map((u) => {
-    //     const sections = [<Operation unit={u} />, <Actions unit={u} />]
-    //     return {
-    //         id: u.id,
-    //         sections: sections,
-    //     } as any
-    // })
-
-    createEffect(async () => {
-        // await dataStore.getUnits()
-        // dataStore.selectUnit(dataStore.units()[0].id)
-        // setPage(
-        //     pages.find((p) => p.id == dataStore.selectedUnit()?.id)?.sections
-        // )
-    })
+    createEffect(async () => {})
 
     const createPage = (u: Unit) => {
         const sections = [

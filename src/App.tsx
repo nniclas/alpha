@@ -16,21 +16,17 @@ import { Dashboard } from './routes/dashboard/dashboard'
 import { Login } from './routes/login/login'
 import RouteGuard from './components/route-guard'
 import { Transition } from 'solid-transition-group'
-import dataStore from './core/data-store'
 import { Dev } from './routes/_dev'
 
 // import BG from './assets/bg2.svg?component-solid'
 
 export const App: Component = () => {
     return (
-        // <Field>
-        //     <BG />
-        // </Field>
         <Router>
             <Field layer col bg='hsl(200, 18%, 22%)' trim>
-                {/* <Field s col>
+                <Field s col>
                     <Header />
-                </Field> */}
+                </Field>
                 <Field rel col>
                     <Transition name='bar'>
                         <Routes>

@@ -10,10 +10,17 @@ import { get, post, put, del } from './api'
 import { Unit } from 'types/entities/unit'
 import { User } from 'types/entities/user'
 import { Entry } from 'types/entities/entry'
-
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
+import appStore from './app-store'
+import { delay } from '../common/utils'
 
 const getItems = async <T>(path: string): Promise<T> => {
+    // !!!! todo: also enable [Authorize] and checks in backend
+
+    await delay(1000) // intentional additional delay for demo purposes
+    if (!appStore.session()?.token) {
+        return [] as any /// just disable api calls ?????
+    }
+
     return await get<T>(path)
 }
 
@@ -36,11 +43,16 @@ function createDataState() {
     const [units] = createSignal<Unit[]>([])
     // const [entries] = createSignal<Entry[]>([])
 
-    const [selectedUnitId, setSelectedUnitId] = createSignal<number>(1)
+    createEffect(() => {
+        // console.log(selectedUnitId())
+    })
 
-    const [unitsRes] = createResource<Unit[], Unit[]>(units, () =>
-        getItems<Unit[]>('units')
-    )
+    const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
+    const [selectedUnit] = createSignal<number>()
+
+    const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
+        return await getItems<Unit[]>('units')
+    })
 
     const [entriesRes] = createResource<Entry[], number>(
         selectedUnitId,

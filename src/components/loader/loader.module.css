@@ -1,0 +1,13 @@
+@keyframes move-in-steps {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.move {
+    animation: move-in-steps 2s infinite cubic-bezier(0.19, 1, 0.22, 1);
+}

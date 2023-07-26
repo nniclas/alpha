@@ -20,15 +20,19 @@ import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
 import { FiLock, FiLogOut } from 'solid-icons/fi'
+import { Transition } from 'solid-transition-group'
+import { Loader } from '../../components/loader/loader'
 
 const unitTemplate = (u: Unit) => {
-    createEffect(() => {})
+    // createEffect(() => {
+    //     console.log(dataStore.selectedUnitRes()?.id)
+    // })
 
     return (
         <Button
             style={`border: ${u.selected ? 2 : 0}px solid green `}
             onClick={() => {
-                // dataStore.selectUnit(u.id)
+                dataStore.setSelectedUnitId(u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
@@ -41,7 +45,7 @@ const unitTemplate = (u: Unit) => {
                     col
                     gsm
                     style={`width:140px; border:2px solid ${
-                        dataStore.selectedUnitRes()?.id == u.id
+                        dataStore.selectedUnitId() == u.id
                             ? 'hsl(50, 36%, 62%)'
                             : 'hsl(200, 12%, 26%)'
                     }; border-radius:16px`}
@@ -74,28 +78,10 @@ export const Header: Component = () => {
         navigate('/login', { replace: true })
     }
 
-    createEffect(() => {
-        dataStore.setSelectedUnitId(2)
-        // console.log(dataStore.selectedUnit())
-    })
-
     return (
-        <Field s h={300} pmd secondary>
+        <Field s h={240} pmd secondary>
             <Field col>
-                <Suspense
-                    fallback={
-                        <Text accent xs>
-                            Loading fun facts...................
-                        </Text>
-                    }
-                >
-                    <Field>
-                        <Text accent xs>
-                            {dataStore.selectedUnitRes()?.name}
-                        </Text>
-                    </Field>
-                </Suspense>
-                <Field col gxs>
+                <Field s col gxs>
                     <Text md tertiary>
                         Units
                     </Text>
@@ -113,38 +99,24 @@ export const Header: Component = () => {
                         </Field>
                     </Field>
                 </Field>
-                <Field s h={180}>
-                    <Suspense
-                        fallback={
-                            <Text accent xs>
-                                Loading uuuuuuunits...................
-                            </Text>
-                        }
-                    >
-                        <AnimArray
-                            items={dataStore.unitsRes()}
-                            template={unitTemplate}
-                            // units={dataState
-                            //     .activities()
-                            //     .map((a) => ({ id: a.id!, element: activityElement(a) }))}
-                        />
-                    </Suspense>{' '}
-                </Field>
-
-                {/* <For each={dataStore.units()}>
-                        {(u, i) => (
-                            <Field s col gsm pmd>
-                                <Field s w={140} h={80} tertiary pmd br col>
-                                    <Text md secondary>
-                                        {u.name}
-                                    </Text>
-                                    <Text md secondary>
-                                        {u.state}
-                                    </Text>
+                <Field rel>
+                    <Transition name='fade'>
+                        <Suspense
+                            fallback={
+                                <Field layer c style='pointer-events:none'>
+                                    <Loader />
                                 </Field>
+                            }
+                        >
+                            <Field layer>
+                                <AnimArray
+                                    items={dataStore.unitsRes()}
+                                    template={unitTemplate}
+                                />
                             </Field>
-                        )}
-                    </For> */}
+                        </Suspense>
+                    </Transition>
+                </Field>
             </Field>
             <Field s>
                 <Field s col gsm aie>

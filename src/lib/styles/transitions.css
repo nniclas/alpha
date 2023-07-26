@@ -60,3 +60,17 @@
 .bar-enter {
     transform: translateY(-30px);
 }
+
+/* --- */
+.fade-enter-active,
+.fade-exit-active {
+    transition: opacity 0s;
+    transition-timing-function: ease-out;
+}
+.fade-enter,
+.fade-exit-to {
+    opacity: 0;
+}
+.fade-enter {
+    opacity: 0;
+}

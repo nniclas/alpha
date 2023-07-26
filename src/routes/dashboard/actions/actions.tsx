@@ -123,7 +123,7 @@ export const Actions = (a: Args) => {
                         : 'row'
                 } `}
             >
-                {/* <For each={dataStore.entries()}>
+                <For each={dataStore.entriesRes()}>
                     {(e, i) => {
                         const et = tags.find((t) => t.value == e.tag)!
                         return (
@@ -138,7 +138,7 @@ export const Actions = (a: Args) => {
                             </Field>
                         )
                     }}
-                </For> */}
+                </For>
             </Field>
         </Field>
     )

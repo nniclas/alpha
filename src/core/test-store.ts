@@ -2,26 +2,28 @@ import { createSignal, createRoot, createResource } from 'solid-js'
 import { get } from './api'
 import { Unit } from 'types/entities/unit'
 import { Entry } from 'types/entities/entry'
+import { delay } from '../common/utils'
 
 const getItems = async <T>(path: string): Promise<T> => {
     return await get<T>(path)
 }
 
-const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
-
 const fetchUnits = async (): Promise<Unit[]> => {
     await delay(2000)
-    return await getItems<Unit[]>('units')
+    throw 0
+    // return await getItems<Unit[]>('units')
 }
 
 const fetchUnit = async (id: number): Promise<Unit> => {
     await delay(1000)
-    return await getItems<Unit>(`units/${id}`)
+    throw 0
+    // return await getItems<Unit>(`units/${id}`)
 }
 
 const fetchEntries = async (unitId: number): Promise<Entry[]> => {
     await delay(500)
-    return await getItems<Entry[]>(`entries/byUnit/${unitId}`)
+    throw 0
+    // return await getItems<Entry[]>(`entries/byUnit/${unitId}`)
 }
 
 function createDataState() {
