@@ -54,13 +54,14 @@ export const Operation = (a: Args) => {
                         </Text>
                         <Field>
                             <Transition name='foo'>
-                                {appStore.section() == 'operation' && (
-                                    <UnitMeter
-                                        value={machineDataStore.signalStrength()}
-                                        meterColor='hsl(200, 12%, 28%)'
-                                        valueColor='hsl(50, 36%, 62%)'
-                                    />
-                                )}
+                                {appStore.section() == 'operation' &&
+                                    dataStore.selectedUnitRes() && (
+                                        <UnitMeter
+                                            value={machineDataStore.signalStrength()}
+                                            meterColor='hsl(200, 12%, 28%)'
+                                            valueColor='hsl(50, 36%, 62%)'
+                                        />
+                                    )}
                             </Transition>
                         </Field>
                     </Field>
@@ -70,13 +71,14 @@ export const Operation = (a: Args) => {
                         </Text>
                         <Field>
                             <Transition name='foo'>
-                                {appStore.section() == 'operation' && (
-                                    <UnitMeter
-                                        value={machineDataStore.batteryLevel()}
-                                        meterColor='hsl(200, 12%, 28%)'
-                                        valueColor='hsl(50, 36%, 62%)'
-                                    />
-                                )}
+                                {appStore.section() == 'operation' &&
+                                    dataStore.selectedUnitRes() && (
+                                        <UnitMeter
+                                            value={machineDataStore.batteryLevel()}
+                                            meterColor='hsl(200, 12%, 28%)'
+                                            valueColor='hsl(50, 36%, 62%)'
+                                        />
+                                    )}
                             </Transition>
                         </Field>
                     </Field>
@@ -86,13 +88,14 @@ export const Operation = (a: Args) => {
                         Processor usage
                     </Text>
                     <Transition name='foo'>
-                        {appStore.section() == 'operation' && (
-                            <CircularMeter
-                                value={machineDataStore.processorUsage()}
-                                meterColor='hsl(200, 18%, 28%)'
-                                valueColor='hsl(50, 36%, 62%)'
-                            />
-                        )}
+                        {appStore.section() == 'operation' &&
+                            dataStore.selectedUnitRes() && (
+                                <CircularMeter
+                                    value={machineDataStore.processorUsage()}
+                                    meterColor='hsl(200, 18%, 28%)'
+                                    valueColor='hsl(50, 36%, 62%)'
+                                />
+                            )}
                     </Transition>
                 </Field>
             </Field>

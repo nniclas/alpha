@@ -44,7 +44,7 @@ function createDataState() {
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {
-        // console.log(selectedUnitId())
+        if (unitsRes()) setSelectedUnitId(unitsRes()![0].id)
     })
 
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
