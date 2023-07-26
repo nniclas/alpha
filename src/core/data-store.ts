@@ -32,75 +32,32 @@ const deleteItem = async (path: string, refetch?: () => void) => {
     refetch?.()
 }
 
-const fetchFoo = async (): Promise<{ name: string }> => {
-    console.log('fetching mr foo...')
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('fetched mr foo')
-            resolve({
-                name: 'Mr foo!',
-            })
-        }, 5000)
-    })
-}
-
-const getUnits = async (): Promise<Unit[]> => {
-    await delay(2000)
-    return await getItems<Unit[]>('units')
-}
-
 function createDataState() {
-    // const [units, setUnits] = createSignal<Unit[]>([])
-    const [selectedUnit, setSelectedUnit] = createSignal<Unit>()
-    // const [events, setEvents] = createSignal<Event[]>([])
-    const [entries, setEntries] = createSignal<Entry[]>([])
-    // const [users, setUsers] = createSignal<User[]>([])
+    const [units] = createSignal<Unit[]>([])
+    // const [entries] = createSignal<Entry[]>([])
 
-    // const [foo, setFoo] = createSignal<{ name: string }>()
+    const [selectedUnitId, setSelectedUnitId] = createSignal<number>(1)
 
-    const [foo] = createResource(fetchFoo)
+    const [unitsRes] = createResource<Unit[], Unit[]>(units, () =>
+        getItems<Unit[]>('units')
+    )
 
-    const [units] = createResource(getUnits)
+    const [entriesRes] = createResource<Entry[], number>(
+        selectedUnitId,
+        (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
+    )
 
-    createEffect(() => {})
-
-    // const getUnits = async () => {
-    //     const units = await getItems<Unit[]>('units')
-    //     setUnits(units)
-    // }
-    // const selectUnit = async (id: number) => {
-    //     setSelectedUnit(units().find((u) => u.id == id))
-    // }
-    const addUnit = async (unit: Unit) =>
-        addItem(unit, 'units', () => getUnits())
-    const updateUnit = async (unit: Unit) =>
-        updateItem(unit, 'units', () => getUnits())
-    const deleteUnit = async (id: number) =>
-        deleteItem(`units/${id}`, () => getUnits())
-
-    const getEntries = async (unitId?: number) => {
-        const entries = await getItems<Entry[]>(
-            'entries/' + (unitId ? `byUnit/${unitId}` : '')
-        )
-        setEntries(entries)
-    }
-
-    // const getFoo = async () => {
-    //     await delay(5000)
-    //     setFoo({ name: 'Mr foo!' })
-    // }
+    const [selectedUnitRes] = createResource<Unit, number>(
+        selectedUnitId,
+        (id) => getItems<Unit>(`units/${id}`)
+    )
 
     return {
-        units,
-        selectedUnit,
-        getUnits,
-        // selectUnit,
-        addUnit,
-        updateUnit,
-        deleteUnit,
-        getEntries,
-        entries,
-        foo,
+        unitsRes,
+        entriesRes,
+        selectedUnitRes,
+        selectedUnitId,
+        setSelectedUnitId,
     }
 }
 

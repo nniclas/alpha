@@ -34,7 +34,7 @@ export const Operation = (a: Args) => {
                 </Text>
                 <Field aic>
                     <Text tertiary sm>
-                        {dataStore.selectedUnit()?.name}
+                        {dataStore.selectedUnitRes()?.name}
                     </Text>
                 </Field>
             </Field>

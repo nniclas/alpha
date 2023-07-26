@@ -31,7 +31,7 @@ const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Actions = (a: Args) => {
     createEffect(() => {
-        dataStore.getEntries(a.unit?.id)
+        // dataStore.getEntries(a.unit?.id)
     })
 
     const FullEntry = (a: { e: Entry; t: ValueIdTitle }) => {
@@ -123,7 +123,7 @@ export const Actions = (a: Args) => {
                         : 'row'
                 } `}
             >
-                <For each={dataStore.entries()}>
+                {/* <For each={dataStore.entries()}>
                     {(e, i) => {
                         const et = tags.find((t) => t.value == e.tag)!
                         return (
@@ -138,7 +138,7 @@ export const Actions = (a: Args) => {
                             </Field>
                         )
                     }}
-                </For>
+                </For> */}
             </Field>
         </Field>
     )

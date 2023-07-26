@@ -41,7 +41,7 @@ const unitTemplate = (u: Unit) => {
                     col
                     gsm
                     style={`width:140px; border:2px solid ${
-                        dataStore.selectedUnit()?.id == u.id
+                        dataStore.selectedUnitRes()?.id == u.id
                             ? 'hsl(50, 36%, 62%)'
                             : 'hsl(200, 12%, 26%)'
                     }; border-radius:16px`}
@@ -74,10 +74,15 @@ export const Header: Component = () => {
         navigate('/login', { replace: true })
     }
 
+    createEffect(() => {
+        dataStore.setSelectedUnitId(2)
+        // console.log(dataStore.selectedUnit())
+    })
+
     return (
         <Field s h={300} pmd secondary>
             <Field col>
-                {/* <Suspense
+                <Suspense
                     fallback={
                         <Text accent xs>
                             Loading fun facts...................
@@ -86,10 +91,10 @@ export const Header: Component = () => {
                 >
                     <Field>
                         <Text accent xs>
-                            {dataStore.foo()?.name}
+                            {dataStore.selectedUnitRes()?.name}
                         </Text>
                     </Field>
-                </Suspense> */}
+                </Suspense>
                 <Field col gxs>
                     <Text md tertiary>
                         Units
@@ -117,7 +122,7 @@ export const Header: Component = () => {
                         }
                     >
                         <AnimArray
-                            items={dataStore.units()}
+                            items={dataStore.unitsRes()}
                             template={unitTemplate}
                             // units={dataState
                             //     .activities()

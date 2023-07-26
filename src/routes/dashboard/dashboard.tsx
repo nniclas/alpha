@@ -25,7 +25,7 @@ export const Dashboard: Component = () => {
     // })
 
     createEffect(async () => {
-        await dataStore.getUnits()
+        // await dataStore.getUnits()
         // dataStore.selectUnit(dataStore.units()[0].id)
         // setPage(
         //     pages.find((p) => p.id == dataStore.selectedUnit()?.id)?.sections
@@ -67,7 +67,7 @@ export const Dashboard: Component = () => {
     return (
         <Field rel>
             <Transition name='slide-fade'>
-                {createPage(dataStore.selectedUnit()!)}
+                {createPage(dataStore.selectedUnitRes()!)}
             </Transition>
         </Field>
     )
