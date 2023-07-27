@@ -103,7 +103,7 @@ export const Header: Component = () => {
                     <Transition name='fade'>
                         <Suspense
                             fallback={
-                                <Field layer c style='pointer-events:none'>
+                                <Field a layer c style='pointer-events:none'>
                                     <Loader />
                                 </Field>
                             }

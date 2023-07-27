@@ -10,6 +10,7 @@ import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
 import { Transition } from 'solid-transition-group'
+import dataStore from '../../core/data-store'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (
@@ -40,8 +41,9 @@ export const Login: Component = () => {
     const [password, setPassword] = createSignal<string>('eple') ///////////////////////// remove default
 
     const logIn = async () => {
-        if (await signIn(email(), password()))
+        if (await signIn(email(), password())) {
             navigate('/dashboard', { replace: true })
+        }
     }
 
     // login page covers the full window

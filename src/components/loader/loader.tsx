@@ -9,6 +9,7 @@ const count = 100
 export const Loader = () => {
     return (
         <Field
+            a
             s
             style=' width:400px; gap:4px;     background: hsl(200, 18%, 26%);'
         >

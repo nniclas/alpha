@@ -64,7 +64,7 @@
 /* --- */
 .fade-enter-active,
 .fade-exit-active {
-    transition: opacity 0s;
+    transition: opacity 0.5s;
     transition-timing-function: ease-out;
 }
 .fade-enter,
@@ -72,5 +72,4 @@
     opacity: 0;
 }
 .fade-enter {
-    opacity: 0;
 }

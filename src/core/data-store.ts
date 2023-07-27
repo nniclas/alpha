@@ -40,15 +40,15 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 }
 
 function createDataState() {
-    const [units] = createSignal<Unit[]>([])
+    const [units, setUnits] = createSignal<Unit[]>([])
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {
-        if (unitsRes()) setSelectedUnitId(unitsRes()![0].id)
+        if (unitsRes() && unitsRes()?.length)
+            setSelectedUnitId(unitsRes()![0].id)
     })
 
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
-    const [selectedUnit] = createSignal<number>()
 
     const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
         return await getItems<Unit[]>('units')
@@ -64,12 +64,21 @@ function createDataState() {
         (id) => getItems<Unit>(`units/${id}`)
     )
 
+    // used to manually trigger fetchers, after log on
+    const initalize = async () => {
+        const units = await getItems<Unit[]>('units')
+        setUnits(units)
+        await delay(500)
+        setSelectedUnitId(units[0].id)
+    }
+
     return {
         unitsRes,
         entriesRes,
         selectedUnitRes,
         selectedUnitId,
         setSelectedUnitId,
+        initalize,
     }
 }
 

@@ -1,4 +1,11 @@
-import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
+import {
+    Component,
+    For,
+    Suspense,
+    createEffect,
+    createSignal,
+    lazy,
+} from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
@@ -6,7 +13,8 @@ import dataStore from '../../core/data-store'
 import { Operation } from './operation/operation'
 import { Actions } from './actions/actions'
 import { Transition } from 'solid-transition-group'
-import { Unit } from 'types/entities/unit'
+import { Unit } from '../../types/entities/unit'
+import { Loader } from '../../components/loader/loader'
 
 const flexClosed = 'flex-grow:0.3' // enable animation of flex-grow, must be higher than 0
 const flexOpen = 'flex-grow:1'
@@ -14,7 +22,12 @@ const style =
     'min-width:400px; transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
 export const Dashboard: Component = () => {
-    createEffect(async () => {})
+    createEffect(async () => {
+        // on successful log on (user has entered dashboard) manually trigger resource fetches
+        if (!dataStore.selectedUnitRes()) {
+            dataStore.initalize()
+        }
+    })
 
     const createPage = (u: Unit) => {
         const sections = [
@@ -50,8 +63,22 @@ export const Dashboard: Component = () => {
 
     return (
         <Field rel>
-            <Transition name='slide-fade'>
-                {createPage(dataStore.selectedUnitRes()!)}
+            <Transition name='fade'>
+                <Suspense
+                    fallback={
+                        <Field a layer c style='pointer-events:none'>
+                            <Loader />
+                        </Field>
+                    }
+                >
+                    {dataStore.selectedUnitRes() && (
+                        <Field layer>
+                            <Transition name='slide-fade'>
+                                {createPage(dataStore.selectedUnitRes()!)}
+                            </Transition>
+                        </Field>
+                    )}
+                </Suspense>
             </Transition>
         </Field>
     )
