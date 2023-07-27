@@ -12,7 +12,7 @@ import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
-import dataStore from '../../core/data-store'
+import ds from '../../core/data-store'
 
 import Logo from '../../assets/logo.svg?component-solid'
 import AnimArray from '../../components/anim-array/anim-array'
@@ -32,7 +32,7 @@ const unitTemplate = (u: Unit) => {
         <Button
             style={`border: ${u.selected ? 2 : 0}px solid green `}
             onClick={() => {
-                dataStore.setSelectedUnitId(u.id)
+                ds.setSelectedUnitId(u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
@@ -45,7 +45,7 @@ const unitTemplate = (u: Unit) => {
                     col
                     gsm
                     style={`width:140px; border:2px solid ${
-                        dataStore.selectedUnitId() == u.id
+                        ds.selectedUnitId() == u.id
                             ? 'hsl(50, 36%, 62%)'
                             : 'hsl(200, 12%, 26%)'
                     }; border-radius:16px`}
@@ -96,25 +96,24 @@ export const Header: Component = () => {
                             }
                         >
                             <Field layer col psm>
-                                {dataStore.unitsRes() &&
-                                    dataStore.unitsRes()?.length && (
-                                        <Field gsm aic p='0 2px'>
-                                            <Field s jcc>
-                                                <Field
-                                                    s
-                                                    style='border-radius:16px; background:rgb(180,120,120); width:12px; height:12px'
-                                                />
-                                            </Field>
-                                            <Field s>
-                                                <Text sm primary>
-                                                    Some units are offline,
-                                                    check status.
-                                                </Text>
-                                            </Field>
+                                {ds.unitsRes() && ds.unitsRes()?.length && (
+                                    <Field gsm aic p='0 2px'>
+                                        <Field s jcc>
+                                            <Field
+                                                s
+                                                style='border-radius:16px; background:rgb(180,120,120); width:12px; height:12px'
+                                            />
                                         </Field>
-                                    )}
+                                        <Field s>
+                                            <Text sm primary>
+                                                Some units are offline, check
+                                                status.
+                                            </Text>
+                                        </Field>
+                                    </Field>
+                                )}
                                 <AnimArray
-                                    items={dataStore.unitsRes()}
+                                    items={ds.unitsRes()}
                                     template={unitTemplate}
                                 />
                             </Field>

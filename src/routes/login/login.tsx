@@ -10,7 +10,6 @@ import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
 import { Transition } from 'solid-transition-group'
-import dataStore from '../../core/data-store'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (

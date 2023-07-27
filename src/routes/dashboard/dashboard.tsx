@@ -9,7 +9,7 @@ import {
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
-import dataStore from '../../core/data-store'
+import ds from '../../core/data-store'
 import { Operation } from './operation/operation'
 import { Actions } from './actions/actions'
 import { Transition } from 'solid-transition-group'
@@ -24,8 +24,8 @@ const style =
 export const Dashboard: Component = () => {
     createEffect(async () => {
         // on successful log on (user has entered dashboard) manually trigger resource fetches
-        if (!dataStore.selectedUnitRes()) {
-            dataStore.initalize()
+        if (!ds.selectedUnitRes()) {
+            ds.initalize()
         }
     })
 
@@ -71,10 +71,10 @@ export const Dashboard: Component = () => {
                         </Field>
                     }
                 >
-                    {dataStore.selectedUnitRes() && (
+                    {ds.selectedUnitRes() && (
                         <Field layer>
                             <Transition name='slide-fade'>
-                                {createPage(dataStore.selectedUnitRes()!)}
+                                {createPage(ds.selectedUnitRes()!)}
                             </Transition>
                         </Field>
                     )}

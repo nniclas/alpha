@@ -3,7 +3,7 @@ import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import appStore from '../../../core/app-store'
-import dataStore from '../../../core/data-store'
+import ds from '../../../core/data-store'
 import {
     FiBell,
     FiMessageCircle,
@@ -123,7 +123,7 @@ export const Actions = (a: Args) => {
                         : 'row'
                 } `}
             >
-                <For each={dataStore.entriesRes()}>
+                <For each={ds.entriesRes()}>
                     {(e, i) => {
                         const et = tags.find((t) => t.value == e.tag)!
                         return (

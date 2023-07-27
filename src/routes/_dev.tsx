@@ -12,7 +12,6 @@ import Logo from '../../assets/logo.svg?component-solid'
 import Field from '../lib/elements/field/field'
 
 import { Transition } from 'solid-transition-group'
-import dataStore from 'core/data-store'
 import Button from '../lib/elements/button/button'
 import Text from '../lib/elements/text/text'
 import testStore from '../core/test-store'

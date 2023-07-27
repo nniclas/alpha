@@ -3,14 +3,15 @@ import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import appStore from '../../../core/app-store'
-import dataStore from '../../../core/data-store'
-import machineDataStore from '../../../core/machine-data-store'
+import ds from '../../../core/data-store'
+import mds from '../../../core/machine-data-store'
 import { FiSettings } from 'solid-icons/fi'
 import { UnitMeter } from '../../../components/unit-meter/unit-meter'
 import { CircularMeter } from '../../../components/circular-meter/circular-meter'
 import { Unit } from 'types/entities/unit'
 import { Transition } from 'solid-transition-group'
 import styles from './operation.module.css'
+import dataStore from '../../../core/data-store'
 
 interface Args {
     unit?: Unit
@@ -18,7 +19,9 @@ interface Args {
 
 export const Operation = (a: Args) => {
     createEffect(() => {
-        // console.log(appStore.section())
+        if (dataStore.selectedUnitRes()) {
+            mds.reset()
+        }
     })
 
     // console.log(appStore.section(), a.unit?.name)
@@ -34,7 +37,7 @@ export const Operation = (a: Args) => {
                 </Text>
                 <Field aic>
                     <Text tertiary sm>
-                        {dataStore.selectedUnitRes()?.name}
+                        {ds.selectedUnitRes()?.name}
                     </Text>
                 </Field>
             </Field>
@@ -56,7 +59,7 @@ export const Operation = (a: Args) => {
                             <Transition name='foo'>
                                 {appStore.section() == 'operation' && (
                                     <UnitMeter
-                                        value={machineDataStore.signalStrength()}
+                                        value={mds.signalStrength()}
                                         meterColor='hsl(200, 12%, 28%)'
                                         valueColor='hsl(50, 36%, 62%)'
                                     />
@@ -72,7 +75,7 @@ export const Operation = (a: Args) => {
                             <Transition name='foo'>
                                 {appStore.section() == 'operation' && (
                                     <UnitMeter
-                                        value={machineDataStore.batteryLevel()}
+                                        value={mds.batteryLevel()}
                                         meterColor='hsl(200, 12%, 28%)'
                                         valueColor='hsl(50, 36%, 62%)'
                                     />
@@ -87,9 +90,9 @@ export const Operation = (a: Args) => {
                     </Text>
                     <Transition name='foo'>
                         {appStore.section() == 'operation' &&
-                            dataStore.selectedUnitRes() && (
+                            ds.selectedUnitRes() && (
                                 <CircularMeter
-                                    value={machineDataStore.processorUsage()}
+                                    value={mds.processorUsage()}
                                     meterColor='hsl(200, 18%, 28%)'
                                     valueColor='hsl(50, 36%, 62%)'
                                 />

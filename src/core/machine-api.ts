@@ -53,8 +53,8 @@ export const getBatteryLevel = (unitId: number, lastReading: number) => {
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    let min = lastReading == 0 ? 40 : lastReading - 10
-    let max = lastReading == 0 ? 80 : lastReading + 10
+    let min = lastReading == 0 ? 10 : lastReading - 10
+    let max = lastReading == 0 ? 90 : lastReading + 10
     if (min < 0) min = 0
     if (max > 100) max = 100
     return Math.floor(Math.random() * (max - min + 1) + min)
