@@ -9,5 +9,5 @@
 }
 
 .move {
-    animation: move-in-steps 2s infinite cubic-bezier(0.19, 1, 0.22, 1);
+    animation: move-in-steps 1s infinite cubic-bezier(0.19, 1, 0.22, 1);
 }

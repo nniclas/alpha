@@ -16,7 +16,7 @@ import { delay } from '../common/utils'
 const getItems = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
 
-    await delay(1000) // intentional additional delay for demo purposes
+    await delay(500) // intentional additional delay for demo purposes
     if (!appStore.session()?.token) {
         return [] as any /// just disable api calls ?????
     }
@@ -68,7 +68,7 @@ function createDataState() {
     const initalize = async () => {
         const units = await getItems<Unit[]>('units')
         setUnits(units)
-        await delay(500)
+        await delay(250)
         setSelectedUnitId(units[0].id)
     }
 

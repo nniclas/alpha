@@ -85,19 +85,6 @@ export const Header: Component = () => {
                     <Text md tertiary>
                         Units
                     </Text>
-                    <Field gsm aic p='0 2px'>
-                        <Field s jcc>
-                            <Field
-                                s
-                                style='border-radius:16px; background:rgb(180,120,120); width:12px; height:12px'
-                            />
-                        </Field>
-                        <Field s>
-                            <Text sm primary>
-                                Some units are offline, check status.
-                            </Text>
-                        </Field>
-                    </Field>
                 </Field>
                 <Field rel>
                     <Transition name='fade'>
@@ -108,7 +95,24 @@ export const Header: Component = () => {
                                 </Field>
                             }
                         >
-                            <Field layer>
+                            <Field layer col psm>
+                                {dataStore.unitsRes() &&
+                                    dataStore.unitsRes()?.length && (
+                                        <Field gsm aic p='0 2px'>
+                                            <Field s jcc>
+                                                <Field
+                                                    s
+                                                    style='border-radius:16px; background:rgb(180,120,120); width:12px; height:12px'
+                                                />
+                                            </Field>
+                                            <Field s>
+                                                <Text sm primary>
+                                                    Some units are offline,
+                                                    check status.
+                                                </Text>
+                                            </Field>
+                                        </Field>
+                                    )}
                                 <AnimArray
                                     items={dataStore.unitsRes()}
                                     template={unitTemplate}

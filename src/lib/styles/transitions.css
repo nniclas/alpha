@@ -21,7 +21,7 @@
 /* --- */
 .slide-fade-enter-active,
 .slide-fade-exit-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.3s, transform 0.3s;
 }
 .slide-fade-enter,
 .slide-fade-exit-to {
@@ -35,7 +35,7 @@
 /* --- */
 .foo-enter-active,
 .foo-exit-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.3s, transform 0.3s;
 }
 .foo-enter,
 .foo-exit-to {
@@ -49,7 +49,7 @@
 /* --- */
 .bar-enter-active,
 .bar-exit-active {
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.3s, transform 0.3s;
     transition-timing-function: ease-out;
 }
 .bar-enter,
@@ -64,7 +64,7 @@
 /* --- */
 .fade-enter-active,
 .fade-exit-active {
-    transition: opacity 0.5s;
+    transition: opacity 0.3s;
     transition-timing-function: ease-out;
 }
 .fade-enter,
