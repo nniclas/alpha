@@ -1,12 +1,5 @@
-import {
-    Component,
-    For,
-    createEffect,
-    createSignal,
-    lazy,
-    Suspense,
-} from 'solid-js'
-import { Outlet, useNavigate } from '@solidjs/router'
+import { Component, For, Suspense } from 'solid-js'
+import { useNavigate } from '@solidjs/router'
 
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
@@ -19,9 +12,17 @@ import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
-import { FiLock, FiLogOut } from 'solid-icons/fi'
+import {
+    FiLogOut,
+    FiMenu,
+    FiMoreHorizontal,
+    FiMoreVertical,
+} from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
+import Dropdown from '../../components/dropdown/dropdown'
+import ManageUnitModal from '../manage-unit-modal/manage-unit-modal'
+import Modal from '../../lib/components/modal/modal'
 
 const unitTemplate = (u: Unit) => {
     // createEffect(() => {
@@ -42,27 +43,46 @@ const unitTemplate = (u: Unit) => {
                     a
                     s
                     pmd
-                    col
                     gsm
-                    style={`width:140px; border:2px solid ${
+                    style={`width:240px; border:2px solid ${
                         ds.selectedUnitId() == u.id
                             ? 'hsl(50, 36%, 62%)'
                             : 'hsl(200, 12%, 26%)'
                     }; border-radius:16px`}
                 >
-                    <Field s>
-                        <Text sm primary>
-                            {u.name}
-                        </Text>
-                    </Field>
-                    <Field s c gsm>
-                        <UnitStateIcon value={u.state} />
-                        <UnitMeter
-                            value={73}
-                            scale={10}
-                            meterColor='hsl(200, 12%, 22%)'
-                            valueColor='hsl(50, 36%, 62%)'
-                        />
+                    <Field>
+                        <Field col gsm>
+                            <Text sm primary>
+                                {u.name}
+                            </Text>
+
+                            <Field s gsm c>
+                                <UnitStateIcon value={u.state} />
+                                <UnitMeter
+                                    value={73}
+                                    scale={10}
+                                    meterColor='hsl(200, 12%, 22%)'
+                                    valueColor='hsl(50, 36%, 62%)'
+                                />
+                            </Field>
+                        </Field>
+                        {/* <Field s c gsm>
+                          
+                        </Field> */}
+                        <Field s ais>
+                            <Modal
+                                jcc
+                                pxl
+                                buttonContent={
+                                    <FiMoreHorizontal
+                                        size={18}
+                                        color='var(--color-lighter)'
+                                    />
+                                }
+                            >
+                                <ManageUnitModal unit={u} />
+                            </Modal>
+                        </Field>
                     </Field>
                 </Field>
             </Field>
@@ -112,10 +132,42 @@ export const Header: Component = () => {
                                         </Field>
                                     </Field>
                                 )}
-                                <AnimArray
-                                    items={ds.unitsRes()}
-                                    template={unitTemplate}
-                                />
+                                <Field>
+                                    <Field s c>
+                                        <Modal
+                                            jcc
+                                            pxl
+                                            buttonContent={
+                                                <FiMoreVertical
+                                                    size={28}
+                                                    color='hsl(160, 18%, 40%)'
+                                                />
+                                            }
+                                        >
+                                            <ManageUnitModal />
+                                        </Modal>
+
+                                        {/* <ManageUnitModal
+                                            button={}
+                                            action={(e) => {
+                                                console.log('hejja!')
+                                                e.preventDefault()
+                                                e.stopPropagation()
+                                            }}
+                                        /> */}
+
+                                        {/* <Button>
+                                            <FiMoreVertical
+                                                size={28}
+                                                color='hsl(160, 18%, 40%)'
+                                            />
+                                        </Button> */}
+                                    </Field>
+                                    <AnimArray
+                                        items={ds.unitsRes()}
+                                        template={unitTemplate}
+                                    />
+                                </Field>
                             </Field>
                         </Suspense>
                     </Transition>

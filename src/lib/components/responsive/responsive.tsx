@@ -1,5 +1,5 @@
 import { createEffect, createSignal, onCleanup, onMount } from 'solid-js'
-import Field from '../field/field'
+import Field from '../../elements/field/field'
 import { isCompact } from '../../utils'
 
 interface Args {
