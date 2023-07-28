@@ -1,8 +1,5 @@
 export interface Unit {
-    id: number
+    id?: number
     name: string
     state: number
-
-    // frontend add-on props
-    selected?: boolean // todo
 }

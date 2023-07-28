@@ -31,7 +31,6 @@ const unitTemplate = (u: Unit) => {
 
     return (
         <Button
-            style={`border: ${u.selected ? 2 : 0}px solid green `}
             onClick={() => {
                 ds.setSelectedUnitId(u.id)
                 // u.selected = true
