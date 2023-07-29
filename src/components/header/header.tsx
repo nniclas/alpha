@@ -31,7 +31,7 @@ const unitTemplate = (u: Unit) => {
 
     return (
         <Button
-            onClick={() => {
+            onClick={(e) => {
                 ds.setSelectedUnitId(u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)

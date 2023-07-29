@@ -7,6 +7,7 @@ import Button from '../../elements/button/button'
 interface Args {
     buttonContent: any
     // open: boolean
+    closeOnButtonClick?: boolean
     children: any
 }
 
@@ -20,11 +21,13 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     })
 
     return (
-        <Field rel>
+        <Field rel style={`z-index: ${open() ? 100 : 'auto'};`}>
             {a.buttonContent && (
                 <Button
                     onClick={(e) => {
-                        setOpen(true)
+                        if (a.closeOnButtonClick) setOpen(false)
+                        else setOpen(true)
+
                         e.stopPropagation()
                     }}
                 >
@@ -41,7 +44,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
             >
                 <Field
                     layer
-                    style='position:fixed;z-index:100; background:rgba(0,0,0,0.2)'
+                    style='position:fixed;z-index:101; background:rgba(0,0,0,0.2)'
                     onClick={(e) => {
                         setOpen(false)
                     }}
@@ -51,7 +54,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     {...a}
                     layer
                     a
-                    style={`position:fixed; z-index:101; transform:translateY(${
+                    style={`position:fixed; z-index:102; transform:translateY(${
                         open() ? 0 : -20
                     }px); `}
                     onClick={(e) => {
