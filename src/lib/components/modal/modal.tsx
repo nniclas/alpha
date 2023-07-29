@@ -6,28 +6,20 @@ import Button from '../../elements/button/button'
 
 interface Args {
     buttonContent: any
-    // open: boolean
-    closeOnButtonClick?: boolean
     children: any
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
 
-    createEffect(() => {
-        // console.log(open())
-        // console.log('modal: ' + a.open)
-        // if (a.open == false) setOpen(false)
-    })
+    createEffect(() => {})
 
     return (
         <Field s rel style={`z-index: ${open() ? 100 : 'auto'};`}>
             {a.buttonContent && (
                 <Button
                     onClick={(e) => {
-                        if (a.closeOnButtonClick) setOpen(false)
-                        else setOpen(true)
-
+                        setOpen(true)
                         e.stopPropagation()
                     }}
                 >

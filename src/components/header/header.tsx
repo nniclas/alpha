@@ -13,10 +13,14 @@ import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
 import {
+    FiEdit,
+    FiEdit2,
+    FiEdit3,
     FiLogOut,
     FiMenu,
     FiMoreHorizontal,
     FiMoreVertical,
+    FiTool,
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
@@ -73,7 +77,7 @@ const unitTemplate = (u: Unit) => {
                                 jcc
                                 pxl
                                 buttonContent={
-                                    <FiMoreHorizontal
+                                    <FiEdit
                                         size={18}
                                         color='var(--color-lighter)'
                                     />

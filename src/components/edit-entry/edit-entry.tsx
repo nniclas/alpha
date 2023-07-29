@@ -3,14 +3,16 @@ import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import { FiX } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
-import { createEffect, createSignal } from 'solid-js'
+import { For, createEffect, createSignal } from 'solid-js'
 import { Unit } from '../../types/entities/unit'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
 import { v4 as uuidv4 } from 'uuid'
 import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
-import { Entry } from 'types/entities/entry'
+import { Entry } from '../../types/entities/entry'
+import Dropdown from '../../components/dropdown/dropdown'
+import { events } from '../../common/constants'
 
 interface Args {
     entry?: Entry
@@ -61,7 +63,23 @@ export default (a: Args) => {
                                 <Text xs primary>
                                     Event
                                 </Text>
-                                <Textfield
+                                <Dropdown
+                                    buttonContent={
+                                        <Button tertiary md>
+                                            <Text secondary xs>
+                                                TJEEENA
+                                            </Text>
+                                        </Button>
+                                    }
+                                    items={events.map((e) => (
+                                        <Field c h={64}>
+                                            <Text xs secondary>
+                                                {e.title}
+                                            </Text>
+                                        </Field>
+                                    ))}
+                                />
+                                {/* <Textfield
                                     xs
                                     placeholder='DROP DOWN TODO'
                                     value={entry()?.event}
@@ -70,7 +88,7 @@ export default (a: Args) => {
                                     color='hsl(200, 18%, 32%)'
                                     style='pointer-events:none; user-select:none' // simplify demo
                                     // change={(v) => ...}
-                                />
+                                /> */}
                             </Field>
                             <Field s col gsm w={400}>
                                 <Text xs primary>

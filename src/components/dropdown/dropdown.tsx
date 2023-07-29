@@ -1,19 +1,13 @@
 import { BaseArgs } from '../../lib/types/base-args'
-import { createEffect, createSignal, onMount } from 'solid-js'
+import { For, createEffect, createSignal, onMount } from 'solid-js'
 import { FieldArgs } from 'lib/types/field-args'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 
-interface ClickerArgs {
-    icon?: any
-    text?: string
-    args?: any
-}
-
 interface Args {
-    dock: 'left' | 'right'
-    clicker: ClickerArgs
-    children?: any
+    dock?: 'left' | 'right'
+    buttonContent: any
+    items: any[]
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
@@ -26,17 +20,17 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     return (
         <Field rel {...a}>
             <Button
-                {...a.clicker.args}
-                onClick={() => {
+                onClick={(e) => {
                     setOpen(true)
+                    e.stopPropagation()
                 }}
             >
-                {a.clicker.icon || a.clicker.text}
+                {a.buttonContent}
             </Button>
 
             <Field
                 a
-                style={`opacity:${open() ? 1 : 0.5}; pointer-events:${
+                style={`opacity:${open() ? 1 : 0}; pointer-events:${
                     open() ? 'all' : 'none'
                 };`}
                 layer
@@ -52,7 +46,8 @@ export default (a: Args & BaseArgs & FieldArgs) => {
 
                 <Field
                     layer
-                    jce={a.dock == 'right' ? true : false}
+                    jcs
+                    jce={a.dock == 'right'}
                     a
                     style={`z-index:101;  height:auto`}
                     onClick={(e) => {
@@ -62,7 +57,11 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         return false
                     }}
                 >
-                    {a.children}
+                    <Field col>
+                        <For each={a.items}>
+                            {(item, i) => <Button tertiary>{item}</Button>}
+                        </For>
+                    </Field>
                 </Field>
             </Field>
         </Field>
