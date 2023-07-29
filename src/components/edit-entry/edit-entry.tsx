@@ -12,7 +12,7 @@ import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
 import { Entry } from '../../types/entities/entry'
 import Dropdown from '../../components/dropdown/dropdown'
-import { events } from '../../common/constants'
+import { events, measures, tags } from '../../common/constants'
 
 interface Args {
     entry?: Entry
@@ -23,18 +23,21 @@ export default (a: Args) => {
 
     const [done, setDone] = createSignal<boolean>(false)
     const [isEntryChanged, setIsEntryChanged] = createSignal<boolean>(false)
-    const [entry, setEntry] = createSignal<Entry>()
-
+    const [entry, setEntry] = createSignal<Entry>(
+        a.entry ?? { unitId: 0, userId: 0, event: 0, measure: 0, tag: 0 }
+    )
     createEffect(() => {
         setIsEntryChanged(JSON.stringify(a.entry) != JSON.stringify(entry()))
+
+        console.log(entry()?.tag)
     })
 
     return (
         <Field
             rel
             s
-            w={600}
-            h={1000}
+            w={800}
+            h={800}
             secondary
             onClick={(e: any) => {
                 if (!isABtn(e.target)) e.stopPropagation()
@@ -58,75 +61,75 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field pmd col gmd c>
-                            <Field s col gsm w={400}>
-                                <Text xs primary>
-                                    Event
-                                </Text>
-                                <Dropdown
-                                    buttonContent={
-                                        <Button tertiary md>
-                                            <Text secondary xs>
-                                                TJEEENA
-                                            </Text>
-                                        </Button>
-                                    }
-                                    items={events.map((e) => (
-                                        <Field c h={64}>
-                                            <Text xs secondary>
-                                                {e.title}
-                                            </Text>
-                                        </Field>
-                                    ))}
-                                />
-                                {/* <Textfield
-                                    xs
-                                    placeholder='DROP DOWN TODO'
-                                    value={entry()?.event}
-                                    primary
-                                    psm
-                                    color='hsl(200, 18%, 32%)'
-                                    style='pointer-events:none; user-select:none' // simplify demo
-                                    // change={(v) => ...}
-                                /> */}
+                        <Field plg col glg>
+                            <Field s gmd>
+                                <Field s col gsm>
+                                    <Text xs primary>
+                                        Event
+                                    </Text>
+                                    <Dropdown
+                                        index={entry()?.event}
+                                        items={events.map((e) => (
+                                            <Field c h={48} w={200}>
+                                                <Text xs secondary>
+                                                    {e.title}
+                                                </Text>
+                                            </Field>
+                                        ))}
+                                        onChange={(v) => {
+                                            const e = { ...entry()! }
+                                            e.event = v
+                                            setEntry(e)
+                                        }}
+                                        buttonArgs={{ primary: true }}
+                                    />
+                                </Field>
+                                <Field s col gsm>
+                                    <Text xs primary>
+                                        Measure
+                                    </Text>
+                                    <Dropdown
+                                        index={entry()?.measure}
+                                        items={measures.map((m) => (
+                                            <Field c h={48} w={200}>
+                                                <Text xs secondary>
+                                                    {m.title}
+                                                </Text>
+                                            </Field>
+                                        ))}
+                                        onChange={(v) => {
+                                            const e = { ...entry()! }
+                                            e.measure = v
+                                            setEntry(e)
+                                        }}
+                                        buttonArgs={{ primary: true }}
+                                    />
+                                </Field>
                             </Field>
-                            <Field s col gsm w={400}>
-                                <Text xs primary>
-                                    Measure
-                                </Text>
-                                <Textfield
-                                    xs
-                                    placeholder='DROP DOWN TODO'
-                                    value={entry()?.measure}
-                                    primary
-                                    psm
-                                    color='hsl(200, 18%, 32%)'
-                                    change={(v) => {
-                                        const u = { ...entry() }
-                                        // u.name = v
-                                        // setUnit(u)
-                                    }}
-                                />
+                            <Field s gmd>
+                                <Field s col gsm h={48} w={300}>
+                                    <Text xs primary>
+                                        Tag
+                                    </Text>
+                                    <Dropdown
+                                        index={entry()?.tag}
+                                        items={tags.map((t) => (
+                                            <Field c h={48} w={300}>
+                                                <Text xs secondary>
+                                                    {t.title}
+                                                </Text>
+                                            </Field>
+                                        ))}
+                                        onChange={(v) => {
+                                            const e = { ...entry()! }
+                                            e.tag = v
+                                            setEntry(e)
+                                        }}
+                                        buttonArgs={{ primary: true }}
+                                    />
+                                </Field>
                             </Field>
-                            <Field s col gsm w={400}>
-                                <Text xs primary>
-                                    Tag
-                                </Text>
-                                <Textfield
-                                    xs
-                                    placeholder='DROP DOWN TODO'
-                                    value={entry()?.measure}
-                                    primary
-                                    psm
-                                    color='hsl(200, 18%, 32%)'
-                                    change={(v) => {
-                                        const u = { ...entry() }
-                                        // u.name = v
-                                        // setUnit(u)
-                                    }}
-                                />
-                            </Field>
-                            <Field s col gsm w={400}>
+                            <Field s col gsm w={500}>
                                 <Text xs primary>
                                     Notes
                                 </Text>

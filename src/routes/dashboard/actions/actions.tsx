@@ -17,7 +17,7 @@ import {
     FiZap,
 } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
-import { tags } from '../../../common/constants'
+import { events, tags } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import { Entry } from '../../../types/entities/entry'
@@ -26,6 +26,7 @@ import { EventIcon } from '../../../components/event-icon/event-icon'
 import Button from '../../../lib/elements/button/button'
 import Modal from '../../../lib/components/modal/modal'
 import EditEntry from '../../../components/edit-entry/edit-entry'
+import Dropdown from '../../../components/dropdown/dropdown'
 
 interface Args {
     unit?: Unit

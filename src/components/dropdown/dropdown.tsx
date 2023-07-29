@@ -6,26 +6,31 @@ import Button from '../../lib/elements/button/button'
 
 interface Args {
     dock?: 'left' | 'right'
-    buttonContent: any
+    // buttonContent: any
+    index?: number // default selected
     items: any[]
+    onChange: (i: number) => void
+    buttonArgs?: any
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
+    const [index, setIndex] = createSignal<number>(a.index ?? 0)
 
-    createEffect(() => {
-        console.log('dropdown: ' + open())
-    })
+    // createEffect(() => {
+    //     console.log(a.items)
+    // })
 
     return (
         <Field rel {...a}>
             <Button
+                {...a.buttonArgs}
                 onClick={(e) => {
                     setOpen(true)
                     e.stopPropagation()
                 }}
             >
-                {a.buttonContent}
+                {a.items[index()]}
             </Button>
 
             <Field
@@ -57,9 +62,19 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         return false
                     }}
                 >
-                    <Field col>
+                    <Field col s>
                         <For each={a.items}>
-                            {(item, i) => <Button tertiary>{item}</Button>}
+                            {(item, i) => (
+                                <Button
+                                    {...a.buttonArgs}
+                                    onClick={() => {
+                                        setIndex(i())
+                                        a.onChange(i())
+                                    }}
+                                >
+                                    {item}
+                                </Button>
+                            )}
                         </For>
                     </Field>
                 </Field>
