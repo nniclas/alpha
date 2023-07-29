@@ -21,7 +21,7 @@ import {
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
 import Dropdown from '../../components/dropdown/dropdown'
-import ManageUnitModal from '../manage-unit-modal/manage-unit-modal'
+import ManageUnitModal from '../edit-unit/edit-unit'
 import Modal from '../../lib/components/modal/modal'
 
 const unitTemplate = (u: Unit) => {

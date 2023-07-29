@@ -8,6 +8,7 @@ import {
     FiBell,
     FiMessageCircle,
     FiOctagon,
+    FiPlusCircle,
     FiSettings,
     FiShuffle,
     FiTag,
@@ -22,6 +23,9 @@ import { isCompact } from '../../../lib/utils'
 import { Entry } from '../../../types/entities/entry'
 import { ValueIdTitle } from '../../../types/_types'
 import { EventIcon } from '../../../components/event-icon/event-icon'
+import Button from '../../../lib/elements/button/button'
+import Modal from '../../../lib/components/modal/modal'
+import EditEntry from '../../../components/edit-entry/edit-entry'
 
 interface Args {
     unit?: Unit
@@ -112,6 +116,25 @@ export const Actions = (a: Args) => {
                 <Text primary md>
                     Actions
                 </Text>
+                <Field jce>
+                    <Field s>
+                        <Modal
+                            jcc
+                            pxl
+                            buttonContent={
+                                <FiPlusCircle
+                                    color='var(--color-accent)'
+                                    size={22}
+                                />
+                            }
+                        >
+                            <EditEntry />
+                        </Modal>
+                    </Field>
+                    {/* <Button>
+                        <FiPlusCircle color='var(--color-accent)' size={22} />
+                    </Button> */}
+                </Field>
             </Field>
             <Field
                 col
@@ -127,15 +150,26 @@ export const Actions = (a: Args) => {
                     {(e, i) => {
                         const et = tags.find((t) => t.value == e.tag)!
                         return (
-                            <Field a s pxs aic p='8px 24px'>
-                                <Transition name='slide-fade'>
-                                    {appStore.section() == 'actions' ? (
-                                        <FullEntry e={e} t={et} />
-                                    ) : (
-                                        <CompactEntry t={et} />
-                                    )}
-                                </Transition>
-                            </Field>
+                            <Modal
+                                s
+                                c
+                                buttonContent={
+                                    <Field a s p='8px 24px'>
+                                        <Transition name='slide-fade'>
+                                            <Field s>
+                                                {appStore.section() ==
+                                                'actions' ? (
+                                                    <FullEntry e={e} t={et} />
+                                                ) : (
+                                                    <CompactEntry t={et} />
+                                                )}
+                                            </Field>
+                                        </Transition>
+                                    </Field>
+                                }
+                            >
+                                <EditEntry entry={e} />
+                            </Modal>
                         )
                     }}
                 </For>
