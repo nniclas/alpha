@@ -12,7 +12,7 @@ export const Footer: Component = () => {
     return (
         <Field pmd secondary>
             <Text md color='hsl(200, 12%, 42%)'>
-                FOOTER
+                {/* FOOTER */}
             </Text>
         </Field>
     )

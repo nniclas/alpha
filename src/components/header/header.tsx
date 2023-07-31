@@ -24,9 +24,10 @@ import {
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
-import Dropdown from '../../components/dropdown/dropdown'
 import ManageUnitModal from '../edit-unit/edit-unit'
 import Modal from '../../lib/components/modal/modal'
+import Responsive from '../../lib/components/responsive/responsive'
+import Dropdown from '../../lib/components/dropdown/dropdown'
 
 const unitTemplate = (u: Unit) => {
     // createEffect(() => {
@@ -101,11 +102,28 @@ export const Header: Component = () => {
         navigate('/login', { replace: true })
     }
 
+    const compactActions = [
+        <Button accent>
+            <Field h={100} psm>
+                <Text xs secondary>
+                    {appStore.session()?.username}
+                </Text>
+            </Field>
+        </Button>,
+        <Button primary>
+            <Field h={100} psm>
+                <Text xs secondary>
+                    users
+                </Text>
+            </Field>
+        </Button>,
+    ]
+
     return (
         <Field s h={240} pmd secondary>
             <Field col>
                 <Field s col gxs>
-                    <Text md tertiary>
+                    <Text md res tertiary>
                         Units
                     </Text>
                 </Field>
@@ -128,7 +146,7 @@ export const Header: Component = () => {
                                             />
                                         </Field>
                                         <Field s>
-                                            <Text sm primary>
+                                            <Text xs res primary>
                                                 Some units are offline, check
                                                 status.
                                             </Text>
@@ -176,26 +194,46 @@ export const Header: Component = () => {
                     </Transition>
                 </Field>
             </Field>
-            <Field s>
-                <Field s col gsm aie>
-                    <Field jce>
-                        <Field s ais gsm>
-                            <Field s c h={48}>
-                                <Text xs color='hsl(200, 12%, 62%)'>
-                                    {appStore.session()?.username}
-                                </Text>
-                            </Field>
 
-                            <Button w={48} h={48} onClick={logOut}>
-                                <FiLogOut color='hsl(50, 36%, 62%)' size={18} />
-                            </Button>
+            <Responsive
+                s
+                compact={
+                    <Field s>
+                        <Dropdown
+                            jce
+                            dock='left'
+                            buttonContent={
+                                <FiMenu color='hsl(50, 36%, 62%)' size={20} />
+                            }
+                            items={compactActions}
+                        />
+                    </Field>
+                }
+            >
+                <Field s>
+                    <Field s col gsm aie>
+                        <Field jce>
+                            <Field s ais gsm>
+                                <Field s c h={48}>
+                                    <Text xs color='hsl(200, 12%, 62%)'>
+                                        {appStore.session()?.username}
+                                    </Text>
+                                </Field>
+
+                                <Button w={48} h={48} onClick={logOut}>
+                                    <FiLogOut
+                                        color='hsl(50, 36%, 62%)'
+                                        size={18}
+                                    />
+                                </Button>
+                            </Field>
+                        </Field>
+                        <Field s w={100} h={100} p='0 32px'>
+                            <Logo />
                         </Field>
                     </Field>
-                    <Field s w={100} h={100} p='0 32px'>
-                        <Logo />
-                    </Field>
                 </Field>
-            </Field>
+            </Responsive>
         </Field>
     )
 }

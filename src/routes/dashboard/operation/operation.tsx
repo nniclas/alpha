@@ -12,6 +12,9 @@ import { Unit } from 'types/entities/unit'
 import { Transition } from 'solid-transition-group'
 import styles from './operation.module.css'
 import dataStore from '../../../core/data-store'
+import { isCompact } from '../../../lib/utils'
+import Responsive from '../../../lib/components/responsive/responsive'
+import { Slider } from '../../../lib/components/slider/slider'
 
 interface Args {
     unit?: Unit
@@ -27,78 +30,110 @@ export const Operation = (a: Args) => {
     // console.log(appStore.section(), a.unit?.name)
 
     return (
-        <Field pmd col glg>
-            <Field s gsm>
+        <Field col glg res={{ gmd: true }}>
+            <Field s gsm pmd>
                 <Field s c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
-                <Text primary md>
+                <Text md res primary>
                     Operation
                 </Text>
                 <Field aic>
-                    <Text tertiary sm>
+                    <Text sm res tertiary>
                         {ds.selectedUnitRes()?.name}
                     </Text>
                 </Field>
             </Field>
 
-            <Field
-                res={{ col: true }}
-                gmd
-                a
-                style={`padding:0 ${
-                    appStore.section() == 'operation' ? 64 : 32
-                }px`}
-            >
-                <Field col gmd res={{ s: true }}>
-                    <Field s col gsm>
-                        <Text sm primary>
-                            Signal strength
+            <Field gmd a style={`padding:0 0px`}>
+                <Slider>
+                    <Field aic col gmd>
+                        <Field s col gsm>
+                            <Text sm res primary>
+                                Signal strength
+                            </Text>
+                            <Field>
+                                <Transition name='foo'>
+                                    {appStore.section() == 'operation' && (
+                                        <Responsive
+                                            compact={
+                                                <UnitMeter
+                                                    scale={10}
+                                                    value={mds.signalStrength()}
+                                                    meterColor='hsl(200, 12%, 28%)'
+                                                    valueColor='hsl(50, 36%, 62%)'
+                                                />
+                                            }
+                                        >
+                                            <UnitMeter
+                                                value={mds.signalStrength()}
+                                                meterColor='hsl(200, 12%, 28%)'
+                                                valueColor='hsl(50, 36%, 62%)'
+                                            />
+                                        </Responsive>
+                                    )}
+                                </Transition>
+                            </Field>
+                        </Field>
+                        <Field s col gsm>
+                            <Text sm res primary>
+                                Battery level
+                            </Text>
+                            <Field>
+                                <Transition name='foo'>
+                                    {appStore.section() == 'operation' && (
+                                        <Responsive
+                                            compact={
+                                                <UnitMeter
+                                                    scale={10}
+                                                    value={mds.batteryLevel()}
+                                                    meterColor='hsl(200, 12%, 28%)'
+                                                    valueColor='hsl(50, 36%, 62%)'
+                                                />
+                                            }
+                                        >
+                                            <UnitMeter
+                                                value={mds.batteryLevel()}
+                                                meterColor='hsl(200, 12%, 28%)'
+                                                valueColor='hsl(50, 36%, 62%)'
+                                            />
+                                        </Responsive>
+                                    )}
+                                </Transition>
+                            </Field>
+                        </Field>
+                    </Field>
+                    <Field c col gsm jcs>
+                        <Text sm res primary>
+                            Processor usage
                         </Text>
-                        <Field>
-                            <Transition name='foo'>
-                                {appStore.section() == 'operation' && (
-                                    <UnitMeter
-                                        value={mds.signalStrength()}
-                                        meterColor='hsl(200, 12%, 28%)'
+                        <Transition name='foo'>
+                            {appStore.section() == 'operation' &&
+                                ds.selectedUnitRes() && (
+                                    <CircularMeter
+                                        value={mds.processorUsage()}
+                                        meterColor='hsl(200, 18%, 28%)'
                                         valueColor='hsl(50, 36%, 62%)'
                                     />
                                 )}
-                            </Transition>
-                        </Field>
+                        </Transition>
                     </Field>
-                    <Field s col gsm>
-                        <Text sm primary>
-                            Battery level
+                    <Field c col gsm jcs>
+                        <Text sm res primary>
+                            Processor usage
                         </Text>
-                        <Field>
-                            <Transition name='foo'>
-                                {appStore.section() == 'operation' && (
-                                    <UnitMeter
-                                        value={mds.batteryLevel()}
-                                        meterColor='hsl(200, 12%, 28%)'
+                        <Transition name='foo'>
+                            {appStore.section() == 'operation' &&
+                                ds.selectedUnitRes() && (
+                                    <CircularMeter
+                                        value={mds.processorUsage()}
+                                        meterColor='hsl(200, 18%, 28%)'
                                         valueColor='hsl(50, 36%, 62%)'
                                     />
                                 )}
-                            </Transition>
-                        </Field>
+                        </Transition>
                     </Field>
-                </Field>
-                <Field s col gsm jcs>
-                    <Text sm primary>
-                        Processor usage
-                    </Text>
-                    <Transition name='foo'>
-                        {appStore.section() == 'operation' &&
-                            ds.selectedUnitRes() && (
-                                <CircularMeter
-                                    value={mds.processorUsage()}
-                                    meterColor='hsl(200, 18%, 28%)'
-                                    valueColor='hsl(50, 36%, 62%)'
-                                />
-                            )}
-                    </Transition>
-                </Field>
+                </Slider>
             </Field>
         </Field>
     )

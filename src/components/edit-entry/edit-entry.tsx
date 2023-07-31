@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid'
 import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
 import { Entry } from '../../types/entities/entry'
-import Dropdown from '../../components/dropdown/dropdown'
+import SelectField from '../../lib/components/select-field/select-field'
 import { events, measures, tags } from '../../common/constants'
 
 interface Args {
@@ -29,7 +29,7 @@ export default (a: Args) => {
     createEffect(() => {
         setIsEntryChanged(JSON.stringify(a.entry) != JSON.stringify(entry()))
 
-        console.log(entry()?.tag)
+        // console.log(entry()?.tag)
     })
 
     return (
@@ -67,7 +67,7 @@ export default (a: Args) => {
                                     <Text xs primary>
                                         Event
                                     </Text>
-                                    <Dropdown
+                                    <SelectField
                                         index={entry()?.event}
                                         items={events.map((e) => (
                                             <Field c h={48} w={200}>
@@ -88,7 +88,7 @@ export default (a: Args) => {
                                     <Text xs primary>
                                         Measure
                                     </Text>
-                                    <Dropdown
+                                    <SelectField
                                         index={entry()?.measure}
                                         items={measures.map((m) => (
                                             <Field c h={48} w={200}>
@@ -111,7 +111,7 @@ export default (a: Args) => {
                                     <Text xs primary>
                                         Tag
                                     </Text>
-                                    <Dropdown
+                                    <SelectField
                                         index={entry()?.tag}
                                         items={tags.map((t) => (
                                             <Field c h={48} w={300}>

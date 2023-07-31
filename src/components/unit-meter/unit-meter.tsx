@@ -31,20 +31,20 @@ export const UnitMeter = (a: Args) => {
         <Field rel h={8}>
             {/* <div class={styles.block} style={`animation:${getCssAnimValue}`} /> */}
             <Field layer>
-                <Field style='gap:4px'>
+                <Field style='gap:2px'>
                     <For
                         each={Array(Math.round(100 / (a.scale == 10 ? 10 : 1)))
                             .fill(0)
                             .map((v) => v)}
                     >
                         {(v, i) => (
-                            <Field s w={2} h={8} bg={a.meterColor}></Field>
+                            <Field s w={6} h={8} bg={a.meterColor}></Field>
                         )}
                     </For>
                 </Field>
             </Field>
             <Field layer>
-                <Field style='gap:4px'>
+                <Field style='gap:2px'>
                     <For
                         each={Array(
                             Math.round(value() / (a.scale == 10 ? 10 : 1))
@@ -53,7 +53,7 @@ export const UnitMeter = (a: Args) => {
                             .map((v) => v)}
                     >
                         {(v, i) => (
-                            <Field s w={2} h={8} bg={a.valueColor}></Field>
+                            <Field s w={6} h={8} bg={a.valueColor}></Field>
                         )}
                     </For>
                 </Field>

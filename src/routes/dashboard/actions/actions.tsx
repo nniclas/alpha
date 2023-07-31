@@ -26,7 +26,7 @@ import { EventIcon } from '../../../components/event-icon/event-icon'
 import Button from '../../../lib/elements/button/button'
 import Modal from '../../../lib/components/modal/modal'
 import EditEntry from '../../../components/edit-entry/edit-entry'
-import Dropdown from '../../../components/dropdown/dropdown'
+import Dropdown from '../../../lib/components/select-field/select-field'
 
 interface Args {
     unit?: Unit
@@ -109,12 +109,12 @@ export const Actions = (a: Args) => {
     }
 
     return (
-        <Field col focus pmd glg>
+        <Field col focus pmd glg res={{ gmd: true }}>
             <Field s gsm>
                 <Field s h={30} c>
                     <FiZap size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
-                <Text primary md>
+                <Text md res primary>
                     Actions
                 </Text>
                 <Field jce>
