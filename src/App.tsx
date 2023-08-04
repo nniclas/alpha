@@ -8,8 +8,8 @@ import './lib/styles/fonts.css'
 import './lib/styles/themes/lite.css' // todo make dynamic, // const [theme, setTheme] = createStore<String>('lite')
 
 import Field from './lib/elements/field/field'
-import { Header } from './components/header/header'
-import { Footer } from './components/footer/footer'
+import { Header } from './parts/header/header'
+import { Footer } from './parts/footer/footer'
 
 import { Route, Router, Routes } from '@solidjs/router' // 👈 Import the router
 import { Dashboard } from './routes/dashboard/dashboard'

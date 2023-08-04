@@ -10,7 +10,7 @@ import ds from '../../core/data-store'
 import Logo from '../../assets/logo.svg?component-solid'
 import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
-import { UnitStateIcon } from '../unit-state-icon/unit-state-icon'
+import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
 import {
     FiEdit,
@@ -24,7 +24,7 @@ import {
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
-import ManageUnitModal from '../edit-unit/edit-unit'
+import ManageUnitModal from '../../components/edit-unit/edit-unit'
 import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
