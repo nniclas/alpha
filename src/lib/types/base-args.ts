@@ -1,3 +1,5 @@
+import { Size } from './types'
+
 export interface BaseArgs {
     style?: any
     class?: string
@@ -15,4 +17,6 @@ export interface BaseArgs {
     // responsive, if enabled (boolean only): .res styles will be applied according to rules in .res media queries
     //             if object is provied: apply these settings in compact mode
     res?: boolean | any
+
+    size?: Size
 }

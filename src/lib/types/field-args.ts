@@ -1,5 +1,6 @@
+import { Size } from './types'
+
 // predefined sizes handling, good with responsive designs
-export type FieldSize = 'xs' | 'sm' | 'md' | 'lg' | 'lg'
 export const FIELD_XS = 200
 export const FIELD_SM = 400
 export const FIELD_MD = 600
@@ -30,8 +31,8 @@ export interface FieldArgs {
     pxl?: boolean
     br?: boolean // border-radius
 
-    w?: number | string | FieldSize // width:
-    h?: number | string | FieldSize // height: ;
+    w?: number | string | Size // width:
+    h?: number | string | Size // height: ;
     p?: number | string // padding
 
     bg?: string

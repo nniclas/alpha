@@ -1,4 +1,5 @@
 import { FieldArgs } from '../lib/types/field-args'
+import { ThemeArgs } from './types/theme-args'
 
 export const scopeStyles = (modulesStyles: any, args: any) => {
     if (args == undefined) return ''
@@ -33,6 +34,17 @@ export const customStyles = (args: any, styleMap: any[]) => {
 
     return styles.concat(style).join(';')
 }
+
+export const hasTheme = (a: ThemeArgs) =>
+    a.primary || a.secondary || a.tertiary || a.accent
+export const thToStr = (a: ThemeArgs) =>
+    a.secondary
+        ? 'secondary'
+        : a.tertiary
+        ? 'tertiary'
+        : a.accent
+        ? 'accent'
+        : 'primary'
 
 export const width = (id: string) => {
     return document.getElementById(id)?.clientWidth

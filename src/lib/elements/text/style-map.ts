@@ -1,1 +1,1 @@
-export const styleMap = [{ color: 'color' }]
+export const styleMap = [{ color: 'color', 'font-size': 'size' }]

@@ -1,0 +1,14 @@
+.icon.xs > svg {
+    width: 16px;
+    height: 16px;
+}
+
+.icon.sm > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.icon.md > svg {
+    width: 32px;
+    height: 32px;
+}

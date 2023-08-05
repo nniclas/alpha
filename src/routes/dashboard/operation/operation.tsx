@@ -5,7 +5,7 @@ import Text from '../../../lib/elements/text/text'
 import appStore from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import mds from '../../../core/machine-data-store'
-import { FiSettings } from 'solid-icons/fi'
+import { FiSettings, FiSunrise } from 'solid-icons/fi'
 import { UnitMeter } from '../../../components/unit-meter/unit-meter'
 import { CircularMeter } from '../../../components/circular-meter/circular-meter'
 import { Unit } from 'types/entities/unit'
@@ -15,6 +15,7 @@ import dataStore from '../../../core/data-store'
 import { isCompact } from '../../../lib/utils'
 import Responsive from '../../../lib/components/responsive/responsive'
 import { Slider } from '../../../lib/components/slider/slider'
+import { Label } from '../../../lib/components/label/label'
 
 interface Args {
     unit?: Unit
@@ -31,7 +32,10 @@ export const Operation = (a: Args) => {
 
     return (
         <Field col glg res={{ gmd: true }}>
-            <Field s gsm pmd>
+            <Label accent size='md' icon={<FiSunrise />} iconTheme='secondary'>
+                Operation
+            </Label>
+            {/* <Field s gsm pmd>
                 <Field s c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
@@ -43,7 +47,7 @@ export const Operation = (a: Args) => {
                         {ds.selectedUnitRes()?.name}
                     </Text>
                 </Field>
-            </Field>
+            </Field> */}
 
             <Field gmd a style={`padding:0 0px`}>
                 <Slider>
