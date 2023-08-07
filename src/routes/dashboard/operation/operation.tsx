@@ -32,9 +32,10 @@ export const Operation = (a: Args) => {
 
     return (
         <Field col glg res={{ gmd: true }}>
-            <Label accent size='md' icon={<FiSunrise />} iconTheme='secondary'>
+            <Label accent size='md' icon={<FiSettings />} iconTheme='tertiary'>
                 Operation
             </Label>
+
             {/* <Field s gsm pmd>
                 <Field s c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />

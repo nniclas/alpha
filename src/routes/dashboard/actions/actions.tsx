@@ -2,112 +2,18 @@ import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
-import appStore from '../../../core/app-store'
+import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
-import {
-    FiBell,
-    FiMessageCircle,
-    FiOctagon,
-    FiPlusCircle,
-    FiSettings,
-    FiShuffle,
-    FiTag,
-    FiTrello,
-    FiUser,
-    FiZap,
-} from 'solid-icons/fi'
+import { FiPlusCircle, FiZap } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
-import { events, tags } from '../../../common/constants'
+import { tags } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
-import { Entry } from '../../../types/entities/entry'
-import { ValueIdTitle } from '../../../types/_types'
-import { EventIcon } from '../../../components/event-icon/event-icon'
-import Button from '../../../lib/elements/button/button'
 import Modal from '../../../lib/components/modal/modal'
 import EditEntry from '../../../components/edit-entry/edit-entry'
-import Dropdown from '../../../lib/components/select-field/select-field'
+import { FullEntryRow, CompactEntryRow, Table } from './actions.parts'
 
-interface Args {
-    unit?: Unit
-}
-
-const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
-
-export const Actions = (a: Args) => {
-    createEffect(() => {
-        // dataStore.getEntries(a.unit?.id)
-    })
-
-    const FullEntry = (a: { e: Entry; t: ValueIdTitle }) => {
-        return (
-            <Field
-                a
-                // w={800}
-                // h={32}
-                s
-                style='width:800px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
-                pxs
-                aic
-                gsm
-            >
-                <Field s>
-                    <EventIcon value={a.e.event} />
-                </Field>
-                <Text xs tertiary>
-                    {a.t.title}
-                </Text>
-                <Field jce gsm>
-                    <Field s gsm w={400}>
-                        <Field s w={200} gsm>
-                            {a.e.user && (
-                                <Field gsm>
-                                    <FiUser {...iconStyle} />
-                                    <Text xs tertiary>
-                                        {a.e.user.email}
-                                    </Text>
-                                </Field>
-                            )}
-                        </Field>
-
-                        <Field s w={18}>
-                            {a.e.notes && <FiMessageCircle {...iconStyle} />}
-                        </Field>
-                    </Field>
-
-                    <Field s w={18}>
-                        <FiTag {...iconStyle} />
-                    </Field>
-                </Field>
-            </Field>
-        )
-    }
-
-    const CompactEntry = (a: { t: ValueIdTitle }) => {
-        return (
-            <Field
-                a
-                // w={256}
-                // w={18}
-                // h={32}
-                s
-                // bg='hsl(200, 18%, 16%)'
-                style='width:256px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
-                pxs
-                aic
-                gsm
-                p='8px 16px'
-            >
-                <Field s>
-                    <EventIcon value={a.t.value} />
-                </Field>
-                <Text xs tertiary>
-                    {a.t.title}
-                </Text>
-            </Field>
-        )
-    }
-
+export const Actions = () => {
     return (
         <Field col focus pmd glg res={{ gmd: true }}>
             <Field s gsm>
@@ -132,9 +38,6 @@ export const Actions = (a: Args) => {
                             <EditEntry />
                         </Modal>
                     </Field>
-                    {/* <Button>
-                        <FiPlusCircle color='var(--color-accent)' size={22} />
-                    </Button> */}
                 </Field>
             </Field>
             <Field
@@ -142,12 +45,52 @@ export const Actions = (a: Args) => {
                 gsm
                 res={{ col: false }}
                 style={`flex-direction:${
-                    appStore.section() == 'actions' || !isCompact()
-                        ? 'column'
-                        : 'row'
+                    as.section() == 'actions' || !isCompact() ? 'column' : 'row'
                 } `}
             >
-                <For each={ds.entriesRes()}>
+                <Table>
+                    <For each={ds.entriesRes()}>
+                        {(e, i) => {
+                            const et = tags.find((t) => t.value == e.tag)!
+                            return (
+                                <>
+                                    {as.section() == 'actions' ? (
+                                        <FullEntryRow e={e} t={et} />
+                                    ) : (
+                                        <CompactEntryRow t={et} />
+                                    )}
+                                </>
+                                // <Modal
+                                //     s
+                                //     c
+                                //     buttonContent={
+                                //         <Field a s p='8px 24px'>
+                                //             <Transition name='slide-fade'>
+                                //                 <Field s>
+                                //                     {as.section() ==
+                                //                     'actions' ? (
+                                //                         <FullEntryRow
+                                //                             e={e}
+                                //                             t={et}
+                                //                         />
+                                //                     ) : (
+                                //                         <CompactEntryRow
+                                //                             t={et}
+                                //                         />
+                                //                     )}
+                                //                 </Field>
+                                //             </Transition>
+                                //         </Field>
+                                //     }
+                                // >
+                                //     <EditEntry entry={e} />
+                                // </Modal>
+                            )
+                        }}
+                    </For>
+                </Table>
+
+                {/* <For each={ds.entriesRes()}>
                     {(e, i) => {
                         const et = tags.find((t) => t.value == e.tag)!
                         return (
@@ -158,8 +101,7 @@ export const Actions = (a: Args) => {
                                     <Field a s p='8px 24px'>
                                         <Transition name='slide-fade'>
                                             <Field s>
-                                                {appStore.section() ==
-                                                'actions' ? (
+                                                {as.section() == 'actions' ? (
                                                     <FullEntry e={e} t={et} />
                                                 ) : (
                                                     <CompactEntry t={et} />
@@ -173,7 +115,7 @@ export const Actions = (a: Args) => {
                             </Modal>
                         )
                     }}
-                </For>
+                </For> */}
             </Field>
         </Field>
     )
