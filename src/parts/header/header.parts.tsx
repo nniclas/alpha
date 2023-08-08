@@ -35,20 +35,19 @@ export const MiniUnit = (a: { u: Unit }) => {
     // })
 
     return (
-        <Button
+        <Field
             onClick={(e) => {
                 ds.setSelectedUnitId(a.u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
         >
-            <Field s col gsm>
+            <Field col gsm>
                 <Field
                     a
-                    s
                     pmd
                     gsm
-                    style={`width:200px; border:0px solid transparent; background:  ${
+                    style={` border:0px solid transparent; background:  ${
                         ds.selectedUnitId() == a.u.id
                             ? 'hsl(200, 18%, 21%)'
                             : 'hsl(200, 18%, 16%)'
@@ -101,7 +100,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                     </Field>
                 </Field>
             </Field>
-        </Button>
+        </Field>
     )
 }
 
@@ -139,7 +138,9 @@ export const MainMenu = () => {
                         jce
                         dock='left'
                         buttonContent={
-                            <FiMenu color='hsl(50, 36%, 62%)' size={20} />
+                            <Field s c w={80} h={80}>
+                                <FiMenu color='hsl(50, 36%, 62%)' size={20} />
+                            </Field>
                         }
                         items={compactActions}
                     />

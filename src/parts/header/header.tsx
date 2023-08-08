@@ -19,6 +19,7 @@ import {
     FiLogOut,
     FiMenu,
     FiMoreVertical,
+    FiSearch,
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
@@ -28,6 +29,7 @@ import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { MainMenu, MiniUnit } from './header.parts'
 import { Slider } from '../../lib/components/slider/slider'
+import { SectionHeader } from '../../parts/section-header'
 
 const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
@@ -38,13 +40,14 @@ export const Header: Component = () => {
         // return <For each={ds.unitsRes()}>{(u, i) => <MiniUnit u={u} />}</For>
     }
     return (
-        <Field s h={240} pmd secondary>
+        <Field s h={240} secondary>
             <Field col>
-                <Field s col gxs>
+                <SectionHeader title='' tool={<MainMenu />} />
+                {/* <Field s col gxs>
                     <Text md res tertiary>
                         Units
                     </Text>
-                </Field>
+                </Field> */}
                 <Field rel>
                     <Transition name='fade'>
                         <Suspense
@@ -54,8 +57,8 @@ export const Header: Component = () => {
                                 </Field>
                             }
                         >
-                            <Field layer col psm>
-                                {ds.unitsRes() && ds.unitsRes()?.length && (
+                            <Field layer col>
+                                {/* {ds.unitsRes() && ds.unitsRes()?.length && (
                                     <Field s gsm aic psm>
                                         <Field s jcc>
                                             <FiAlertTriangle {...iconStyle} />
@@ -67,16 +70,16 @@ export const Header: Component = () => {
                                             </Text>
                                         </Field>
                                     </Field>
-                                )}
+                                )} */}
 
                                 <Responsive
                                     compact={
-                                        <Field>
+                                        <Field psm>
                                             <Slider>{units()}</Slider>
                                         </Field>
                                     }
                                 >
-                                    <Field s gxs>
+                                    <Field psm s gxs>
                                         {units()}
                                     </Field>
                                 </Responsive>
@@ -109,7 +112,7 @@ export const Header: Component = () => {
                     </Transition>
                 </Field>
             </Field>
-            <MainMenu />
+            {/* <MainMenu /> */}
         </Field>
     )
 }
