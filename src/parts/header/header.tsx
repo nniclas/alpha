@@ -40,9 +40,16 @@ export const Header: Component = () => {
         // return <For each={ds.unitsRes()}>{(u, i) => <MiniUnit u={u} />}</For>
     }
     return (
-        <Field s h={240} secondary>
+        <Field s h={260} secondary>
             <Field col>
-                <SectionHeader title='' tool={<MainMenu />} />
+                <SectionHeader
+                    title='Some'
+                    auxInfo='  Some units are offline, check
+                                                status.'
+                    iconTheme='accent'
+                    tool={<MainMenu />}
+                    icon={<FiAlertTriangle />}
+                />
                 {/* <Field s col gxs>
                     <Text md res tertiary>
                         Units
@@ -79,7 +86,7 @@ export const Header: Component = () => {
                                         </Field>
                                     }
                                 >
-                                    <Field psm s gxs>
+                                    <Field pmd s gxs>
                                         {units()}
                                     </Field>
                                 </Responsive>

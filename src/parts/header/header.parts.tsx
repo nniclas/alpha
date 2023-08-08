@@ -147,23 +147,20 @@ export const MainMenu = () => {
                 </Field>
             }
         >
-            <Field s>
+            <Field s h={80} c>
                 <Field s col gsm aie>
                     <Field jce>
                         <Field s ais gsm>
-                            <Field s c h={48}>
+                            <Field s c h={80}>
                                 <Text xs color='hsl(200, 12%, 62%)'>
                                     {appStore.session()?.username}
                                 </Text>
                             </Field>
 
-                            <Button w={48} h={48} onClick={logOut}>
+                            <Button w={80} h={80} onClick={logOut}>
                                 <FiLogOut color='hsl(50, 36%, 62%)' size={18} />
                             </Button>
                         </Field>
-                    </Field>
-                    <Field s w={100} h={100} p='0 32px'>
-                        <Logo />
                     </Field>
                 </Field>
             </Field>

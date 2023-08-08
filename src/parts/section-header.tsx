@@ -49,6 +49,9 @@ export const SectionHeader = (a: Args) => {
                 <Label accent size='md' {...icon} {...iconTheme}>
                     {a.title}
                 </Label>
+                <Field s c>
+                    <Text xs>{a.auxInfo}</Text>
+                </Field>
             </Field>
             <Field s>{a.tool}</Field>
         </Field>
