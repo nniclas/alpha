@@ -8,6 +8,7 @@ import { EventIcon } from '../../../components/event-icon/event-icon'
 import styles from './actions.parts.module.css'
 import Responsive from '../../../lib/components/responsive/responsive'
 import as from '../../../core/app-store'
+import { Transition } from 'solid-transition-group'
 
 const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 

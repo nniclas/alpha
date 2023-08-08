@@ -2,7 +2,7 @@ import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
-import appStore from '../../../core/app-store'
+import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import mds from '../../../core/machine-data-store'
 import { FiSettings, FiSunrise } from 'solid-icons/fi'
@@ -16,6 +16,7 @@ import { isCompact } from '../../../lib/utils'
 import Responsive from '../../../lib/components/responsive/responsive'
 import { Slider } from '../../../lib/components/slider/slider'
 import { Label } from '../../../lib/components/label/label'
+import { BatteryLevel, ProcessorUsage, SignalStrength } from './operation.parts'
 
 interface Args {
     unit?: Unit
@@ -27,6 +28,16 @@ export const Operation = (a: Args) => {
             mds.reset()
         }
     })
+
+    const meters = () => {
+        return (
+            <>
+                <SignalStrength />
+                <BatteryLevel />
+                <ProcessorUsage />
+            </>
+        )
+    }
 
     // console.log(appStore.section(), a.unit?.name)
 
@@ -50,95 +61,12 @@ export const Operation = (a: Args) => {
                 </Field>
             </Field> */}
 
-            <Field gmd a style={`padding:0 0px`}>
-                <Slider>
-                    <Field aic col gmd>
-                        <Field s col gsm>
-                            <Text sm res primary>
-                                Signal strength
-                            </Text>
-                            <Field>
-                                <Transition name='foo'>
-                                    {appStore.section() == 'operation' && (
-                                        <Responsive
-                                            compact={
-                                                <UnitMeter
-                                                    scale={10}
-                                                    value={mds.signalStrength()}
-                                                    meterColor='hsl(200, 12%, 28%)'
-                                                    valueColor='hsl(50, 36%, 62%)'
-                                                />
-                                            }
-                                        >
-                                            <UnitMeter
-                                                value={mds.signalStrength()}
-                                                meterColor='hsl(200, 12%, 28%)'
-                                                valueColor='hsl(50, 36%, 62%)'
-                                            />
-                                        </Responsive>
-                                    )}
-                                </Transition>
-                            </Field>
-                        </Field>
-                        <Field s col gsm>
-                            <Text sm res primary>
-                                Battery level
-                            </Text>
-                            <Field>
-                                <Transition name='foo'>
-                                    {appStore.section() == 'operation' && (
-                                        <Responsive
-                                            compact={
-                                                <UnitMeter
-                                                    scale={10}
-                                                    value={mds.batteryLevel()}
-                                                    meterColor='hsl(200, 12%, 28%)'
-                                                    valueColor='hsl(50, 36%, 62%)'
-                                                />
-                                            }
-                                        >
-                                            <UnitMeter
-                                                value={mds.batteryLevel()}
-                                                meterColor='hsl(200, 12%, 28%)'
-                                                valueColor='hsl(50, 36%, 62%)'
-                                            />
-                                        </Responsive>
-                                    )}
-                                </Transition>
-                            </Field>
-                        </Field>
+            <Field gmd a>
+                <Responsive compact={<Slider>{meters()}</Slider>}>
+                    <Field s col>
+                        {meters()}
                     </Field>
-                    <Field c col gsm jcs>
-                        <Text sm res primary>
-                            Processor usage
-                        </Text>
-                        <Transition name='foo'>
-                            {appStore.section() == 'operation' &&
-                                ds.selectedUnitRes() && (
-                                    <CircularMeter
-                                        value={mds.processorUsage()}
-                                        meterColor='hsl(200, 18%, 28%)'
-                                        valueColor='hsl(50, 36%, 62%)'
-                                    />
-                                )}
-                        </Transition>
-                    </Field>
-                    <Field c col gsm jcs>
-                        <Text sm res primary>
-                            Processor usage
-                        </Text>
-                        <Transition name='foo'>
-                            {appStore.section() == 'operation' &&
-                                ds.selectedUnitRes() && (
-                                    <CircularMeter
-                                        value={mds.processorUsage()}
-                                        meterColor='hsl(200, 18%, 28%)'
-                                        valueColor='hsl(50, 36%, 62%)'
-                                    />
-                                )}
-                        </Transition>
-                    </Field>
-                </Slider>
+                </Responsive>
             </Field>
         </Field>
     )

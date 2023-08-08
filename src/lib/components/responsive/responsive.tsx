@@ -1,6 +1,7 @@
 import { createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import Field from '../../elements/field/field'
 import { isCompact } from '../../utils'
+import { Transition } from 'solid-transition-group'
 
 interface Args {
     children?: any
@@ -32,7 +33,9 @@ export default (a: Args & any) => {
 
     return (
         <Field col {...a}>
+            {/* <Transition name='slide-fade'> */}
             {compact() == true ? a.compact : a.children}
+            {/* </Transition> */}
         </Field>
     )
 }
