@@ -16,23 +16,21 @@ function createDataState() {
     const [batteryLevel, setBatteryLevel] = createSignal<number>(0) // battery level of current monitored unit
 
     const start = () => {
-        iSignalInterval = setInterval(() => {
-            setSignalStrength(getSignalStrength(0, signalStrength()))
-        }, 1400)
-
-        iProcessorInterval = setInterval(() => {
-            setProcessorUsage(getProcessorUsage(0, processorUsage()))
-        }, 1100)
-
-        setBatteryLevel(getBatteryLevel(0, 0))
+        // iSignalInterval = setInterval(() => {
+        //     setSignalStrength(getSignalStrength(0, signalStrength()))
+        // }, 1400)
+        // iProcessorInterval = setInterval(() => {
+        //     setProcessorUsage(getProcessorUsage(0, processorUsage()))
+        // }, 1100)
+        // setBatteryLevel(getBatteryLevel(0, 0))
     }
 
     const stop = () => {
-        clearInterval(iSignalInterval)
-        clearInterval(iProcessorInterval)
-        setSignalStrength(0)
-        setProcessorUsage(0)
-        setBatteryLevel(0)
+        // clearInterval(iSignalInterval)
+        // clearInterval(iProcessorInterval)
+        // setSignalStrength(0)
+        // setProcessorUsage(0)
+        // setBatteryLevel(0)
     }
 
     // this will simply result in an on/off with new random starting points

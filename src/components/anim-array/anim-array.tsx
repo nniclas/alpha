@@ -77,7 +77,7 @@ export default (a: Args) => {
     }
 
     return (
-        <Field gsm>
+        <Field>
             {/* {a.items?.length} */}
             {/* <Button md primary onClick={() => add()}>
                 <Text secondary>Add</Text>
@@ -88,7 +88,7 @@ export default (a: Args) => {
                     <For each={a.items || list()}>
                         {(u, i) => (
                             <div class='list-item'>
-                                <Field s col psm>
+                                <Field s col>
                                     {/* <Button
                                     md
                                     secondary
@@ -96,9 +96,7 @@ export default (a: Args) => {
                                 >
                                     <Text accent>Remove</Text>
                                 </Button> */}
-                                    <Field s psm>
-                                        {a.template(u)}
-                                    </Field>
+                                    <Field s>{a.template(u)}</Field>
                                 </Field>
                             </div>
                         )}

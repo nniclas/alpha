@@ -16,7 +16,7 @@ interface Args {
 
 export const Label = (a: Args & TextArgs & ThemeArgs) => {
     return (
-        <Field s aic gsm h={64} p='0 32px'>
+        <Field s aic gsm h={80} p='0 32px'>
             {a.icon && (
                 <div
                     class={`${styles.icon} ${styles[a.size ?? 'sm']}`}
@@ -27,7 +27,7 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
                     {a.icon}
                 </div>
             )}
-            <Text size={a.size} style={`color:var(--${thToStr(a)}-color)`}>
+            <Text res size={a.size} style={`color:var(--${thToStr(a)}-color)`}>
                 {a.children}
             </Text>
         </Field>
