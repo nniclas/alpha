@@ -2,7 +2,7 @@ import { createSignal, createRoot, createEffect } from 'solid-js'
 import { Session } from 'types/session'
 function createDataState() {
     const [session, setSession] = createSignal<Session>()
-    const [section, setSection] = createSignal<'operation' | 'actions'>(
+    const [section, setSection] = createSignal<'operation' | 'events'>(
         'operation'
     )
 

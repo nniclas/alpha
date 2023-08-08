@@ -17,6 +17,7 @@ import { Login } from './routes/login/login'
 import RouteGuard from './components/route-guard'
 import { Transition } from 'solid-transition-group'
 import { Dev } from './routes/_dev'
+import Responsive from './lib/components/responsive/responsive'
 
 // import BG from './assets/bg2.svg?component-solid'
 
@@ -46,7 +47,9 @@ export const App: Component = () => {
                     </Transition>
                 </Field>
                 <Field s col>
-                    <Footer />
+                    <Responsive compact={<></>}>
+                        <Footer />
+                    </Responsive>
                 </Field>
             </Field>
         </Router>

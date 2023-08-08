@@ -71,6 +71,7 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
             rel
         >
             <Field
+                layer
                 s
                 a
                 style={`transform:translateX(-${x()}px); width: ${w() * 3}px`}
@@ -88,7 +89,7 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
             <Field layer ref={layerRef} style='pointer-events:none'></Field>
             <Field layer aie jcs style='pointer-events:none'>
                 <Field pmd gxs s>
-                    <For each={Array(a.children.length).fill(0)}>
+                    <For each={Array(a.children?.length).fill(0)}>
                         {(c, i) => {
                             return (
                                 <Field

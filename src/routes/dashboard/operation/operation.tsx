@@ -17,12 +17,9 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import { Slider } from '../../../lib/components/slider/slider'
 import { Label } from '../../../lib/components/label/label'
 import { BatteryLevel, ProcessorUsage, SignalStrength } from './operation.parts'
+import { SectionHeader } from '../../../parts/section-header'
 
-interface Args {
-    unit?: Unit
-}
-
-export const Operation = (a: Args) => {
+export const Operation = () => {
     createEffect(() => {
         if (dataStore.selectedUnitRes()) {
             mds.reset()
@@ -42,12 +39,31 @@ export const Operation = (a: Args) => {
     // console.log(appStore.section(), a.unit?.name)
 
     return (
-        <Field col glg res={{ gmd: true }}>
-            <Label accent size='md' icon={<FiSettings />} iconTheme='tertiary'>
-                Operation
-            </Label>
+        <Field>
+            <Field col glg res={{ gmd: true }}>
+                <SectionHeader
+                    title='Operation'
+                    icon={<FiSettings />}
+                    iconTheme='tertiary'
+                />
+                <Responsive compact={<Slider>{meters()}</Slider>}>
+                    <Field s col>
+                        {meters()}
+                    </Field>
+                </Responsive>
+            </Field>
+        </Field>
+    )
+}
 
-            {/* <Field s gsm pmd>
+{
+    /* <Label accent size='md' icon={<FiSettings />} iconTheme='tertiary'>
+                Operation
+            </Label> */
+}
+
+{
+    /* <Field s gsm pmd>
                 <Field s c>
                     <FiSettings size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
@@ -59,15 +75,5 @@ export const Operation = (a: Args) => {
                         {ds.selectedUnitRes()?.name}
                     </Text>
                 </Field>
-            </Field> */}
-
-            <Field gmd a>
-                <Responsive compact={<Slider>{meters()}</Slider>}>
-                    <Field s col>
-                        {meters()}
-                    </Field>
-                </Responsive>
-            </Field>
-        </Field>
-    )
+            </Field> */
 }

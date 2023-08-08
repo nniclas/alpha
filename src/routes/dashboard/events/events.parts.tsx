@@ -5,7 +5,7 @@ import { FiMessageCircle, FiTag, FiUser } from 'solid-icons/fi'
 import { Entry } from '../../../types/entities/entry'
 import { ValueIdTitle } from '../../../types/_types'
 import { EventIcon } from '../../../components/event-icon/event-icon'
-import styles from './actions.parts.module.css'
+import styles from './events.parts.module.css'
 import Responsive from '../../../lib/components/responsive/responsive'
 import as from '../../../core/app-store'
 import { Transition } from 'solid-transition-group'
@@ -25,7 +25,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                             </Text>
                         </Field>
                     }
-                    addRule={as.section() != 'actions'}
+                    addRule={as.section() != 'events'}
                 >
                     <Field gsm>
                         <EventIcon value={a.t.value} />
@@ -39,7 +39,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                 {a.e.user && (
                     <Responsive
                         compact={<></>}
-                        addRule={as.section() != 'actions'}
+                        addRule={as.section() != 'events'}
                     >
                         <Text xs primary>
                             <Field gsm>

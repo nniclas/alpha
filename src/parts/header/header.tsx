@@ -71,7 +71,7 @@ export const Header: Component = () => {
 
                                 <Responsive
                                     compact={
-                                        <Field s w={400}>
+                                        <Field>
                                             <Slider>{units()}</Slider>
                                         </Field>
                                     }

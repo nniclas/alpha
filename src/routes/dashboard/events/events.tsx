@@ -11,15 +11,38 @@ import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
 import EditEntry from '../../../components/edit-entry/edit-entry'
-import { EntryRow, Table, Row, Cell } from './actions.parts'
+import { EntryRow, Table, Row, Cell } from './events.parts'
 import Responsive from '../../../lib/components/responsive/responsive'
+import { SectionHeader } from '../../../parts/section-header'
 
 const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
-export const Actions = () => {
+export const Events = () => {
     return (
-        <Field col focus pmd glg res={{ gmd: true }}>
-            <Field s gsm>
+        <Field col focus glg res={{ gmd: true }}>
+            <SectionHeader
+                title='Events'
+                icon={<FiZap />}
+                iconTheme='tertiary'
+                tool={
+                    <Modal
+                        jcc
+                        pxl
+                        buttonContent={
+                            <Field s w={80} c>
+                                <FiPlusCircle
+                                    color='var(--color-accent)'
+                                    size={22}
+                                />{' '}
+                            </Field>
+                        }
+                    >
+                        <EditEntry />
+                    </Modal>
+                }
+            />
+
+            {/* <Field s gsm>
                 <Field s h={30} c>
                     <FiZap size={22} color='hsl(50, 36%, 62%)' />
                 </Field>
@@ -42,13 +65,13 @@ export const Actions = () => {
                         </Modal>
                     </Field>
                 </Field>
-            </Field>
+            </Field> */}
             <Field
                 col
                 gsm
                 res={{ col: false }}
                 style={`flex-direction:${
-                    as.section() == 'actions' || !isCompact() ? 'column' : 'row'
+                    as.section() == 'events' || !isCompact() ? 'column' : 'row'
                 } `}
             >
                 <Table>
@@ -58,7 +81,7 @@ export const Actions = () => {
                         <Cell>
                             <Responsive
                                 compact={<FiZap {...iconStyle} />}
-                                addRule={as.section() != 'actions'}
+                                addRule={as.section() != 'events'}
                             >
                                 <Text xs accent>
                                     Event
@@ -68,7 +91,7 @@ export const Actions = () => {
                         <Cell>
                             <Responsive
                                 compact={<></>}
-                                addRule={as.section() != 'actions'}
+                                addRule={as.section() != 'events'}
                             >
                                 <Text xs accent>
                                     Controller
@@ -78,7 +101,7 @@ export const Actions = () => {
                         <Cell>
                             <Responsive
                                 compact={<></>}
-                                addRule={as.section() != 'actions'}
+                                addRule={as.section() != 'events'}
                             >
                                 <Text xs accent>
                                     Remark
@@ -88,7 +111,7 @@ export const Actions = () => {
                         <Cell>
                             <Responsive
                                 compact={<></>}
-                                addRule={as.section() != 'actions'}
+                                addRule={as.section() != 'events'}
                             >
                                 <Text xs accent>
                                     Measure

@@ -11,7 +11,7 @@ import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
 import ds from '../../core/data-store'
 import { Operation } from './operation/operation'
-import { Actions } from './actions/actions'
+import { Events } from './events/events'
 import { Transition } from 'solid-transition-group'
 import { Unit } from '../../types/entities/unit'
 import { Loader } from '../../components/loader/loader'
@@ -31,8 +31,8 @@ export const Dashboard: Component = () => {
 
     const createPage = (u: Unit) => {
         const sections = [
-            { s: 'operation', c: <Operation unit={u} /> },
-            { s: 'actions', c: <Actions unit={u} /> },
+            { s: 'operation', c: <Operation /> },
+            { s: 'events', c: <Events /> },
         ]
 
         return (
