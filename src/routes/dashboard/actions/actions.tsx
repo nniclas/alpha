@@ -11,7 +11,10 @@ import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
 import EditEntry from '../../../components/edit-entry/edit-entry'
-import { FullEntryRow, CompactEntryRow, Table } from './actions.parts'
+import { EntryRow, Table, Row, Cell } from './actions.parts'
+import Responsive from '../../../lib/components/responsive/responsive'
+
+const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Actions = () => {
     return (
@@ -49,16 +52,62 @@ export const Actions = () => {
                 } `}
             >
                 <Table>
+                    {/* table headers */}
+
+                    <Row>
+                        <Cell>
+                            <Responsive
+                                compact={<FiZap {...iconStyle} />}
+                                addRule={as.section() != 'actions'}
+                            >
+                                <Text xs accent>
+                                    Event
+                                </Text>
+                            </Responsive>
+                        </Cell>
+                        <Cell>
+                            <Responsive
+                                compact={<FiZap {...iconStyle} />}
+                                addRule={as.section() != 'actions'}
+                            >
+                                <Text xs accent>
+                                    Controller
+                                </Text>
+                            </Responsive>
+                        </Cell>
+                        <Cell>
+                            <Responsive
+                                compact={<FiZap {...iconStyle} />}
+                                addRule={as.section() != 'actions'}
+                            >
+                                <Text xs accent>
+                                    Remark
+                                </Text>
+                            </Responsive>
+                        </Cell>
+                        <Cell>
+                            <Responsive
+                                compact={<FiZap {...iconStyle} />}
+                                addRule={as.section() != 'actions'}
+                            >
+                                <Text xs accent>
+                                    Measure
+                                </Text>
+                            </Responsive>
+                        </Cell>
+                    </Row>
+
                     <For each={ds.entriesRes()}>
                         {(e, i) => {
                             const et = tags.find((t) => t.value == e.tag)!
                             return (
                                 <>
-                                    {as.section() == 'actions' ? (
-                                        <FullEntryRow e={e} t={et} />
+                                    <EntryRow e={e} t={et} />
+                                    {/* {as.section() == 'actions' ? (
+                                        <EntryRow e={e} t={et} />
                                     ) : (
                                         <CompactEntryRow t={et} />
-                                    )}
+                                    )} */}
                                 </>
                                 // <Modal
                                 //     s

@@ -5,13 +5,22 @@ import { isCompact } from '../../utils'
 interface Args {
     children?: any
     compact?: any
+    addRule?: boolean // additionally apply compact when true
 }
 
 export default (a: Args & any) => {
     const [compact, setCompact] = createSignal<boolean>(false)
 
+    createEffect(() => {
+        if (a.addRule) {
+            setCompact(true)
+            return
+        }
+        setCompact(isCompact() ? true : false)
+    })
+
     const handler = (e?: Event) => {
-        setCompact(isCompact())
+        setCompact(a.addRule ? true : isCompact())
     }
 
     onMount(() => window.addEventListener('resize', handler))

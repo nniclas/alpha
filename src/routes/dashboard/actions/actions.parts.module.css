@@ -21,6 +21,6 @@
 }
 
 .cell {
-    min-width: 30px;
+    min-width: 0px;
     padding: 20px 32px;
 }
