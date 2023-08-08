@@ -12,7 +12,14 @@ import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
-import { FiEdit, FiLogOut, FiMenu, FiMoreVertical } from 'solid-icons/fi'
+import {
+    FiAlertCircle,
+    FiAlertTriangle,
+    FiEdit,
+    FiLogOut,
+    FiMenu,
+    FiMoreVertical,
+} from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
 import EditUnit from '../../components/edit-unit/edit-unit'
@@ -20,8 +27,16 @@ import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { MainMenu, MiniUnit } from './header.parts'
+import { Slider } from '../../lib/components/slider/slider'
+
+const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
 
 export const Header: Component = () => {
+    const units = () => {
+        return ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
+
+        // return <For each={ds.unitsRes()}>{(u, i) => <MiniUnit u={u} />}</For>
+    }
     return (
         <Field s h={240} pmd secondary>
             <Field col>
@@ -41,12 +56,9 @@ export const Header: Component = () => {
                         >
                             <Field layer col psm>
                                 {ds.unitsRes() && ds.unitsRes()?.length && (
-                                    <Field gsm aic p='0 2px'>
+                                    <Field s gsm aic psm>
                                         <Field s jcc>
-                                            <Field
-                                                s
-                                                style='border-radius:16px; background:rgb(180,120,120); width:12px; height:12px'
-                                            />
+                                            <FiAlertTriangle {...iconStyle} />
                                         </Field>
                                         <Field s>
                                             <Text xs res primary>
@@ -56,8 +68,21 @@ export const Header: Component = () => {
                                         </Field>
                                     </Field>
                                 )}
-                                <Field>
-                                    <Field s c>
+
+                                <Responsive
+                                    compact={
+                                        <Field s w={400}>
+                                            <Slider>{units()}</Slider>
+                                        </Field>
+                                    }
+                                >
+                                    <Field s gxs>
+                                        {units()}
+                                    </Field>
+                                </Responsive>
+
+                                {/* <Field s>
+                                    <Field s c psm>
                                         <Modal
                                             jcc
                                             pxl
@@ -71,11 +96,14 @@ export const Header: Component = () => {
                                             <EditUnit />
                                         </Modal>
                                     </Field>
-                                    <AnimArray
+                                    {units}
+
+                                   
+                                </Field> */}
+                                {/* <AnimArray
                                         items={ds.unitsRes()}
                                         template={MiniUnit}
-                                    />
-                                </Field>
+                                    /> */}
                             </Field>
                         </Suspense>
                     </Transition>

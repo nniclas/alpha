@@ -8,7 +8,6 @@ import appStore from '../../core/app-store'
 import ds from '../../core/data-store'
 
 import Logo from '../../assets/logo.svg?component-solid'
-import AnimArray from '../../components/anim-array/anim-array'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
@@ -28,8 +27,9 @@ import ManageUnitModal from '../../components/edit-unit/edit-unit'
 import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
+import { stateColors } from '../../common/constants'
 
-export const MiniUnit = (u: Unit) => {
+export const MiniUnit = (a: { u: Unit }) => {
     // createEffect(() => {
     //     console.log(dataStore.selectedUnitRes()?.id)
     // })
@@ -37,7 +37,7 @@ export const MiniUnit = (u: Unit) => {
     return (
         <Button
             onClick={(e) => {
-                ds.setSelectedUnitId(u.id)
+                ds.setSelectedUnitId(a.u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
@@ -48,20 +48,32 @@ export const MiniUnit = (u: Unit) => {
                     s
                     pmd
                     gsm
-                    style={`width:240px; border:0px solid transparent; background:  ${
-                        ds.selectedUnitId() == u.id
+                    style={`width:200px; border:0px solid transparent; background:  ${
+                        ds.selectedUnitId() == a.u.id
                             ? 'hsl(200, 18%, 21%)'
                             : 'hsl(200, 18%, 16%)'
                     } `}
                 >
                     <Field>
                         <Field col gsm>
-                            <Text sm primary>
-                                {u.name}
-                            </Text>
+                            <Field gsm>
+                                <Field s aic>
+                                    <Field
+                                        s
+                                        style={`border-radius:16px;  background:${
+                                            stateColors.find(
+                                                (sc) => sc.id == a.u.state
+                                            )?.value
+                                        }; width:12px; height:12px`}
+                                    />
+                                </Field>
+                                <Text sm primary>
+                                    {a.u.name}
+                                </Text>
+                            </Field>
 
                             <Field s gsm c>
-                                <UnitStateIcon value={u.state} />
+                                <UnitStateIcon value={a.u.state} />
                                 <UnitMeter
                                     value={73}
                                     scale={10}
@@ -83,7 +95,7 @@ export const MiniUnit = (u: Unit) => {
                                     />
                                 }
                             >
-                                <ManageUnitModal unit={u} />
+                                <ManageUnitModal unit={a.u} />
                             </Modal>
                         </Field>
                     </Field>

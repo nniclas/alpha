@@ -8,3 +8,8 @@ export interface ValueIconPair {
     value: number
     icon: any
 }
+
+export interface IdValuePair {
+    id: any
+    value: string
+}

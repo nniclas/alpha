@@ -83,7 +83,7 @@ export default (a: Args) => {
                 <Text secondary>Add</Text>
             </Button> */}
 
-            <Field>
+            <Field gxs>
                 <TransitionGroup name='list-item'>
                     <For each={a.items || list()}>
                         {(u, i) => (
