@@ -67,7 +67,7 @@ export const Actions = () => {
                         </Cell>
                         <Cell>
                             <Responsive
-                                compact={<FiZap {...iconStyle} />}
+                                compact={<></>}
                                 addRule={as.section() != 'actions'}
                             >
                                 <Text xs accent>
@@ -77,7 +77,7 @@ export const Actions = () => {
                         </Cell>
                         <Cell>
                             <Responsive
-                                compact={<FiZap {...iconStyle} />}
+                                compact={<></>}
                                 addRule={as.section() != 'actions'}
                             >
                                 <Text xs accent>
@@ -87,7 +87,7 @@ export const Actions = () => {
                         </Cell>
                         <Cell>
                             <Responsive
-                                compact={<FiZap {...iconStyle} />}
+                                compact={<></>}
                                 addRule={as.section() != 'actions'}
                             >
                                 <Text xs accent>

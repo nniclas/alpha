@@ -1,6 +1,6 @@
 .table {
     border-collapse: separate;
-    border-spacing: 2px;
+    border-spacing: 0px;
 }
 
 .row {
@@ -22,5 +22,9 @@
 
 .cell {
     min-width: 0px;
-    padding: 20px 32px;
+    padding: 20px 0px;
+}
+
+.cell:first-child {
+    padding-left: 20px;
 }

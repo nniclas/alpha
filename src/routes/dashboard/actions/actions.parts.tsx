@@ -16,7 +16,14 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
         <Row>
             <Cell>
                 <Responsive
-                    compact={<EventIcon value={a.t.value} />}
+                    compact={
+                        <Field gsm>
+                            <EventIcon value={a.t.value} />
+                            <Text res xs tertiary>
+                                {a.t.title}
+                            </Text>
+                        </Field>
+                    }
                     addRule={as.section() != 'actions'}
                 >
                     <Field gsm>
@@ -28,30 +35,28 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                 </Responsive>
             </Cell>
             <Cell>
-                <Responsive
-                    compact={a.e.user && <FiUser {...iconStyle} />}
-                    addRule={as.section() != 'actions'}
-                >
-                    <Text xs primary>
-                        {a.e.user && (
+                {a.e.user && (
+                    <Responsive
+                        compact={<></>}
+                        addRule={as.section() != 'actions'}
+                    >
+                        <Text xs primary>
                             <Field gsm>
                                 <FiUser {...iconStyle} />
                                 <Text xs tertiary>
                                     {a.e.user.email}
                                 </Text>
                             </Field>
-                        )}
-                    </Text>
-                </Responsive>
+                        </Text>
+                    </Responsive>
+                )}
             </Cell>
             <Cell>
-                <Text xs primary>
-                    {a.e.notes && <FiMessageCircle {...iconStyle} />}
-                </Text>
+                {/* <Text xs primary>
+                    {a.e.notes && <></>}
+                </Text> */}
             </Cell>
-            <Cell>
-                <FiTag {...iconStyle} />
-            </Cell>
+            <Cell>{/* <FiTag {...iconStyle} /> */}</Cell>
         </Row>
     )
     // return (
