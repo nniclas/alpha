@@ -41,6 +41,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
+            style='cursor:pointer;cursor:hand'
         >
             <Field col gsm>
                 <Field
@@ -49,7 +50,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                     gsm
                     style={` border:0px solid transparent; background:  ${
                         ds.selectedUnitId() == a.u.id
-                            ? 'hsl(200, 18%, 21%)'
+                            ? 'hsl(200, 18%, 12%)'
                             : 'hsl(200, 18%, 16%)'
                     } `}
                 >

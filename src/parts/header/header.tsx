@@ -55,8 +55,11 @@ export const Header: Component = () => {
                 >
                     <SectionHeader
                         title='Some'
-                        auxInfo='  Some units are offline, check
-                                                status.'
+                        aux={
+                            <Text xs>
+                                Some units are offline, check status.
+                            </Text>
+                        }
                         iconTheme='accent'
                         tool={<MainMenu />}
                         icon={<FiAlertTriangle />}

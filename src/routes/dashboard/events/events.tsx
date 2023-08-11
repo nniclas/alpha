@@ -21,8 +21,11 @@ import {
 } from './events.parts'
 import Responsive from '../../../lib/components/responsive/responsive'
 import { SectionHeader } from '../../../parts/section-header'
+import SelectField from '../../../lib/components/select-field/select-field'
 
 const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
+
+const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Events = () => {
     const hcell = (text: string, showInCompact = false) => {
@@ -44,6 +47,20 @@ export const Events = () => {
             <SectionHeader
                 title='Events'
                 icon={<FiZap />}
+                aux={
+                    <SelectField
+                        index={TESTWEEKS.indexOf(as.week())}
+                        items={TESTWEEKS.map((w) => (
+                            <Field c h={48} w={200}>
+                                <Text xs secondary>
+                                    {w}
+                                </Text>
+                            </Field>
+                        ))}
+                        onChange={(v) => as.setWeek(TESTWEEKS[v])}
+                        buttonArgs={{ primary: true, sm: true }}
+                    />
+                }
                 iconTheme='tertiary'
                 tool={
                     <Modal

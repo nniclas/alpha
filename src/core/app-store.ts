@@ -5,6 +5,7 @@ function createDataState() {
     const [section, setSection] = createSignal<'operation' | 'events'>(
         'operation'
     )
+    const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
 
     createEffect(() => {
         // reassign to data store if browser refreshes
@@ -32,6 +33,8 @@ function createDataState() {
         removeSession,
         section,
         setSection,
+        week,
+        setWeek,
     }
 }
 

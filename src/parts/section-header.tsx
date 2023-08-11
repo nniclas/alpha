@@ -35,7 +35,7 @@ interface Args {
     title: string
     icon?: any
     iconTheme?: string
-    auxInfo?: string
+    aux?: any
     tool?: any
 }
 
@@ -50,7 +50,7 @@ export const SectionHeader = (a: Args) => {
                     {a.title}
                 </Label>
                 <Field s c>
-                    <Text xs>{a.auxInfo}</Text>
+                    {a.aux}
                 </Field>
             </Field>
             <Field s>{a.tool}</Field>

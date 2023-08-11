@@ -10,6 +10,7 @@ import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
 import { Transition } from 'solid-transition-group'
+import SelectField from '../../lib/components/select-field/select-field'
 
 const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
     return (
@@ -32,6 +33,9 @@ const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
         </Field>
     )
 }
+import as from '../../core/app-store'
+import ds from '../../core/data-store'
+const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Login: Component = () => {
     const navigate = useNavigate()
