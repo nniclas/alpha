@@ -148,6 +148,12 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
 //     </Field>
 // )
 
+export const TableContainer = (a: { h: number; children: any }) => (
+    <div class={styles.tablecontainer} style={`height:${a.h}px`}>
+        {a.children}
+    </div>
+)
+
 export const Table = (a: { children: any }) => (
     <table class={styles.table}>{a.children}</table>
 )
@@ -158,4 +164,10 @@ export const Row = (a: { children: any }) => (
 
 export const Cell = (a: { children: any }) => (
     <td class={styles.cell}>{a.children}</td>
+)
+
+export const HeaderCell = (a: { bg: string; children: any }) => (
+    <th class={styles.headercell} style={`background:${a.bg}`}>
+        {a.children}
+    </th>
 )

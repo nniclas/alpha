@@ -1,6 +1,16 @@
+.tablecontainer {
+    overflow-y: scroll;
+    display: flex;
+}
+
 .table {
+    flex: 1;
     border-collapse: separate;
     border-spacing: 0px;
+}
+.table th {
+    position: sticky;
+    top: 0px;
 }
 
 .row {
@@ -19,12 +29,24 @@
     cursor: pointer;
     cursor: hand;
 }
-
+.headercell {
+    min-width: 0px;
+    height: 60px;
+    padding: 0px 20px;
+    text-align: left;
+}
 .cell {
     min-width: 0px;
-    padding: 20px 0px;
+    /* padding: 20px 0px; */
+
+    height: 60px;
 }
 
 .cell:first-child {
     padding-left: 20px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
 }
