@@ -42,14 +42,27 @@ export const Header: Component = () => {
     return (
         <Field s h={260} secondary>
             <Field col>
-                <SectionHeader
-                    title='Some'
-                    auxInfo='  Some units are offline, check
+                <Responsive
+                    s
+                    compact={
+                        <SectionHeader
+                            title='Some'
+                            iconTheme='accent'
+                            tool={<MainMenu />}
+                            icon={<FiAlertTriangle />}
+                        />
+                    }
+                >
+                    <SectionHeader
+                        title='Some'
+                        auxInfo='  Some units are offline, check
                                                 status.'
-                    iconTheme='accent'
-                    tool={<MainMenu />}
-                    icon={<FiAlertTriangle />}
-                />
+                        iconTheme='accent'
+                        tool={<MainMenu />}
+                        icon={<FiAlertTriangle />}
+                    />
+                </Responsive>
+
                 {/* <Field s col gxs>
                     <Text md res tertiary>
                         Units
