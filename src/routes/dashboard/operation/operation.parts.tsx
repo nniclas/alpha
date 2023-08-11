@@ -84,25 +84,29 @@ export const ProcessorUsage = () => {
                     Processor usage
                 </Text>
 
-                <Responsive
-                    compact={
-                        <UnitMeter
-                            scale={10}
+                <Transition name='foo'>
+                    <Responsive
+                        compact={
+                            <Field s h={48}>
+                                <UnitMeter
+                                    scale={10}
+                                    value={mds.processorUsage()}
+                                    meterColor='hsl(200, 12%, 28%)'
+                                    valueColor='hsl(50, 36%, 62%)'
+                                />
+                            </Field>
+                        }
+                        addRule={
+                            as.section() != 'operation' || !ds.selectedUnitRes()
+                        }
+                    >
+                        <CircularMeter
                             value={mds.processorUsage()}
-                            meterColor='hsl(200, 12%, 28%)'
+                            meterColor='hsl(200, 18%, 28%)'
                             valueColor='hsl(50, 36%, 62%)'
                         />
-                    }
-                    addRule={
-                        as.section() != 'operation' || !ds.selectedUnitRes()
-                    }
-                >
-                    <CircularMeter
-                        value={mds.processorUsage()}
-                        meterColor='hsl(200, 18%, 28%)'
-                        valueColor='hsl(50, 36%, 62%)'
-                    />
-                </Responsive>
+                    </Responsive>
+                </Transition>
             </Field>
         </Field>
     )

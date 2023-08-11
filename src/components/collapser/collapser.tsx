@@ -39,7 +39,7 @@ export const Collapser = (a: Args) => {
         size()
     })
 
-    const size = (e?: Event) => {
+    const size = () => {
         setCompact(isCompact())
     }
 

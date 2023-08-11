@@ -99,7 +99,7 @@ export const Header: Component = () => {
                                         </Field>
                                     }
                                 >
-                                    <Field pmd s gxs>
+                                    <Field p='32px 64px' s gxs>
                                         {units()}
                                     </Field>
                                 </Responsive>

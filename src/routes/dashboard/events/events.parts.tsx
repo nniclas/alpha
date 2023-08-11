@@ -1,4 +1,12 @@
-import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
+import {
+    Component,
+    For,
+    createEffect,
+    createSignal,
+    lazy,
+    onCleanup,
+    onMount,
+} from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import { FiMessageCircle, FiTag, FiUser } from 'solid-icons/fi'
@@ -60,99 +68,54 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
             <Cell>{/* <FiTag {...iconStyle} /> */}</Cell>
         </Row>
     )
-    // return (
-    //     <Field
-    //         a
-    //         // w={800}
-    //         // h={32}
-    //         s
-    //         style='width:800px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
-    //         pxs
-    //         aic
-    //         gsm
-    //     >
-    //         <Field s>
-    //             <EventIcon value={a.e.event} />
-    //         </Field>
-    //         <Text xs tertiary>
-    //             {a.t.title}
-    //         </Text>
-    //         <Field jce gsm>
-    //             <Field s gsm w={400}>
-    //                 <Field s w={200} gsm>
-    //                     {a.e.user && (
-    //                         <Field gsm>
-    //                             <FiUser {...iconStyle} />
-    //                             <Text xs tertiary>
-    //                                 {a.e.user.email}
-    //                             </Text>
-    //                         </Field>
-    //                     )}
-    //                 </Field>
-
-    //                 <Field s w={18}>
-    //                     {a.e.notes && <FiMessageCircle {...iconStyle} />}
-    //                 </Field>
-    //             </Field>
-
-    //             <Field s w={18}>
-    //                 <FiTag {...iconStyle} />
-    //             </Field>
-    //         </Field>
-    //     </Field>
-    // )
 }
 
-// export const CompactEntryRow = (a: { t: ValueIdTitle }) => {
-//     return (
-//         <Row>
-//             <Cell>
-//                 <Field gsm>
-//                     <EventIcon value={a.t.value} />
-//                 </Field>
-//             </Cell>
-//             <Cell>
-//                 <Field gsm>
-//                     <EventIcon value={a.t.value} />
-//                 </Field>
-//             </Cell>
-//             <Cell>
-//                 <Field gsm>
-//                     <EventIcon value={a.t.value} />
-//                 </Field>
-//             </Cell>
-//             <Cell>
-//                 <Field gsm>
-//                     <EventIcon value={a.t.value} />
-//                 </Field>
-//             </Cell>
-//         </Row>
-//     )
+export const TableContainer = (a: {
+    h?: number
+    children: any
+    trig: boolean
+}) => {
+    let layerRef: any
+    const [h, setH] = createSignal<number>(a.h || 0)
 
-// return (
-//     <Field
-//         a
-//         s
-//         style='width:256px; height:32px; border-bottom: 2px solid hsl(200, 18%, 26%);'
-//         pxs
-//         aic
-//         gsm
-//         p='8px 16px'
-//     >
-//         <Field s>
-//             <EventIcon value={a.t.value} />
-//         </Field>
-//         <Text xs tertiary>
-//             {a.t.title}
-//         </Text>
-//     </Field>
-// )
+    createEffect(() => {
+        if (a.h == undefined) {
+            setH(layerRef.clientHeight)
+        }
 
-export const TableContainer = (a: { h: number; children: any }) => (
-    <div class={styles.tablecontainer} style={`height:${a.h}px`}>
-        {a.children}
-    </div>
-)
+        if (a.trig) {
+            setTimeout(() => {
+                setH(layerRef.clientHeight)
+            }, 500)
+        }
+    })
+
+    onMount(() => {
+        if (a.h == undefined) {
+            setH(layerRef.clientHeight)
+        }
+
+        // console.log(a.children.map((c: any) => c.content.innerHTML))
+    })
+
+    const size = () => {
+        setH(layerRef.clientHeight)
+    }
+
+    onMount(() => window.addEventListener('resize', size))
+    onCleanup(() => window.removeEventListener('resize', size))
+
+    return (
+        <Field rel>
+            <Field layer ref={layerRef} style='pointer-events:none'></Field>
+            <Field layer>
+                <div class={styles.tablecontainer} style={`height:${h()}px`}>
+                    {a.children}
+                </div>
+            </Field>
+        </Field>
+    )
+}
 
 export const Table = (a: { children: any }) => (
     <table class={styles.table}>{a.children}</table>
@@ -166,8 +129,11 @@ export const Cell = (a: { children: any }) => (
     <td class={styles.cell}>{a.children}</td>
 )
 
-export const HeaderCell = (a: { bg: string; children: any }) => (
-    <th class={styles.headercell} style={`background:${a.bg}`}>
+export const HeaderCell = (a: { bg: string; bb: string; children: any }) => (
+    <th
+        class={styles.headercell}
+        style={`background: ${a.bg}; border-bottom:2px solid ${a.bb}`}
+    >
         {a.children}
     </th>
 )
