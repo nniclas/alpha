@@ -31,6 +31,7 @@ import { Label } from '../lib/components/label/label'
 
 interface Args {
     title: string
+    titleTheme?: string
     icon?: any
     iconTheme?: string
     aux?: any
@@ -38,13 +39,14 @@ interface Args {
 }
 
 export const SectionHeader = (a: Args) => {
+    const titleTheme = a.titleTheme && { titleTheme: a.titleTheme }
     const icon = a.icon && { icon: a.icon }
     const iconTheme = a.iconTheme && { iconTheme: a.iconTheme }
 
     return (
         <Field s h={80}>
             <Field>
-                <Label accent size='md' {...icon} {...iconTheme}>
+                <Label size='md' {...titleTheme} {...icon} {...iconTheme}>
                     {a.title}
                 </Label>
                 <Field s c>

@@ -11,7 +11,7 @@ import Text from '../../lib/elements/text/text'
 export const Footer: Component = () => {
     return (
         <Field pmd secondary>
-            <Text md color='var(--color-medium)'>
+            <Text md color='var(--color-middle)'>
                 {/* FOOTER */}
             </Text>
         </Field>

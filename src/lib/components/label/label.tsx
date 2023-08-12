@@ -11,10 +11,16 @@ interface Args {
     children: any
     icon?: any
     size?: Size
+    titleTheme?: Theme
     iconTheme?: Theme
 }
 
 export const Label = (a: Args & TextArgs & ThemeArgs) => {
+    // if (a.titleTheme) {
+    //     console.log(
+    //         `color:var(--${a.titleTheme ? a.titleTheme : thToStr(a)}-color)`
+    //     )
+    // }
     return (
         <Field s aic gsm h={80} p='0 32px'>
             {a.icon && (
@@ -27,7 +33,13 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
                     {a.icon}
                 </div>
             )}
-            <Text res size={a.size} style={`color:var(--${thToStr(a)}-color)`}>
+            <Text
+                res
+                size={a.size}
+                style={`color:var(--${
+                    a.titleTheme ? a.titleTheme : thToStr(a)
+                }-color)`}
+            >
                 {a.children}
             </Text>
         </Field>

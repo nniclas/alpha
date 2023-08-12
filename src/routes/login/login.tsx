@@ -69,7 +69,7 @@ export const Login: Component = () => {
                             </Text>
                             <Text
                                 sm
-                                color='var(--color-medium)'
+                                color='var(--color-middle)'
                                 style='letter-spacing:1px'
                             >
                                 Remote configuration and operating technical
@@ -92,7 +92,7 @@ export const Login: Component = () => {
                 rslot={
                     <Field col ais jce style='z-index:1; margin-left:-100px;'>
                         <Field s col psm>
-                            <Text sm color='var(--color-medium)'>
+                            <Text sm color='var(--color-middle)'>
                                 Account
                             </Text>
                         </Field>
@@ -113,7 +113,7 @@ export const Login: Component = () => {
                                     value={email()}
                                     primary
                                     psm
-                                    color='var(--color-medium)'
+                                    color='var(--color-middle)'
                                     change={(v) => setEmail(v)}
                                 />
                             </Field>
@@ -124,7 +124,7 @@ export const Login: Component = () => {
                                     value={password()}
                                     primary
                                     psm
-                                    color='var(--color-medium)'
+                                    color='var(--color-middle)'
                                     change={(v) => setPassword(v)}
                                 />
                             </Field>

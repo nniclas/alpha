@@ -89,7 +89,7 @@ export default (a: Args) => {
                                         value={unit().machineId}
                                         primary
                                         psm
-                                        color='var(--color-medium)'
+                                        color='var(--color-middle)'
                                         style='pointer-events:none; user-select:none' // simplify demo
                                         // change={(v) => ...}
                                     />
@@ -104,7 +104,7 @@ export default (a: Args) => {
                                         value={unit().name}
                                         primary
                                         psm
-                                        color='var(--color-medium)'
+                                        color='var(--color-middle)'
                                         change={(v) => {
                                             const u = { ...unit() }
                                             u.name = v

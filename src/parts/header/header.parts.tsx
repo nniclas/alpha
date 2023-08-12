@@ -30,8 +30,8 @@ import Dropdown from '../../lib/components/dropdown/dropdown'
 import { stateColors } from '../../common/constants'
 
 const meterColors = {
-    meterColor: 'var(--color-medium)',
-    valueColor: 'var(--color-accent)',
+    meterColor: 'var(--color-light)',
+    valueColor: 'var(--color-middle)',
 }
 
 export const MiniUnit = (a: { u: Unit }) => {
@@ -53,10 +53,10 @@ export const MiniUnit = (a: { u: Unit }) => {
                     a
                     pmd
                     gsm
-                    style={` border:0px solid transparent; background:  ${
+                    style={` border-bottom:0px solid var(--color-strong); background:  ${
                         ds.selectedUnitId() == a.u.id
-                            ? 'hsl(200, 18%, 32%)'
-                            : 'hsl(200, 18%, 34%)'
+                            ? 'hsl(var(--th-hue),var(--th-saturation),84%)'
+                            : 'hsl(var(--th-hue),var(--th-saturation),76%)'
                     } `}
                 >
                     <Field>
@@ -73,7 +73,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                                     />
                                     <UnitStateIcon value={a.u.state} />
                                 </Field>
-                                <Text sm tertiary>
+                                <Text sm secondary>
                                     {a.u.name}
                                 </Text>
                             </Field>
@@ -95,7 +95,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                                 buttonContent={
                                     <FiEdit
                                         size={18}
-                                        color='var(--color-light)'
+                                        color='var(--color-middle)'
                                     />
                                 }
                             >
@@ -157,14 +157,14 @@ export const MainMenu = () => {
                     <Field jce>
                         <Field s ais gsm>
                             <Field s c h={80}>
-                                <Text xs color='var(--color-light)'>
+                                <Text xs color='var(--color-medium)'>
                                     {appStore.session()?.username}
                                 </Text>
                             </Field>
 
                             <Button w={80} h={80} onClick={logOut}>
                                 <FiLogOut
-                                    color='var(--color-accent)'
+                                    color='var(--color-strong)'
                                     size={18}
                                 />
                             </Button>

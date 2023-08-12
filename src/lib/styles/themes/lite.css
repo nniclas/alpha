@@ -1,15 +1,20 @@
 :root {
+    --th-hue: 180;
+    --th-saturation: 8%;
+
     /* PALETTE */
-    --color-lightest: hsl(200, 18%, 80%);
-    --color-lighter: hsl(200, 18%, 75%);
-    --color-light: hsl(200, 18%, 65%);
+    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 80%);
+    --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
+    --color-light: hsl(var(--th-hue), var(--th-saturation), 65%);
 
-    --color-medium: hsl(200, 18%, 40%);
+    --color-middle: hsl(var(--th-hue), var(--th-saturation), 40%);
 
-    --color-strong: hsl(200, 18%, 22%);
-    --color-stronger: hsl(200, 18%, 20%);
-    --color-strongest: hsl(200, 18%, 18%);
-    --color-black: hsl(200, 18%, 8%);
+    --color-medium: hsl(var(--th-hue), var(--th-saturation), 30%);
+
+    --color-strong: hsl(var(--th-hue), var(--th-saturation), 22%);
+    --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
+    --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
+    --color-black: hsl(var(--th-hue), var(--th-saturation), 8%);
 
     --color-accent: hsl(50, 36%, 62%);
     --color-accent-light: hsl(50, 36%, 72%);
@@ -21,7 +26,7 @@
     --primary-bg: var(--color-lightest);
     --primary-color: var(--color-light);
     --secondary-bg: var(--color-strongest);
-    --secondary-color: var(--color-black);
+    --secondary-color: var(--color-medium);
     --tertiary-bg: var(--color-accent);
     --tertiary-color: var(--color-lightest);
     --accent-bg: var(--color-accent);

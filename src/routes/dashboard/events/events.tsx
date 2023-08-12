@@ -29,7 +29,7 @@ export const Events = () => {
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (
-            <HeaderCell bg='var(--color-stronger)' bb='var(--color-medium)'>
+            <HeaderCell bg='var(--color-stronger)' bb='var(--color-middle)'>
                 <Responsive {...comp} addRule={as.section() != 'events'}>
                     <Field>
                         <Text xs accent>

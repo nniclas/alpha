@@ -16,14 +16,15 @@ import { SectionHeader } from '../../parts/section-header'
 export const Header: Component = () => {
     const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
     return (
-        <Field s h={260} bg='var(--color-medium)'>
+        <Field s h={260} bg='var(--color-light)'>
             <Field col>
                 <Responsive
                     s
                     compact={
                         <SectionHeader
                             title='Some'
-                            iconTheme='accent'
+                            // titleTheme='accent'
+                            iconTheme='secondary'
                             tool={<MainMenu />}
                             icon={<FiAlertTriangle />}
                         />
@@ -32,11 +33,11 @@ export const Header: Component = () => {
                     <SectionHeader
                         title='Some'
                         aux={
-                            <Text xs>
+                            <Text xs secondary>
                                 Some units are offline, check status.
                             </Text>
                         }
-                        iconTheme='accent'
+                        iconTheme='secondary'
                         tool={<MainMenu />}
                         icon={<FiAlertTriangle />}
                     />
