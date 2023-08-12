@@ -8,7 +8,7 @@ import { BaseArgs } from 'lib/types/base-args'
 import { TextArgs } from 'lib/types/text-args'
 
 interface Args {
-    children: any
+    children?: any
     icon?: any
     size?: Size
     titleTheme?: Theme
@@ -22,7 +22,7 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
     //     )
     // }
     return (
-        <Field s aic gsm h={80} p='0 32px'>
+        <Field s aic gsm h={80} res={{ h: 60, p: '0 20px' }} p='0 32px'>
             {a.icon && (
                 <div
                     class={`${styles.icon} ${styles[a.size ?? 'sm']}`}
@@ -33,15 +33,17 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
                     {a.icon}
                 </div>
             )}
-            <Text
-                res
-                size={a.size}
-                style={`color:var(--${
-                    a.titleTheme ? a.titleTheme : thToStr(a)
-                }-color)`}
-            >
-                {a.children}
-            </Text>
+            {a.children && (
+                <Text
+                    res
+                    size={a.size}
+                    style={`color:var(--${
+                        a.titleTheme ? a.titleTheme : thToStr(a)
+                    }-color)`}
+                >
+                    {a.children}
+                </Text>
+            )}
         </Field>
     )
 }

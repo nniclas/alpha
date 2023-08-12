@@ -1,14 +1,31 @@
 .icon.xs > svg {
+    width: 12px;
+    height: 12px;
+}
+
+.icon.sm > svg {
     width: 16px;
     height: 16px;
 }
 
-.icon.sm > svg {
-    width: 20px;
-    height: 20px;
+.icon.md > svg {
+    width: 18px;
+    height: 18px;
 }
 
-.icon.md > svg {
-    width: 24px;
-    height: 24px;
+@media only screen and (max-width: 1400px) {
+    .icon.xs > svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    .icon.sm > svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .icon.md > svg {
+        width: 16px;
+        height: 16px;
+    }
 }

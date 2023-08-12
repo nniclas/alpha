@@ -44,7 +44,7 @@ export const SectionHeader = (a: Args) => {
     const iconTheme = a.iconTheme && { iconTheme: a.iconTheme }
 
     return (
-        <Field s h={80}>
+        <Field s h={80} res={{ h: 60 }}>
             <Field>
                 <Label size='md' {...titleTheme} {...icon} {...iconTheme}>
                     {a.title}

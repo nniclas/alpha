@@ -21,8 +21,8 @@ import { isCompact } from '../../lib/utils'
 
 const flexClosed = 'flex-basis:400px; min-width:400px'
 const flexOpen = 'flex-basis:calc(100% - 400px)'
-const flexClosedCompact = 'flex-basis:80px; min-height:80px'
-const flexOpenCompact = 'flex-basis:calc(100% - 80px)'
+const flexClosedCompact = 'flex-basis:60px; min-height:60px'
+const flexOpenCompact = 'flex-basis:calc(100% - 60px)'
 const style = 'transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
 interface Args {

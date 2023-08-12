@@ -16,7 +16,12 @@ import { SectionHeader } from '../../parts/section-header'
 export const Header: Component = () => {
     const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
     return (
-        <Field s h={260} bg='var(--color-light)'>
+        <Field
+            s
+            h={260}
+            res={{ h: 200, bg: 'var(--color-light)' }}
+            bg='var(--color-light)'
+        >
             <Field col>
                 <Responsive
                     s

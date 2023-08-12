@@ -1,6 +1,6 @@
 :root {
     --th-hue: 180;
-    --th-saturation: 8%;
+    --th-saturation: 12%;
 
     /* PALETTE */
     --color-lightest: hsl(var(--th-hue), var(--th-saturation), 80%);
@@ -11,7 +11,7 @@
 
     --color-medium: hsl(var(--th-hue), var(--th-saturation), 30%);
 
-    --color-strong: hsl(var(--th-hue), var(--th-saturation), 22%);
+    --color-strong: hsl(var(--th-hue), var(--th-saturation), 23%);
     --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
     --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
     --color-black: hsl(var(--th-hue), var(--th-saturation), 8%);
@@ -48,9 +48,9 @@
     /* TEXT */
     --text-font: 'Sofia Pro Regular';
     --text-size-xxs: 12px;
-    --text-size-xs: 14px;
-    --text-size-sm: 16px;
-    --text-size-md: 20px;
+    --text-size-xs: 13px;
+    --text-size-sm: 14px;
+    --text-size-md: 18px;
     --text-size-lg: 36px;
 
     /* MISC */

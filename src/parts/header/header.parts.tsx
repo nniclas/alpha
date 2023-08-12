@@ -61,7 +61,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                 >
                     <Field>
                         <Field col gsm>
-                            <Field gsm>
+                            <Field s gsm aic>
                                 <Field s aic gxs>
                                     <Field
                                         s
@@ -143,7 +143,7 @@ export const MainMenu = () => {
                         jce
                         dock='left'
                         buttonContent={
-                            <Field s c w={80} h={80}>
+                            <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
                                 <FiMenu color='var(--color-accent)' size={20} />
                             </Field>
                         }
@@ -152,17 +152,22 @@ export const MainMenu = () => {
                 </Field>
             }
         >
-            <Field s h={80} c>
+            <Field s h={80} res={{ h: 60 }} c>
                 <Field s col gsm aie>
                     <Field jce>
                         <Field s ais gsm>
-                            <Field s c h={80}>
+                            <Field s c h={80} res={{ h: 60 }}>
                                 <Text xs color='var(--color-medium)'>
                                     {appStore.session()?.username}
                                 </Text>
                             </Field>
 
-                            <Button w={80} h={80} onClick={logOut}>
+                            <Button
+                                w={80}
+                                h={80}
+                                res={{ w: 60, h: 60 }}
+                                onClick={logOut}
+                            >
                                 <FiLogOut
                                     color='var(--color-strong)'
                                     size={18}
