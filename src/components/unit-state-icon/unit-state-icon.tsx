@@ -17,13 +17,15 @@ interface Args {
     value: number
 }
 
+const color = { color: 'var(--color-light)' }
+
 export const UnitStateIcon = (a: Args) => {
     const stateIcons: ValueIconPair[] = [
-        { value: 1, icon: <FiMoon color='hsl(200, 12%, 62%)' /> },
-        { value: 2, icon: <FiPower color='hsl(200, 12%, 62%)' /> },
-        { value: 3, icon: <FiLoader color='hsl(200, 12%, 62%)' /> },
-        { value: 4, icon: <FiTool color='hsl(200, 12%, 62%)' /> },
-        { value: 5, icon: <FiX color='hsl(200, 12%, 62%)' /> },
+        { value: 1, icon: <FiMoon {...color} /> },
+        { value: 2, icon: <FiPower {...color} /> },
+        { value: 3, icon: <FiLoader {...color} /> },
+        { value: 4, icon: <FiTool {...color} /> },
+        { value: 5, icon: <FiX {...color} /> },
     ]
 
     return stateIcons.find((s) => s.value == a.value)?.icon

@@ -18,7 +18,7 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import as from '../../../core/app-store'
 import { Transition } from 'solid-transition-group'
 
-const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
     return (

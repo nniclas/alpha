@@ -56,18 +56,6 @@ export default (a: Args) => {
                                     Register new unit
                                 </Text>
                             </Button>
-                            {/* <Button
-                                w={160}
-                                h={48}
-                                onClick={(e) => {
-                                    setFirstOpen(false)
-                                    e.stopPropagation()
-                                }}
-                            >
-                                <Text tertiary xs>
-                                    Reset connection
-                                </Text>
-                            </Button> */}
                         </Field>
                     </Field>
                 )}
@@ -101,7 +89,7 @@ export default (a: Args) => {
                                         value={unit().machineId}
                                         primary
                                         psm
-                                        color='hsl(200, 18%, 32%)'
+                                        color='var(--color-medium)'
                                         style='pointer-events:none; user-select:none' // simplify demo
                                         // change={(v) => ...}
                                     />
@@ -116,7 +104,7 @@ export default (a: Args) => {
                                         value={unit().name}
                                         primary
                                         psm
-                                        color='hsl(200, 18%, 32%)'
+                                        color='var(--color-medium)'
                                         change={(v) => {
                                             const u = { ...unit() }
                                             u.name = v

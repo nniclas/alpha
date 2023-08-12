@@ -1,16 +1,15 @@
 :root {
     /* PALETTE */
-    --color-lightest: hsl(160, 4%, 80%);
-    --color-lite123: hsl(160, 4%, 70%);
-    --color-lighter: hsl(160, 4%, 55%);
-    --color-light: hsl(160, 4%, 45%);
+    --color-lightest: hsl(200, 18%, 80%);
+    --color-lighter: hsl(200, 18%, 75%);
+    --color-light: hsl(200, 18%, 65%);
 
-    --color-strong: hsl(160, 18%, 40%);
+    --color-medium: hsl(200, 18%, 40%);
+
+    --color-strong: hsl(200, 18%, 22%);
     --color-stronger: hsl(200, 18%, 20%);
-    --color-fjong: hsl(200, 18%, 26%);
     --color-strongest: hsl(200, 18%, 18%);
-
-    --color-black: hsl(160, 4%, 8%);
+    --color-black: hsl(200, 18%, 8%);
 
     --color-accent: hsl(50, 36%, 62%);
     --color-accent-light: hsl(50, 36%, 72%);
@@ -20,7 +19,7 @@
 
     /* THEME VARIANTS */
     --primary-bg: var(--color-lightest);
-    --primary-color: var(--color-lighter);
+    --primary-color: var(--color-light);
     --secondary-bg: var(--color-strongest);
     --secondary-color: var(--color-black);
     --tertiary-bg: var(--color-accent);

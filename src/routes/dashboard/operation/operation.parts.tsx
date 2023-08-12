@@ -10,6 +10,11 @@ import styles from './operation.module.css'
 
 import Responsive from '../../../lib/components/responsive/responsive'
 
+const meterColors = {
+    meterColor: 'var(--color-strongest)',
+    valueColor: 'var(--color-accent)',
+}
+
 export const SignalStrength = () => {
     return (
         <Field p='0 128px' res={{ p: '0 32px', c: true }}>
@@ -24,16 +29,14 @@ export const SignalStrength = () => {
                                 <UnitMeter
                                     scale={10}
                                     value={mds.signalStrength()}
-                                    meterColor='hsl(200, 12%, 28%)'
-                                    valueColor='hsl(50, 36%, 62%)'
+                                    {...meterColors}
                                 />
                             }
                             addRule={as.section() != 'operation'}
                         >
                             <UnitMeter
                                 value={mds.signalStrength()}
-                                meterColor='hsl(200, 12%, 28%)'
-                                valueColor='hsl(50, 36%, 62%)'
+                                {...meterColors}
                             />
                         </Responsive>
                     </Transition>
@@ -57,16 +60,14 @@ export const BatteryLevel = () => {
                                 <UnitMeter
                                     scale={10}
                                     value={mds.batteryLevel()}
-                                    meterColor='hsl(200, 12%, 28%)'
-                                    valueColor='hsl(50, 36%, 62%)'
+                                    {...meterColors}
                                 />
                             }
                             addRule={as.section() != 'operation'}
                         >
                             <UnitMeter
                                 value={mds.batteryLevel()}
-                                meterColor='hsl(200, 12%, 28%)'
-                                valueColor='hsl(50, 36%, 62%)'
+                                {...meterColors}
                             />
                         </Responsive>
                     </Transition>
@@ -91,8 +92,7 @@ export const ProcessorUsage = () => {
                                 <UnitMeter
                                     scale={10}
                                     value={mds.processorUsage()}
-                                    meterColor='hsl(200, 12%, 28%)'
-                                    valueColor='hsl(50, 36%, 62%)'
+                                    {...meterColors}
                                 />
                             </Field>
                         }
@@ -102,8 +102,7 @@ export const ProcessorUsage = () => {
                     >
                         <CircularMeter
                             value={mds.processorUsage()}
-                            meterColor='hsl(200, 18%, 28%)'
-                            valueColor='hsl(50, 36%, 62%)'
+                            {...meterColors}
                         />
                     </Responsive>
                 </Transition>

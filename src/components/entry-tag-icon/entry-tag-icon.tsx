@@ -9,7 +9,8 @@ interface Args {
     value: number
 }
 
-const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
+
 export const EntryTagIcon = (a: Args) => {
     const tagIcons: ValueIconPair[] = [
         { value: 1, icon: <FiShuffle {...iconStyle} /> },

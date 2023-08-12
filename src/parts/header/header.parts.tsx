@@ -29,6 +29,11 @@ import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { stateColors } from '../../common/constants'
 
+const meterColors = {
+    meterColor: 'var(--color-medium)',
+    valueColor: 'var(--color-accent)',
+}
+
 export const MiniUnit = (a: { u: Unit }) => {
     // createEffect(() => {
     //     console.log(dataStore.selectedUnitRes()?.id)
@@ -50,14 +55,14 @@ export const MiniUnit = (a: { u: Unit }) => {
                     gsm
                     style={` border:0px solid transparent; background:  ${
                         ds.selectedUnitId() == a.u.id
-                            ? 'hsl(200, 18%, 12%)'
-                            : 'hsl(200, 18%, 16%)'
+                            ? 'hsl(200, 18%, 32%)'
+                            : 'hsl(200, 18%, 34%)'
                     } `}
                 >
                     <Field>
                         <Field col gsm>
                             <Field gsm>
-                                <Field s aic>
+                                <Field s aic gxs>
                                     <Field
                                         s
                                         style={`border-radius:16px;  background:${
@@ -66,19 +71,18 @@ export const MiniUnit = (a: { u: Unit }) => {
                                             )?.value
                                         }; width:12px; height:12px`}
                                     />
+                                    <UnitStateIcon value={a.u.state} />
                                 </Field>
-                                <Text sm primary>
+                                <Text sm tertiary>
                                     {a.u.name}
                                 </Text>
                             </Field>
 
                             <Field s gsm c>
-                                <UnitStateIcon value={a.u.state} />
                                 <UnitMeter
                                     value={73}
                                     scale={10}
-                                    meterColor='hsl(200, 12%, 22%)'
-                                    valueColor='hsl(50, 36%, 62%)'
+                                    {...meterColors}
                                 />
                             </Field>
                         </Field>
@@ -91,7 +95,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                                 buttonContent={
                                     <FiEdit
                                         size={18}
-                                        color='var(--color-lighter)'
+                                        color='var(--color-light)'
                                     />
                                 }
                             >
@@ -140,7 +144,7 @@ export const MainMenu = () => {
                         dock='left'
                         buttonContent={
                             <Field s c w={80} h={80}>
-                                <FiMenu color='hsl(50, 36%, 62%)' size={20} />
+                                <FiMenu color='var(--color-accent)' size={20} />
                             </Field>
                         }
                         items={compactActions}
@@ -153,13 +157,16 @@ export const MainMenu = () => {
                     <Field jce>
                         <Field s ais gsm>
                             <Field s c h={80}>
-                                <Text xs color='hsl(200, 12%, 62%)'>
+                                <Text xs color='var(--color-light)'>
                                     {appStore.session()?.username}
                                 </Text>
                             </Field>
 
                             <Button w={80} h={80} onClick={logOut}>
-                                <FiLogOut color='hsl(50, 36%, 62%)' size={18} />
+                                <FiLogOut
+                                    color='var(--color-accent)'
+                                    size={18}
+                                />
                             </Button>
                         </Field>
                     </Field>

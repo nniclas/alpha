@@ -55,25 +55,3 @@ export const Operation = () => {
         </Field>
     )
 }
-
-{
-    /* <Label accent size='md' icon={<FiSettings />} iconTheme='tertiary'>
-                Operation
-            </Label> */
-}
-
-{
-    /* <Field s gsm pmd>
-                <Field s c>
-                    <FiSettings size={22} color='hsl(50, 36%, 62%)' />
-                </Field>
-                <Text md res primary>
-                    Operation
-                </Text>
-                <Field aic>
-                    <Text sm res tertiary>
-                        {ds.selectedUnitRes()?.name}
-                    </Text>
-                </Field>
-            </Field> */
-}

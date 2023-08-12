@@ -41,14 +41,14 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 
 function createDataState() {
     const [units, setUnits] = createSignal<Unit[]>([])
+    const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
+    const [selectedWeek, setSelectedWeek] = createSignal<string>()
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {
         if (unitsRes() && unitsRes()?.length)
             setSelectedUnitId(unitsRes()![0].id)
     })
-
-    const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
 
     const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
         return await getItems<Unit[]>('units')
@@ -59,10 +59,20 @@ function createDataState() {
         (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
     )
 
+    // const [entriesByWeekRes] = createResource<Entry[], string>(
+    //     selectedWeek,
+    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}/week/${unitId}`)
+    // )
+
     const [selectedUnitRes] = createResource<Unit, number>(
         selectedUnitId,
         (id) => getItems<Unit>(`units/${id}`)
     )
+
+    // const [entriesRes] = createResource<Entry[], number>(
+    //     selectedUnitId,
+    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
+    // )
 
     // used to manually trigger fetchers, after log on
     const initalize = async () => {

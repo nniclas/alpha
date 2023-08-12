@@ -140,7 +140,7 @@ export default (a: Args) => {
                                     value={entry()?.notes}
                                     primary
                                     psm
-                                    color='hsl(200, 18%, 32%)'
+                                    color='var(--color-medium)'
                                     change={(v) => {
                                         const u = { ...entry() }
                                         // u.name = v

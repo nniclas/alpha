@@ -24,7 +24,7 @@ import Responsive from './lib/components/responsive/responsive'
 export const App: Component = () => {
     return (
         <Router>
-            <Field layer col bg='hsl(200, 18%, 22%)' trim>
+            <Field layer col bg='var(--color-strong)' trim>
                 <Field s col>
                     <Header />
                 </Field>

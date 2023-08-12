@@ -29,8 +29,6 @@ import Dropdown from '../lib/components/dropdown/dropdown'
 import { Slider } from '../lib/components/slider/slider'
 import { Label } from '../lib/components/label/label'
 
-const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
-
 interface Args {
     title: string
     icon?: any

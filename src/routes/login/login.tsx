@@ -62,14 +62,14 @@ export const Login: Component = () => {
                         <Field p='16px 48px' gmd col>
                             <Text
                                 md
-                                color='hsl(50, 36%, 62%)'
+                                color='var(--color-accent)'
                                 style='letter-spacing:32px'
                             >
                                 ALPHA
                             </Text>
                             <Text
                                 sm
-                                color='hsl(200, 12%, 42%)'
+                                color='var(--color-medium)'
                                 style='letter-spacing:1px'
                             >
                                 Remote configuration and operating technical
@@ -80,8 +80,8 @@ export const Login: Component = () => {
                 </Field>
             </Field>
             <Layout
-                bg='hsl(200, 18%, 22%)'
-                color='hsl(200, 8%, 58%)'
+                bg='var(--color-stronger)'
+                color='var(--color-light)'
                 lslot={
                     <Field aic jce gmd style='z-index:1; margin-right:-100px'>
                         <Field s w={300} h={300}>
@@ -92,7 +92,7 @@ export const Login: Component = () => {
                 rslot={
                     <Field col ais jce style='z-index:1; margin-left:-100px;'>
                         <Field s col psm>
-                            <Text sm color='hsl(200, 18%, 42%)'>
+                            <Text sm color='var(--color-medium)'>
                                 Account
                             </Text>
                         </Field>
@@ -102,10 +102,10 @@ export const Login: Component = () => {
                             s
                             gsm
                             plg
-                            style='width:340px; background:hsla(200, 18%, 20%,1); transition:1s ease all'
+                            style='width:340px; background:var(--color-strongest); transition:1s ease all'
                         >
                             <Field s psm>
-                                <Text color='hsl(200, 18%, 62%)'>Sign in</Text>
+                                <Text color='var(--color-light)'>Sign in</Text>
                             </Field>
                             <Field s>
                                 <Textfield
@@ -113,7 +113,7 @@ export const Login: Component = () => {
                                     value={email()}
                                     primary
                                     psm
-                                    color='hsl(200, 18%, 32%)'
+                                    color='var(--color-medium)'
                                     change={(v) => setEmail(v)}
                                 />
                             </Field>
@@ -124,14 +124,14 @@ export const Login: Component = () => {
                                     value={password()}
                                     primary
                                     psm
-                                    color='hsl(200, 18%, 32%)'
+                                    color='var(--color-medium)'
                                     change={(v) => setPassword(v)}
                                 />
                             </Field>
                             <Field jce>
                                 <Field s>
                                     <Button tertiary md onClick={logIn}>
-                                        <Text color='hsl(200, 18%, 22%)'>
+                                        <Text color='var(--color-stronger)'>
                                             Sign in
                                         </Text>
                                     </Button>
@@ -143,7 +143,7 @@ export const Login: Component = () => {
             />
             <Field layer jcc aie>
                 <Field s pmd>
-                    <Text color='hsl(200, 18%, 32%)' sm>
+                    <Text color='var(--color-lightest)' sm>
                         nniclas © Copyright 2023
                     </Text>
                 </Field>

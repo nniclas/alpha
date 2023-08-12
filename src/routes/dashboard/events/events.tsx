@@ -23,15 +23,13 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import { SectionHeader } from '../../../parts/section-header'
 import SelectField from '../../../lib/components/select-field/select-field'
 
-const iconStyle = { size: 18, color: 'hsl(50, 36%, 62%)' }
-
 const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Events = () => {
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (
-            <HeaderCell bg='var(--color-stronger)' bb='var(--color-fjong)'>
+            <HeaderCell bg='var(--color-stronger)' bb='var(--color-medium)'>
                 <Responsive {...comp} addRule={as.section() != 'events'}>
                     <Field>
                         <Text xs accent>
