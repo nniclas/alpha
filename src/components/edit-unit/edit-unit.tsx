@@ -1,9 +1,9 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
-import { FiX } from 'solid-icons/fi'
+import { FiX, FiXCircle } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
-import { createEffect, createSignal } from 'solid-js'
+import { createEffect, createSignal, onMount } from 'solid-js'
 import { Unit } from '../../types/entities/unit'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
@@ -14,6 +14,8 @@ import { Transition } from 'solid-transition-group'
 interface Args {
     unit?: Unit
 }
+
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export default (a: Args) => {
     const action = a.unit ? 'edit' : 'add'
@@ -32,11 +34,13 @@ export default (a: Args) => {
     return (
         <Field
             rel
+            w={800}
+            h={600}
             s
-            w={600}
-            h={500}
+            res={{ s: false, w: 'auto', h: 'auto' }}
             secondary
             onClick={(e: any) => {
+                console.log('bsshh')
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >
@@ -55,6 +59,15 @@ export default (a: Args) => {
                                 <Text tertiary xs>
                                     Register new unit
                                 </Text>
+                            </Button>
+                            <Button
+                                w={48}
+                                h={48}
+                                onClick={(e) => {
+                                    if (!isABtn(e.target)) e.stopPropagation()
+                                }}
+                            >
+                                <FiXCircle {...iconStyle} />
                             </Button>
                         </Field>
                     </Field>

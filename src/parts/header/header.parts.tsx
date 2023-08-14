@@ -144,7 +144,10 @@ export const MainMenu = () => {
                         dock='left'
                         buttonContent={
                             <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
-                                <FiMenu color='var(--color-accent)' size={20} />
+                                <FiMenu
+                                    color='var(--color-secondary)'
+                                    size={20}
+                                />
                             </Field>
                         }
                         items={compactActions}

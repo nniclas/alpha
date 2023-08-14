@@ -10,9 +10,17 @@ interface Args {
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
+    const [children, setChildren] = createSignal<any>()
     const [open, setOpen] = createSignal<boolean>(false)
 
-    createEffect(() => {})
+    createEffect(() => {
+        if (open()) {
+            setChildren(a.children)
+        }
+        if (!open()) {
+            setChildren(null)
+        }
+    })
 
     return (
         <Field s rel style={`z-index: ${open() ? 100 : 'auto'};`}>
@@ -58,7 +66,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         return false
                     }}
                 >
-                    {a.children}
+                    {children()}
                 </Field>
             </Field>
         </Field>
