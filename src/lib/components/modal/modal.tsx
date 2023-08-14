@@ -36,7 +36,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
             >
                 <Field
                     layer
-                    style='position:fixed;z-index:101; background:rgba(0,0,0,0.2)'
+                    style='position:fixed;z-index:101; background:rgba(0,0,0,0.5)'
                     onClick={(e) => {
                         setOpen(false)
                     }}
@@ -50,7 +50,9 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         open() ? 0 : -20
                     }px); `}
                     onClick={(e) => {
-                        setOpen(false) // clicking anywhere in menu or outside will close menu
+                        setOpen(false)
+                        // clicking anywhere in menu will close
+                        // handle close targets in child like this: if (!isABtn(e.target)) e.stopPropagation()
                         e.preventDefault()
                         e.stopPropagation()
                         return false

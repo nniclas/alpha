@@ -8,6 +8,9 @@
     flex: 1;
     resize: none; /* applicable to textarea only */
 }
+textarea::placeholder {
+    color: var(--color-middle);
+}
 
 .textfield.lg {
     font-family: var(--text-font);

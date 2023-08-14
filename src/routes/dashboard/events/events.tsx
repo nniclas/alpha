@@ -50,7 +50,6 @@ export const Events = () => {
                 tool={
                     <Modal
                         jcc
-                        pxl
                         buttonContent={
                             <Field s w={80} res={{ w: 60 }} c>
                                 <Label

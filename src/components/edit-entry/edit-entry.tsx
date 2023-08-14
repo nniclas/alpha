@@ -1,7 +1,7 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
-import { FiX } from 'solid-icons/fi'
+import { FiX, FiXCircle } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
 import { For, createEffect, createSignal } from 'solid-js'
 import { Unit } from '../../types/entities/unit'
@@ -16,6 +16,13 @@ import { events, measures, tags } from '../../common/constants'
 
 interface Args {
     entry?: Entry
+}
+
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
+
+const btnStyle = {
+    secondary: true,
+    style: 'border-bottom:2px solid var(--color-accent);',
 }
 
 export default (a: Args) => {
@@ -35,9 +42,10 @@ export default (a: Args) => {
     return (
         <Field
             rel
-            s
             w={800}
-            h={800}
+            h={600}
+            s
+            res={{ s: false, w: 'auto', h: 'auto' }}
             secondary
             onClick={(e: any) => {
                 if (!isABtn(e.target)) e.stopPropagation()
@@ -57,12 +65,21 @@ export default (a: Args) => {
                                 )}
                             </Field>
                             <Field c>
-                                <Text accent>{entry()?.id}</Text>
+                                <Text accent>{entry()?.id ?? 'New entry'}</Text>
                             </Field>
+                            <Button
+                                w={48}
+                                h={48}
+                                onClick={(e) => {
+                                    if (!isABtn(e.target)) e.stopPropagation()
+                                }}
+                            >
+                                <FiXCircle {...iconStyle} />
+                            </Button>
                         </Field>
 
                         <Field plg col glg>
-                            <Field s gmd>
+                            <Field s gmd res={{ col: true }}>
                                 <Field s col gsm>
                                     <Text xs primary>
                                         Event
@@ -71,7 +88,7 @@ export default (a: Args) => {
                                         index={entry()?.event}
                                         items={events.map((e) => (
                                             <Field c h={48} w={200}>
-                                                <Text xs secondary>
+                                                <Text xs accent>
                                                     {e.title}
                                                 </Text>
                                             </Field>
@@ -81,7 +98,7 @@ export default (a: Args) => {
                                             e.event = v
                                             setEntry(e)
                                         }}
-                                        buttonArgs={{ primary: true }}
+                                        buttonArgs={btnStyle}
                                     />
                                 </Field>
                                 <Field s col gsm>
@@ -92,7 +109,7 @@ export default (a: Args) => {
                                         index={entry()?.measure}
                                         items={measures.map((m) => (
                                             <Field c h={48} w={200}>
-                                                <Text xs secondary>
+                                                <Text xs accent>
                                                     {m.title}
                                                 </Text>
                                             </Field>
@@ -102,20 +119,32 @@ export default (a: Args) => {
                                             e.measure = v
                                             setEntry(e)
                                         }}
-                                        buttonArgs={{ primary: true }}
+                                        buttonArgs={btnStyle}
                                     />
                                 </Field>
                             </Field>
                             <Field s gmd>
-                                <Field s col gsm h={48} w={300}>
+                                <Field
+                                    s
+                                    col
+                                    gsm
+                                    h={48}
+                                    w={300}
+                                    res={{ w: 200, h: 48 }}
+                                >
                                     <Text xs primary>
                                         Tag
                                     </Text>
                                     <SelectField
                                         index={entry()?.tag}
                                         items={tags.map((t) => (
-                                            <Field c h={48} w={300}>
-                                                <Text xs secondary>
+                                            <Field
+                                                c
+                                                h={48}
+                                                w={300}
+                                                res={{ w: 200, h: 48 }}
+                                            >
+                                                <Text xs accent>
                                                     {t.title}
                                                 </Text>
                                             </Field>
@@ -125,11 +154,11 @@ export default (a: Args) => {
                                             e.tag = v
                                             setEntry(e)
                                         }}
-                                        buttonArgs={{ primary: true }}
+                                        buttonArgs={btnStyle}
                                     />
                                 </Field>
                             </Field>
-                            <Field s col gsm w={500}>
+                            <Field s col gsm w={300} res={{ w: 200 }}>
                                 <Text xs primary>
                                     Notes
                                 </Text>
@@ -138,9 +167,9 @@ export default (a: Args) => {
                                     xs
                                     placeholder='Notes'
                                     value={entry()?.notes}
-                                    primary
+                                    focus
                                     psm
-                                    color='var(--color-middle)'
+                                    color='var(--color-accent)'
                                     change={(v) => {
                                         const u = { ...entry() }
                                         // u.name = v
