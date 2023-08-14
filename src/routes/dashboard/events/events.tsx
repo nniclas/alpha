@@ -94,6 +94,7 @@ export const Events = () => {
 
                         <Row>
                             {hcell('Event', true)}
+                            {hcell('Date', true)}
                             {hcell('Controller')}
                             {hcell('Remark')}
                             {hcell('Measure')}

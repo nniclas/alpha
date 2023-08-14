@@ -17,6 +17,7 @@ import styles from './events.parts.module.css'
 import Responsive from '../../../lib/components/responsive/responsive'
 import as from '../../../core/app-store'
 import { Transition } from 'solid-transition-group'
+import { date } from '../../../common/date-utils'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -42,6 +43,11 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                         </Text>
                     </Field>
                 </Responsive>
+            </Cell>
+            <Cell>
+                <Text xs tertiary>
+                    {date(a.e.date)}
+                </Text>
             </Cell>
             <Cell>
                 {a.e.user && (
