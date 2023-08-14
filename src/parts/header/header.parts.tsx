@@ -46,6 +46,19 @@ export const MiniUnit = (a: { u: Unit }) => {
     // })
 
     return (
+        <Field s w={80} h={80} br trim>
+            <Field col>
+                <Field secondary></Field>
+                <Field accent></Field>
+            </Field>
+            <Field col>
+                <Field accent></Field>
+                <Field primary></Field>
+            </Field>
+        </Field>
+    )
+
+    return (
         <Field
             onClick={(e) => {
                 ds.setSelectedUnitId(a.u.id)

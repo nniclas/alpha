@@ -65,7 +65,7 @@ export const Header: Component = () => {
                                         </Field>
                                     }
                                 >
-                                    <Field p='32px 64px' s gxs>
+                                    <Field glg c>
                                         {units()}
                                     </Field>
                                 </Responsive>
