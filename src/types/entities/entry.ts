@@ -9,6 +9,7 @@ export interface Entry {
     measure: number
     tag: number
     notes?: string
+    date: string
 
     user?: User
     unit?: Unit

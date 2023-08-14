@@ -28,6 +28,8 @@ import Responsive from '../lib/components/responsive/responsive'
 import Dropdown from '../lib/components/dropdown/dropdown'
 import { Slider } from '../lib/components/slider/slider'
 import { Label } from '../lib/components/label/label'
+import { BaseArgs } from '../lib/types/base-args'
+import { FieldArgs } from '../lib/types/field-args'
 
 interface Args {
     title: string
@@ -38,13 +40,13 @@ interface Args {
     tool?: any
 }
 
-export const SectionHeader = (a: Args) => {
+export const SectionHeader = (a: Args & FieldArgs) => {
     const titleTheme = a.titleTheme && { titleTheme: a.titleTheme }
     const icon = a.icon && { icon: a.icon }
     const iconTheme = a.iconTheme && { iconTheme: a.iconTheme }
 
     return (
-        <Field s h={80} res={{ h: 60 }}>
+        <Field s h={80} res={{ h: 60, ...a }} {...a}>
             <Field>
                 <Label size='md' {...titleTheme} {...icon} {...iconTheme}>
                     {a.title}

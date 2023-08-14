@@ -20,6 +20,7 @@ export const Header: Component = () => {
 
     const header = (auxText?: any) => (
         <SectionHeader
+            bg='var(--color-lighter)'
             title='Some'
             aux={
                 <Field aic>

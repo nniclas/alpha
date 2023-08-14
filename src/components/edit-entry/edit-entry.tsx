@@ -13,6 +13,7 @@ import { Transition } from 'solid-transition-group'
 import { Entry } from '../../types/entities/entry'
 import SelectField from '../../lib/components/select-field/select-field'
 import { events, measures, tags } from '../../common/constants'
+import { date } from '../../common/date-utils'
 
 interface Args {
     entry?: Entry
@@ -31,7 +32,14 @@ export default (a: Args) => {
     const [done, setDone] = createSignal<boolean>(false)
     const [isEntryChanged, setIsEntryChanged] = createSignal<boolean>(false)
     const [entry, setEntry] = createSignal<Entry>(
-        a.entry ?? { unitId: 0, userId: 0, event: 0, measure: 0, tag: 0 }
+        a.entry ?? {
+            unitId: 0,
+            userId: 0,
+            event: 0,
+            measure: 0,
+            tag: 0,
+            date: date(),
+        }
     )
     createEffect(() => {
         setIsEntryChanged(JSON.stringify(a.entry) != JSON.stringify(entry()))

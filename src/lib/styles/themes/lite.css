@@ -19,8 +19,8 @@
     --color-accent: hsl(50, 36%, 62%);
     --color-accent-light: hsl(50, 36%, 72%);
 
-    --color-tr-light: rgba(255, 255, 255, 0.1);
-    --color-tr-dark: rgba(0, 0, 0, 0.1);
+    --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
+    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 30%, 0.5);
 
     /* THEME VARIANTS */
     --primary-bg: var(--color-lightest);

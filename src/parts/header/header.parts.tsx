@@ -22,6 +22,7 @@ import {
     FiPlus,
     FiPlusCircle,
     FiPlusSquare,
+    FiSettings,
     FiTool,
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
@@ -52,19 +53,19 @@ export const MiniUnit = (a: { u: Unit }) => {
                 // machineDataStore.setPollingActive(false)
             }}
             style='cursor:pointer;cursor:hand'
+            s
         >
             <Field col gsm>
                 <Field
                     a
-                    pmd
                     gsm
-                    style={` border-bottom:0px solid var(--color-strong); background:  ${
+                    style={` border-bottom:0px solid var(--color-strong); border-bottom: 2px solid ${
                         ds.selectedUnitId() == a.u.id
-                            ? 'hsl(var(--th-hue),var(--th-saturation),84%)'
-                            : 'hsl(var(--th-hue),var(--th-saturation),76%)'
+                            ? 'var(--color-middle)'
+                            : 'var(--color-lighter)'
                     } `}
                 >
-                    <Field>
+                    <Field gsm pmd>
                         <Field col gsm>
                             <Field s gsm aic>
                                 <Field s aic gxs>
@@ -174,40 +175,40 @@ export const MainMenu = () => {
         >
             <Field s h={80} res={{ h: 60 }} c>
                 <Field s col gsm aie>
-                    <Field jce gsm>
-                        <Modal
-                            jcc
-                            buttonContent={
-                                <Field s h={60} w={80} c>
-                                    <Label
-                                        size='sm'
-                                        icon={<FiPlusCircle />}
-                                        iconTheme='secondary'
-                                    />
-                                </Field>
-                            }
-                        >
-                            <EditUnit />
-                        </Modal>
-
-                        <Field s ais gsm>
-                            <Field s c h={80} res={{ h: 60 }}>
+                    <Field jce>
+                        <Field s ais>
+                            <Field s c h={80} res={{ h: 60 }} p='0 32px'>
                                 <Text xs color='var(--color-medium)'>
                                     {appStore.session()?.username}
                                 </Text>
                             </Field>
-
-                            <Button
-                                w={80}
-                                h={80}
-                                res={{ w: 60, h: 60 }}
-                                onClick={logOut}
+                            <Modal
+                                jcc
+                                buttonContent={
+                                    <Field illume s h={80} w={80} c>
+                                        <Label
+                                            size='sm'
+                                            icon={<FiSettings />}
+                                            iconTheme='secondary'
+                                        />
+                                    </Field>
+                                }
                             >
-                                <FiLogOut
-                                    color='var(--color-strong)'
-                                    size={18}
-                                />
-                            </Button>
+                                <EditUnit />
+                            </Modal>
+                            <Field s focus>
+                                <Button
+                                    w={80}
+                                    h={80}
+                                    res={{ w: 60, h: 60 }}
+                                    onClick={logOut}
+                                >
+                                    <FiLogOut
+                                        color='var(--color-strong)'
+                                        size={18}
+                                    />
+                                </Button>
+                            </Field>
                         </Field>
                     </Field>
                 </Field>
