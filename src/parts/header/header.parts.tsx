@@ -19,6 +19,9 @@ import {
     FiMenu,
     FiMoreHorizontal,
     FiMoreVertical,
+    FiPlus,
+    FiPlusCircle,
+    FiPlusSquare,
     FiTool,
 } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
@@ -28,6 +31,8 @@ import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { stateColors } from '../../common/constants'
+import { Label } from '../../lib/components/label/label'
+import EditUnit from '../../components/edit-unit/edit-unit'
 
 const meterColors = {
     meterColor: 'var(--color-light)',
@@ -119,19 +124,31 @@ export const MainMenu = () => {
 
     const compactActions = [
         <Button accent>
-            <Field h={100} psm>
+            <Field s h={60} w={100} psm c>
                 <Text xs secondary>
                     {appStore.session()?.username}
                 </Text>
             </Field>
         </Button>,
         <Button primary>
-            <Field h={100} psm>
+            <Field s h={60} w={100} psm c>
                 <Text xs secondary>
                     users
                 </Text>
             </Field>
         </Button>,
+        <Modal
+            jcc
+            buttonContent={
+                <Field accent psm s h={60} w={100} c>
+                    <Label secondary size='md' iconTheme='secondary'>
+                        add unit
+                    </Label>
+                </Field>
+            }
+        >
+            <EditUnit />
+        </Modal>,
     ]
 
     return (
@@ -157,7 +174,22 @@ export const MainMenu = () => {
         >
             <Field s h={80} res={{ h: 60 }} c>
                 <Field s col gsm aie>
-                    <Field jce>
+                    <Field jce gsm>
+                        <Modal
+                            jcc
+                            buttonContent={
+                                <Field s h={60} w={80} c>
+                                    <Label
+                                        size='sm'
+                                        icon={<FiPlusCircle />}
+                                        iconTheme='secondary'
+                                    />
+                                </Field>
+                            }
+                        >
+                            <EditUnit />
+                        </Modal>
+
                         <Field s ais gsm>
                             <Field s c h={80} res={{ h: 60 }}>
                                 <Text xs color='var(--color-medium)'>

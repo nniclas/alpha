@@ -22,29 +22,13 @@ export const Header: Component = () => {
         <SectionHeader
             title='Some'
             aux={
-                <Field s>
-                    <Modal
-                        jcc
-                        buttonContent={
-                            <Field s w={80} res={{ w: 60 }} c>
-                                <Label
-                                    size='md'
-                                    icon={<FiMoreHorizontal />}
-                                    iconTheme='secondary'
-                                />
-                            </Field>
-                        }
-                    >
-                        <EditUnit />
-                    </Modal>
-                    <Field aic>
-                        <Text xs secondary>
-                            {auxText}
-                        </Text>
-                    </Field>
+                <Field aic>
+                    <Text xs secondary>
+                        {auxText}
+                    </Text>
                 </Field>
             }
-            // titleTheme='accent'
+            titleTheme='secondary'
             iconTheme='secondary'
             tool={<MainMenu />}
             icon={<FiAlertTriangle />}
