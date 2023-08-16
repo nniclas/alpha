@@ -17,7 +17,7 @@ const meterColors = {
 
 export const SignalStrength = () => {
     return (
-        <Field p='0 128px' res={{ p: '0 32px', c: true }}>
+        <Field res={{ c: true }}>
             <Field s col gsm>
                 <Text sm res primary>
                     Signal strength
@@ -48,7 +48,7 @@ export const SignalStrength = () => {
 
 export const BatteryLevel = () => {
     return (
-        <Field p='0 128px' res={{ p: '0 32px', c: true }}>
+        <Field res={{ c: true }}>
             <Field s col gsm>
                 <Text sm res primary>
                     Battery level
@@ -79,7 +79,7 @@ export const BatteryLevel = () => {
 
 export const ProcessorUsage = () => {
     return (
-        <Field p='0 128px' res={{ p: '0 32px', c: true }}>
+        <Field res={{ c: true }}>
             <Field s col gsm>
                 <Text sm res primary>
                     Processor usage

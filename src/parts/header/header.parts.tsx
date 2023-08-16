@@ -71,7 +71,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                         />
                     </Field> */}
                     <Field psm>
-                        <Text sm primary>
+                        <Text sm color='var(--color-lighter)'>
                             {a.u.name}
                         </Text>
                     </Field>

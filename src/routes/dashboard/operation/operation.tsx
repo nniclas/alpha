@@ -47,7 +47,7 @@ export const Operation = () => {
                     iconTheme='tertiary'
                 />
                 <Responsive compact={<Slider>{meters()}</Slider>}>
-                    <Field s col>
+                    <Field s col plg>
                         {meters()}
                     </Field>
                 </Responsive>

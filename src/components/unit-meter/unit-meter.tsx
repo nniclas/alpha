@@ -29,7 +29,7 @@ export const UnitMeter = (a: Args) => {
 
     return (
         <Field rel h={8}>
-            <Field s layer c>
+            <Field s c>
                 <Field s style='gap:2px'>
                     <For
                         each={Array(Math.round(100 / (a.scale == 10 ? 10 : 1)))

@@ -1,11 +1,13 @@
 :root {
-    --th-hue: 180;
+    --th-hue: 190;
     --th-saturation: 12%;
 
     /* PALETTE */
-    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 80%);
+    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 85%);
     --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
     --color-light: hsl(var(--th-hue), var(--th-saturation), 65%);
+
+    --color-dim: hsl(var(--th-hue), var(--th-saturation), 55%);
 
     --color-middle: hsl(var(--th-hue), var(--th-saturation), 40%);
 
