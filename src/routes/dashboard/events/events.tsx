@@ -23,8 +23,9 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import { SectionHeader } from '../../../parts/section-header'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { Label } from '../../../lib/components/label/label'
+import { TimeLine } from '../../../components/timeline/timeline'
 
-const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
+// const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Events = () => {
     const hcell = (text: string, showInCompact = false) => {
@@ -65,7 +66,8 @@ export const Events = () => {
                 }
             />
             <Field s p='0 32px'>
-                <SelectField
+                <TimeLine />
+                {/* <SelectField
                     index={TESTWEEKS.indexOf(as.week())}
                     items={TESTWEEKS.map((w) => (
                         <Field c h={48} w={200}>
@@ -76,7 +78,7 @@ export const Events = () => {
                     ))}
                     onChange={(v) => as.setWeek(TESTWEEKS[v])}
                     buttonArgs={{ accent: true, sm: true }}
-                />
+                /> */}
             </Field>
 
             <Field

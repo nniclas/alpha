@@ -35,7 +35,6 @@ const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
 }
 import as from '../../core/app-store'
 import ds from '../../core/data-store'
-const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Login: Component = () => {
     const navigate = useNavigate()
