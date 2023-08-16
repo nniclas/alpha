@@ -17,7 +17,7 @@ interface Args {
     value: number
 }
 
-const color = { color: 'var(--color-middle)' }
+const color = { color: 'var(--color-lighter)' }
 
 export const UnitStateIcon = (a: Args) => {
     const stateIcons: ValueIconPair[] = [

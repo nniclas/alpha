@@ -1,11 +1,11 @@
 import { IdValuePair, ValueIdTitle } from 'types/_types'
 
 export const stateColors: IdValuePair[] = [
-    { id: 1, value: 'rgb(120,120,180)' },
-    { id: 2, value: 'rgb(120,180,120)' },
-    { id: 3, value: 'rgb(120,180,180)' },
-    { id: 4, value: 'rgb(180,120,120)' },
-    { id: 5, value: 'rgb(120,120,120)' },
+    { id: 1, value: 'rgb(80,80,110)' },
+    { id: 2, value: 'rgb(80,110,80)' },
+    { id: 3, value: 'rgb(80,110,110)' },
+    { id: 4, value: 'rgb(110,80,80)' },
+    { id: 5, value: 'var(--color-middle)' },
 ]
 
 // names in default EN

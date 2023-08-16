@@ -36,25 +36,87 @@ import { Label } from '../../lib/components/label/label'
 import EditUnit from '../../components/edit-unit/edit-unit'
 
 const meterColors = {
-    meterColor: 'var(--color-light)',
+    meterColor: 'var(--color-strong)',
     valueColor: 'var(--color-middle)',
 }
+
+const ps = 60
 
 export const MiniUnit = (a: { u: Unit }) => {
     // createEffect(() => {
     //     console.log(dataStore.selectedUnitRes()?.id)
     // })
 
+    const c = stateColors.find((sc) => sc.id == a.u.state)?.value
+
     return (
-        <Field s w={80} h={80} br trim>
-            <Field col>
-                <Field secondary></Field>
-                <Field accent></Field>
+        <Field gxs c s>
+            <Field
+                s
+                col
+                style={`border:0px solid var(--color-lighter);width:240px; background: ${
+                    ds.selectedUnitId() == a.u.id
+                        ? 'var(--color-lightest)'
+                        : 'var(--color-lighter)'
+                }`}
+            >
+                <Field s h={40} aic gxs bg={c}>
+                    {/* <Field s pxs>
+                        <Field
+                            s
+                            style={`border-radius:16px;  background:${
+                                stateColors.find((sc) => sc.id == a.u.state)
+                                    ?.value
+                            }; width:12px; height:12px`}
+                        />
+                    </Field> */}
+                    <Field psm>
+                        <Text sm primary>
+                            {a.u.name}
+                        </Text>
+                    </Field>
+                    <Field jce psm>
+                        <UnitStateIcon value={a.u.state} />
+                    </Field>
+                </Field>
+                <Field c s h={60}>
+                    <Field s>
+                        <UnitMeter value={73} scale={10} {...meterColors} />
+                    </Field>
+                </Field>
             </Field>
-            <Field col>
-                <Field accent></Field>
-                <Field primary></Field>
+        </Field>
+    )
+
+    return (
+        <Field s col>
+            <Field s col h={ps} gxs c>
+                <Text sm secondary>
+                    {a.u.name}
+                </Text>
+                <Field
+                    secondary
+                    w={ps * 3}
+                    h={ps}
+                    c
+                    style='border-radius:1020px;gap:240px;width:180px;height:60px'
+                >
+                    <UnitMeter value={73} scale={10} {...meterColors} />
+                </Field>
             </Field>
+            {/* <Field>
+                <Field s w={ps} h={ps} c>
+                    <Field
+                        s
+                        style={`border-radius:16px;  background:${
+                            stateColors.find((sc) => sc.id == a.u.state)?.value
+                        }; width:12px; height:12px`}
+                    />
+                </Field>
+                <Field s w={ps} h={ps} c>
+                    <UnitStateIcon value={a.u.state} />
+                </Field>
+            </Field> */}
         </Field>
     )
 

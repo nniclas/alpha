@@ -65,7 +65,7 @@ export const Header: Component = () => {
                                         </Field>
                                     }
                                 >
-                                    <Field glg c>
+                                    <Field gsm psm c>
                                         {units()}
                                     </Field>
                                 </Responsive>

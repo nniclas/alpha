@@ -56,5 +56,23 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     }
     //////////////////////////////////////////////////////////
 
-    return <div class={`${styles.field} ${ss()} ${ac}`} style={cs()} {...a} />
+    // let st // when manually adding style
+    // if (a.style) {
+    //     st = { ...a.style }
+    //     delete a.style
+    // }
+
+    let st // when manually adding style
+    if (a.style) {
+        st = a.style
+        // delete a.style
+    }
+
+    return (
+        <div
+            class={`${styles.field} ${ss()} ${ac}`}
+            style={`${cs()};${st}`}
+            {...a}
+        />
+    )
 }
