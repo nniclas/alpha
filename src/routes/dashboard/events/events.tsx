@@ -48,16 +48,39 @@ export const Events = () => {
     }
     return (
         <Field
+            rel
             a
             col
             bg='var(--color-stronger)'
             // bl={`12px solid ${
             //     unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
             // }`}
-            style={`background:var(--color-stronger); border-left:12px solid ${
-                unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
-            }`}
+            // style={`background:var(--color-stronger); border-left:12px solid ${
+            //     unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
+            // }`}
         >
+            <Field layer col style='pointer-events:none'>
+                <Responsive
+                    compact={
+                        <div
+                            style={`transition:.4s ease border; flex:1; border-left:12px solid ${
+                                unitColorsDarker[
+                                    ds.getUnitIndex(ds.selectedUnitId())
+                                ]
+                            }`}
+                        ></div>
+                    }
+                >
+                    <div
+                        style={`transition:.4s ease border; flex:1; border-top:12px solid ${
+                            unitColorsDarker[
+                                ds.getUnitIndex(ds.selectedUnitId())
+                            ]
+                        }`}
+                    ></div>
+                </Responsive>
+            </Field>
+
             <SectionHeader
                 title='Events'
                 icon={<FiZap />}
@@ -78,8 +101,9 @@ export const Events = () => {
                         <EditEntry />
                     </Modal>
                 }
-                color={unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]}
+                // color={}
             />
+
             <Field s pmd res={{ psm: true }}>
                 <TimeLine />
             </Field>

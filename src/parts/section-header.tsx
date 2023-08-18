@@ -30,6 +30,7 @@ import { Slider } from '../lib/components/slider/slider'
 import { Label } from '../lib/components/label/label'
 import { BaseArgs } from '../lib/types/base-args'
 import { FieldArgs } from '../lib/types/field-args'
+import { unitColors } from '../common/constants'
 
 interface Args {
     title: string
@@ -38,7 +39,7 @@ interface Args {
     iconTheme?: string
     aux?: any
     tool?: any
-    color?: string
+    // color?: string
 }
 
 export const SectionHeader = (a: Args & FieldArgs) => {
@@ -53,7 +54,7 @@ export const SectionHeader = (a: Args & FieldArgs) => {
             h={80}
             res={{ h: 60, ...a }}
             {...a}
-            // style={`border-left: 12px solid ${a.color}`}
+            // style={`border-top: 12px solid ${a.color}`}
         >
             <Field>
                 <Label size='md' {...titleTheme} {...icon} {...iconTheme}>

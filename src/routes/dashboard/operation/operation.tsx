@@ -51,10 +51,8 @@ export const Operation = () => {
 
     return (
         <Field
+            rel
             a
-            style={`border-left:12px solid ${
-                unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-            }`}
             // bt={`12px solid ${
             //     unitColors[ds.getUnitIndex(ds.selectedUnitId())]
             // }`}
@@ -65,11 +63,32 @@ export const Operation = () => {
             // }}
         >
             <Field col>
+                <Field layer col style='pointer-events:none'>
+                    <Responsive
+                        compact={
+                            <div
+                                style={`transition:.4s ease border; flex:1; border-left:12px solid ${
+                                    unitColors[
+                                        ds.getUnitIndex(ds.selectedUnitId())
+                                    ]
+                                }`}
+                            ></div>
+                        }
+                    >
+                        <div
+                            style={`transition:.4s ease border; flex:1; border-top:12px solid ${
+                                unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+                            }`}
+                        ></div>
+                    </Responsive>
+                </Field>
+
                 <SectionHeader
                     title='Operation'
                     icon={<FiSettings />}
                     iconTheme='tertiary'
                 />
+
                 <Field s pwlg>
                     <Text md accent>
                         Monitoring
