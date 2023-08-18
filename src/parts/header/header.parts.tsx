@@ -1,4 +1,4 @@
-import { Component, For, Suspense } from 'solid-js'
+import { Component, For, Suspense, createEffect } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
 
 import Field from '../../lib/elements/field/field'
@@ -31,9 +31,10 @@ import ManageUnitModal from '../../components/edit-unit/edit-unit'
 import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
-import { stateColors } from '../../common/constants'
+// import { stateColors } from '../../common/constants'
 import { Label } from '../../lib/components/label/label'
 import EditUnit from '../../components/edit-unit/edit-unit'
+import { unitColors } from '../../common/constants'
 
 const meterColors = {
     meterColor: 'var(--color-strong)',
@@ -43,14 +44,20 @@ const meterColors = {
 const ps = 60
 
 export const MiniUnit = (a: { u: Unit }) => {
-    // createEffect(() => {
-    //     console.log(dataStore.selectedUnitRes()?.id)
-    // })
-
-    const c = stateColors.find((sc) => sc.id == a.u.state)?.value
+    // const c = stateColors.find((sc) => sc.id == a.u.state)?.value
 
     return (
-        <Field gxs c s>
+        <Field
+            gxs
+            c
+            s
+            onClick={(e) => {
+                ds.setSelectedUnitId(a.u.id)
+                // u.selected = true
+                // machineDataStore.setPollingActive(false)
+            }}
+            style='cursor:pointer;cursor:hand'
+        >
             <Field
                 s
                 col
@@ -60,7 +67,13 @@ export const MiniUnit = (a: { u: Unit }) => {
                         : 'var(--color-lighter)'
                 }`}
             >
-                <Field s h={40} aic gxs bg={c}>
+                <Field
+                    s
+                    h={40}
+                    aic
+                    gxs
+                    bg={unitColors[ds.getUnitIndex(a.u.id)]}
+                >
                     {/* <Field s pxs>
                         <Field
                             s
@@ -81,7 +94,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                 </Field>
                 <Field c s h={60}>
                     <Field s>
-                        <UnitMeter value={73} scale={10} {...meterColors} />
+                        {/* <UnitMeter value={73} scale={10} {...meterColors} /> */}
                     </Field>
                 </Field>
             </Field>
@@ -144,14 +157,14 @@ export const MiniUnit = (a: { u: Unit }) => {
                         <Field col gsm>
                             <Field s gsm aic>
                                 <Field s aic gxs>
-                                    <Field
+                                    {/* <Field
                                         s
                                         style={`border-radius:16px;  background:${
                                             stateColors.find(
                                                 (sc) => sc.id == a.u.state
                                             )?.value
                                         }; width:12px; height:12px`}
-                                    />
+                                    /> */}
                                     <UnitStateIcon value={a.u.state} />
                                 </Field>
                                 <Text sm secondary>

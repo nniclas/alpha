@@ -24,7 +24,11 @@ export default (a: Args) => {
     const [done, setDone] = createSignal<boolean>(false)
     const [isUnitChanged, setIsUnitChanged] = createSignal<boolean>(false)
     const [unit, setUnit] = createSignal<Unit>(
-        a.unit ?? { name: 'New unit', machineId: uuidv4(), state: 0 } // uuidv4 simplify demo
+        a.unit ?? {
+            name: 'New unit',
+            machineId: uuidv4(),
+            state: 0,
+        } // uuidv4 simplify demo
     )
 
     createEffect(() => {

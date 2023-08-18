@@ -12,6 +12,7 @@ import { User } from 'types/entities/user'
 import { Entry } from 'types/entities/entry'
 import appStore from './app-store'
 import { delay } from '../common/utils'
+import { unitColors, unitColorsDarker } from '../common/constants'
 
 const getItems = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
@@ -54,6 +55,11 @@ function createDataState() {
         return await getItems<Unit[]>('units')
     })
 
+    const [selectedUnitRes] = createResource<Unit, number>(
+        selectedUnitId,
+        (id) => getItems<Unit>(`units/${id}`)
+    )
+
     const [entriesRes] = createResource<Entry[], number>(
         selectedUnitId,
         (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
@@ -64,15 +70,17 @@ function createDataState() {
     //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}/week/${unitId}`)
     // )
 
-    const [selectedUnitRes] = createResource<Unit, number>(
-        selectedUnitId,
-        (id) => getItems<Unit>(`units/${id}`)
-    )
-
     // const [entriesRes] = createResource<Entry[], number>(
     //     selectedUnitId,
     //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
     // )
+
+    const getUnitIndex = (unitId?: number) => {
+        // default is selected unit
+        return units().indexOf(
+            units().filter((u) => u.id == unitId ?? selectedUnitRes()!.id)[0]
+        )
+    }
 
     // used to manually trigger fetchers, after log on
     const initalize = async () => {
@@ -84,11 +92,12 @@ function createDataState() {
 
     return {
         unitsRes,
-        entriesRes,
         selectedUnitRes,
+        entriesRes,
         selectedUnitId,
         setSelectedUnitId,
         initalize,
+        getUnitIndex,
     }
 }
 

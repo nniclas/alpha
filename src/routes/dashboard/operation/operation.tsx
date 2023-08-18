@@ -18,12 +18,28 @@ import { Slider } from '../../../lib/components/slider/slider'
 import { Label } from '../../../lib/components/label/label'
 import { BatteryLevel, ProcessorUsage, SignalStrength } from './operation.parts'
 import { SectionHeader } from '../../../parts/section-header'
+import { unitColors } from '../../../common/constants'
+import { SvgUnitMeter } from '../../../components/svg-unit-meter/svg-unit-meter'
 
 export const Operation = () => {
+    const [testValue, setTestValue] = createSignal<number>(0)
+
     createEffect(() => {
         if (dataStore.selectedUnitRes()) {
             mds.reset()
         }
+
+        setTimeout(() => {
+            setTestValue(31)
+        }, 1000)
+
+        setTimeout(() => {
+            setTestValue(96)
+        }, 2000)
+
+        setTimeout(() => {
+            setTestValue(19)
+        }, 3000)
     })
 
     const meters = () => {
@@ -39,18 +55,39 @@ export const Operation = () => {
     // console.log(appStore.section(), a.unit?.name)
 
     return (
-        <Field>
+        <Field
+            a
+            style={`border-left:12px solid ${
+                unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+            }`}
+            // bt={`12px solid ${
+            //     unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+            // }`}
+            // res={{
+            //     bl: `12px solid ${
+            //         unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+            //     }`,
+            // }}
+        >
             <Field col glg res={{ gmd: true }}>
                 <SectionHeader
                     title='Operation'
                     icon={<FiSettings />}
                     iconTheme='tertiary'
                 />
-                <Responsive compact={<Slider>{meters()}</Slider>}>
+                <Field s w={900} h={20} pmd>
+                    <SvgUnitMeter
+                        scale={40}
+                        value={testValue()}
+                        valueColor='var(--color-accent)'
+                        meterColor='var(--color-strongest)'
+                    />
+                </Field>
+                {/* <Responsive compact={<Slider>{meters()}</Slider>}>
                     <Field s col plg>
                         {meters()}
                     </Field>
-                </Responsive>
+                </Responsive> */}
             </Field>
         </Field>
     )

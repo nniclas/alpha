@@ -5,4 +5,6 @@ export const styleMap = [
     { p: 'padding', br: 'border-radius' },
     { a: 'transition' },
     { bg: 'background' },
+    // { bt: 'border-top' },
+    // { bl: 'border-left' },
 ]

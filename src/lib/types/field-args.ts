@@ -36,4 +36,7 @@ export interface FieldArgs {
     p?: number | string // padding
 
     bg?: string
+
+    // bt?: string // border-top
+    // bl?: string // border-left
 }

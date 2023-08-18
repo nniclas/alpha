@@ -1,11 +1,29 @@
 import { IdValuePair, ValueIdTitle } from 'types/_types'
 
-export const stateColors: IdValuePair[] = [
-    { id: 1, value: 'rgb(80,80,110)' },
-    { id: 2, value: 'rgb(80,110,80)' },
-    { id: 3, value: 'rgb(80,110,110)' },
-    { id: 4, value: 'rgb(110,80,80)' },
-    { id: 5, value: 'var(--color-middle)' },
+// export const stateColors: IdValuePair[] = [
+//     { id: 1, value: 'rgb(80,80,110)' },
+//     { id: 2, value: 'rgb(80,110,80)' },
+//     { id: 3, value: 'rgb(80,110,110)' },
+//     { id: 4, value: 'rgb(110,80,80)' },
+//     { id: 5, value: 'var(--color-middle)' },
+// ]
+
+// anyway a maximum of 6 units
+export const unitColors: string[] = [
+    'rgb(80,80,110)',
+    'rgb(80,110,80)',
+    'rgb(80,110,110)',
+    'rgb(110,80,80)',
+    'rgb(110,110,80)',
+    'rgb(110,80,110)',
+]
+export const unitColorsDarker: string[] = [
+    'rgb(75,75,105)',
+    'rgb(75,105,75)',
+    'rgb(75,105,105)',
+    'rgb(105,75,75)',
+    'rgb(105,105,75)',
+    'rgb(105,75,105)',
 ]
 
 // names in default EN

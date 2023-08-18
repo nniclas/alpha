@@ -23,7 +23,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     })
 
     return (
-        <Field s rel style={`z-index: ${open() ? 100 : 'auto'};`}>
+        <Field s rel style={` z-index: ${open() ? 100 : 'auto'};`}>
             {a.buttonContent && (
                 <Button
                     onClick={(e) => {

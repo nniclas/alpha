@@ -18,11 +18,15 @@ import RouteGuard from './components/route-guard'
 import { Transition } from 'solid-transition-group'
 import { Dev } from './routes/_dev'
 import Responsive from './lib/components/responsive/responsive'
+import Text from './lib/elements/text/text'
 
 // import BG from './assets/bg2.svg?component-solid'
 
 export const App: Component = () => {
     return (
+        // <Field plg w={400} accent res={{ w: 200 }}>
+        //     <Text secondary>hello there</Text>
+        // </Field>
         <Router>
             <Field layer col bg='var(--color-strong)' trim>
                 <Field s col>

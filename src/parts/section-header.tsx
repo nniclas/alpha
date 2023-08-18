@@ -1,4 +1,4 @@
-import { Component, For, Suspense } from 'solid-js'
+import { Component, For, Suspense, createEffect, createSignal } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
 
 import Field from '../lib/elements/field/field'
@@ -38,6 +38,7 @@ interface Args {
     iconTheme?: string
     aux?: any
     tool?: any
+    color?: string
 }
 
 export const SectionHeader = (a: Args & FieldArgs) => {
@@ -46,7 +47,14 @@ export const SectionHeader = (a: Args & FieldArgs) => {
     const iconTheme = a.iconTheme && { iconTheme: a.iconTheme }
 
     return (
-        <Field s h={80} res={{ h: 60, ...a }} {...a}>
+        <Field
+            a
+            s
+            h={80}
+            res={{ h: 60, ...a }}
+            {...a}
+            // style={`border-left: 12px solid ${a.color}`}
+        >
             <Field>
                 <Label size='md' {...titleTheme} {...icon} {...iconTheme}>
                     {a.title}

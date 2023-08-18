@@ -1,9 +1,11 @@
-import { Component, For, Suspense } from 'solid-js'
+import { Component, For, Suspense, createEffect, createSignal } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 
-const TESTWEEKS = ['30', '31', '32', '33', '34', '35']
+import styles from './timeline.module.css'
+
+const TESTWEEKS = ['30', '31', '32', '33', '34']
 
 export const TimeLine = () => {
     return (
@@ -52,7 +54,9 @@ export const TimeLine = () => {
                                         <Field
                                             s
                                             c
-                                            style='height:2px; width:32px; background:var(--color-medium)'
+                                            a
+                                            class={`${styles.line}`}
+                                            style={`background:var(--color-medium)`}
                                         ></Field>
                                     </Field>
                                 )}

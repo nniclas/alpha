@@ -6,7 +6,7 @@ import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import { FiPlusCircle, FiZap } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
-import { tags } from '../../../common/constants'
+import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
@@ -28,6 +28,10 @@ import { TimeLine } from '../../../components/timeline/timeline'
 // const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const Events = () => {
+    // createEffect(() => {
+    //     console.log()
+    // })
+
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (
@@ -43,7 +47,17 @@ export const Events = () => {
         )
     }
     return (
-        <Field col bg='var(--color-stronger)'>
+        <Field
+            a
+            col
+            bg='var(--color-stronger)'
+            // bl={`12px solid ${
+            //     unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
+            // }`}
+            style={`background:var(--color-stronger); border-left:12px solid ${
+                unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
+            }`}
+        >
             <SectionHeader
                 title='Events'
                 icon={<FiZap />}
@@ -64,21 +78,10 @@ export const Events = () => {
                         <EditEntry />
                     </Modal>
                 }
+                color={unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]}
             />
-            <Field s p='0 32px'>
+            <Field s pmd res={{ psm: true }}>
                 <TimeLine />
-                {/* <SelectField
-                    index={TESTWEEKS.indexOf(as.week())}
-                    items={TESTWEEKS.map((w) => (
-                        <Field c h={48} w={200}>
-                            <Text xs secondary>
-                                {w}
-                            </Text>
-                        </Field>
-                    ))}
-                    onChange={(v) => as.setWeek(TESTWEEKS[v])}
-                    buttonArgs={{ accent: true, sm: true }}
-                /> */}
             </Field>
 
             <Field

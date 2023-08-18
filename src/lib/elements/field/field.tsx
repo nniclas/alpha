@@ -12,13 +12,17 @@ import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import { FieldArgs } from '../../types/field-args'
 import { EffectArgs } from '../../types/effect-args'
-import { createSignal, onMount } from 'solid-js'
+import { createEffect, createSignal, onMount } from 'solid-js'
 
 export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const ssDefault = scopeStyles(styles, a)
     const csDefault = customStyles(a, styleMap)
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
+
+    // createEffect(() => {
+    //     console.log(cs())
+    // })
 
     // when manually using class prop
     let ac
