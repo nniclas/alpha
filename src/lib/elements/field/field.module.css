@@ -72,6 +72,21 @@
 .pxl {
     padding: var(--xl);
 }
+.pwxs {
+    padding: var(--xxs) var(--xs);
+}
+.pwsm {
+    padding: var(--xs) var(--sm);
+}
+.pwmd {
+    padding: var(--sm) var(--md);
+}
+.pwlg {
+    padding: var(--md) var(--lg);
+}
+.pwxl {
+    padding: var(--lg) var(--xl);
+}
 
 /* --- MODIFIERS --- */
 .br {

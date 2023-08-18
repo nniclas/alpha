@@ -35,6 +35,7 @@ import Dropdown from '../../lib/components/dropdown/dropdown'
 import { Label } from '../../lib/components/label/label'
 import EditUnit from '../../components/edit-unit/edit-unit'
 import { unitColors } from '../../common/constants'
+import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
 
 const meterColors = {
     meterColor: 'var(--color-strong)',
@@ -93,7 +94,13 @@ export const MiniUnit = (a: { u: Unit }) => {
                     </Field>
                 </Field>
                 <Field c s h={60}>
-                    <Field s>
+                    <Field s w={80} h={30}>
+                        <SvgUnitMeter
+                            scale={20}
+                            value={47}
+                            valueColor='var(--color-strong)'
+                            meterColor='var(--color-light)'
+                        />
                         {/* <UnitMeter value={73} scale={10} {...meterColors} /> */}
                     </Field>
                 </Field>

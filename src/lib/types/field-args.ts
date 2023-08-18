@@ -29,6 +29,12 @@ export interface FieldArgs {
     pmd?: boolean
     plg?: boolean
     pxl?: boolean
+    pwxs?: boolean // wide-padding
+    pwsm?: boolean
+    pwmd?: boolean
+    pwlg?: boolean
+    pwxl?: boolean
+
     br?: boolean // border-radius
 
     w?: number | string | Size // width:

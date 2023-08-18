@@ -30,7 +30,7 @@ export const SvgUnitMeter = (a: Args) => {
 
     const baseStyle: any = {
         transition: '.6s ease all',
-        'stroke-width': size * 4,
+        'stroke-width': size * 6,
         'stroke-dasharray': size,
     }
 

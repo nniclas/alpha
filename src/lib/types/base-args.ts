@@ -13,6 +13,7 @@ export interface BaseArgs {
     onPointerDown?: (e: PointerEvent) => void
     onPointerUp?: (e: PointerEvent) => void
     onPointerMove?: (e: PointerEvent) => void
+    onPointerLeave?: (e: PointerEvent) => void
 
     // responsive, if enabled (boolean only): .res styles will be applied according to rules in .res media queries
     //             if object is provied: apply these settings in compact mode

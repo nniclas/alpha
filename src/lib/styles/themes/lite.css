@@ -37,6 +37,7 @@
     --illume-bg: var(--color-tr-light);
 
     /* LAYOUT */
+    --xxs: 4px;
     --xs: 8px;
     --sm: 16px;
     --md: 32px;
@@ -53,7 +54,7 @@
     --text-size-xs: 13px;
     --text-size-sm: 14px;
     --text-size-md: 18px;
-    --text-size-lg: 36px;
+    --text-size-lg: 28px;
 
     /* MISC */
     --transition: 0.4s ease all; /* "all"...? */

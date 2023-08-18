@@ -20,26 +20,27 @@ import { BatteryLevel, ProcessorUsage, SignalStrength } from './operation.parts'
 import { SectionHeader } from '../../../parts/section-header'
 import { unitColors } from '../../../common/constants'
 import { SvgUnitMeter } from '../../../components/svg-unit-meter/svg-unit-meter'
+import { Mover } from '../../../components/mover/mover'
+import Button from '../../../lib/elements/button/button'
 
 export const Operation = () => {
-    const [testValue, setTestValue] = createSignal<number>(0)
+    // const [testValue, setTestValue] = createSignal<number>(0)
 
     createEffect(() => {
-        if (dataStore.selectedUnitRes()) {
-            mds.reset()
-        }
-
-        setTimeout(() => {
-            setTestValue(31)
-        }, 1000)
-
-        setTimeout(() => {
-            setTestValue(96)
-        }, 2000)
-
-        setTimeout(() => {
-            setTestValue(19)
-        }, 3000)
+        // mds.reset()
+        console.log('hej')
+        // if (dataStore.selectedUnitRes()) {
+        //     mds.reset()
+        // }
+        // setTimeout(() => {
+        //     setTestValue(31)
+        // }, 1000)
+        // setTimeout(() => {
+        //     setTestValue(96)
+        // }, 2000)
+        // setTimeout(() => {
+        //     setTestValue(19)
+        // }, 3000)
     })
 
     const meters = () => {
@@ -69,25 +70,54 @@ export const Operation = () => {
             //     }`,
             // }}
         >
-            <Field col glg res={{ gmd: true }}>
+            <Field col>
                 <SectionHeader
                     title='Operation'
                     icon={<FiSettings />}
                     iconTheme='tertiary'
                 />
-                <Field s w={900} h={20} pmd>
+                <Field s pwlg>
+                    <Text md accent>
+                        Monitoring
+                    </Text>
+                </Field>
+                {/* <Field s w={900} h={20} pmd>
                     <SvgUnitMeter
-                        scale={40}
+                        scale={70}
                         value={testValue()}
                         valueColor='var(--color-accent)'
                         meterColor='var(--color-strongest)'
                     />
-                </Field>
-                {/* <Responsive compact={<Slider>{meters()}</Slider>}>
-                    <Field s col plg>
+                </Field> */}
+                <Responsive s compact={<Slider>{meters()}</Slider>}>
+                    <Field s pwlg>
                         {meters()}
                     </Field>
-                </Responsive> */}
+                </Responsive>
+                <Field s pwlg>
+                    <Text md accent>
+                        Controls
+                    </Text>
+                </Field>
+                <Field s pwlg col>
+                    <Text md primary>
+                        Charge threshold
+                    </Text>
+                    <Mover />
+                </Field>
+                <Field s pwlg col gsm>
+                    <Text md primary>
+                        Machine control
+                    </Text>
+                    <Field s gmd>
+                        <Button lg res={{ md: true }} secondary>
+                            <Text>Reboot</Text>
+                        </Button>
+                        <Button lg res={{ md: true }} secondary>
+                            <Text>Run diagnostics</Text>
+                        </Button>
+                    </Field>
+                </Field>
             </Field>
         </Field>
     )

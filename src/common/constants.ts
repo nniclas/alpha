@@ -8,6 +8,12 @@ import { IdValuePair, ValueIdTitle } from 'types/_types'
 //     { id: 5, value: 'var(--color-middle)' },
 // ]
 
+export const trendColors: string[] = [
+    'rgb(150,110,110)',
+    'rgb(110,130,150)',
+    'rgb(110,150,110)',
+]
+
 // anyway a maximum of 6 units
 export const unitColors: string[] = [
     'rgb(80,80,110)',
