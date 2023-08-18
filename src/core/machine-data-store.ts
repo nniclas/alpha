@@ -16,13 +16,14 @@ function createDataState() {
     const [batteryLevel, setBatteryLevel] = createSignal<number>(0) // battery level of current monitored unit
 
     const start = () => {
-        console.log('hupp')
-        iSignalInterval = setInterval(() => {
-            setSignalStrength(getSignalStrength(0, signalStrength()))
-        }, 1400)
-        iProcessorInterval = setInterval(() => {
-            setProcessorUsage(getProcessorUsage(0, processorUsage()))
-        }, 1100)
+        if (!iSignalInterval)
+            iSignalInterval = setInterval(() => {
+                setSignalStrength(getSignalStrength(0, signalStrength()))
+            }, 1400)
+        if (!iProcessorInterval)
+            iProcessorInterval = setInterval(() => {
+                setProcessorUsage(getProcessorUsage(0, processorUsage()))
+            }, 1100)
         setBatteryLevel(getBatteryLevel(0, 0))
     }
 

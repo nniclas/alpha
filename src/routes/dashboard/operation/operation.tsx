@@ -1,4 +1,11 @@
-import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
+import {
+    Component,
+    For,
+    createEffect,
+    createSignal,
+    lazy,
+    onMount,
+} from 'solid-js'
 
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
@@ -24,23 +31,10 @@ import { Mover } from '../../../components/mover/mover'
 import Button from '../../../lib/elements/button/button'
 
 export const Operation = () => {
-    // const [testValue, setTestValue] = createSignal<number>(0)
-
     createEffect(() => {
-        // mds.reset()
-        console.log('hej')
-        // if (dataStore.selectedUnitRes()) {
-        //     mds.reset()
-        // }
-        // setTimeout(() => {
-        //     setTestValue(31)
-        // }, 1000)
-        // setTimeout(() => {
-        //     setTestValue(96)
-        // }, 2000)
-        // setTimeout(() => {
-        //     setTestValue(19)
-        // }, 3000)
+        if (dataStore.selectedUnitRes()) {
+            mds.reset()
+        }
     })
 
     const meters = () => {
