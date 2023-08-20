@@ -12,6 +12,9 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import { SvgUnitMeter } from '../../../components/svg-unit-meter/svg-unit-meter'
 import { trendColors } from '../../../common/constants'
 import { FiArrowDownRight, FiArrowRight, FiArrowUpRight } from 'solid-icons/fi'
+import { Area } from '../../../components/area/area'
+import { Mover } from '../../../components/mover/mover'
+import Button from '../../../lib/elements/button/button'
 
 const meterColors = {
     meterColor: 'var(--color-strongest)',
@@ -20,13 +23,10 @@ const meterColors = {
 
 const iconStyle = { size: 32, color: 'var(--color-accent)' }
 
-export const SignalStrength = () => {
+export const SignalStrengthArea = () => {
     return (
-        <Field s res={{ c: true }}>
-            <Field s col gsm>
-                <Text md res primary>
-                    Signal strength
-                </Text>
+        <Area header='Signal strength'>
+            <Field col gsm>
                 <Field s aic gsm>
                     <Text xs accent>
                         Stability
@@ -36,93 +36,47 @@ export const SignalStrength = () => {
                         {12} %
                     </Text>
                 </Field>
-                <Field s>
-                    <Transition name='foo'>
-                        <Field s w={320} h={64}>
-                            <SvgUnitMeter
-                                scale={70}
-                                value={mds.signalStrength()}
-                                valueColor='var(--color-accent)'
-                                meterColor='var(--color-strongest)'
-                            />
-                        </Field>
-                        {/* <Responsive
-                            compact={
-                                <UnitMeter
-                                    scale={10}
-                                    value={mds.signalStrength()}
-                                    {...meterColors}
-                                />
-                            }
-                            addRule={as.section() != 'operation'}
-                        >
-                            <UnitMeter
-                                value={mds.signalStrength()}
-                                {...meterColors}
-                            />
-                        </Responsive> */}
-                    </Transition>
+                <Field s w={320} h={64}>
+                    <SvgUnitMeter
+                        scale={50}
+                        value={mds.signalStrength()}
+                        {...meterColors}
+                    />
                 </Field>
             </Field>
-        </Field>
+        </Area>
     )
 }
 
-export const BatteryLevel = () => {
+export const BatteryLevelArea = () => {
     return (
-        <Field s res={{ c: true }}>
-            <Field s col gsm>
-                <Text md res primary>
-                    Battery level
-                </Text>
+        <Area header='Battery level'>
+            <Field col gsm>
                 <Field s aic gsm>
                     <Text xs accent>
                         Recharge frequency
                     </Text>
                     <FiArrowUpRight {...iconStyle} color={trendColors[2]} />
                     <Text lg color={trendColors[2]}>
-                        {12} %
+                        {27} %
                     </Text>
                 </Field>
-                <Field s h={48}>
-                    <Transition name='foo'>
-                        <Field s w={320} h={64}>
-                            <SvgUnitMeter
-                                scale={70}
-                                value={mds.batteryLevel()}
-                                valueColor='var(--color-accent)'
-                                meterColor='var(--color-strongest)'
-                            />
-                        </Field>
-                        {/* <Responsive
-                            compact={
-                                <UnitMeter
-                                    scale={10}
-                                    value={mds.batteryLevel()}
-                                    {...meterColors}
-                                />
-                            }
-                            addRule={as.section() != 'operation'}
-                        >
-                            <UnitMeter
-                                value={mds.batteryLevel()}
-                                {...meterColors}
-                            />
-                        </Responsive> */}
-                    </Transition>
+                <Field s w={320} h={64}>
+                    <SvgUnitMeter
+                        scale={50}
+                        value={mds.batteryLevel()}
+                        {...meterColors}
+                    />
                 </Field>
             </Field>
-        </Field>
+        </Area>
     )
 }
 
-export const ProcessorUsage = () => {
+export const ProcessorUsageArea = () => {
     return (
-        <Field s res={{ c: true }}>
-            <Field s col gsm>
-                <Text md res primary>
-                    Processor usage
-                </Text>
+        <Area header='Processor usage'>
+            <Field col gsm>
                 <Field s aic gsm>
                     <Text xs accent>
                         Average load
@@ -132,36 +86,39 @@ export const ProcessorUsage = () => {
                         {4} %
                     </Text>
                 </Field>
-                <Transition name='foo'>
-                    <Responsive
-                        compact={
-                            <Field s w={320} h={20} pmd>
-                                <SvgUnitMeter
-                                    scale={20}
-                                    value={mds.batteryLevel()}
-                                    valueColor='var(--color-accent)'
-                                    meterColor='var(--color-strongest)'
-                                />
-                            </Field>
-                            // <Field s h={48}>
-                            //     <UnitMeter
-                            //         scale={10}
-                            //         value={mds.processorUsage()}
-                            //         {...meterColors}
-                            //     />
-                            // </Field>
-                        }
-                        addRule={
-                            as.section() != 'operation' || !ds.selectedUnitRes()
-                        }
-                    >
-                        <CircularMeter
-                            value={mds.processorUsage()}
-                            {...meterColors}
-                        />
-                    </Responsive>
-                </Transition>
+                <Field s w={320} h={64}>
+                    <SvgUnitMeter
+                        scale={50}
+                        value={mds.processorUsage()}
+                        {...meterColors}
+                    />
+                </Field>
             </Field>
-        </Field>
+        </Area>
+    )
+}
+
+export const ChargeControlArea = () => {
+    return (
+        <Area header='Charge threshold'>
+            <Field col gsm>
+                <Mover />
+            </Field>
+        </Area>
+    )
+}
+
+export const MachineControlArea = () => {
+    return (
+        <Area header='Machine control'>
+            <Field s gmd>
+                <Button lg res={{ md: true }} secondary>
+                    <Text>Reboot</Text>
+                </Button>
+                <Button lg res={{ md: true }} secondary>
+                    <Text>Run diagnostics</Text>
+                </Button>
+            </Field>
+        </Area>
     )
 }

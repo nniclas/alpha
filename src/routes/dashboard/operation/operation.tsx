@@ -23,12 +23,19 @@ import { isCompact } from '../../../lib/utils'
 import Responsive from '../../../lib/components/responsive/responsive'
 import { Slider } from '../../../lib/components/slider/slider'
 import { Label } from '../../../lib/components/label/label'
-import { BatteryLevel, ProcessorUsage, SignalStrength } from './operation.parts'
+import {
+    BatteryLevelArea,
+    ChargeControlArea,
+    MachineControlArea,
+    ProcessorUsageArea,
+    SignalStrengthArea,
+} from './operation.parts'
 import { SectionHeader } from '../../../parts/section-header'
 import { unitColors } from '../../../common/constants'
 import { SvgUnitMeter } from '../../../components/svg-unit-meter/svg-unit-meter'
 import { Mover } from '../../../components/mover/mover'
 import Button from '../../../lib/elements/button/button'
+import { Container } from '../../../components/area/container'
 
 export const Operation = () => {
     createEffect(() => {
@@ -37,15 +44,15 @@ export const Operation = () => {
         }
     })
 
-    const meters = () => {
-        return (
-            <>
-                <SignalStrength />
-                <BatteryLevel />
-                <ProcessorUsage />
-            </>
-        )
-    }
+    // const meters = () => {
+    //     return (
+    //         <>
+    //             <SignalStrength />
+    //             <BatteryLevel />
+    //             <ProcessorUsage />
+    //         </>
+    //     )
+    // }
 
     // console.log(appStore.section(), a.unit?.name)
 
@@ -89,48 +96,25 @@ export const Operation = () => {
                     iconTheme='tertiary'
                 />
 
-                <Field s pwlg>
+                <Field s pwmd res={{ pwsm: true }}>
                     <Text md accent>
                         Monitoring
                     </Text>
                 </Field>
-                {/* <Field s w={900} h={20} pmd>
-                    <SvgUnitMeter
-                        scale={70}
-                        value={testValue()}
-                        valueColor='var(--color-accent)'
-                        meterColor='var(--color-strongest)'
-                    />
-                </Field> */}
-                <Responsive s compact={<Slider>{meters()}</Slider>}>
-                    <Field s pwlg>
-                        {meters()}
-                    </Field>
-                </Responsive>
-                <Field s pwlg>
+                <Container>
+                    <SignalStrengthArea />
+                    <BatteryLevelArea />
+                    <ProcessorUsageArea />
+                </Container>
+                <Field s pwmd res={{ pwsm: true }}>
                     <Text md accent>
                         Controls
                     </Text>
                 </Field>
-                <Field s pwlg col>
-                    <Text md primary>
-                        Charge threshold
-                    </Text>
-                    <Mover />
-                </Field>
-                <Field s pwlg col gsm>
-                    <Text md primary>
-                        Machine control
-                    </Text>
-                    <Field s gmd>
-                        <Button lg res={{ md: true }} secondary>
-                            <Text>Reboot</Text>
-                        </Button>
-                        <Button lg res={{ md: true }} secondary>
-                            <Text>Run diagnostics</Text>
-                        </Button>
-                    </Field>
-                </Field>
+                <Container>
+                    <ChargeControlArea />
+                    <MachineControlArea />
+                </Container>
             </Field>
         </Field>
     )

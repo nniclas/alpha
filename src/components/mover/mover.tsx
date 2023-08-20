@@ -77,7 +77,7 @@ export const Mover = (a: Args) => {
                     <Field
                         c
                         s
-                        style={`background:rgba(0,0,0,0.05); width:128px; height:128px; transform:translate(${
+                        style={`background:rgba(0,0,0,0.0); width:128px; height:128px; transform:translate(${
                             x() - (64 - s / 2)
                         }px, -${64 - s / 2}px);`}
                     >

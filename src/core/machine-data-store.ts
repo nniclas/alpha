@@ -18,7 +18,7 @@ function createDataState() {
     const start = () => {
         if (!iSignalInterval)
             iSignalInterval = setInterval(() => {
-                console.log(signalStrength())
+                // console.log(signalStrength())
                 setSignalStrength(getSignalStrength(0, signalStrength()))
             }, 1400)
         if (!iProcessorInterval)
