@@ -69,7 +69,7 @@ export const Operation = () => {
             //     }`,
             // }}
         >
-            <Field col>
+            <Field col style='overflow:scroll'>
                 <Field layer col style='pointer-events:none'>
                     <Responsive
                         compact={

@@ -15,7 +15,7 @@ export const Area = (a: Args) => {
                     {a.header}
                 </Text>
             </Field>
-            <Field col plg res={{ pmd: true }}>
+            <Field col pmd res={{ pmd: true }}>
                 {a.children}
             </Field>
         </Field>

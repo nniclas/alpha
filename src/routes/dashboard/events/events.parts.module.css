@@ -46,8 +46,3 @@
 .cell:first-child {
     padding-left: 6px;
 }
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-::-webkit-scrollbar {
-    display: none;
-}

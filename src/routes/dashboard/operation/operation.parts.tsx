@@ -52,18 +52,20 @@ export const BatteryLevelArea = () => {
     return (
         <Area header='Battery level'>
             <Field col gsm>
-                <Field s aic gsm>
+                <Field s aic gsm col>
                     <Text xs accent>
                         Recharge frequency
                     </Text>
-                    <FiArrowUpRight {...iconStyle} color={trendColors[2]} />
-                    <Text lg color={trendColors[2]}>
-                        {27} %
-                    </Text>
+                    <Field s>
+                        <FiArrowUpRight {...iconStyle} color={trendColors[2]} />
+                        <Text lg color={trendColors[2]}>
+                            {27} %
+                        </Text>
+                    </Field>
                 </Field>
                 <Field s w={320} h={64}>
                     <SvgUnitMeter
-                        scale={50}
+                        scale={58}
                         value={mds.batteryLevel()}
                         {...meterColors}
                     />
