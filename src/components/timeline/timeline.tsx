@@ -4,8 +4,9 @@ import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 
 import styles from './timeline.module.css'
+import { trendColors } from '../../common/constants'
 
-const TESTWEEKS = ['30', '31', '32', '33', '34']
+const TESTWEEKS = ['30', '31', '32', '33']
 
 export const TimeLine = () => {
     return (
@@ -17,7 +18,14 @@ export const TimeLine = () => {
                 style='height:2px;   background:var(--color-accent)'
             ></Field> */}
 
-            <Field s>
+            <Field
+                s
+                gsm
+                style='cursor:pointer;cursor:hand'
+                onClick={() => {
+                    console.log('todo change week!')
+                }}
+            >
                 <For each={TESTWEEKS}>
                     {(w, i) => {
                         const c =
@@ -36,20 +44,26 @@ export const TimeLine = () => {
                                     rel
                                     c
                                     s
-                                    style={`border:2px solid var(--color-medium); width: 40px; height:40px; background:${c}; border-radius:32px`}
+                                    style={`width: 50px; height:50px; ${
+                                        i() == TESTWEEKS.length - 1 &&
+                                        'border:2px solid var(--color-accent);  border-radius:32px'
+                                    } `}
                                 >
                                     <Field layer c>
                                         <Text
-                                            xs
-                                            secondary
-                                            accent={i() == TESTWEEKS.length - 1}
+                                            sm
+                                            color={
+                                                i() == TESTWEEKS.length - 1
+                                                    ? 'var(--color-accent)'
+                                                    : trendColors[0]
+                                            }
                                             style='font-weight:bold'
                                         >
-                                            {w}
+                                            {'w ' + w}
                                         </Text>
                                     </Field>
                                 </Field>
-                                {i() < TESTWEEKS.length - 1 && (
+                                {/* {i() < TESTWEEKS.length - 1 && (
                                     <Field c>
                                         <Field
                                             s
@@ -59,7 +73,7 @@ export const TimeLine = () => {
                                             style={`background:var(--color-medium)`}
                                         ></Field>
                                     </Field>
-                                )}
+                                )} */}
                             </Field>
                         )
                     }}
