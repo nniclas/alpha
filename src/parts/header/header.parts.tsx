@@ -50,8 +50,7 @@ export const MiniUnit = (a: { u: Unit }) => {
     return (
         <Field
             gxs
-            c
-            s
+            res={{ psm: true }}
             onClick={(e) => {
                 ds.setSelectedUnitId(a.u.id)
                 // u.selected = true
@@ -60,7 +59,6 @@ export const MiniUnit = (a: { u: Unit }) => {
             style='cursor:pointer;cursor:hand'
         >
             <Field
-                s
                 col
                 style={`border:0px solid var(--color-lighter);width:240px; background: ${
                     ds.selectedUnitId() == a.u.id
@@ -93,15 +91,14 @@ export const MiniUnit = (a: { u: Unit }) => {
                         <UnitStateIcon value={a.u.state} />
                     </Field>
                 </Field>
-                <Field c s h={60}>
-                    <Field s w={80} h={30}>
+                <Field>
+                    <Field w={200} h={24} pmd>
                         <SvgUnitMeter
-                            scale={20}
+                            scale={50}
                             value={47}
-                            valueColor='var(--color-strong)'
+                            valueColor={unitColors[ds.getUnitIndex(a.u.id)]}
                             meterColor='var(--color-light)'
                         />
-                        {/* <UnitMeter value={73} scale={10} {...meterColors} /> */}
                     </Field>
                 </Field>
             </Field>
@@ -280,7 +277,7 @@ export const MainMenu = () => {
                             <Modal
                                 jcc
                                 buttonContent={
-                                    <Field illume s h={80} w={80} c>
+                                    <Field s h={80} w={80} c>
                                         <Label
                                             size='sm'
                                             icon={<FiSettings />}
@@ -291,7 +288,7 @@ export const MainMenu = () => {
                             >
                                 <EditUnit />
                             </Modal>
-                            <Field s focus>
+                            <Field s>
                                 <Button
                                     w={80}
                                     h={80}

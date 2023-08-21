@@ -25,7 +25,7 @@ const flexClosedCompact = 'flex-basis:60px; min-height:60px'
 const flexOpenCompact = 'flex-basis:calc(100% - 60px)'
 const style = 'transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
-const w = 300
+const w = 200
 const s = 16
 
 interface Args {}

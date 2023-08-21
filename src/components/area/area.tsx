@@ -9,9 +9,20 @@ interface Args {
 
 export const Area = (a: Args) => {
     return (
-        <Field col br style='border:2px solid var(--color-strongest)'>
-            <Field s h={32} aic pwmd res={{ pwsm: true }}>
-                <Text md primary>
+        <Field
+            col
+            bg='var(--color-stronger)'
+            // style='border:2px solid var(--color-strongest)'
+        >
+            <Field
+                // bg='var(--color-strongest)'
+                s
+                h={32}
+                aic
+                pwmd
+                // res={{ pwsm: true }}
+            >
+                <Text sm primary>
                     {a.header}
                 </Text>
             </Field>

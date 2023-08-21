@@ -70,11 +70,11 @@ export const Operation = () => {
             // }}
         >
             <Field col style='overflow:scroll'>
-                <Field layer col style='pointer-events:none'>
+                {/* <Field layer col style='pointer-events:none'>
                     <Responsive
                         compact={
                             <div
-                                style={`transition:.4s ease border; flex:1; border-left:12px solid ${
+                                style={`transition:.4s ease border; flex:1; border-left:2px solid ${
                                     unitColors[
                                         ds.getUnitIndex(ds.selectedUnitId())
                                     ]
@@ -83,12 +83,12 @@ export const Operation = () => {
                         }
                     >
                         <div
-                            style={`transition:.4s ease border; flex:1; border-top:12px solid ${
+                            style={`transition:.4s ease border; flex:1; border-top:2px solid ${
                                 unitColors[ds.getUnitIndex(ds.selectedUnitId())]
                             }`}
                         ></div>
                     </Responsive>
-                </Field>
+                </Field> */}
 
                 <SectionHeader
                     title='Operation'
@@ -96,7 +96,7 @@ export const Operation = () => {
                     iconTheme='tertiary'
                 />
 
-                <Field s pwmd res={{ pwsm: true }}>
+                <Field s pwmd>
                     <Text md accent>
                         Monitoring
                     </Text>
@@ -106,7 +106,7 @@ export const Operation = () => {
                     <BatteryLevelArea />
                     <ProcessorUsageArea />
                 </Container>
-                <Field s pwmd res={{ pwsm: true }}>
+                <Field s pwmd>
                     <Text md accent>
                         Controls
                     </Text>

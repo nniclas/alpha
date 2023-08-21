@@ -14,14 +14,15 @@ import { Slider } from '../../lib/components/slider/slider'
 import { SectionHeader } from '../../parts/section-header'
 import Button from '../../lib/elements/button/button'
 import { Label } from '../../lib/components/label/label'
+import Logo from '../../assets/logo.svg?component-solid'
 
 export const Header: Component = () => {
     const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
 
     const header = (auxText?: any) => (
         <SectionHeader
-            bg='var(--color-lighter)'
-            title='Some'
+            bg='var(--color-light)'
+            title='A L P H A'
             aux={
                 <Field aic>
                     <Text xs secondary>
@@ -29,23 +30,26 @@ export const Header: Component = () => {
                     </Text>
                 </Field>
             }
+            icon={
+                <Field s w={60} h={60}>
+                    <Logo />
+                </Field>
+            }
             titleTheme='secondary'
-            iconTheme='secondary'
             tool={<MainMenu />}
-            icon={<FiAlertTriangle />}
         />
     )
 
     return (
         <Field
             s
-            h={260}
+            h={300}
             res={{ h: 200, bg: 'var(--color-light)' }}
             bg='var(--color-light)'
         >
             <Field col>
                 <Responsive s compact={header()}>
-                    {header('Some units are offline, check status.')}
+                    {header()}
                 </Responsive>
 
                 <Field rel>
@@ -60,12 +64,12 @@ export const Header: Component = () => {
                             <Field layer col>
                                 <Responsive
                                     compact={
-                                        <Field psm>
+                                        <Field>
                                             <Slider>{units()}</Slider>
                                         </Field>
                                     }
                                 >
-                                    <Field gsm psm c>
+                                    <Field gsm psm>
                                         {units()}
                                     </Field>
                                 </Responsive>

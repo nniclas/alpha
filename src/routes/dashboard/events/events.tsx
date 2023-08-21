@@ -47,19 +47,8 @@ export const Events = () => {
         )
     }
     return (
-        <Field
-            rel
-            a
-            col
-            bg='var(--color-stronger)'
-            // bl={`12px solid ${
-            //     unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
-            // }`}
-            // style={`background:var(--color-stronger); border-left:12px solid ${
-            //     unitColorsDarker[ds.getUnitIndex(ds.selectedUnitId())]
-            // }`}
-        >
-            <Field layer col style='pointer-events:none'>
+        <Field rel a col bg='var(--color-stronger)'>
+            {/* <Field layer col style='pointer-events:none'>
                 <Responsive
                     compact={
                         <div
@@ -79,7 +68,7 @@ export const Events = () => {
                         }`}
                     ></div>
                 </Responsive>
-            </Field>
+            </Field> */}
 
             <SectionHeader
                 title='Events'

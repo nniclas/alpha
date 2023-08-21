@@ -18,30 +18,33 @@ import Button from '../../../lib/elements/button/button'
 
 const meterColors = {
     meterColor: 'var(--color-strongest)',
-    valueColor: 'var(--color-accent)',
+    valueColor: 'var(--color-light)',
 }
 
-const iconStyle = { size: 32, color: 'var(--color-accent)' }
+const iconStyle = { size: 26, color: 'var(--color-accent)' }
 
 export const SignalStrengthArea = () => {
     return (
         <Area header='Signal strength'>
-            <Field col gsm>
-                <Field s aic gsm>
-                    <Text xs accent>
-                        Stability
-                    </Text>
-                    <FiArrowDownRight {...iconStyle} color={trendColors[0]} />
-                    <Text lg color={trendColors[0]}>
-                        {12} %
-                    </Text>
-                </Field>
-                <Field s w={320} h={64}>
+            <Field col gsm aic>
+                <Field s w={200} h={24}>
                     <SvgUnitMeter
                         scale={50}
                         value={mds.signalStrength()}
                         {...meterColors}
                     />
+                </Field>
+                <Field s aic gsm>
+                    <Text xs>Stability</Text>
+                    <Field s gxs aic>
+                        <FiArrowDownRight
+                            {...iconStyle}
+                            color={trendColors[0]}
+                        />
+                        <Text lg color={trendColors[0]}>
+                            {12} %
+                        </Text>
+                    </Field>
                 </Field>
             </Field>
         </Area>
@@ -51,24 +54,22 @@ export const SignalStrengthArea = () => {
 export const BatteryLevelArea = () => {
     return (
         <Area header='Battery level'>
-            <Field col gsm>
-                <Field s aic gsm col>
-                    <Text xs accent>
-                        Recharge frequency
-                    </Text>
-                    <Field s>
+            <Field col gsm aic>
+                <Field s w={200} h={24}>
+                    <SvgUnitMeter
+                        scale={50}
+                        value={mds.batteryLevel()}
+                        {...meterColors}
+                    />
+                </Field>
+                <Field s aic gsm>
+                    <Text xs>Recharge frequency</Text>
+                    <Field s gxs aic>
                         <FiArrowUpRight {...iconStyle} color={trendColors[2]} />
                         <Text lg color={trendColors[2]}>
                             {27} %
                         </Text>
                     </Field>
-                </Field>
-                <Field s w={320} h={64}>
-                    <SvgUnitMeter
-                        scale={58}
-                        value={mds.batteryLevel()}
-                        {...meterColors}
-                    />
                 </Field>
             </Field>
         </Area>
@@ -78,22 +79,22 @@ export const BatteryLevelArea = () => {
 export const ProcessorUsageArea = () => {
     return (
         <Area header='Processor usage'>
-            <Field col gsm>
-                <Field s aic gsm>
-                    <Text xs accent>
-                        Average load
-                    </Text>
-                    <FiArrowRight {...iconStyle} color={trendColors[1]} />
-                    <Text lg color={trendColors[1]}>
-                        {4} %
-                    </Text>
-                </Field>
-                <Field s w={320} h={64}>
+            <Field col gsm aic>
+                <Field s h={24} w={200}>
                     <SvgUnitMeter
                         scale={50}
                         value={mds.processorUsage()}
                         {...meterColors}
                     />
+                </Field>
+                <Field s aic gsm>
+                    <Text xs>Average load</Text>
+                    <Field s aic gxs>
+                        <FiArrowRight {...iconStyle} color={trendColors[1]} />
+                        <Text lg color={trendColors[1]}>
+                            {4} %
+                        </Text>
+                    </Field>
                 </Field>
             </Field>
         </Area>
@@ -113,11 +114,11 @@ export const ChargeControlArea = () => {
 export const MachineControlArea = () => {
     return (
         <Area header='Machine control'>
-            <Field s gmd>
-                <Button lg res={{ md: true }} secondary>
+            <Field s style='gap:4px'>
+                <Button w={160} h={60} lg res={{ md: true }} secondary>
                     <Text>Reboot</Text>
                 </Button>
-                <Button lg res={{ md: true }} secondary>
+                <Button w={160} h={60} lg res={{ md: true }} secondary>
                     <Text>Run diagnostics</Text>
                 </Button>
             </Field>

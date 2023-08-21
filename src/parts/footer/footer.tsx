@@ -12,7 +12,11 @@ export const Footer: Component = () => {
     return (
         <Field pmd secondary>
             <Text md color='var(--color-middle)'>
-                {/* FOOTER */}
+                <Field aic>
+                    <Text xs accent>
+                        {'Some units are offline, check status.'}
+                    </Text>
+                </Field>
             </Text>
         </Field>
     )

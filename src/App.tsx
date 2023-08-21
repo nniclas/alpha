@@ -19,6 +19,8 @@ import { Transition } from 'solid-transition-group'
 import { Dev } from './routes/_dev'
 import Responsive from './lib/components/responsive/responsive'
 import Text from './lib/elements/text/text'
+import { SectionHeader } from './parts/section-header'
+import { FiAlertTriangle } from 'solid-icons/fi'
 
 // import BG from './assets/bg2.svg?component-solid'
 
@@ -52,7 +54,22 @@ export const App: Component = () => {
                 </Field>
                 <Field s col>
                     <Responsive compact={<></>}>
-                        <Footer />
+                        <SectionHeader
+                            bg='var(--color-strongest)'
+                            title='Alert'
+                            aux={
+                                <Field aic>
+                                    <Text xs accent>
+                                        {
+                                            'Some units are offline, check status.'
+                                        }
+                                    </Text>
+                                </Field>
+                            }
+                            titleTheme='primary'
+                            iconTheme='accent'
+                            icon={<FiAlertTriangle />}
+                        />
                     </Responsive>
                 </Field>
             </Field>
