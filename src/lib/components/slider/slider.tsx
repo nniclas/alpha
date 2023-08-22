@@ -1,7 +1,8 @@
-import { For, createSignal, onMount } from 'solid-js'
+import { For, createSignal, onCleanup, onMount } from 'solid-js'
 import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import Field from '../../elements/field/field'
+import { isCompact } from '../../../lib/utils'
 
 interface Args {
     children: any
@@ -17,17 +18,30 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
     const [x, setX] = createSignal<number>(0)
     const [w, setW] = createSignal<number>(a.w || 0)
 
+    const reset = () => {
+        if (a.w == undefined) {
+            setW(layerRef.clientWidth)
+            setIndex(0)
+            setX(0)
+        }
+    }
+    onMount(() => {
+        // console.log(a.children.map((c: any) => c.content.innerHTML))
+        reset()
+    })
+
+    const resetSize = () => {
+        if (isCompact()) {
+            reset()
+        }
+    }
+
+    onMount(() => window.addEventListener('resize', resetSize))
+    onCleanup(() => window.removeEventListener('resize', resetSize))
+
     const start = (e: any) => {
         setDrag(true)
     }
-
-    onMount(() => {
-        if (a.w == undefined) {
-            setW(layerRef.clientWidth)
-        }
-
-        // console.log(a.children.map((c: any) => c.content.innerHTML))
-    })
 
     const move = (e: any) => {
         const margin = 0 // todo?

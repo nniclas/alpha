@@ -12,7 +12,7 @@ import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import { FieldArgs } from '../../types/field-args'
 import { EffectArgs } from '../../types/effect-args'
-import { createEffect, createSignal, onMount } from 'solid-js'
+import { batch, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 
 export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const ssDefault = scopeStyles(styles, a)
@@ -20,9 +20,20 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
 
-    // createEffect(() => {
-    //     console.log(cs())
-    // })
+    let ssRes: any
+    let csRes: any
+
+    createEffect(() => {
+        // console.log(cs())
+
+        // !!!
+        // investigate this: when parent has a res prop all Field children is rendered twice.
+        // see replaceWithLayeredStyles() where it happens
+        ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
+        csRes = customStyles(a.res, styleMap)
+
+        if (a.id == 'fjongen') console.log('fjong!')
+    })
 
     // when manually using class prop
     let ac
@@ -32,17 +43,21 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     }
 
     /////////// custom styles responsive handling ////////////
-    if (isObjectWithProps(a.res)) {
-        const ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
-        const csRes = customStyles(a.res, styleMap)
 
+    if (isObjectWithProps(a.res)) {
         const resStyles = () => {
             if (isCompact()) {
-                setSs(ssRes)
-                setCs(csRes)
-            } else {
-                setSs(ssDefault)
-                setCs(csDefault)
+                batch(() => {
+                    setSs(ssRes)
+                    setCs(csRes)
+                })
+            }
+
+            if (!isCompact()) {
+                batch(() => {
+                    setSs(ssDefault)
+                    setCs(csDefault)
+                })
             }
         }
 
@@ -50,21 +65,11 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
             resStyles()
         })
 
-        window.addEventListener(
-            'resize',
-            (e: any) => {
-                resStyles()
-            },
-            false
-        )
+        onMount(() => window.addEventListener('resize', resStyles))
+        onCleanup(() => window.removeEventListener('resize', resStyles))
     }
-    //////////////////////////////////////////////////////////
 
-    // let st // when manually adding style
-    // if (a.style) {
-    //     st = { ...a.style }
-    //     delete a.style
-    // }
+    //////////////////////////////////////////////////////////
 
     let st // when manually adding style
     if (a.style) {

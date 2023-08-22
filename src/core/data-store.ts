@@ -41,7 +41,7 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 }
 
 function createDataState() {
-    const [units, setUnits] = createSignal<Unit[]>([])
+    const [units] = createSignal<Unit[]>([])
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
     const [selectedWeek, setSelectedWeek] = createSignal<string>()
     // const [entries] = createSignal<Entry[]>([])
@@ -52,6 +52,7 @@ function createDataState() {
     })
 
     const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
+        console.log('fetch all units')
         return await getItems<Unit[]>('units')
     })
 
@@ -77,17 +78,11 @@ function createDataState() {
 
     const getUnitIndex = (unitId?: number) => {
         // default is selected unit
-        return units().indexOf(
-            units().filter((u) => u.id == unitId ?? selectedUnitRes()!.id)[0]
+        return unitsRes()!.indexOf(
+            unitsRes()!.filter(
+                (u) => u.id == unitId ?? selectedUnitRes()!.id
+            )[0]
         )
-    }
-
-    // used to manually trigger fetchers, after log on
-    const initalize = async () => {
-        const units = await getItems<Unit[]>('units')
-        setUnits(units)
-        await delay(250)
-        setSelectedUnitId(units[0].id)
     }
 
     return {
@@ -96,7 +91,6 @@ function createDataState() {
         entriesRes,
         selectedUnitId,
         setSelectedUnitId,
-        initalize,
         getUnitIndex,
     }
 }

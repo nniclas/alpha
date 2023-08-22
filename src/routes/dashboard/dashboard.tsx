@@ -20,9 +20,9 @@ import { Collapser } from '../../components/collapser/collapser'
 export const Dashboard: Component = () => {
     createEffect(async () => {
         // on successful log on (user has entered dashboard) manually trigger resource fetches
-        if (!ds.selectedUnitRes()) {
-            ds.initalize()
-        }
+        // if (!ds.selectedUnitRes()) {
+        //     ds.initalize()
+        // }
     })
 
     return (

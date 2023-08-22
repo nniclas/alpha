@@ -9,7 +9,7 @@ import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import { EffectArgs } from '../../types/effect-args'
 import { ButtonArgs } from '../../types/button-args'
-import { createSignal, onMount } from 'solid-js'
+import { createSignal, onCleanup, onMount } from 'solid-js'
 import { styleMap } from './style-map'
 
 export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
@@ -33,13 +33,8 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
             resStyles()
         })
 
-        window.addEventListener(
-            'resize',
-            (e: any) => {
-                resStyles()
-            },
-            false
-        )
+        onMount(() => window.addEventListener('resize', resStyles))
+        onCleanup(() => window.removeEventListener('resize', resStyles))
     }
     //////////////////////////////////////////////////////////
 

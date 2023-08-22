@@ -1,4 +1,4 @@
-import { Component, For, Suspense } from 'solid-js'
+import { Component, For, Suspense, createEffect } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 import ds from '../../core/data-store'
@@ -17,7 +17,7 @@ import { Label } from '../../lib/components/label/label'
 import Logo from '../../assets/logo.svg?component-solid'
 
 export const Header: Component = () => {
-    const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
+    // const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
 
     const header = (auxText?: any) => (
         <SectionHeader
@@ -40,6 +40,10 @@ export const Header: Component = () => {
         />
     )
 
+    createEffect(() => {
+        // console.log('bong!')
+    })
+
     return (
         <Field
             s
@@ -47,7 +51,7 @@ export const Header: Component = () => {
             res={{ h: 200, bg: 'var(--color-light)' }}
             bg='var(--color-light)'
         >
-            <Field col>
+            <Field col id='fjongen'>
                 <Responsive s compact={header()}>
                     {header()}
                 </Responsive>
@@ -62,15 +66,24 @@ export const Header: Component = () => {
                             }
                         >
                             <Field layer col>
+                                {/* <Field gsm psm>
+                                    {units()}
+                                </Field> */}
                                 <Responsive
                                     compact={
                                         <Field>
-                                            <Slider>{units()}</Slider>
+                                            <Slider>
+                                                {ds.unitsRes()?.map((u) => (
+                                                    <MiniUnit u={u} />
+                                                ))}
+                                            </Slider>
                                         </Field>
                                     }
                                 >
                                     <Field gsm psm>
-                                        {units()}
+                                        {ds.unitsRes()?.map((u) => (
+                                            <MiniUnit u={u} />
+                                        ))}
                                     </Field>
                                 </Responsive>
                             </Field>

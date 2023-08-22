@@ -73,15 +73,6 @@ export const MiniUnit = (a: { u: Unit }) => {
                     gxs
                     bg={unitColors[ds.getUnitIndex(a.u.id)]}
                 >
-                    {/* <Field s pxs>
-                        <Field
-                            s
-                            style={`border-radius:16px;  background:${
-                                stateColors.find((sc) => sc.id == a.u.state)
-                                    ?.value
-                            }; width:12px; height:12px`}
-                        />
-                    </Field> */}
                     <Field psm>
                         <Text sm color='var(--color-lighter)'>
                             {a.u.name}
