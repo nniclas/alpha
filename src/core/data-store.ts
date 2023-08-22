@@ -47,8 +47,10 @@ function createDataState() {
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {
-        if (unitsRes() && unitsRes()?.length)
+        if (unitsRes() && unitsRes()?.length) {
+            console.log(unitsRes())
             setSelectedUnitId(unitsRes()![0].id)
+        }
     })
 
     const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
@@ -61,20 +63,22 @@ function createDataState() {
         (id) => getItems<Unit>(`units/${id}`)
     )
 
-    const [entriesRes] = createResource<Entry[], number>(
-        selectedUnitId,
-        (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
-    )
-
+    // const [entriesRes] = createResource<Entry[], number>(
+    //     selectedUnitId,
+    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
+    // )
     /////////////
     /////////////
     /// todo: optional added week parameter..
-    const [entriesTestRes] = createResource<Entry[], number, string>(
-        selectedUnitId,
-        (unitId, week) =>
-            getItems<Entry[]>(
+    // see https://docs.solidjs.com/references/api-reference/basic-reactivity/createResource
+    const [entriesRes] = createResource(
+        () => [selectedUnitId(), selectedWeek()] as const,
+        ([unitId, week]) => {
+            if (!unitId) return []
+            return getItems<Entry[]>(
                 `entries/unit/${unitId}${week ? `/week/${week}` : ''}`
             )
+        }
     )
 
     // const [entriesByWeekRes] = createResource<Entry[], string>(
