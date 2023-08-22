@@ -1,7 +1,13 @@
 .container {
-    padding: 0 32px 32px 32px;
+    padding: 16px 64px 64px 64px;
     display: grid;
     /* justify-content: center; */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .container {
+        padding: 0 32px 32px 32px;
+    }
 }

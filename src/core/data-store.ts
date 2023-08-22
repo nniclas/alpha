@@ -66,6 +66,17 @@ function createDataState() {
         (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
     )
 
+    /////////////
+    /////////////
+    /// todo: optional added week parameter..
+    const [entriesTestRes] = createResource<Entry[], number, string>(
+        selectedUnitId,
+        (unitId, week) =>
+            getItems<Entry[]>(
+                `entries/unit/${unitId}${week ? `/week/${week}` : ''}`
+            )
+    )
+
     // const [entriesByWeekRes] = createResource<Entry[], string>(
     //     selectedWeek,
     //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}/week/${unitId}`)
@@ -91,6 +102,8 @@ function createDataState() {
         entriesRes,
         selectedUnitId,
         setSelectedUnitId,
+        selectedWeek,
+        setSelectedWeek,
         getUnitIndex,
     }
 }

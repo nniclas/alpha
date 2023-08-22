@@ -5,27 +5,15 @@ import Text from '../../lib/elements/text/text'
 
 import styles from './timeline.module.css'
 import { trendColors } from '../../common/constants'
+import ds from '../../core/data-store'
+import { displayWeek, week } from '../../common/date-utils'
 
-const TESTWEEKS = ['30', '31', '32', '33']
+const TESTWEEKS = ['2023-30', '2023-31', '2023-32', '2023-33']
 
 export const TimeLine = () => {
     return (
         <Field rel c>
-            {/* <Field
-                layer
-                aic
-                rel
-                style='height:2px;   background:var(--color-accent)'
-            ></Field> */}
-
-            <Field
-                s
-                gsm
-                style='cursor:pointer;cursor:hand'
-                onClick={() => {
-                    console.log('todo change week!')
-                }}
-            >
+            <Field s gsm>
                 <For each={TESTWEEKS}>
                     {(w, i) => {
                         const c =
@@ -33,20 +21,17 @@ export const TimeLine = () => {
                                 ? 'var(--color-medium)'
                                 : 'var(--color-stronger)'
                         return (
-                            <Field rel>
-                                {/* <Field layer aic jce>
-                                        <Field
-                                            s
-                                            style={`height:2px; width:92px;  background:${c}`}
-                                        ></Field>
-                                    </Field> */}
+                            <Field
+                                rel
+                                onClick={() => {
+                                    ds.setSelectedWeek(w)
+                                }}
+                            >
                                 <Field
-                                    rel
-                                    c
-                                    s
-                                    style={`width: 50px; height:50px; ${
-                                        i() == TESTWEEKS.length - 1 &&
-                                        'border:2px solid var(--color-accent);  border-radius:32px'
+                                    class={styles.item}
+                                    style={` ${
+                                        w == ds.selectedWeek() &&
+                                        'border:2px solid var(--color-accent);  '
                                     } `}
                                 >
                                     <Field layer c>
@@ -55,25 +40,14 @@ export const TimeLine = () => {
                                             color={
                                                 i() == TESTWEEKS.length - 1
                                                     ? 'var(--color-accent)'
-                                                    : trendColors[0]
+                                                    : trendColors[2]
                                             }
                                             style='font-weight:bold'
                                         >
-                                            {'w ' + w}
+                                            {displayWeek(w)}
                                         </Text>
                                     </Field>
                                 </Field>
-                                {/* {i() < TESTWEEKS.length - 1 && (
-                                    <Field c>
-                                        <Field
-                                            s
-                                            c
-                                            a
-                                            class={`${styles.line}`}
-                                            style={`background:var(--color-medium)`}
-                                        ></Field>
-                                    </Field>
-                                )} */}
                             </Field>
                         )
                     }}

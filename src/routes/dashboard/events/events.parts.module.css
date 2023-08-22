@@ -15,6 +15,9 @@
 }
 
 .row {
+    cursor: pointer;
+    cursor: hand;
+    transition: 0.1s ease background;
 }
 .row:first-child {
     background: rgba(0, 0, 0, 0);
@@ -25,10 +28,9 @@
 .row:nth-child(2n + 3) {
     background: rgba(0, 0, 0, 0);
 }
-.row:hover {
-    /* background: rgba(0, 0, 0, 0.2); */
-    cursor: pointer;
-    cursor: hand;
+.row:hover,
+.row:active {
+    background: var(--color-strongest);
 }
 .headercell {
     min-width: 0px;

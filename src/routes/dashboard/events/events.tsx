@@ -35,7 +35,7 @@ export const Events = () => {
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (
-            <HeaderCell bg='var(--color-stronger)' bb='var(--color-middle)'>
+            <HeaderCell bg='var(--color-stronger)' bb='var(--color-medium)'>
                 <Responsive {...comp} addRule={as.section() != 'events'}>
                     <Field>
                         <Text xs accent>
@@ -93,7 +93,7 @@ export const Events = () => {
                 // color={}
             />
 
-            <Field s pmd res={{ psm: true }}>
+            <Field s pmd res={{ pwxs: true }}>
                 <TimeLine />
             </Field>
 

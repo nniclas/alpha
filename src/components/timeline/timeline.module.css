@@ -1,5 +1,13 @@
-.line {
-    width: 12px;
-    height: 2px;
-    margin-left: 24px;
+.item {
+    width: 54px;
+    height: 54px;
+    border-radius: 32px;
+    box-sizing: border-box;
+    transition: 0.1s ease border;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.item:hover {
+    border: 2px solid var(--color-light);
 }
