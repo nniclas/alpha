@@ -9,3 +9,7 @@ export const isABtn = (target: any) => {
         return true
     return false
 }
+
+export const randInt = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}

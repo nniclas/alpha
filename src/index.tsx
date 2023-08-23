@@ -1,6 +1,7 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
 import { App } from './app'
+import './common/_dev' // run any enabled script in DEV utils
 
 const root = document.getElementById('root')
 
