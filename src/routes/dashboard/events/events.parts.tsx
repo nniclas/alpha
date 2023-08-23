@@ -9,7 +9,7 @@ import {
 } from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
-import { FiMessageCircle, FiTag, FiUser } from 'solid-icons/fi'
+import { FiMessageCircle, FiPlay, FiTag, FiUser } from 'solid-icons/fi'
 import { Entry } from '../../../types/entities/entry'
 import { ValueIdTitle } from '../../../types/_types'
 import { EventIcon } from '../../../components/event-icon/event-icon'
@@ -18,13 +18,39 @@ import Responsive from '../../../lib/components/responsive/responsive'
 import as from '../../../core/app-store'
 import { Transition } from 'solid-transition-group'
 import { date } from '../../../common/date-utils'
+import Modal from '../../../lib/components/modal/modal'
+import { Label } from '../../../lib/components/label/label'
+import Dropdown from '../../../lib/components/dropdown/dropdown'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
+    const [details, setDetails] = createSignal<boolean>(false)
+
     return (
-        <Row>
+        <Row
+            onClick={(e: any) => {
+                setDetails(true)
+
+                console.log(a.e.notes)
+            }}
+        >
             <Cell>
+                <Field rel>
+                    <Dropdown
+                        jce
+                        dock='left'
+                        open={details()}
+                        items={[
+                            <Field pmd primary>
+                                <Text secondary sm res>
+                                    {a.e.notes}
+                                </Text>
+                            </Field>,
+                        ]}
+                    />
+                </Field>
+
                 <Responsive
                     compact={
                         <Field gsm>
@@ -67,6 +93,15 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                 )}
             </Cell>
             <Cell>
+                {a.e.notes && (
+                    <Responsive
+                        compact={<></>}
+                        addRule={as.section() != 'events'}
+                    >
+                        <FiMessageCircle {...iconStyle} />
+                    </Responsive>
+                )}
+
                 {/* <Text xs primary>
                     {a.e.notes && <></>}
                 </Text> */}
@@ -127,8 +162,10 @@ export const Table = (a: { children: any }) => (
     <table class={styles.table}>{a.children}</table>
 )
 
-export const Row = (a: { children: any }) => (
-    <tr class={styles.row}>{a.children}</tr>
+export const Row = (a: { children: any; onClick?: (e: any) => void }) => (
+    <tr onClick={a.onClick} class={styles.row}>
+        {a.children}
+    </tr>
 )
 
 export const Cell = (a: { children: any }) => (

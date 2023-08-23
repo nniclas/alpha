@@ -8,18 +8,22 @@ import { trendColors } from '../../common/constants'
 import ds from '../../core/data-store'
 import { displayWeek, week } from '../../common/date-utils'
 
-const TESTWEEKS = ['2023-30', '2023-31', '2023-32', '2023-33']
+const TESTWEEKS = ['2023-30', '2023-31', '2023-32', '2023-33', '2023-34']
 
 export const TimeLine = () => {
+    // createEffect(() => {
+    //     console.log(ds.selectedWeek())
+    // })
+
     return (
         <Field rel c>
             <Field s gsm>
                 <For each={TESTWEEKS}>
                     {(w, i) => {
-                        const c =
-                            i() == TESTWEEKS.length - 1
-                                ? 'var(--color-medium)'
-                                : 'var(--color-stronger)'
+                        // const c =
+                        //     i() == TESTWEEKS.length - 1
+                        //         ? 'var(--color-medium)'
+                        //         : 'var(--color-stronger)'
                         return (
                             <Field
                                 rel
@@ -31,18 +35,23 @@ export const TimeLine = () => {
                                     class={styles.item}
                                     style={` ${
                                         w == ds.selectedWeek() &&
-                                        'border:2px solid var(--color-accent);  '
+                                        'border-bottom:2px solid var(--color-accent);  '
                                     } `}
                                 >
                                     <Field layer c>
                                         <Text
                                             sm
-                                            color={
-                                                i() == TESTWEEKS.length - 1
+                                            // class={styles.text}
+                                            // color={
+                                            //     w == ds.selectedWeek()
+                                            //         ? 'var(--color-accent)'
+                                            //         : 'var(--color-middle)'
+                                            // }
+                                            style={`font-weight:bold; color:${
+                                                w == ds.selectedWeek()
                                                     ? 'var(--color-accent)'
-                                                    : trendColors[2]
-                                            }
-                                            style='font-weight:bold'
+                                                    : 'var(--color-middle)'
+                                            }`}
                                         >
                                             {displayWeek(w)}
                                         </Text>

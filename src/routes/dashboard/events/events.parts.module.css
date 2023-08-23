@@ -15,6 +15,7 @@
 }
 
 .row {
+    position: relative;
     cursor: pointer;
     cursor: hand;
     transition: 0.1s ease background;

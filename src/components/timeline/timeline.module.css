@@ -1,7 +1,7 @@
 .item {
-    width: 54px;
-    height: 54px;
-    border-radius: 32px;
+    width: 42px;
+    height: 42px;
+    /* border-radius: 32px; */
     box-sizing: border-box;
     transition: 0.1s ease border;
     cursor: pointer;
@@ -9,5 +9,5 @@
 }
 
 .item:hover {
-    border: 2px solid var(--color-light);
+    border-bottom: 2px solid var(--color-accent);
 }

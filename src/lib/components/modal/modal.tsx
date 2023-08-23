@@ -5,8 +5,9 @@ import { FieldArgs } from '../../types/field-args'
 import Button from '../../elements/button/button'
 
 interface Args {
-    buttonContent: any
-    children: any
+    children: any // modal content
+    buttonContent?: any
+    open?: boolean
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
@@ -20,6 +21,10 @@ export default (a: Args & BaseArgs & FieldArgs) => {
         if (!open()) {
             setChildren(null)
         }
+
+        if (a.open != undefined) setOpen(a.open)
+
+        // console.log(a.open)
     })
 
     return (

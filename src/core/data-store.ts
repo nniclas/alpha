@@ -43,7 +43,7 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 function createDataState() {
     const [units] = createSignal<Unit[]>([])
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
-    const [selectedWeek, setSelectedWeek] = createSignal<string>()
+    const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {

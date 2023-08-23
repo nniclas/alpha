@@ -6,23 +6,30 @@ import Button from '../../elements/button/button'
 
 interface Args {
     dock?: 'left' | 'right'
-    buttonContent: any
+    buttonContent?: any
     items: any[]
+    open?: boolean
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
 
+    createEffect(() => {
+        if (a.open != undefined) setOpen(a.open)
+    })
+
     return (
         <Field rel {...a}>
-            <Button
-                onClick={(e) => {
-                    setOpen(true)
-                    e.stopPropagation()
-                }}
-            >
-                {a.buttonContent}
-            </Button>
+            {a.buttonContent && (
+                <Button
+                    onClick={(e) => {
+                        setOpen(true)
+                        e.stopPropagation()
+                    }}
+                >
+                    {a.buttonContent}
+                </Button>
+            )}
 
             <Field
                 a

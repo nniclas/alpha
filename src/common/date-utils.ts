@@ -1,6 +1,6 @@
 import { format, parseISO, getISOWeek, getYear } from 'date-fns'
 
-const DATEFORMAT = 'dd-MM-yyyy HH:mm'
+const DATEFORMAT = 'yyyy-MM-dd HH:mm'
 const WEEKFORMAT = '{y}-{w}'
 const WEEKDISPLAYFORMAT = 'w {w}'
 

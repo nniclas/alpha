@@ -47,12 +47,14 @@ export const generateSomeEntries = (
 
         const notesIndex = randInt(0, someNotes.length * 6)
         const notes =
-            notesIndex <= someNotes.length - 1 ? someNotes[notesIndex] : 'NULL'
+            notesIndex <= someNotes.length - 1
+                ? `"${someNotes[notesIndex]}"`
+                : 'NULL'
 
         const date = someDates[randInt(0, unitIds.length - 1)]
 
         result += `
-        (${unitid}, ${userid}, ${event}, ${measure}, ${tag}, "${notes}", "${date}")${
+        (${unitid}, ${userid}, ${event}, ${measure}, ${tag}, ${notes}, "${date}")${
             i < count - 1 ? ',' : ';'
         } `
     }
@@ -64,4 +66,4 @@ export const generateSomeEntries = (
 /////////////// CONSOLE LOG SQL SCRIPTS (comment/uncomment to run/disable)
 //////////////////////////////////////////////////////
 
-// console.log(generateSomeEntries([1, 2, 3, 4], [1, 2, 3], 30))
+//console.log(generateSomeEntries([1, 2, 3, 4], [1, 2, 3], 30))
