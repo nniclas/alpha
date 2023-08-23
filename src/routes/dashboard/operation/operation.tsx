@@ -4,6 +4,7 @@ import {
     createEffect,
     createSignal,
     lazy,
+    onCleanup,
     onMount,
 } from 'solid-js'
 
@@ -13,16 +14,7 @@ import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import mds from '../../../core/machine-data-store'
 import { FiSettings, FiSunrise } from 'solid-icons/fi'
-import { UnitMeter } from '../../../components/unit-meter/unit-meter'
-import { CircularMeter } from '../../../components/circular-meter/circular-meter'
-import { Unit } from 'types/entities/unit'
-import { Transition } from 'solid-transition-group'
-import styles from './operation.module.css'
-import dataStore from '../../../core/data-store'
-import { isCompact } from '../../../lib/utils'
-import Responsive from '../../../lib/components/responsive/responsive'
-import { Slider } from '../../../lib/components/slider/slider'
-import { Label } from '../../../lib/components/label/label'
+
 import {
     BatteryLevelArea,
     ChargeControlArea,
@@ -30,70 +22,51 @@ import {
     ProcessorUsageArea,
     SignalStrengthArea,
 } from './operation.parts'
-import { SectionHeader } from '../../../parts/section-header'
-import { unitColors } from '../../../common/constants'
-import { SvgUnitMeter } from '../../../components/svg-unit-meter/svg-unit-meter'
-import { Mover } from '../../../components/mover/mover'
-import Button from '../../../lib/elements/button/button'
+import { SectionHeader } from '../../../parts/section-header/section-header'
+
 import { Container } from '../../../components/area/container'
+import { isCompact } from '../../../lib/utils'
 
 export const Operation = () => {
+    let container: any
+
     createEffect(() => {
-        if (dataStore.selectedUnitRes()) {
+        if (ds.selectedUnitRes()) {
             mds.reset()
+        }
+
+        if (as.section()) {
+            container.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            })
         }
     })
 
-    // const meters = () => {
-    //     return (
-    //         <>
-    //             <SignalStrength />
-    //             <BatteryLevel />
-    //             <ProcessorUsage />
-    //         </>
-    //     )
-    // }
+    const scrollHandler = (e: Event) => {
+        if (isCompact() && as.section() != 'operation') container.scrollTop = 0
+    }
 
-    // console.log(appStore.section(), a.unit?.name)
+    onMount(() => container.addEventListener('scroll', scrollHandler))
+    onCleanup(() => container.removeEventListener('resize', scrollHandler))
 
     return (
-        <Field
-            rel
-            a
-            // bt={`12px solid ${
-            //     unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-            // }`}
-            // res={{
-            //     bl: `12px solid ${
-            //         unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-            //     }`,
-            // }}
-        >
-            <Field col style='overflow:scroll'>
-                {/* <Field layer col style='pointer-events:none'>
-                    <Responsive
-                        compact={
-                            <div
-                                style={`transition:.4s ease border; flex:1; border-left:2px solid ${
-                                    unitColors[
-                                        ds.getUnitIndex(ds.selectedUnitId())
-                                    ]
-                                }`}
-                            ></div>
-                        }
-                    >
-                        <div
-                            style={`transition:.4s ease border; flex:1; border-top:2px solid ${
-                                unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-                            }`}
-                        ></div>
-                    </Responsive>
-                </Field> */}
-
+        <Field rel a>
+            <Field
+                col
+                ref={container}
+                style={`overflow:scroll`}
+                // res={{
+                //     style: `overflow:${
+                //         as.section() == 'operation' ? 'scroll' : 'visible'
+                //     }`,
+                // }}
+            >
                 <SectionHeader
                     title='Operation'
                     icon={<FiSettings />}
                     iconTheme='tertiary'
+                    click={() => as.setSection('operation')}
                 />
 
                 <Field s pwmd>

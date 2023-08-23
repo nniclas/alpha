@@ -19,7 +19,7 @@ import { Transition } from 'solid-transition-group'
 import { Dev } from './routes/_dev'
 import Responsive from './lib/components/responsive/responsive'
 import Text from './lib/elements/text/text'
-import { SectionHeader } from './parts/section-header'
+import { SectionHeader } from './parts/section-header/section-header'
 import { FiAlertTriangle } from 'solid-icons/fi'
 
 // import BG from './assets/bg2.svg?component-solid'

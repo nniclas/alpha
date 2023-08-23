@@ -20,7 +20,7 @@ import {
     HeaderCell,
 } from './events.parts'
 import Responsive from '../../../lib/components/responsive/responsive'
-import { SectionHeader } from '../../../parts/section-header'
+import { SectionHeader } from '../../../parts/section-header/section-header'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { Label } from '../../../lib/components/label/label'
 import { TimeLine } from '../../../components/timeline/timeline'
@@ -90,6 +90,7 @@ export const Events = () => {
                         <EditEntry />
                     </Modal>
                 }
+                click={() => as.setSection('events')}
                 // color={}
             />
 
@@ -100,8 +101,8 @@ export const Events = () => {
             <Field
                 col
                 gsm
-                pmd
-                res={{ col: false, psm: true }}
+                plg
+                res={{ col: false, pmd: true }}
                 style={`flex-direction:${
                     as.section() == 'events' || !isCompact() ? 'column' : 'row'
                 } `}

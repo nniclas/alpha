@@ -31,8 +31,6 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
         // see replaceWithLayeredStyles() where it happens
         ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
         csRes = customStyles(a.res, styleMap)
-
-        if (a.id == 'fjongen') console.log('fjong!')
     })
 
     // when manually using class prop

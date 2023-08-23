@@ -11,7 +11,7 @@ import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { MainMenu, MiniUnit } from './header.parts'
 import { Slider } from '../../lib/components/slider/slider'
-import { SectionHeader } from '../../parts/section-header'
+import { SectionHeader } from '../section-header/section-header'
 import Button from '../../lib/elements/button/button'
 import { Label } from '../../lib/components/label/label'
 import Logo from '../../assets/logo.svg?component-solid'
@@ -51,7 +51,7 @@ export const Header: Component = () => {
             res={{ h: 200, bg: 'var(--color-light)' }}
             bg='var(--color-light)'
         >
-            <Field col id='fjongen'>
+            <Field col>
                 <Responsive s compact={header()}>
                     {header()}
                 </Responsive>

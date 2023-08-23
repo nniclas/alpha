@@ -19,11 +19,15 @@ import { Loader } from '../../components/loader/loader'
 import Responsive from '../../lib/components/responsive/responsive'
 import { isCompact } from '../../lib/utils'
 
-const flexClosed = 'flex-basis:400px; min-width:400px'
-const flexOpen = 'flex-basis:calc(100% - 400px)'
-const flexClosedCompact = 'flex-basis:60px; min-height:60px'
-const flexOpenCompact = 'flex-basis:calc(100% - 60px)'
-const style = 'transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
+// todo: in constants
+const COMPACT_HEADER_SIZE = 60
+const MINIMIZED_WIDTH = 500
+
+const flexClosed = `flex-basis:${MINIMIZED_WIDTH}px; min-width:${MINIMIZED_WIDTH}px`
+const flexOpen = `flex-basis:calc(100% - ${MINIMIZED_WIDTH}px)`
+const flexClosedCompact = `flex-basis:${COMPACT_HEADER_SIZE}px; min-height:${COMPACT_HEADER_SIZE}px`
+const flexOpenCompact = `flex-basis:calc(100% - ${COMPACT_HEADER_SIZE}px)`
+const style = `transition:1s cubic-bezier(0.19, 1, 0.22, 1) all`
 
 interface Args {
     sections: { s: string; c: any }[] // 2
@@ -34,6 +38,10 @@ interface Args {
 export const Collapser = (a: Args) => {
     const [compact, setCompact] = createSignal<boolean>(false)
     const [section, setSection] = createSignal<string>(a.sections[0].s)
+
+    createEffect(() => {
+        if (appStore.section()) setSection(appStore.section())
+    })
 
     createEffect(() => {
         size()
@@ -69,10 +77,10 @@ export const Collapser = (a: Args) => {
                                               style,
                                           ].join(';')
                                 }
-                                onClick={() => {
-                                    a.openAction(sec.s)
-                                    setSection(sec.s)
-                                }}
+                                // onClick={() => {
+                                //     a.openAction(sec.s)
+                                //     setSection(sec.s)
+                                // }}
                             >
                                 {sec.c}
                             </Field>

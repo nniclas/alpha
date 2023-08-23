@@ -1,0 +1,10 @@
+.clicker {
+    cursor: pointer;
+    cursor: hand;
+    transition: 0.2s ease background;
+}
+
+/* .clicker:hover,
+.clicker:active {
+    background: var(--color-stronger);
+} */
