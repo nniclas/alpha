@@ -24,32 +24,63 @@ import Dropdown from '../../../lib/components/dropdown/dropdown'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
+const Details = (a: { entry: Entry; compact?: boolean }) => {
+    const field = (h: string, val: string) => (
+        <Field col psm gsm>
+            <Text accent sm res>
+                {h}
+            </Text>
+            <Text secondary sm res>
+                {val}
+            </Text>
+        </Field>
+    )
+
+    return (
+        <Field plg={a.compact == false}>
+            <Field pmd secondary col={a.compact == true}>
+                <For each={Object.keys(a.entry)}>
+                    {(k, i) => field(k, Object.values(a.entry)[i()])}
+                </For>
+            </Field>
+        </Field>
+    )
+}
+
 export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
     const [details, setDetails] = createSignal<boolean>(false)
 
     return (
         <Row
             onClick={(e: any) => {
-                setDetails(true)
+                setDetails(!details())
 
                 console.log(a.e.notes)
             }}
         >
             <Cell>
-                <Field rel>
-                    <Dropdown
-                        jce
-                        dock='left'
-                        open={details()}
-                        items={[
-                            <Field pmd primary>
-                                <Text secondary sm res>
-                                    {a.e.notes}
-                                </Text>
-                            </Field>,
-                        ]}
-                    />
-                </Field>
+                {a.e.notes && (
+                    <Field
+                        layer
+                        rel
+                        style='position:fixed;top:50%;pointer-events:none'
+                    >
+                        <Responsive
+                            compact={
+                                <Modal jcc open={details()}>
+                                    <Details compact entry={a.e} />
+                                </Modal>
+                            }
+                        >
+                            <Dropdown
+                                jce
+                                dock='left'
+                                open={details()}
+                                items={[<Details entry={a.e} />]}
+                            />
+                        </Responsive>
+                    </Field>
+                )}
 
                 <Responsive
                     compact={
