@@ -92,6 +92,8 @@ function createDataState() {
     // )
 
     const getUnitIndex = (unitId?: number) => {
+        if (!unitsRes()) return 0
+
         // default is selected unit
         return unitsRes()!.indexOf(
             unitsRes()!.filter(

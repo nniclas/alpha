@@ -16,36 +16,48 @@ import { Transition } from 'solid-transition-group'
 import { Unit } from '../../types/entities/unit'
 import { Loader } from '../../components/loader/loader'
 import { Collapser } from '../../components/collapser/collapser'
+import { unitColors } from '../../common/constants'
 
 export const Dashboard: Component = () => {
-    createEffect(async () => {
+    createEffect(() => {
         // on successful log on (user has entered dashboard) manually trigger resource fetches
         // if (!ds.selectedUnitRes()) {
         //     ds.initalize()
         // }
+
+        console.log(ds.getUnitIndex(ds.selectedUnitId()))
     })
 
     return (
-        <Field rel>
-            <Transition name='fade'>
-                <Suspense
-                    fallback={
-                        <Field a layer c style='pointer-events:none'>
-                            <Loader />
-                        </Field>
-                    }
-                >
-                    {ds.selectedUnitRes() && (
-                        <Collapser
-                            sections={[
-                                { s: 'operation', c: <Operation /> },
-                                { s: 'events', c: <Events /> },
-                            ]}
-                            openAction={(sec: any) => appStore.setSection(sec)}
-                        />
-                    )}
-                </Suspense>
-            </Transition>
+        <Field col>
+            <Field
+                style={`height:8px; flex:none; background: ${
+                    unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+                }`}
+            />
+            <Field rel>
+                <Transition name='fade'>
+                    <Suspense
+                        fallback={
+                            <Field a layer c style='pointer-events:none'>
+                                <Loader />
+                            </Field>
+                        }
+                    >
+                        {ds.selectedUnitRes() && (
+                            <Collapser
+                                sections={[
+                                    { s: 'operation', c: <Operation /> },
+                                    { s: 'events', c: <Events /> },
+                                ]}
+                                openAction={(sec: any) =>
+                                    appStore.setSection(sec)
+                                }
+                            />
+                        )}
+                    </Suspense>
+                </Transition>
+            </Field>
         </Field>
     )
 }

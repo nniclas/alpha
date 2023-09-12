@@ -36,6 +36,7 @@ import { Label } from '../../lib/components/label/label'
 import EditUnit from '../../components/edit-unit/edit-unit'
 import { unitColors } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
+import Settings from '../../components/settings/settings'
 
 const meterColors = {
     meterColor: 'var(--color-strong)',
@@ -95,107 +96,6 @@ export const MiniUnit = (a: { u: Unit }) => {
             </Field>
         </Field>
     )
-
-    return (
-        <Field s col>
-            <Field s col h={ps} gxs c>
-                <Text sm secondary>
-                    {a.u.name}
-                </Text>
-                <Field
-                    secondary
-                    w={ps * 3}
-                    h={ps}
-                    c
-                    style='border-radius:1020px;gap:240px;width:180px;height:60px'
-                >
-                    <UnitMeter value={73} scale={10} {...meterColors} />
-                </Field>
-            </Field>
-            {/* <Field>
-                <Field s w={ps} h={ps} c>
-                    <Field
-                        s
-                        style={`border-radius:16px;  background:${
-                            stateColors.find((sc) => sc.id == a.u.state)?.value
-                        }; width:12px; height:12px`}
-                    />
-                </Field>
-                <Field s w={ps} h={ps} c>
-                    <UnitStateIcon value={a.u.state} />
-                </Field>
-            </Field> */}
-        </Field>
-    )
-
-    return (
-        <Field
-            onClick={(e) => {
-                ds.setSelectedUnitId(a.u.id)
-                // u.selected = true
-                // machineDataStore.setPollingActive(false)
-            }}
-            style='cursor:pointer;cursor:hand'
-            s
-        >
-            <Field col gsm>
-                <Field
-                    a
-                    gsm
-                    style={` border-bottom:0px solid var(--color-strong); border-bottom: 2px solid ${
-                        ds.selectedUnitId() == a.u.id
-                            ? 'var(--color-middle)'
-                            : 'var(--color-lighter)'
-                    } `}
-                >
-                    <Field gsm pmd>
-                        <Field col gsm>
-                            <Field s gsm aic>
-                                <Field s aic gxs>
-                                    {/* <Field
-                                        s
-                                        style={`border-radius:16px;  background:${
-                                            stateColors.find(
-                                                (sc) => sc.id == a.u.state
-                                            )?.value
-                                        }; width:12px; height:12px`}
-                                    /> */}
-                                    <UnitStateIcon value={a.u.state} />
-                                </Field>
-                                <Text sm secondary>
-                                    {a.u.name}
-                                </Text>
-                            </Field>
-
-                            <Field s gsm c>
-                                <UnitMeter
-                                    value={73}
-                                    scale={10}
-                                    {...meterColors}
-                                />
-                            </Field>
-                        </Field>
-                        {/* <Field s c gsm>
-                          
-                        </Field> */}
-                        <Field s ais>
-                            <Modal
-                                jcc
-                                buttonContent={
-                                    <FiEdit
-                                        size={18}
-                                        color='var(--color-middle)'
-                                    />
-                                }
-                            >
-                                <ManageUnitModal unit={a.u} />
-                            </Modal>
-                        </Field>
-                    </Field>
-                </Field>
-            </Field>
-        </Field>
-    )
 }
 
 export const MainMenu = () => {
@@ -226,12 +126,12 @@ export const MainMenu = () => {
             buttonContent={
                 <Field accent psm s h={60} w={100} c>
                     <Label secondary size='md' iconTheme='secondary'>
-                        add unit
+                        settings
                     </Label>
                 </Field>
             }
         >
-            <EditUnit />
+            <Settings />
         </Modal>,
     ]
 
@@ -277,7 +177,7 @@ export const MainMenu = () => {
                                     </Field>
                                 }
                             >
-                                <EditUnit />
+                                <Settings />
                             </Modal>
                             <Field s>
                                 <Button

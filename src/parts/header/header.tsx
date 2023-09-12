@@ -80,7 +80,11 @@ export const Header: Component = () => {
                                         </Field>
                                     }
                                 >
-                                    <Field gsm psm>
+                                    <Field
+                                        gmd
+                                        pmd
+                                        res={{ gsm: true, psm: true }}
+                                    >
                                         {ds.unitsRes()?.map((u) => (
                                             <MiniUnit u={u} />
                                         ))}
