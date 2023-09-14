@@ -40,6 +40,12 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
         delete a.class
     }
 
+    let st // when manually adding style
+    if (a.style) {
+        st = a.style
+        // delete a.style
+    }
+
     /////////// custom styles responsive handling ////////////
 
     if (isObjectWithProps(a.res)) {
@@ -68,12 +74,6 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     }
 
     //////////////////////////////////////////////////////////
-
-    let st // when manually adding style
-    if (a.style) {
-        st = a.style
-        // delete a.style
-    }
 
     return (
         <div

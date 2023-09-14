@@ -7,32 +7,32 @@
     cursor: hand;
 }
 
-.btn.br {
+.br {
     border-radius: var(--rounding);
 }
 
-.btn.sm {
+.sm {
     width: 128px;
     height: 32px;
 }
-.btn.md {
+.md {
     width: 124px;
     height: 48px;
 }
-.btn.lg {
+.lg {
     width: 256px;
     height: 96px;
 }
 @media only screen and (max-width: 1400px) {
-    .btn.sm.res {
+    .sm.res {
         width: 96px;
         height: 24px;
     }
-    .btn.md.res {
+    .md.res {
         width: 128px;
         height: 48px;
     }
-    .btn.lg.res {
+    .lg.res {
         width: 192px;
         height: 64px;
     }
@@ -91,4 +91,9 @@
 .illume:hover,
 .illume:active {
     background-color: var(--illume-bg);
+}
+
+/* --- EFFECTS --- */
+.a {
+    transition: var(--transition);
 }

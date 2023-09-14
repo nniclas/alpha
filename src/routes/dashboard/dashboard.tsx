@@ -24,13 +24,13 @@ export const Dashboard: Component = () => {
         // if (!ds.selectedUnitRes()) {
         //     ds.initalize()
         // }
-
-        console.log(ds.getUnitIndex(ds.selectedUnitId()))
+        // console.log(ds.getUnitIndex(ds.selectedUnitId()))
     })
 
     return (
         <Field col>
             <Field
+                a
                 style={`height:8px; flex:none; background: ${
                     unitColors[ds.getUnitIndex(ds.selectedUnitId())]
                 }`}
