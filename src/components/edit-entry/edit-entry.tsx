@@ -22,8 +22,8 @@ interface Args {
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const btnStyle = {
-    secondary: true,
-    style: 'border-bottom:2px solid var(--color-accent);',
+    tertiary: true,
+    // style: 'border-bottom:2px solid var(--color-accent);',
 }
 
 export default (a: Args) => {
@@ -51,7 +51,7 @@ export default (a: Args) => {
         <Field
             rel
             w={800}
-            h={600}
+            h={800}
             s
             res={{ s: false, w: 'auto', h: 'auto' }}
             secondary
@@ -131,7 +131,7 @@ export default (a: Args) => {
                                     />
                                 </Field>
                             </Field>
-                            <Field s gmd>
+                            <Field s gmd res={{ col: true }}>
                                 <Field
                                     s
                                     col
@@ -164,6 +164,33 @@ export default (a: Args) => {
                                         }}
                                         buttonArgs={btnStyle}
                                     />
+                                </Field>{' '}
+                                <Field
+                                    s
+                                    col
+                                    gsm
+                                    h={48}
+                                    w={300}
+                                    res={{ w: 200, h: 48 }}
+                                >
+                                    <Text xs primary>
+                                        Date
+                                    </Text>
+                                    <Textfield
+                                        xs
+                                        secondary
+                                        placeholder='Today'
+                                        value={entry()?.notes}
+                                        focus
+                                        psm
+                                        color='var(--color-accent)'
+                                        change={(v) => {
+                                            ///,...............
+                                        }}
+                                        style='pointer-events:none; user-select:none'
+                                    >
+                                        Today
+                                    </Textfield>
                                 </Field>
                             </Field>
                             <Field s col gsm w={300} res={{ w: 200 }}>
@@ -187,7 +214,7 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field s gsm jce focus pmd>
+                        <Field secondary s gsm jce pmd>
                             {action == 'edit' && (
                                 <Modal
                                     jcc
@@ -208,7 +235,6 @@ export default (a: Args) => {
                                 </Modal>
                             )}
 
-                            <Field />
                             <Button
                                 tertiary
                                 md
@@ -217,7 +243,7 @@ export default (a: Args) => {
                                     console.log('save here..')
                                 }}
                             >
-                                <Text secondary xs>
+                                <Text primary xs>
                                     {action == 'edit' ? 'save' : 'add'}
                                 </Text>
                             </Button>

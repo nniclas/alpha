@@ -26,19 +26,19 @@ const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const Details = (a: { entry: Entry; compact?: boolean }) => {
     const field = (h: string, val: string) => (
-        <Field col psm gsm>
+        <Field pwsm col gsm>
             <Text accent sm res>
-                {h}
-            </Text>
-            <Text secondary sm res>
                 {val}
             </Text>
+            {/* <Text secondary sm res>
+                {val}
+            </Text> */}
         </Field>
     )
 
     return (
-        <Field plg={a.compact == false}>
-            <Field pmd secondary col={a.compact == true}>
+        <Field s>
+            <Field col={a.compact == true}>
                 <For each={Object.keys(a.entry)}>
                     {(k, i) => field(k, Object.values(a.entry)[i()])}
                 </For>
@@ -48,10 +48,12 @@ const Details = (a: { entry: Entry; compact?: boolean }) => {
 }
 
 export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
+    const [open, setOpen] = createSignal<boolean>(false)
     const [details, setDetails] = createSignal<boolean>(false)
 
     return (
         <Row
+            open={details()}
             onClick={(e: any) => {
                 setDetails(!details())
 
@@ -59,7 +61,8 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
             }}
         >
             <Cell>
-                {a.e.notes && (
+                <Field rel>
+                    {/* {a.e.notes && (
                     <Field
                         layer
                         rel
@@ -80,26 +83,30 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                             />
                         </Responsive>
                     </Field>
-                )}
+                )} */}
 
-                <Responsive
-                    compact={
+                    <Responsive
+                        compact={
+                            <Field gsm>
+                                <EventIcon value={a.t.value} />
+                                <Text res xs tertiary>
+                                    {a.t.title}
+                                </Text>
+                            </Field>
+                        }
+                        addRule={as.section() != 'events'}
+                    >
                         <Field gsm>
                             <EventIcon value={a.t.value} />
-                            <Text res xs tertiary>
+                            <Text xs tertiary>
                                 {a.t.title}
                             </Text>
                         </Field>
-                    }
-                    addRule={as.section() != 'events'}
-                >
-                    <Field gsm>
-                        <EventIcon value={a.t.value} />
-                        <Text xs tertiary>
-                            {a.t.title}
-                        </Text>
+                    </Responsive>
+                    <Field layer style='top:24px'>
+                        {details() && <Details entry={a.e} />}
                     </Field>
-                </Responsive>
+                </Field>
             </Cell>
             <Cell>
                 <Text xs tertiary>
@@ -193,14 +200,27 @@ export const Table = (a: { children: any }) => (
     <table class={styles.table}>{a.children}</table>
 )
 
-export const Row = (a: { children: any; onClick?: (e: any) => void }) => (
-    <tr onClick={a.onClick} class={styles.row}>
-        {a.children}
-    </tr>
-)
+export const Row = (a: {
+    children: any
+    open?: boolean
+    onClick?: (e: any) => void
+}) => {
+    return (
+        <tr
+            onClick={a.onClick}
+            class={`${styles.row} ${a.open && styles.open}`}
+        >
+            {a.children}
+        </tr>
+    )
+}
 
 export const Cell = (a: { children: any }) => (
-    <td class={styles.cell}>{a.children}</td>
+    <td class={styles.cell}>
+        <Field s h={60} aic>
+            {a.children}
+        </Field>
+    </td>
 )
 
 export const HeaderCell = (a: { bg: string; bb: string; children: any }) => (

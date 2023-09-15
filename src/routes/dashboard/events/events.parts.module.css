@@ -18,7 +18,8 @@
     /* position: relative; */
     cursor: pointer;
     cursor: hand;
-    transition: 0.1s ease background;
+    height: 60px;
+    transition: 0.1s ease background, 0.3s ease height;
 }
 .row:first-child {
     background: rgba(0, 0, 0, 0);
@@ -33,6 +34,9 @@
 .row:active {
     background: var(--color-strongest);
 }
+.row.open {
+    height: 180px;
+}
 .headercell {
     min-width: 0px;
     height: 60px;
@@ -42,7 +46,7 @@
 .cell {
     min-width: 0px;
     /* padding: 20px 0px; */
-
+    vertical-align: top;
     height: 60px;
 }
 
