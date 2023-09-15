@@ -29,7 +29,7 @@
     --primary-color: var(--color-light);
     --secondary-bg: var(--color-strongest);
     --secondary-color: var(--color-medium);
-    --tertiary-bg: var(--color-accent);
+    --tertiary-bg: var(--color-strong);
     --tertiary-color: var(--color-lightest);
     --accent-bg: var(--color-accent);
     --accent-color: var(--color-accent);

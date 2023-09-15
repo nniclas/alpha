@@ -1,7 +1,7 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
-import { FiX, FiXCircle } from 'solid-icons/fi'
+import { FiTrash, FiTrash2, FiX, FiXCircle } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
 import { createEffect, createSignal, onMount } from 'solid-js'
 import { Unit } from '../../types/entities/unit'
@@ -15,12 +15,15 @@ interface Args {
     unit?: Unit
 }
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-strong)' }
 
 export default (a: Args) => {
-    const action = a.unit ? 'edit' : 'add'
+    // const action = a.unit ? 'edit' : 'add'
 
-    const [firstOpen, setFirstOpen] = createSignal<boolean>(true)
+    // const [firstOpen, setFirstOpen] = createSignal<boolean>(true)
+    const [action, setAction] = createSignal<'edit' | 'add'>(
+        a.unit ? 'edit' : 'add'
+    )
     const [done, setDone] = createSignal<boolean>(false)
     const [isUnitChanged, setIsUnitChanged] = createSignal<boolean>(false)
     const [unit, setUnit] = createSignal<Unit>(
@@ -38,18 +41,14 @@ export default (a: Args) => {
     return (
         <Field
             rel
-            w={800}
-            h={600}
-            s
             res={{ s: false, w: 'auto', h: 'auto' }}
             secondary
             onClick={(e: any) => {
-                console.log('bsshh')
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >
             <Field a col>
-                {action == 'add' && (
+                {/* {action == 'add' && (
                     <Field s h={32} pmd c>
                         <Field gmd>
                             <Button
@@ -75,102 +74,104 @@ export default (a: Args) => {
                             </Button>
                         </Field>
                     </Field>
-                )}
+                )} */}
 
                 <Transition name='fade'>
-                    {(!firstOpen() || action == 'edit') && (
-                        <Field a col>
-                            <Field s h={32} focus pmd c>
-                                <Field s c>
-                                    {isUnitChanged() ? (
-                                        <Text lg accent>
+                    <Field a col gsm>
+                        <Field s h={32}>
+                            <Field s>
+                                {isUnitChanged() ? (
+                                    <Field s gsm c>
+                                        <Text
+                                            lg
+                                            accent
+                                            style='margin-top: -6px'
+                                        >
                                             •
                                         </Text>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </Field>
-                                <Field c>
-                                    <Text accent>{unit().name}</Text>
-                                </Field>
-                            </Field>
-
-                            <Field pmd col gmd>
-                                <Field s col gsm w={320}>
-                                    <Text xs primary>
-                                        Machine ID
-                                    </Text>
-                                    <Textfield
-                                        xs
-                                        placeholder='36 letter unique hardware ID'
-                                        value={unit().machineId}
-                                        primary
-                                        psm
-                                        color='var(--color-middle)'
-                                        style='pointer-events:none; user-select:none' // simplify demo
-                                        // change={(v) => ...}
-                                    />
-                                </Field>
-                                <Field s col gsm w={300}>
-                                    <Text xs primary>
-                                        Name
-                                    </Text>
-                                    <Textfield
-                                        xs
-                                        placeholder='Email'
-                                        value={unit().name}
-                                        primary
-                                        psm
-                                        color='var(--color-middle)'
-                                        change={(v) => {
-                                            const u = { ...unit() }
-                                            u.name = v
-                                            setUnit(u)
-                                        }}
-                                    />
-                                </Field>
-                            </Field>
-
-                            <Field s gsm jce focus pmd>
-                                {action == 'edit' && (
-                                    <Modal
-                                        jcc
-                                        pxl
-                                        buttonContent={
-                                            <Field
-                                                style='background:rgb(200,120,120)'
-                                                pmd
-                                            />
-                                        }
-                                    >
-                                        <ConfirmModal
-                                            confirmAction={() => {
-                                                console.log('ok lets go')
-                                                console.log('delete here..')
-                                            }}
-                                        />
-                                    </Modal>
+                                        <Text accent>New unit</Text>
+                                    </Field>
+                                ) : (
+                                    <></>
                                 )}
-
-                                <Field />
-                                <Button
-                                    tertiary
-                                    md
-                                    onClick={(e) => {
-                                        console.log(action)
-                                        console.log('save here..')
-                                    }}
-                                >
-                                    <Text secondary xs>
-                                        {action == 'edit' ? 'save' : 'add'}
-                                    </Text>
-                                </Button>
                             </Field>
                         </Field>
-                    )}
-                    {(firstOpen() || action == 'edit') && (
-                        <Field a focus></Field>
-                    )}
+
+                        <Field s col gmd>
+                            <Field s col w={320}>
+                                <Text xs primary>
+                                    Machine ID
+                                </Text>
+                                <Textfield
+                                    xs
+                                    placeholder='36 letter unique hardware ID'
+                                    value={unit().machineId}
+                                    primary
+                                    psm
+                                    color='var(--color-middle)'
+                                    style='pointer-events:none; user-select:none' // simplify demo
+                                    // change={(v) => ...}
+                                />
+                            </Field>
+                            <Field s col w={300}>
+                                <Text xs primary>
+                                    Name
+                                </Text>
+                                <Textfield
+                                    xs
+                                    placeholder='Unit name'
+                                    value={unit().name}
+                                    primary
+                                    psm
+                                    color='var(--color-middle)'
+                                    change={(v) => {
+                                        const u = { ...unit() }
+                                        u.name = v
+                                        setUnit(u)
+                                    }}
+                                />
+                            </Field>
+                        </Field>
+
+                        <Field s gsm jce pmd>
+                            {action() == 'edit' && (
+                                <Modal
+                                    jcc
+                                    pxl
+                                    buttonContent={
+                                        <Field
+                                            style='background:rgb(200,120,120)'
+                                            psm
+                                        >
+                                            <FiTrash2 {...iconStyle} />
+                                        </Field>
+                                    }
+                                >
+                                    <ConfirmModal
+                                        confirmAction={() => {
+                                            console.log('ok lets go')
+                                            console.log('delete here..')
+                                        }}
+                                    />
+                                </Modal>
+                            )}
+
+                            <Button
+                                tertiary
+                                md
+                                onClick={(e) => {
+                                    console.log(action)
+                                    console.log('save here..')
+                                }}
+                            >
+                                <Text secondary xs>
+                                    {action() == 'edit' ? 'save' : 'add'}
+                                </Text>
+                            </Button>
+                        </Field>
+                    </Field>
+
+                    {/* {action() == 'edit' && <Field a focus></Field>} */}
                 </Transition>
             </Field>
             {/* <Transition name='fade'>

@@ -28,17 +28,25 @@ interface Page {
 }
 
 interface Args {
-    pages: Page[]
+    pages?: Page[] // either a fixed set of pages based on conditions
+    children?: any // or just an updated new child
     tr?: string
 }
 
 export default (a: Args) => {
+    const createChild = (c: any) => {
+        return <Field layer>{c}</Field>
+    }
+
     return (
         <Field rel trim>
             <Transition name={a.tr || 'slide-fade'}>
-                <For each={a.pages}>
-                    {(p) => p.condition && <Field layer>{p.content}</Field>}
-                </For>
+                {a.children && createChild(a.children)}
+                {a.pages && (
+                    <For each={a.pages}>
+                        {(p) => p.condition && <Field layer>{p.content}</Field>}
+                    </For>
+                )}
             </Transition>
         </Field>
     )

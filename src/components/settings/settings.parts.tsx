@@ -1,30 +1,16 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
-import Button from '../../lib/elements/button/button'
-import {
-    FiAnchor,
-    FiEdit3,
-    FiList,
-    FiPlusCircle,
-    FiSettings,
-    FiUser,
-    FiUsers,
-    FiX,
-    FiXCircle,
-} from 'solid-icons/fi'
-import Modal from '../../lib/components/modal/modal'
-import { createEffect, createSignal, onMount } from 'solid-js'
-import { Unit } from '../../types/entities/unit'
-import Textfield from '../../lib/elements/textfield/textfield'
-import { isABtn } from '../../common/utils'
-import { v4 as uuidv4 } from 'uuid'
-import ConfirmModal from '../confirm-modal/confirm-modal'
-import { Transition } from 'solid-transition-group'
-import { ButtonGroup } from '../button-group/button-group'
-import Shifter from '../shifter/shifter'
 import { SelectButton } from '../select-button/select-button'
 import as from '../../core/app-store'
 import { themes } from '../../common/constants'
+import { For, createSignal } from 'solid-js'
+import ds from '../../core/data-store'
+import Button from '../../lib/elements/button/button'
+import { Unit } from 'types/entities/unit'
+import Shifter from '../../components/shifter/shifter'
+import { Transition } from 'solid-transition-group'
+import EditUnit from '../../components/edit-unit/edit-unit'
+import { FiPlus } from 'solid-icons/fi'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -88,9 +74,52 @@ export const AppSettings = () => {
 }
 
 export const UnitSettings = () => {
+    const [unit, setUnit] = createSignal<Unit | undefined>(ds.unitsRes()?.[0])
+
+    const createPage = (u: Unit | undefined) => <EditUnit unit={u} />
+
     return (
-        <Field pmd>
-            <Text sm>unit settings</Text>
+        <Field>
+            <Field s secondary pmd col gxs>
+                <For each={ds.unitsRes()}>
+                    {(u, i) => {
+                        const sel = (u: Unit) =>
+                            ds.unitsRes()?.indexOf(u!) == i()
+
+                        return (
+                            <Button
+                                a
+                                secondary
+                                tertiary={sel(unit()!)}
+                                md
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    setUnit(u)
+                                }}
+                            >
+                                <Text accent>{u.name}</Text>
+                            </Button>
+                        )
+                    }}
+                </For>
+                <Field aie>
+                    <Button
+                        a
+                        tertiary
+                        md
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            setUnit(undefined)
+                        }}
+                    >
+                        <FiPlus {...iconStyle} />
+                    </Button>
+                </Field>
+            </Field>
+            <Field plg>
+                {/* <Shifter>{createPage(unit())}</Shifter> */}
+                <Shifter>{createPage(unit())}</Shifter>
+            </Field>
         </Field>
     )
 }

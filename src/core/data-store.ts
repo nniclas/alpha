@@ -81,6 +81,13 @@ function createDataState() {
         }
     )
 
+    /////// WIP WIP
+    const addUnit = (u: Unit) => {
+        addItem<Unit>(u, 'units')
+
+        // refresh here??? update units resource
+    }
+
     // const [entriesByWeekRes] = createResource<Entry[], string>(
     //     selectedWeek,
     //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}/week/${unitId}`)
@@ -111,6 +118,7 @@ function createDataState() {
         selectedWeek,
         setSelectedWeek,
         getUnitIndex,
+        addUnit,
     }
 }
 
