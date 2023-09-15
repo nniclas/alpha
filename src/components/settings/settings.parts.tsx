@@ -11,8 +11,53 @@ import Shifter from '../../components/shifter/shifter'
 import { Transition } from 'solid-transition-group'
 import EditUnit from '../../components/edit-unit/edit-unit'
 import { FiPlus } from 'solid-icons/fi'
+import Textfield from '../../lib/elements/textfield/textfield'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
+
+export const UserSettings = () => {
+    return (
+        <Field pmd>
+            <Field s secondary pmd col gxs>
+                <Field s col w={320}>
+                    <Text xs primary>
+                        Id
+                    </Text>
+                    <Textfield
+                        xs
+                        placeholder='36 letter unique hardware ID'
+                        value={as.session()?.username}
+                        primary
+                        psm
+                        color='var(--color-middle)'
+                        style='pointer-events:none; user-select:none' // simplify demo
+                        // change={(v) => ...}
+                    />
+                </Field>
+                <Field s col w={320}>
+                    <Text xs primary>
+                        Access
+                    </Text>
+                    <Textfield
+                        xs
+                        placeholder='36 letter unique hardware ID'
+                        // value={as.session()?.user?.access}
+                        value={'READ_WRITE'}
+                        primary
+                        psm
+                        color='var(--color-middle)'
+                        style='pointer-events:none; user-select:none' // simplify demo
+                        // change={(v) => ...}
+                    />
+                </Field>
+            </Field>
+            <Field plg>
+                {/* <Shifter>{createPage(unit())}</Shifter> */}
+                {/* <Shifter>{createPage(unit())}</Shifter> */}
+            </Field>
+        </Field>
+    )
+}
 
 export const AppSettings = () => {
     // console.log(as.condensed())

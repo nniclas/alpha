@@ -48,34 +48,6 @@ export default (a: Args) => {
             }}
         >
             <Field a col>
-                {/* {action == 'add' && (
-                    <Field s h={32} pmd c>
-                        <Field gmd>
-                            <Button
-                                w={160}
-                                h={48}
-                                onClick={(e) => {
-                                    setFirstOpen(false)
-                                    e.stopPropagation()
-                                }}
-                            >
-                                <Text tertiary xs>
-                                    Register new unit
-                                </Text>
-                            </Button>
-                            <Button
-                                w={48}
-                                h={48}
-                                onClick={(e) => {
-                                    if (!isABtn(e.target)) e.stopPropagation()
-                                }}
-                            >
-                                <FiXCircle {...iconStyle} />
-                            </Button>
-                        </Field>
-                    </Field>
-                )} */}
-
                 <Transition name='fade'>
                     <Field a col gsm>
                         <Field s h={32}>

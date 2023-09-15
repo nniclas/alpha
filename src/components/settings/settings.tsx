@@ -22,7 +22,7 @@ import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
 import { ButtonGroup } from '../button-group/button-group'
 import Shifter from '../shifter/shifter'
-import { AppSettings, UnitSettings } from './settings.parts'
+import { AppSettings, UnitSettings, UserSettings } from './settings.parts'
 
 interface Args {
     // unit?: Unit
@@ -71,6 +71,12 @@ export default (a: Args) => {
                                 Units
                             </Text>
                         </Field>
+                        <Field gsm c>
+                            <FiUser {...iconStyle} />
+                            <Text sm res>
+                                User
+                            </Text>
+                        </Field>
                     </ButtonGroup>
                 </Field>
 
@@ -84,6 +90,10 @@ export default (a: Args) => {
                             {
                                 condition: page() == 1,
                                 content: <UnitSettings />,
+                            },
+                            {
+                                condition: page() == 2,
+                                content: <UserSettings />,
                             },
                         ]}
                     />

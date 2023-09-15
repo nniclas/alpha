@@ -1,3 +1,5 @@
+import { User } from './entities/user'
+
 export interface ValueIdTitle {
     value: number
     identifier: string
@@ -19,6 +21,7 @@ export interface IdValuePair {
 export interface Session {
     username: string
     token: string
+    user?: User // TODO add from api
 }
 
 export type Theme = 'dark' | 'lite'
