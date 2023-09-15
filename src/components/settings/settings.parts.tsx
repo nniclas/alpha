@@ -23,10 +23,14 @@ import { Transition } from 'solid-transition-group'
 import { ButtonGroup } from '../button-group/button-group'
 import Shifter from '../shifter/shifter'
 import { SelectButton } from '../select-button/select-button'
+import as from '../../core/app-store'
+import { themes } from '../../common/constants'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export const AppSettings = () => {
+    // console.log(as.condensed())
+
     return (
         <Field pmd>
             <Field col gmd>
@@ -34,7 +38,8 @@ export const AppSettings = () => {
                     <Text sm>Theme</Text>
                     <Field s psm>
                         <SelectButton
-                            change={(i) => console.log(i)}
+                            value={themes.indexOf(as.theme())}
+                            change={(i) => as.changeTheme(themes[i])}
                             w={80}
                             h={40}
                             res={{ w: 120 }}
@@ -56,7 +61,10 @@ export const AppSettings = () => {
                     <Text sm>Margins</Text>
                     <Field s psm>
                         <SelectButton
-                            change={(i) => console.log(i)}
+                            value={as.condensed() ? 1 : 0}
+                            change={(i) =>
+                                as.changeCondensed(i == 0 ? false : true)
+                            }
                             w={120}
                             h={40}
                             res={{ w: 120 }}

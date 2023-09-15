@@ -13,3 +13,12 @@ export interface IdValuePair {
     id: any
     value: string
 }
+
+////////////////////////////////////////
+
+export interface Session {
+    username: string
+    token: string
+}
+
+export type Theme = 'dark' | 'lite'

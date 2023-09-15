@@ -1,7 +1,11 @@
+import { Session, Theme } from '../types/_types'
+import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
 import { createSignal, createRoot, createEffect } from 'solid-js'
-import { Session } from 'types/session'
 function createDataState() {
     const [session, setSession] = createSignal<Session>()
+
+    const [theme, setTheme] = createSignal<Theme>('dark')
+    const [condensed, setCondensed] = createSignal<boolean>(false)
     const [section, setSection] = createSignal<'operation' | 'events'>(
         'operation'
     )
@@ -27,8 +31,22 @@ function createDataState() {
         sessionStorage.removeItem('token')
     }
 
+    const changeTheme = (theme: Theme) => {
+        setTheme(theme)
+        setThemeAttribute(theme)
+    }
+
+    const changeCondensed = (condensed: boolean) => {
+        setCondensed(condensed)
+        setCondensedAttribute(condensed)
+    }
+
     return {
         session,
+        theme,
+        changeTheme,
+        condensed,
+        changeCondensed,
         updateSession,
         removeSession,
         section,

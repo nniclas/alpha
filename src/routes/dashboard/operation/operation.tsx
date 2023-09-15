@@ -51,7 +51,7 @@ export const Operation = () => {
     onCleanup(() => container.removeEventListener('resize', scrollHandler))
 
     return (
-        <Field rel a>
+        <Field rel a secondary>
             <Field
                 col
                 ref={container}

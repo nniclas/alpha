@@ -25,9 +25,9 @@
     --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5);
 
     /* THEME VARIANTS */
-    --primary-bg: var(--color-strongest);
+    --primary-bg: var(--color-lighest);
     --primary-color: var(--color-light);
-    --secondary-bg: var(--color-lightest);
+    --secondary-bg: var(--color-strongest);
     --secondary-color: var(--color-medium);
     --tertiary-bg: var(--color-accent);
     --tertiary-color: var(--color-lightest);

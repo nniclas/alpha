@@ -28,8 +28,10 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
             setSs(ssRes)
             setCs(csRes)
         } else {
+            // setTimeout(() => {
             setSs(scopeStyles(styles, a))
             setCs(customStyles(a, styleMap))
+            // }, 0)
         }
 
         // ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
@@ -46,7 +48,7 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     let st // when manually adding style
     if (a.style) {
         st = a.style
-        // delete a.style
+        delete a.style
     }
 
     /////////// custom styles responsive handling ////////////
@@ -73,8 +75,6 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
         onCleanup(() => window.removeEventListener('resize', resStyles))
     }
     //////////////////////////////////////////////////////////
-
-    if (a.id == 'hello') console.log(cs())
 
     return (
         <a class={`${styles.btn} ${ss()} ${ac}`} style={`${cs()};${st}`} {...a}>

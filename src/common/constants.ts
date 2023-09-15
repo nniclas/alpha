@@ -1,4 +1,6 @@
-import { IdValuePair, ValueIdTitle } from 'types/_types'
+import { IdValuePair, Theme, ValueIdTitle } from 'types/_types'
+
+export const themes: Theme[] = ['dark', 'lite']
 
 // export const stateColors: IdValuePair[] = [
 //     { id: 1, value: 'rgb(80,80,110)' },
