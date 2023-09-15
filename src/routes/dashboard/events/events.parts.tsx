@@ -21,27 +21,35 @@ import { date } from '../../../common/date-utils'
 import Modal from '../../../lib/components/modal/modal'
 import { Label } from '../../../lib/components/label/label'
 import Dropdown from '../../../lib/components/dropdown/dropdown'
+import { measures } from '../../../common/constants'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const Details = (a: { entry: Entry; compact?: boolean }) => {
-    const field = (h: string, val: string) => (
-        <Field pwsm col gsm>
+    const field = (h: string, val?: string) => (
+        <Field pwsm gsm>
             <Text accent sm res>
+                {h}
+            </Text>
+            <Text primary sm res>
                 {val}
             </Text>
-            {/* <Text secondary sm res>
-                {val}
-            </Text> */}
         </Field>
     )
 
     return (
         <Field s>
-            <Field col={a.compact == true}>
-                <For each={Object.keys(a.entry)}>
+            <Field col>
+                {/* <For each={Object.keys(a.entry)}>
                     {(k, i) => field(k, Object.values(a.entry)[i()])}
-                </For>
+                </For> */}
+                {a.entry.notes && field('Notes', a.entry.notes)}
+                {a.entry.measure &&
+                    field('Measure', measures[a.entry.measure - 1].title)}
+                <Responsive
+                    compact={a.entry.user && field('User', a.entry.user.email)}
+                    addRule={as.section() != 'events'}
+                />
             </Field>
         </Field>
     )
@@ -103,7 +111,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                             </Text>
                         </Field>
                     </Responsive>
-                    <Field layer style='top:24px'>
+                    <Field layer style='top:32px; left:18px'>
                         {details() && <Details entry={a.e} />}
                     </Field>
                 </Field>
@@ -139,12 +147,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                         <FiMessageCircle {...iconStyle} />
                     </Responsive>
                 )}
-
-                {/* <Text xs primary>
-                    {a.e.notes && <></>}
-                </Text> */}
             </Cell>
-            <Cell>{/* <FiTag {...iconStyle} /> */}</Cell>
         </Row>
     )
 }

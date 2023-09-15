@@ -116,7 +116,7 @@ export const Events = () => {
                             {hcell('Date', true)}
                             {hcell('Controller')}
                             {hcell('Remark')}
-                            {hcell('Measure')}
+                            {/* {hcell('Measure')} */}
                         </Row>
 
                         <For each={ds.entriesRes()}>
