@@ -19,8 +19,20 @@ export const customStyles = (args: any, styleMap: any[]) => {
     styleMap.forEach((a) => {
         const key = Object.keys(a)[0]
         const value = (args as any)[key]
-        let styleValue = `${value}px` // numbers are single px values
-        if (isNaN(value)) styleValue = value // otherwise any string
+
+        if (typeof value === 'undefined') return
+
+        // numbers are single px values
+        let styleValue = `${value}px`
+
+        // otherwise any string
+        if (isNaN(value)) {
+            styleValue = value
+
+            // if _xx its a clean number value (like opacity, z-index etc.)
+            if (styleValue.toString().includes('_'))
+                styleValue = value.replace('_', '')
+        }
 
         // (booleans are scopeStyles only)
         if (value != undefined && typeof value != 'boolean') {

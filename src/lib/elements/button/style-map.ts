@@ -3,4 +3,6 @@ export const styleMap = [
     { h: 'height' },
     { p: 'padding', br: 'border-radius' },
     { a: 'transition' },
+    { bb: 'border-bottom' },
+    { o: 'opacity' },
 ]

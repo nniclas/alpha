@@ -21,28 +21,14 @@ import { v4 as uuidv4 } from 'uuid'
 import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
 import { ButtonGroup } from '../button-group/button-group'
+import Shifter from '../shifter/shifter'
+import { AppSettings, UnitSettings } from './settings.parts'
 
 interface Args {
     // unit?: Unit
 }
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
-
-const AppSettings = () => {
-    return (
-        <Field tertiary pmd>
-            <Text sm>app settings</Text>
-        </Field>
-    )
-}
-
-const UnitSettings = () => {
-    return (
-        <Field tertiary pmd>
-            <Text sm>unit settings</Text>
-        </Field>
-    )
-}
 
 export default (a: Args) => {
     const [page, setPage] = createSignal<number>(0)
@@ -86,31 +72,21 @@ export default (a: Args) => {
                             </Text>
                         </Field>
                     </ButtonGroup>
-                    {/* <Button w={128} h={64}>
-                        <Field gsm c>
-                            <FiAnchor {...iconStyle} />
-                            <Text sm>App</Text>
-                        </Field>
-                    </Button>
-                    <Button w={128} h={64}>
-                        <Field gsm c>
-                            <FiEdit3 {...iconStyle} />
-                            <Text sm>Units</Text>
-                        </Field>
-                    </Button>
-                    <Button w={128} h={64}>
-                        <Field gsm c>
-                            <FiPlusCircle {...iconStyle} />
-                            <Text sm>Add new</Text>
-                        </Field>
-                    </Button> */}
                 </Field>
 
-                <Field pmd col gmd>
-                    <Transition name='fade'>
-                        {page() == 0 && <AppSettings />}
-                        {page() == 1 && <UnitSettings />}
-                    </Transition>
+                <Field col gmd>
+                    <Shifter
+                        pages={[
+                            {
+                                condition: page() == 0,
+                                content: <AppSettings />,
+                            },
+                            {
+                                condition: page() == 1,
+                                content: <UnitSettings />,
+                            },
+                        ]}
+                    />
                 </Field>
             </Field>
         </Field>

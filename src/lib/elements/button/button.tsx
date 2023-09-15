@@ -74,6 +74,8 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     }
     //////////////////////////////////////////////////////////
 
+    if (a.id == 'hello') console.log(cs())
+
     return (
         <a class={`${styles.btn} ${ss()} ${ac}`} style={`${cs()};${st}`} {...a}>
             {a.children}

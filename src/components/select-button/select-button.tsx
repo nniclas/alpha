@@ -1,58 +1,47 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-    onCleanup,
-    onMount,
-} from 'solid-js'
+import { For, createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
-import Text from '../../lib/elements/text/text'
-import appStore from '../../core/app-store'
-import ds from '../../core/data-store'
 import Button from '../../lib/elements/button/button'
 import { BaseArgs } from '../../lib/types/base-args'
 import { ThemeArgs } from '../../lib/types/theme-args'
-import { ButtonArgs } from 'lib/types/button-args'
-import { isABtn } from '../../common/utils'
+import { ButtonArgs } from '../../lib/types/button-args'
 
 interface Args {
     children: any[]
     change: (i: number) => void
 }
 
-export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
+export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
     const [selected, setSelected] = createSignal<number>(0)
 
-    // createEffect(() => {
-    //     console.log(selected())
-    // })
-
     return (
-        <Field>
+        <Field rel>
             <For each={a.children}>
                 {(c, i) => {
                     return (
                         <Button
                             {...a}
                             a
-                            secondary={selected() == i()}
+                            id='hello'
+                            o={selected() == i() ? '_1' : '_0.6'}
+                            bb={`2px solid ${
+                                selected() == i()
+                                    ? 'var(--color-accent)'
+                                    : 'transparent'
+                            }`}
                             onClick={(e) => {
                                 a.change(i())
                                 setSelected(i())
                                 e.stopPropagation()
                             }}
-                            // style={`background:var(--color-${
-                            //     selected() == i() ? 'accent' : 'primary'
-                            // })`}
                         >
                             {c}
                         </Button>
                     )
                 }}
             </For>
+            {/* <Field layer psm>
+                <Field psm />
+            </Field> */}
         </Field>
     )
 }

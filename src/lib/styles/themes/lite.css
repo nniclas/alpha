@@ -22,7 +22,7 @@
     --color-accent-light: hsl(50, 36%, 72%);
 
     --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
-    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 30%, 0.5);
+    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5);
 
     /* THEME VARIANTS */
     --primary-bg: var(--color-lightest);
