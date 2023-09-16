@@ -14,6 +14,13 @@
     height: 100%;
     width: 100%;
 }
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
 .trim {
     overflow: hidden;
 }
@@ -91,6 +98,12 @@
 /* --- MODIFIERS --- */
 .br {
     border-radius: var(--rounding);
+}
+.pevn {
+    pointer-events: none;
+}
+.peva {
+    pointer-events: auto;
 }
 
 /* --- THEMING --- */

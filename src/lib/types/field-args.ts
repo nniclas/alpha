@@ -9,7 +9,8 @@ export const FIELD_XL = 1000
 
 export interface FieldArgs {
     rel?: boolean // relative
-    layer?: boolean // absolute
+    layer?: boolean // absolute position
+    fixed?: boolean // fixed position
     trim?: boolean // of hidden
     s?: boolean // separate: exclude from flex calc
     col?: boolean // flex column

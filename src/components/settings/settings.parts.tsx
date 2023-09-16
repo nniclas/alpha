@@ -161,7 +161,7 @@ export const UnitSettings = () => {
                     </Button>
                 </Field>
             </Field>
-            <Field plg>
+            <Field>
                 {/* <Shifter>{createPage(unit())}</Shifter> */}
                 <Shifter>{createPage(unit())}</Shifter>
             </Field>

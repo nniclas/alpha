@@ -20,4 +20,7 @@ export interface BaseArgs {
     res?: boolean | any
 
     size?: Size
+
+    pevn?: boolean // no pointer events, static content
+    peva?: boolean // pointer events auto, pointer content inside a no-pointer-event parent
 }

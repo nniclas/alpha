@@ -1,40 +1,44 @@
 import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
 import { Outlet, useNavigate } from '@solidjs/router'
 import Logo from '../../assets/logo.svg?component-solid'
-
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
-
 import styles from './login.module.css'
 import Button from '../../lib/elements/button/button'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
-import { Transition } from 'solid-transition-group'
-import SelectField from '../../lib/components/select-field/select-field'
+import Shifter from '../../components/shifter/shifter'
+import Responsive from '../../lib/components/responsive/responsive'
 
-const Layout = (a: { bg: string; color: string; lslot: any; rslot: any }) => {
-    return (
-        <Field col rel>
-            <Field></Field>
-            <Field>
-                <Field rel h={600} bg={a.color}>
-                    <Field h={150} bg={a.bg}></Field>
-                    <Field layer>{a.lslot}</Field>
-                </Field>
-                <Field s rel w={600} h={600}>
-                    <Field class={styles.bg}></Field>
-                </Field>
-                <Field rel h={600} bg={a.color}>
-                    <Field h={450} bg={a.bg}></Field>
-                    <Field layer>{a.rslot}</Field>
-                </Field>
-            </Field>
-            <Field bg={a.color}></Field>
-        </Field>
-    )
-}
-import as from '../../core/app-store'
-import ds from '../../core/data-store'
+// const Layout = (a: {
+//     bg: string
+//     color: string
+//     lslot: any
+//     rslot: any
+//     dslot: any
+// }) => {
+//     return (
+//         <Field col rel id='fjongen'>
+//             <Field></Field>
+//             <Field s>
+//                 <Field rel h={600} bg={a.color}>
+//                     <Field h={150} bg={a.bg}></Field>
+//                     <Field layer>{a.lslot}</Field>
+//                 </Field>
+//                 <Field s rel w={600} h={600}>
+//                     <Field class={styles.bg}></Field>
+//                 </Field>
+//                 <Field rel h={600} bg={a.color}>
+//                     <Field h={450} bg={a.bg}></Field>
+//                     <Field layer>{a.rslot}</Field>
+//                 </Field>
+//             </Field>
+//             <Field s bg={a.color} rel>
+//                 {a.dslot}
+//             </Field>
+//         </Field>
+//     )
+// }
 
 export const Login: Component = () => {
     const navigate = useNavigate()
@@ -48,105 +52,213 @@ export const Login: Component = () => {
         }
     }
 
-    // login page covers the full window
     return (
-        <Field rel class={styles.cover}>
-            <Field layer jcs ais>
-                <Field s pmd h={400} aic>
-                    <Field s col gsm>
-                        <img
-                            src='src/assets/icons/cogs.png'
-                            style='width:180px;'
-                        />
-                        <Field p='16px 48px' gmd col>
-                            <Text
-                                md
-                                color='var(--color-accent)'
-                                style='letter-spacing:32px'
-                            >
-                                ALPHA
-                            </Text>
-                            <Text
-                                sm
-                                color='var(--color-middle)'
-                                style='letter-spacing:1px'
-                            >
-                                Remote configuration and operating technical
-                                tool.
-                            </Text>
+        <Field fixed secondary>
+            <Field layer s class={styles.bg} />
+            <Field plg jce aic res={{ ais: true, jcc: true }}>
+                <Field
+                    s
+                    style='margin-top:64px; margin-right:256px'
+                    res={{ style: 'margin-right:0px' }}
+                >
+                    <Field s col gsm res={{ psm: true, w: 240 }} a w={360}>
+                        <Field s c>
+                            <Field s w={200} res={{ w: 140 }}>
+                                <Logo />
+                            </Field>
+                        </Field>
+
+                        <Field s pwsm>
+                            <Text>Account</Text>
+                        </Field>
+                        <Field s>
+                            <Textfield
+                                placeholder='Email'
+                                value={email()}
+                                tertiary
+                                psm
+                                color='var(--color-light)'
+                                change={(v) => setEmail(v)}
+                            />
+                        </Field>
+                        <Field s>
+                            <Textfield
+                                password
+                                placeholder='Password'
+                                value={password()}
+                                tertiary
+                                psm
+                                color='var(--color-light)'
+                                change={(v) => setPassword(v)}
+                            />
+                        </Field>
+                        <Field s jce>
+                            <Field s>
+                                <Button tertiary md onClick={logIn}>
+                                    <Text>Sign in</Text>
+                                </Button>
+                            </Field>
                         </Field>
                     </Field>
                 </Field>
             </Field>
-            <Layout
-                bg='var(--color-stronger)'
-                color='var(--color-light)'
-                lslot={
-                    <Field aic jce gmd style='z-index:1; margin-right:-100px'>
-                        <Field s w={300} h={300}>
-                            <Logo />
-                        </Field>
+
+            <Field layer jcc ais pevn>
+                <Field layer jcs ais pevn>
+                    <Field s pmd col gxs>
+                        <Text
+                            md
+                            color='var(--color-accent)'
+                            style='letter-spacing:12px'
+                        >
+                            ALPHA
+                        </Text>
+                        <Text sm res color='var(--color-middle)'>
+                            Remote operating technical tool.
+                        </Text>
                     </Field>
-                }
-                rslot={
-                    <Field col ais jce style='z-index:1; margin-left:-100px;'>
-                        <Field s col psm>
-                            <Text sm color='var(--color-middle)'>
-                                Account
+                </Field>
+            </Field>
+
+            <Field layer jcc aie pevn>
+                <Responsive>
+                    <Field layer jcc aie pevn>
+                        <Field s pmd>
+                            <Text res color='var(--color-middle)' sm>
+                                nniclas © Copyright 2023
                             </Text>
                         </Field>
-
-                        <Field
-                            col
-                            s
-                            gsm
-                            plg
-                            style='width:340px; background:var(--color-strongest); transition:1s ease all'
-                        >
-                            <Field s psm>
-                                <Text color='var(--color-light)'>Sign in</Text>
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    placeholder='Email'
-                                    value={email()}
-                                    primary
-                                    psm
-                                    color='var(--color-middle)'
-                                    change={(v) => setEmail(v)}
-                                />
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    password
-                                    placeholder='Password'
-                                    value={password()}
-                                    primary
-                                    psm
-                                    color='var(--color-middle)'
-                                    change={(v) => setPassword(v)}
-                                />
-                            </Field>
-                            <Field jce>
-                                <Field s>
-                                    <Button tertiary md onClick={logIn}>
-                                        <Text color='var(--color-stronger)'>
-                                            Sign in
-                                        </Text>
-                                    </Button>
-                                </Field>
-                            </Field>
-                        </Field>
                     </Field>
-                }
-            />
-            <Field layer jcc aie>
-                <Field s pmd>
-                    <Text color='var(--color-lightest)' sm>
-                        nniclas © Copyright 2023
-                    </Text>
-                </Field>
+                </Responsive>
             </Field>
         </Field>
     )
+
+    // login page covers the full window
+    // return (
+    // <Field class={styles.cover}>
+    //     <Field layer jcs ais>
+    //         <Field s pmd h={400} aic res={{ ais: true }}>
+    //             <Field s col gsm ais>
+    //                 <Field s w={180} jce res={{ jcs: true }}>
+    //                     <img
+    //                         src='src/assets/icons/cogs.png'
+    //                         style='width:180px; margin-left:-48px'
+    //                     />
+    //                 </Field>
+    //                 <Field p='16px 48px' gxs col res={{ w: 300 }}>
+    //                     <Text
+    //                         md
+    //                         color='var(--color-accent)'
+    //                         style='letter-spacing:12px'
+    //                     >
+    //                         ALPHA
+    //                     </Text>
+    //                     <Text
+    //                         sm
+    //                         color='var(--color-middle)'
+    //                         style='letter-spacing:1px'
+    //                     >
+    //                         Remote configuration and operating technical
+    //                         tool.
+    //                     </Text>
+    //                 </Field>
+    //             </Field>
+    //         </Field>
+    //     </Field>
+    //     <Layout
+    //         bg='var(--color-stronger)'
+    //         color='var(--color-light)'
+    //         lslot={
+    //             <></>
+    //             // <Field aic jce gmd style='z-index:1; margin-right:-100px'>
+    //             //     <Field
+    //             //         s
+    //             //         w={300}
+    //             //         h={300}
+    //             //         res={{ pmd: true, w: 200, h: 200 }}
+    //             //     >
+    //             //         <Logo />
+    //             //     </Field>
+    //             // </Field>
+    //         }
+    //         rslot={
+    //             // <Shifter tr='foo'>
+    //             <Field
+    //                 s
+    //                 col
+    //                 ais
+    //                 // style='position:fixed; left:0; bottom:0; width:100%;'
+    //             >
+    //                 {/* <Field s col psm>
+    //                     <Text sm color='var(--color-middle)'>
+    //                         Account
+    //                     </Text>
+    //                 </Field> */}
+    //             </Field>
+    //             // </Shifter>
+    //         }
+    //         dslot={
+    //             <Field jce res={{ jcs: true }}>
+    //                 <Field s>
+    //                     <Field
+    //                         col
+    //                         gsm
+    //                         plg
+    //                         w={400}
+    //                         res={{ pmd: true }}
+    //                         a
+    //                         // bg='var(--color-strongest)'
+    //                     >
+    //                         <Field psm>
+    //                             <Text color='var(--color-strong)'>
+    //                                 Sign in
+    //                             </Text>
+    //                         </Field>
+    //                         <Field s>
+    //                             <Textfield
+    //                                 placeholder='Email'
+    //                                 value={email()}
+    //                                 primary
+    //                                 psm
+    //                                 color='var(--color-middle)'
+    //                                 change={(v) => setEmail(v)}
+    //                             />
+    //                         </Field>
+    //                         <Field>
+    //                             <Textfield
+    //                                 password
+    //                                 placeholder='Password'
+    //                                 value={password()}
+    //                                 primary
+    //                                 psm
+    //                                 color='var(--color-middle)'
+    //                                 change={(v) => setPassword(v)}
+    //                             />
+    //                         </Field>
+    //                         <Field jce>
+    //                             <Field s>
+    //                                 <Button tertiary md onClick={logIn}>
+    //                                     <Text>Sign in</Text>
+    //                                 </Button>
+    //                             </Field>
+    //                         </Field>
+    //                     </Field>
+    //                 </Field>
+    //             </Field>
+    //         }
+    //     />
+    //     <Field layer jcc aie pevn>
+    //         <Responsive compact={<></>}>
+    //             <Field layer jcc aie pevn>
+    //                 <Field s pmd>
+    //                     <Text color='var(--color-lightest)' sm>
+    //                         nniclas © Copyright 2023
+    //                     </Text>
+    //                 </Field>
+    //             </Field>
+    //         </Responsive>
+    //     </Field>
+    // </Field>
+    // )
 }

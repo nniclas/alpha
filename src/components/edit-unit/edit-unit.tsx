@@ -18,8 +18,6 @@ interface Args {
 const iconStyle = { size: 18, color: 'var(--color-strong)' }
 
 export default (a: Args) => {
-    // const action = a.unit ? 'edit' : 'add'
-
     // const [firstOpen, setFirstOpen] = createSignal<boolean>(true)
     const [action, setAction] = createSignal<'edit' | 'add'>(
         a.unit ? 'edit' : 'add'
@@ -47,7 +45,7 @@ export default (a: Args) => {
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >
-            <Field a col>
+            <Field a col pmd>
                 <Transition name='fade'>
                     <Field a col gsm>
                         <Field s h={32}>
@@ -61,7 +59,11 @@ export default (a: Args) => {
                                         >
                                             •
                                         </Text>
-                                        <Text accent>New unit</Text>
+                                        {action() == 'add' && (
+                                            <Field>
+                                                <Text accent>NEW</Text>
+                                            </Field>
+                                        )}
                                     </Field>
                                 ) : (
                                     <></>
@@ -105,7 +107,7 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field s gsm jce pmd>
+                        <Field aie gsm jce pmd>
                             {action() == 'edit' && (
                                 <Modal
                                     jcc
