@@ -25,6 +25,8 @@ export const Dashboard: Component = () => {
         //     ds.initalize()
         // }
         // console.log(ds.getUnitIndex(ds.selectedUnitId()))
+
+        ds.initialize()
     })
 
     return (
@@ -36,27 +38,15 @@ export const Dashboard: Component = () => {
                 }`}
             />
             <Field rel>
-                <Transition name='fade'>
-                    <Suspense
-                        fallback={
-                            <Field a layer c style='pointer-events:none'>
-                                <Loader />
-                            </Field>
-                        }
-                    >
-                        {ds.selectedUnitRes() && (
-                            <Collapser
-                                sections={[
-                                    { s: 'operation', c: <Operation /> },
-                                    { s: 'events', c: <Events /> },
-                                ]}
-                                openAction={(sec: any) =>
-                                    appStore.setSection(sec)
-                                }
-                            />
-                        )}
-                    </Suspense>
-                </Transition>
+                {ds.selectedUnitRes() && (
+                    <Collapser
+                        sections={[
+                            { s: 'operation', c: <Operation /> },
+                            { s: 'events', c: <Events /> },
+                        ]}
+                        openAction={(sec: any) => appStore.setSection(sec)}
+                    />
+                )}
             </Field>
         </Field>
     )

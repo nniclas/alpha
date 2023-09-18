@@ -1,4 +1,11 @@
-import { Component, For, createEffect, createSignal, lazy } from 'solid-js'
+import {
+    Component,
+    For,
+    Suspense,
+    createEffect,
+    createSignal,
+    lazy,
+} from 'solid-js'
 
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
@@ -24,6 +31,7 @@ import { SectionHeader } from '../../../parts/section-header/section-header'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { Label } from '../../../lib/components/label/label'
 import { TimeLine } from '../../../components/timeline/timeline'
+import { Loader } from '../../../components/loader/loader'
 
 // const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
@@ -48,7 +56,15 @@ export const Events = () => {
     }
     return (
         <Field rel a col bg='var(--color-stronger)'>
-            {/* <Field layer col style='pointer-events:none'>
+            <Transition name='fade'>
+                <Suspense
+                    fallback={
+                        <Field a layer c style='pointer-events:none'>
+                            <Loader />
+                        </Field>
+                    }
+                >
+                    {/* <Field layer col style='pointer-events:none'>
                 <Responsive
                     compact={
                         <div
@@ -69,65 +85,72 @@ export const Events = () => {
                     ></div>
                 </Responsive>
             </Field> */}
+                    <Field rel a col bg='var(--color-stronger)'>
+                        <SectionHeader
+                            title='Events'
+                            icon={<FiZap />}
+                            iconTheme='tertiary'
+                            tool={
+                                <Modal
+                                    jcc
+                                    buttonContent={
+                                        <Field s w={80} res={{ w: 60 }} c>
+                                            <Label
+                                                size='md'
+                                                icon={<FiPlusCircle />}
+                                                iconTheme='accent'
+                                            />
+                                        </Field>
+                                    }
+                                >
+                                    <EditEntry />
+                                </Modal>
+                            }
+                            click={() => as.setSection('events')}
+                            // color={}
+                        />
 
-            <SectionHeader
-                title='Events'
-                icon={<FiZap />}
-                iconTheme='tertiary'
-                tool={
-                    <Modal
-                        jcc
-                        buttonContent={
-                            <Field s w={80} res={{ w: 60 }} c>
-                                <Label
-                                    size='md'
-                                    icon={<FiPlusCircle />}
-                                    iconTheme='accent'
-                                />
-                            </Field>
-                        }
-                    >
-                        <EditEntry />
-                    </Modal>
-                }
-                click={() => as.setSection('events')}
-                // color={}
-            />
+                        <Field s pmd res={{ pwxs: true }}>
+                            <TimeLine />
+                        </Field>
 
-            <Field s pmd res={{ pwxs: true }}>
-                <TimeLine />
-            </Field>
+                        <Field
+                            col
+                            gsm
+                            plg
+                            res={{ col: false, pmd: true }}
+                            style={`flex-direction:${
+                                as.section() == 'events' || !isCompact()
+                                    ? 'column'
+                                    : 'row'
+                            } `}
+                        >
+                            <TableContainer trig={as.section() == 'events'}>
+                                <Table>
+                                    {/* table headers */}
 
-            <Field
-                col
-                gsm
-                plg
-                res={{ col: false, pmd: true }}
-                style={`flex-direction:${
-                    as.section() == 'events' || !isCompact() ? 'column' : 'row'
-                } `}
-            >
-                <TableContainer trig={as.section() == 'events'}>
-                    <Table>
-                        {/* table headers */}
+                                    <Row>
+                                        {hcell('Event', true)}
+                                        {hcell('Date', true)}
+                                        {hcell('Controller')}
+                                        {hcell('Remark')}
+                                        {/* {hcell('Measure')} */}
+                                    </Row>
 
-                        <Row>
-                            {hcell('Event', true)}
-                            {hcell('Date', true)}
-                            {hcell('Controller')}
-                            {hcell('Remark')}
-                            {/* {hcell('Measure')} */}
-                        </Row>
-
-                        <For each={ds.entriesRes()}>
-                            {(e, i) => {
-                                const et = tags.find((t) => t.value == e.tag)!
-                                return <EntryRow e={e} t={et} />
-                            }}
-                        </For>
-                    </Table>
-                </TableContainer>
-            </Field>
+                                    <For each={ds.entriesRes()}>
+                                        {(e, i) => {
+                                            const et = tags.find(
+                                                (t) => t.value == e.tag
+                                            )!
+                                            return <EntryRow e={e} t={et} />
+                                        }}
+                                    </For>
+                                </Table>
+                            </TableContainer>
+                        </Field>
+                    </Field>
+                </Suspense>
+            </Transition>
         </Field>
     )
 }

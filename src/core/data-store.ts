@@ -14,13 +14,15 @@ import appStore from './app-store'
 import { delay } from '../common/utils'
 import { unitColors, unitColorsDarker } from '../common/constants'
 
-const getItems = async <T>(path: string): Promise<T> => {
+const getWithAuth = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
 
     await delay(500) // intentional additional delay for demo purposes
     if (!appStore.session()?.token) {
         return [] as any /// just disable api calls ?????
     }
+
+    console.log('authenticated..')
 
     return await get<T>(path)
 }
@@ -46,21 +48,26 @@ function createDataState() {
     const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
     // const [entries] = createSignal<Entry[]>([])
 
-    createEffect(() => {
-        if (unitsRes() && unitsRes()?.length) {
-            console.log(unitsRes())
-            setSelectedUnitId(unitsRes()![0].id)
-        }
-    })
+    createEffect(() => {})
 
-    const [unitsRes] = createResource<Unit[], Unit[]>(units, async () => {
-        console.log('fetch all units')
-        return await getItems<Unit[]>('units')
-    })
+    const initialize = async () => {
+        const us = await unitsResActions.refetch()
+        if (us && us?.length > 0) {
+            setSelectedUnitId(us[0].id)
+        }
+    }
+
+    const [unitsRes, unitsResActions] = createResource<Unit[], Unit[]>(
+        units,
+        async () => {
+            console.log('trying to fetch all units..')
+            return await getWithAuth<Unit[]>('units')
+        }
+    )
 
     const [selectedUnitRes] = createResource<Unit, number>(
         selectedUnitId,
-        (id) => getItems<Unit>(`units/${id}`)
+        (id) => getWithAuth<Unit>(`units/${id}`)
     )
 
     // const [entriesRes] = createResource<Entry[], number>(
@@ -69,13 +76,12 @@ function createDataState() {
     // )
     /////////////
     /////////////
-    /// todo: optional added week parameter..
     // see https://docs.solidjs.com/references/api-reference/basic-reactivity/createResource
     const [entriesRes] = createResource(
         () => [selectedUnitId(), selectedWeek()] as const,
         ([unitId, week]) => {
             if (!unitId) return []
-            return getItems<Entry[]>(
+            return getWithAuth<Entry[]>(
                 `entries/unit/${unitId}${week ? `/week/${week}` : ''}`
             )
         }
@@ -113,6 +119,7 @@ function createDataState() {
         unitsRes,
         selectedUnitRes,
         entriesRes,
+        initialize,
         selectedUnitId,
         setSelectedUnitId,
         selectedWeek,

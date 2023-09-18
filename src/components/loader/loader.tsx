@@ -9,7 +9,7 @@ export const Loader = () => {
         <Field
             a
             s
-            style='width:400px; gap:4px; background: var(--color-stronger)'
+            style='width:200px; gap:4px; background: var(--color-stronger)'
         >
             <Field class={styles.move} s w={8} h={4} accent />
         </Field>

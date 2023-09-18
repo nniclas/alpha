@@ -60,14 +60,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
     const [details, setDetails] = createSignal<boolean>(false)
 
     return (
-        <Row
-            open={details()}
-            onClick={(e: any) => {
-                setDetails(!details())
-
-                console.log(a.e.notes)
-            }}
-        >
+        <Row open={details()} onClick={(e: any) => setDetails(!details())}>
             <Cell>
                 <Field rel>
                     {/* {a.e.notes && (

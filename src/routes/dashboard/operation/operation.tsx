@@ -1,6 +1,7 @@
 import {
     Component,
     For,
+    Suspense,
     createEffect,
     createSignal,
     lazy,
@@ -26,6 +27,8 @@ import { SectionHeader } from '../../../parts/section-header/section-header'
 
 import { Container } from '../../../components/area/container'
 import { isCompact } from '../../../lib/utils'
+import { Transition } from 'solid-transition-group'
+import { Loader } from '../../../components/loader/loader'
 
 export const Operation = () => {
     let container: any
@@ -51,44 +54,56 @@ export const Operation = () => {
     onCleanup(() => container.removeEventListener('resize', scrollHandler))
 
     return (
-        <Field rel a secondary>
-            <Field
-                col
-                ref={container}
-                style={`overflow:scroll`}
-                // res={{
-                //     style: `overflow:${
-                //         as.section() == 'operation' ? 'scroll' : 'visible'
-                //     }`,
-                // }}
-            >
-                <SectionHeader
-                    title='Operation'
-                    icon={<FiSettings />}
-                    iconTheme='tertiary'
-                    click={() => as.setSection('operation')}
-                />
+        <Field rel>
+            <Transition name='fade'>
+                <Suspense
+                    fallback={
+                        <Field a layer c style='pointer-events:none'>
+                            <Loader />
+                        </Field>
+                    }
+                >
+                    <Field rel a secondary>
+                        <Field
+                            col
+                            ref={container}
+                            style={`overflow:scroll`}
+                            // res={{
+                            //     style: `overflow:${
+                            //         as.section() == 'operation' ? 'scroll' : 'visible'
+                            //     }`,
+                            // }}
+                        >
+                            <SectionHeader
+                                title='Operation'
+                                icon={<FiSettings />}
+                                iconTheme='tertiary'
+                                click={() => as.setSection('operation')}
+                            />
 
-                <Field s pwmd>
-                    <Text md accent>
-                        Monitoring
-                    </Text>
-                </Field>
-                <Container>
-                    <SignalStrengthArea />
-                    <BatteryLevelArea />
-                    <ProcessorUsageArea />
-                </Container>
-                <Field s pwmd>
-                    <Text md accent>
-                        Controls
-                    </Text>
-                </Field>
-                <Container>
-                    <ChargeControlArea />
-                    <MachineControlArea />
-                </Container>
-            </Field>
+                            <Field s pwmd>
+                                <Text md accent>
+                                    Monitoring - {ds.selectedUnitRes()?.name}
+                                </Text>
+                            </Field>
+                            <Container>
+                                <SignalStrengthArea />
+                                <BatteryLevelArea />
+                                <ProcessorUsageArea />
+                            </Container>
+                            <Field s pwmd>
+                                <Text md accent>
+                                    Controls
+                                </Text>
+                            </Field>
+                            <Container>
+                                <ChargeControlArea />
+                                <MachineControlArea />
+                            </Container>
+                        </Field>
+                    </Field>
+                </Suspense>
+            </Transition>
         </Field>
     )
 }
