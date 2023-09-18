@@ -71,7 +71,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         return false
                     }}
                 >
-                    {children()}
+                    {children() ?? <></>}
                 </Field>
             </Field>
         </Field>
