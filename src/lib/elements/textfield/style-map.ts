@@ -1,2 +1,6 @@
 // to set custom defined values to styles using shortcuts
-export const styleMap = [{ w: 'width' }, { color: 'color' }]
+export const styleMap = [
+    { w: 'width' },
+    { color: 'color' },
+    { bg: 'background' },
+]

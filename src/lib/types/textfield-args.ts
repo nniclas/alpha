@@ -5,6 +5,7 @@ export interface TextFieldArgs {
     color?: string
     placeholder?: string
     password?: boolean
+    bg?: string
 
     pxs?: boolean // padding
     psm?: boolean

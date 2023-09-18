@@ -1,6 +1,6 @@
 .bg {
     background-image: url('../../assets/bg2.svg');
-    background-size: 100%;
+    background-size: 4000px;
     pointer-events: none;
 
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@
 
 @media only screen and (max-width: 1400px) {
     .bg {
-        background-size: 200%;
+        background-size: 1600px;
     }
 }
 
@@ -31,4 +31,19 @@
     left: 0;
     right: 0;
     background: var(--color-stronger);
+}
+
+.abstract {
+    background-image: url('../../assets/abstract.svg');
+    background-size: 2000px;
+    pointer-events: none;
+
+    background-repeat: no-repeat;
+    /* background-position: top left; */
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
