@@ -7,28 +7,33 @@
     /* width: 100%; */
     flex: 1;
     resize: none; /* applicable to textarea only */
+    box-sizing: border-box;
 }
 textarea::placeholder {
     color: var(--color-middle);
 }
 
 .textfield.lg {
-    font-family: var(--text-font);
-    font-size: var(--text-size-lg);
-    /* font-weight: 700; */
-}
-
-.textfield.md {
+    height: 64px;
     font-family: var(--text-font);
     font-size: var(--text-size-md);
     /* font-weight: 700; */
 }
-.textfield.sm {
+
+.textfield.md {
+    height: 48px;
     font-family: var(--text-font);
     font-size: var(--text-size-sm);
     /* font-weight: 700; */
 }
+.textfield.sm {
+    height: 40px;
+    font-family: var(--text-font);
+    font-size: var(--text-size-xs);
+    /* font-weight: 700; */
+}
 .textfield.xs {
+    height: 32px;
     font-family: var(--text-font);
     font-size: var(--text-size-xs);
     /* font-weight: 700; */

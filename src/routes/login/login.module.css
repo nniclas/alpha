@@ -35,11 +35,11 @@
 
 .abstract {
     background-image: url('../../assets/abstract.svg');
-    background-size: 2000px;
+    background-size: 100%;
     pointer-events: none;
 
     background-repeat: no-repeat;
-    /* background-position: top left; */
+    background-position: bottom left;
 
     position: absolute;
     top: 0;

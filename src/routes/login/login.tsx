@@ -63,20 +63,68 @@ export const Login: Component = () => {
 
             <Field layer s class={styles.abstract} pevn />
 
-            {/* <Field layer s class={styles.bg} pevn /> */}
+            <Field layer s class={styles.bg} pevn />
 
-            <Field layer jcs ais pevn>
-                <Field s pmd col gxs>
+            <Field layer jce ais pevn>
+                <Field s aie plg col gxs>
                     <Text
-                        md
+                        lg
+                        res
                         color='var(--color-accent)'
                         style='letter-spacing:12px'
                     >
                         ALPHA
                     </Text>
-                    <Text sm res color='var(--color-middle)'>
+                    <Text md res color='var(--color-middle)'>
                         Remote operating technical tool.
                     </Text>
+                </Field>
+            </Field>
+
+            <Field layer s c res={{ aie: true }}>
+                <Field res={{ plg: true }}>
+                    <Field s a plg w={360} res={{ w: 240 }} col gsm>
+                        <Field s pwsm>
+                            <Text color='var(--color-medium)'>Account</Text>
+                        </Field>
+                        <Field s>
+                            <Textfield
+                                md
+                                placeholder='Email'
+                                value={email()}
+                                primary
+                                psm
+                                bg='hsl(190, 8%, 60%); '
+                                color='var(--color-medium)'
+                                change={(v) => setEmail(v)}
+                            />
+                        </Field>
+                        <Field s>
+                            <Textfield
+                                md
+                                password
+                                placeholder='Password'
+                                value={password()}
+                                bg='hsl(190, 8%, 60%); '
+                                color='var(--color-medium)'
+                                psm
+                                change={(v) => setPassword(v)}
+                            />
+                        </Field>
+                        <Field s jce>
+                            <Field s>
+                                <Button
+                                    style='background:hsl(190, 8%, 60%); '
+                                    md
+                                    onClick={logIn}
+                                >
+                                    <Text color='var(--color-medium)'>
+                                        Sign in
+                                    </Text>
+                                </Button>
+                            </Field>
+                        </Field>
+                    </Field>
                 </Field>
             </Field>
 
@@ -90,64 +138,6 @@ export const Login: Component = () => {
                         </Field>
                     </Field>
                 </Responsive>
-            </Field>
-
-            <Field layer jcc aie>
-                <Field plg jce aic res={{ ais: true, jcc: true }}>
-                    <Field
-                        plg
-                        s
-                        // style='margin-top:64px; margin-right:256px'
-                        res={{ style: 'margin-right:0px' }}
-                    >
-                        <Field s col gsm res={{ psm: true, w: 240 }} a w={360}>
-                            {/* <Field s c>
-                                <Field s w={200} res={{ w: 140 }}>
-                                    <Logo />
-                                </Field>
-                            </Field> */}
-
-                            <Field s pwsm>
-                                <Text color='var(--color-medium)'>Account</Text>
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    placeholder='Email'
-                                    value={email()}
-                                    primary
-                                    psm
-                                    bg='hsl(190, 8%, 60%); '
-                                    color='var(--color-medium)'
-                                    change={(v) => setEmail(v)}
-                                />
-                            </Field>
-                            <Field s>
-                                <Textfield
-                                    password
-                                    placeholder='Password'
-                                    value={password()}
-                                    bg='hsl(190, 8%, 60%); '
-                                    color='var(--color-medium)'
-                                    psm
-                                    change={(v) => setPassword(v)}
-                                />
-                            </Field>
-                            <Field s jce>
-                                <Field s>
-                                    <Button
-                                        style='background:hsl(190, 8%, 60%); '
-                                        md
-                                        onClick={logIn}
-                                    >
-                                        <Text color='var(--color-medium)'>
-                                            Sign in
-                                        </Text>
-                                    </Button>
-                                </Field>
-                            </Field>
-                        </Field>
-                    </Field>
-                </Field>
             </Field>
         </Field>
     )
