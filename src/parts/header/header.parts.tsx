@@ -107,25 +107,11 @@ export const MainMenu = () => {
     }
 
     const compactActions = [
-        <Button accent>
-            <Field s h={60} w={100} psm c>
-                <Text xs secondary>
-                    {appStore.session()?.username}
-                </Text>
-            </Field>
-        </Button>,
-        <Button primary>
-            <Field s h={60} w={100} psm c>
-                <Text xs secondary>
-                    users
-                </Text>
-            </Field>
-        </Button>,
         <Modal
             jcc
             buttonContent={
-                <Field accent psm s h={60} w={100} c>
-                    <Label secondary size='md' iconTheme='secondary'>
+                <Field secondary psm s h={70} w={140} c>
+                    <Label size='md' iconTheme='secondary'>
                         settings
                     </Label>
                 </Field>
@@ -133,6 +119,13 @@ export const MainMenu = () => {
         >
             <Settings />
         </Modal>,
+        <Button secondary onClick={logOut}>
+            <Field s h={70} w={140} psm c col gxs>
+                <Text xs>{appStore.session()?.username}</Text>
+
+                <FiLogOut color='var(--color-light)' size={18} />
+            </Field>
+        </Button>,
     ]
 
     return (
@@ -180,12 +173,7 @@ export const MainMenu = () => {
                                 <Settings />
                             </Modal>
                             <Field s>
-                                <Button
-                                    w={80}
-                                    h={80}
-                                    res={{ w: 60, h: 60 }}
-                                    onClick={logOut}
-                                >
+                                <Button w={80} h={80} onClick={logOut}>
                                     <FiLogOut
                                         color='var(--color-strong)'
                                         size={18}

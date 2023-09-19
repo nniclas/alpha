@@ -9,4 +9,6 @@ export interface ButtonArgs {
     w?: number | string // width:
     h?: number | string // height:
     p?: number | string // padding
+
+    bg?: string // background override
 }

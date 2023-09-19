@@ -5,4 +5,5 @@ export const styleMap = [
     { a: 'transition' },
     { bb: 'border-bottom' },
     { o: 'opacity' },
+    { bg: 'background' },
 ]

@@ -9,64 +9,111 @@ import Textfield from '../../lib/elements/textfield/textfield'
 import { signIn } from '../../core/auth'
 import Shifter from '../../components/shifter/shifter'
 import Responsive from '../../lib/components/responsive/responsive'
+import Dropdown from '../../lib/components/dropdown/dropdown'
 
-// const Layout = (a: {
-//     bg: string
-//     color: string
-//     lslot: any
-//     rslot: any
-//     dslot: any
-// }) => {
-//     return (
-//         <Field col rel id='fjongen'>
-//             <Field></Field>
-//             <Field s>
-//                 <Field rel h={600} bg={a.color}>
-//                     <Field h={150} bg={a.bg}></Field>
-//                     <Field layer>{a.lslot}</Field>
-//                 </Field>
-//                 <Field s rel w={600} h={600}>
-//                     <Field class={styles.bg}></Field>
-//                 </Field>
-//                 <Field rel h={600} bg={a.color}>
-//                     <Field h={450} bg={a.bg}></Field>
-//                     <Field layer>{a.rslot}</Field>
-//                 </Field>
-//             </Field>
-//             <Field s bg={a.color} rel>
-//                 {a.dslot}
-//             </Field>
-//         </Field>
-//     )
-// }
+//...
+const demoUsers = [
+    { email: 'demo@user.com', pwd: 'bananer', access: 'READ' },
+    { email: 'john@doe.com', pwd: 'eple', access: 'ADMIN' },
+    { email: 'jane@doe.com', pwd: 'saft', access: 'READ_WRITE' },
+]
 
 export const Login: Component = () => {
     const navigate = useNavigate()
 
-    const [email, setEmail] = createSignal<string>('john@doe.com') /////////////////////// remove default
-    const [password, setPassword] = createSignal<string>('eple') ///////////////////////// remove default
+    const [user, setUser] = createSignal<{ email: string; pwd: string }>(
+        demoUsers[0]
+    )
 
     const logIn = async () => {
-        if (await signIn(email(), password())) {
+        if (await signIn(user().email, user().pwd)) {
             navigate('/dashboard', { replace: true })
         }
     }
 
+    const demoUsersDropdown = () => {
+        return (
+            <Field s col c gsm>
+                {/* <Text>Demo users</Text> */}
+                <Field s>
+                    <Dropdown
+                        jce
+                        dock='left'
+                        buttonContent={
+                            <Button w={180} h={80}>
+                                <Text color='var(--color-dim)'>
+                                    {user().email}
+                                </Text>
+                            </Button>
+                        }
+                        items={demoUsers.map((u) => (
+                            <Button
+                                secondary
+                                w={180}
+                                h={80}
+                                onClick={() => setUser(u)}
+                            >
+                                <Field s col gxs>
+                                    <Text primary>{u.email}</Text>
+                                    <Text accent>{u.access}</Text>
+                                </Field>
+                            </Button>
+                        ))}
+                    />
+                </Field>
+            </Field>
+        )
+    }
+
+    const form = (bg: string, color: string) => {
+        return (
+            <Field s a plg w={360} res={{ w: 240 }} col gsm>
+                <Field s pwsm>
+                    <Text color={color}>Account</Text>
+                </Field>
+                <Field s>
+                    <Textfield
+                        md
+                        placeholder='Email'
+                        value={user().email}
+                        primary
+                        psm
+                        bg={bg}
+                        color={color}
+                        change={(v) => setUser({ ...user(), email: v })}
+                    />
+                </Field>
+                <Field s>
+                    <Textfield
+                        md
+                        password
+                        placeholder='Password'
+                        value={user().pwd}
+                        bg={bg}
+                        color={color}
+                        psm
+                        change={(v) => setUser({ ...user(), pwd: v })}
+                    />
+                </Field>
+                <Field s jce>
+                    <Field s>
+                        <Button bg={bg} md onClick={logIn}>
+                            <Text color={color}>Sign in</Text>
+                        </Button>
+                    </Field>
+                </Field>
+            </Field>
+        )
+    }
+
     return (
         <Field fixed secondary>
-            {/* <Field layer jcs ais pevn>
-                <img
-                    src='src/assets/splash.jpg'
-                    style='width:50%; margin-left:-48px; filter: grayscale(100%); mix-blend-mode:multiply'
-                />
-            </Field> */}
-
             <Field layer s class={styles.abstract} pevn />
 
             <Field layer s class={styles.bg} pevn />
 
-            <Field layer jce ais pevn>
-                <Field s aie plg col gxs>
+            <Field layer ais pevn>
+                <Field s plg col gxs>
                     <Text
                         lg
                         res
@@ -82,50 +129,23 @@ export const Login: Component = () => {
             </Field>
 
             <Field layer s c res={{ aie: true }}>
-                <Field res={{ plg: true }}>
-                    <Field s a plg w={360} res={{ w: 240 }} col gsm>
-                        <Field s pwsm>
-                            <Text color='var(--color-medium)'>Account</Text>
+                <Responsive
+                    compact={
+                        <Field c plg>
+                            {form(
+                                'var(--color-lighter)',
+                                'var(--color-medium)'
+                            )}
                         </Field>
-                        <Field s>
-                            <Textfield
-                                md
-                                placeholder='Email'
-                                value={email()}
-                                primary
-                                psm
-                                bg='hsl(190, 8%, 60%); '
-                                color='var(--color-medium)'
-                                change={(v) => setEmail(v)}
-                            />
+                    }
+                >
+                    <Field jce plg c>
+                        <Field s style='border:2px solid var(--color-middle)'>
+                            {demoUsersDropdown()}
                         </Field>
-                        <Field s>
-                            <Textfield
-                                md
-                                password
-                                placeholder='Password'
-                                value={password()}
-                                bg='hsl(190, 8%, 60%); '
-                                color='var(--color-medium)'
-                                psm
-                                change={(v) => setPassword(v)}
-                            />
-                        </Field>
-                        <Field s jce>
-                            <Field s>
-                                <Button
-                                    style='background:hsl(190, 8%, 60%); '
-                                    md
-                                    onClick={logIn}
-                                >
-                                    <Text color='var(--color-medium)'>
-                                        Sign in
-                                    </Text>
-                                </Button>
-                            </Field>
-                        </Field>
+                        {form('var(--color-stronger)', 'var(--color-dim)')}
                     </Field>
-                </Field>
+                </Responsive>
             </Field>
 
             <Field layer jcc aie pevn>
@@ -141,132 +161,4 @@ export const Login: Component = () => {
             </Field>
         </Field>
     )
-
-    // login page covers the full window
-    // return (
-    // <Field class={styles.cover}>
-    //     <Field layer jcs ais>
-    //         <Field s pmd h={400} aic res={{ ais: true }}>
-    //             <Field s col gsm ais>
-    //                 <Field s w={180} jce res={{ jcs: true }}>
-    //                     <img
-    //                         src='src/assets/icons/cogs.png'
-    //                         style='width:180px; margin-left:-48px'
-    //                     />
-    //                 </Field>
-    //                 <Field p='16px 48px' gxs col res={{ w: 300 }}>
-    //                     <Text
-    //                         md
-    //                         color='var(--color-accent)'
-    //                         style='letter-spacing:12px'
-    //                     >
-    //                         ALPHA
-    //                     </Text>
-    //                     <Text
-    //                         sm
-    //                         color='var(--color-middle)'
-    //                         style='letter-spacing:1px'
-    //                     >
-    //                         Remote configuration and operating technical
-    //                         tool.
-    //                     </Text>
-    //                 </Field>
-    //             </Field>
-    //         </Field>
-    //     </Field>
-    //     <Layout
-    //         bg='var(--color-stronger)'
-    //         color='var(--color-light)'
-    //         lslot={
-    //             <></>
-    //             // <Field aic jce gmd style='z-index:1; margin-right:-100px'>
-    //             //     <Field
-    //             //         s
-    //             //         w={300}
-    //             //         h={300}
-    //             //         res={{ pmd: true, w: 200, h: 200 }}
-    //             //     >
-    //             //         <Logo />
-    //             //     </Field>
-    //             // </Field>
-    //         }
-    //         rslot={
-    //             // <Shifter tr='foo'>
-    //             <Field
-    //                 s
-    //                 col
-    //                 ais
-    //                 // style='position:fixed; left:0; bottom:0; width:100%;'
-    //             >
-    //                 {/* <Field s col psm>
-    //                     <Text sm color='var(--color-middle)'>
-    //                         Account
-    //                     </Text>
-    //                 </Field> */}
-    //             </Field>
-    //             // </Shifter>
-    //         }
-    //         dslot={
-    //             <Field jce res={{ jcs: true }}>
-    //                 <Field s>
-    //                     <Field
-    //                         col
-    //                         gsm
-    //                         plg
-    //                         w={400}
-    //                         res={{ pmd: true }}
-    //                         a
-    //                         // bg='var(--color-strongest)'
-    //                     >
-    //                         <Field psm>
-    //                             <Text color='var(--color-strong)'>
-    //                                 Sign in
-    //                             </Text>
-    //                         </Field>
-    //                         <Field s>
-    //                             <Textfield
-    //                                 placeholder='Email'
-    //                                 value={email()}
-    //                                 primary
-    //                                 psm
-    //                                 color='var(--color-middle)'
-    //                                 change={(v) => setEmail(v)}
-    //                             />
-    //                         </Field>
-    //                         <Field>
-    //                             <Textfield
-    //                                 password
-    //                                 placeholder='Password'
-    //                                 value={password()}
-    //                                 primary
-    //                                 psm
-    //                                 color='var(--color-middle)'
-    //                                 change={(v) => setPassword(v)}
-    //                             />
-    //                         </Field>
-    //                         <Field jce>
-    //                             <Field s>
-    //                                 <Button tertiary md onClick={logIn}>
-    //                                     <Text>Sign in</Text>
-    //                                 </Button>
-    //                             </Field>
-    //                         </Field>
-    //                     </Field>
-    //                 </Field>
-    //             </Field>
-    //         }
-    //     />
-    //     <Field layer jcc aie pevn>
-    //         <Responsive compact={<></>}>
-    //             <Field layer jcc aie pevn>
-    //                 <Field s pmd>
-    //                     <Text color='var(--color-lightest)' sm>
-    //                         nniclas © Copyright 2023
-    //                     </Text>
-    //                 </Field>
-    //             </Field>
-    //         </Responsive>
-    //     </Field>
-    // </Field>
-    // )
 }
