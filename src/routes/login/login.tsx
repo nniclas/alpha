@@ -129,6 +129,16 @@ export const Login: Component = () => {
             </Field>
 
             <Field layer s c res={{ aie: true }}>
+                {/* <Field plg>
+                    <Button
+                        secondary
+                        lg
+                        w={160}
+                        res={{ lg: true, secondary: true, span: true }}
+                    >
+                        <Text accent>hello there</Text>
+                    </Button>
+                </Field> */}
                 <Responsive
                     compact={
                         <Field c plg>

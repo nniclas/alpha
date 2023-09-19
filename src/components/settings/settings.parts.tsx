@@ -15,52 +15,10 @@ import Textfield from '../../lib/elements/textfield/textfield'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
-export const UserSettings = () => {
-    return (
-        <Field pmd>
-            <Field s secondary pmd col gxs>
-                <Field s col w={320}>
-                    <Text xs primary>
-                        Id
-                    </Text>
-                    <Textfield
-                        xs
-                        placeholder='36 letter unique hardware ID'
-                        value={as.session()?.username}
-                        primary
-                        psm
-                        color='var(--color-middle)'
-                        style='pointer-events:none; user-select:none' // simplify demo
-                        // change={(v) => ...}
-                    />
-                </Field>
-                <Field s col w={320}>
-                    <Text xs primary>
-                        Access
-                    </Text>
-                    <Textfield
-                        xs
-                        placeholder='36 letter unique hardware ID'
-                        // value={as.session()?.user?.access}
-                        value={'READ_WRITE'}
-                        primary
-                        psm
-                        color='var(--color-middle)'
-                        style='pointer-events:none; user-select:none' // simplify demo
-                        // change={(v) => ...}
-                    />
-                </Field>
-            </Field>
-            <Field plg>
-                {/* <Shifter>{createPage(unit())}</Shifter> */}
-                {/* <Shifter>{createPage(unit())}</Shifter> */}
-            </Field>
-        </Field>
-    )
-}
-
 export const AppSettings = () => {
     // console.log(as.condensed())
+
+    const cond = as.condensed() ? 1 : 0
 
     return (
         <Field pmd>
@@ -73,7 +31,6 @@ export const AppSettings = () => {
                             change={(i) => as.changeTheme(themes[i])}
                             w={80}
                             h={40}
-                            res={{ w: 120 }}
                         >
                             <Field gsm c>
                                 <Text sm res>
@@ -92,13 +49,12 @@ export const AppSettings = () => {
                     <Text sm>Margins</Text>
                     <Field s psm>
                         <SelectButton
-                            value={as.condensed() ? 1 : 0}
+                            value={cond}
                             change={(i) =>
                                 as.changeCondensed(i == 0 ? false : true)
                             }
                             w={120}
                             h={40}
-                            res={{ w: 120 }}
                         >
                             <Field gsm c>
                                 <Text sm res>
@@ -124,8 +80,8 @@ export const UnitSettings = () => {
     const createPage = (u: Unit | undefined) => <EditUnit unit={u} />
 
     return (
-        <Field>
-            <Field s secondary pmd col gxs>
+        <Field res={{ col: true }}>
+            <Field s secondary plg col gxs aic>
                 <For each={ds.unitsRes()}>
                     {(u, i) => {
                         const sel = (u: Unit) =>
@@ -164,6 +120,46 @@ export const UnitSettings = () => {
             <Field>
                 {/* <Shifter>{createPage(unit())}</Shifter> */}
                 <Shifter>{createPage(unit())}</Shifter>
+            </Field>
+        </Field>
+    )
+}
+
+export const UserSettings = () => {
+    return (
+        <Field pmd res={{ jcc: true }}>
+            <Field s secondary pmd col gmd>
+                <Field s col w={240} gxs>
+                    <Text xs primary>
+                        Id
+                    </Text>
+                    <Textfield
+                        xs
+                        placeholder='36 letter unique hardware ID'
+                        value={as.session()?.username}
+                        primary
+                        psm
+                        color='var(--color-middle)'
+                        style='pointer-events:none; user-select:none' // simplify demo
+                        // change={(v) => ...}
+                    />
+                </Field>
+                <Field s col w={240} gxs>
+                    <Text xs primary>
+                        Access
+                    </Text>
+                    <Textfield
+                        xs
+                        placeholder='36 letter unique hardware ID'
+                        // value={as.session()?.user?.access}
+                        value={'READ_WRITE'}
+                        primary
+                        psm
+                        color='var(--color-middle)'
+                        style='pointer-events:none; user-select:none' // simplify demo
+                        // change={(v) => ...}
+                    />
+                </Field>
             </Field>
         </Field>
     )

@@ -7,6 +7,10 @@
     cursor: hand;
 }
 
+.span {
+    flex: 1;
+}
+
 .br {
     border-radius: var(--rounding);
 }

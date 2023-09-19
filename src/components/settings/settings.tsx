@@ -56,7 +56,7 @@ export default (a: Args) => {
                     <ButtonGroup
                         secondary
                         w={160}
-                        res={{ w: 120 }}
+                        res={{ span: true }}
                         change={(i) => setPage(i)}
                     >
                         <Field gsm c>

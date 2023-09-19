@@ -71,8 +71,8 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field s col gmd>
-                            <Field s col w={320}>
+                        <Field s col gmd res={{ c: true }}>
+                            <Field s col w={320} gxs>
                                 <Text xs primary>
                                     Machine ID
                                 </Text>
@@ -87,7 +87,7 @@ export default (a: Args) => {
                                     // change={(v) => ...}
                                 />
                             </Field>
-                            <Field s col w={300}>
+                            <Field s col w={320} gxs>
                                 <Text xs primary>
                                     Name
                                 </Text>

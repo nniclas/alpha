@@ -16,7 +16,6 @@ import { styleMap } from './style-map'
 export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     const ssDefault = scopeStyles(styles, a)
     const csDefault = customStyles(a, styleMap)
-
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
 
@@ -25,17 +24,13 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
 
     createEffect(() => {
         if (a.res && isCompact()) {
+            ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
             setSs(ssRes)
             setCs(csRes)
         } else {
-            // setTimeout(() => {
             setSs(scopeStyles(styles, a))
             setCs(customStyles(a, styleMap))
-            // }, 0)
         }
-
-        // ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
-        // csRes = customStyles(a.res, styleMap)
     })
 
     // when manually using class prop

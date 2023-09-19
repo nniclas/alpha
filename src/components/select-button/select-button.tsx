@@ -25,7 +25,7 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                 {(c, i) => {
                     return (
                         <Button
-                            {...a}
+                            id={i() == 1 ? 'hello' : ''}
                             a
                             o={selected() == i() ? '_1' : '_0.6'}
                             bb={`2px solid ${
@@ -38,10 +38,12 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                                 setSelected(i())
                                 e.stopPropagation()
                             }}
-
                             // style={`border-bottom:4px solid ${
-                            //     selected() == 1 ? 'var(--color-accent)' : 'transparent'
+                            //     selected() == 1
+                            //         ? 'var(--color-accent)'
+                            //         : 'transparent'
                             // }`}
+                            {...a}
                         >
                             {c}
                         </Button>
