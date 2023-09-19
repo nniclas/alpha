@@ -42,7 +42,7 @@ export const Dev: Component = () => {
                                 <Button
                                     tertiary
                                     w={200}
-                                    h={64}
+                                    h={60}
                                     onClick={() =>
                                         testStore.setSelectedUnitId(i() + 1)
                                     }
@@ -67,7 +67,7 @@ export const Dev: Component = () => {
                         </Text>
                     }
                 >
-                    <Field s secondary w={300} h={64} c>
+                    <Field s secondary w={300} h={60} c>
                         <Text xs accent>
                             {testStore.selectedUnitRes()?.name}
                         </Text>
@@ -88,7 +88,7 @@ export const Dev: Component = () => {
                     <Field s gmd>
                         <For each={testStore.entriesRes()}>
                             {(v, i) => (
-                                <Field s secondary w={200} h={64} c>
+                                <Field s secondary w={200} h={60} c>
                                     <Text xs accent>
                                         {v.id}
                                     </Text>

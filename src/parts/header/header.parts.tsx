@@ -1,4 +1,4 @@
-import { Component, For, Suspense, createEffect } from 'solid-js'
+import { Component, For, Suspense, createEffect, createSignal } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
 
 import Field from '../../lib/elements/field/field'
@@ -101,6 +101,8 @@ export const MiniUnit = (a: { u: Unit }) => {
 export const MainMenu = () => {
     const navigate = useNavigate()
 
+    const [dropDownOpen, setDropDownOpen] = createSignal<boolean>(false)
+
     const logOut = () => {
         appStore.removeSession()
         navigate('/login', { replace: true })
@@ -108,9 +110,13 @@ export const MainMenu = () => {
 
     const compactActions = [
         <Modal
-            jcc
+            opened={(o) => {
+                console.log(o)
+                setDropDownOpen(false)
+            }}
             buttonContent={
-                <Field secondary psm s h={70} w={140} c>
+                <Field secondary psm h={80} c>
+                    <FiSettings color='var(--color-light)' size={18} />
                     <Label size='md' iconTheme='secondary'>
                         settings
                     </Label>
@@ -120,10 +126,9 @@ export const MainMenu = () => {
             <Settings />
         </Modal>,
         <Button secondary onClick={logOut}>
-            <Field s h={70} w={140} psm c col gxs>
+            <Field s h={80} psm aic gsm>
+                <FiLogOut color='var(--color-light)' size={18} />{' '}
                 <Text xs>{appStore.session()?.username}</Text>
-
-                <FiLogOut color='var(--color-light)' size={18} />
             </Field>
         </Button>,
     ]
@@ -134,8 +139,8 @@ export const MainMenu = () => {
             compact={
                 <Field s>
                     <Dropdown
-                        jce
-                        dock='left'
+                        dock='topfix'
+                        open={dropDownOpen()}
                         buttonContent={
                             <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
                                 <FiMenu
@@ -159,6 +164,10 @@ export const MainMenu = () => {
                                 </Text>
                             </Field>
                             <Modal
+                                opened={(o) => {
+                                    console.log(o)
+                                    setDropDownOpen(false)
+                                }}
                                 jcc
                                 buttonContent={
                                     <Field s h={80} w={80} c>

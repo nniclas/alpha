@@ -8,6 +8,7 @@ interface Args {
     children: any // modal content
     buttonContent?: any
     open?: boolean
+    opened?: (o: boolean) => void
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
@@ -28,11 +29,14 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     })
 
     return (
-        <Field s rel style={` z-index: ${open() ? 100 : 'auto'};`}>
+        <Field rel style={` z-index: ${open() ? 100 : 'auto'};`}>
             {a.buttonContent && (
                 <Button
+                    span
                     onClick={(e) => {
                         setOpen(true)
+                        a.opened?.(true)
+                        console.log(a.opened)
                         e.stopPropagation()
                     }}
                 >
@@ -52,6 +56,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     style='position:fixed;z-index:101; background:rgba(0,0,0,0.5)'
                     onClick={(e) => {
                         setOpen(false)
+                        a.opened?.(false)
                     }}
                 />
 
@@ -64,11 +69,12 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     }px); `}
                     onClick={(e) => {
                         setOpen(false)
+                        a.opened?.(false)
                         // clicking anywhere in menu will close
                         // handle close targets in child like this: if (!isABtn(e.target)) e.stopPropagation()
-                        e.preventDefault()
-                        e.stopPropagation()
-                        return false
+                        // e.preventDefault()
+                        // e.stopPropagation()
+                        // return false
                     }}
                 >
                     {children() ?? <></>}

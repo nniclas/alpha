@@ -27,6 +27,7 @@ const style = 'transition:1s cubic-bezier(0.19, 1, 0.22, 1) all'
 
 const w = 200
 const s = 16
+const wu = 64
 
 interface Args {}
 
@@ -63,7 +64,7 @@ export const Mover = (a: Args) => {
     }
 
     return (
-        <Field gsm s h={64} aic>
+        <Field gsm s h={wu} aic>
             <Field
                 s
                 onPointerDown={start}
@@ -78,8 +79,8 @@ export const Mover = (a: Args) => {
                         c
                         s
                         style={`background:rgba(0,0,0,0.0); width:128px; height:128px; transform:translate(${
-                            x() - (64 - s / 2)
-                        }px, -${64 - s / 2}px);`}
+                            x() - (wu - s / 2)
+                        }px, -${wu - s / 2}px);`}
                     >
                         <Field
                             s

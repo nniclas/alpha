@@ -32,7 +32,6 @@ const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export default (a: Args) => {
     const [page, setPage] = createSignal<number>(0)
-    const [firstOpen, setFirstOpen] = createSignal<boolean>(true)
 
     createEffect(() => {
         // console.log(page())
@@ -52,7 +51,12 @@ export default (a: Args) => {
             }}
         >
             <Field a col>
-                <Field s h={64} focus>
+                <Field s h={60} focus jce>
+                    <Button h={60} w={60}>
+                        <FiX {...iconStyle} />
+                    </Button>
+                </Field>
+                <Field s h={60} focus>
                     <ButtonGroup
                         secondary
                         w={160}

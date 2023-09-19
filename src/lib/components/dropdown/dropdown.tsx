@@ -5,17 +5,21 @@ import Field from '../../elements/field/field'
 import Button from '../../elements/button/button'
 
 interface Args {
-    dock?: 'left' | 'right'
+    dock?: 'left' | 'right' | 'topfix'
     buttonContent?: any
     items: any[]
     open?: boolean
+    opened?: (o: boolean) => void
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
 
     createEffect(() => {
-        if (a.open != undefined) setOpen(a.open)
+        if (a.open != undefined) {
+            setOpen(a.open)
+            console.log('burka!')
+        }
     })
 
     return (
@@ -24,6 +28,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                 <Button
                     onClick={(e) => {
                         setOpen(true)
+                        a.opened?.(true)
                         e.stopPropagation()
                     }}
                 >
@@ -44,24 +49,28 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     style='position:fixed;z-index:100'
                     onClick={(e) => {
                         setOpen(false)
+                        a.opened?.(false)
                     }}
                 />
 
                 <Field
-                    layer
                     a
                     // jcs
-                    jce
+
                     // jce={a.dock == 'right'}
-                    style={`z-index:101;  height:auto; justify-content:end`}
+                    style={`${
+                        a.dock == 'topfix' &&
+                        'position:fixed; left:0; width:100%;'
+                    } left:0;z-index:101;  height:auto;`}
                     onClick={(e) => {
                         setOpen(false) // clicking anywhere in menu or outside will close menu
-                        e.preventDefault()
-                        e.stopPropagation()
-                        return false
+                        a.opened?.(false)
+                        // e.preventDefault()
+                        // e.stopPropagation()
+                        // return false
                     }}
                 >
-                    <Field col s>
+                    <Field col>
                         <For each={a.items}>{(item, i) => item}</For>
                     </Field>
                 </Field>

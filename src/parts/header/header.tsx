@@ -40,9 +40,7 @@ export const Header: Component = () => {
         />
     )
 
-    createEffect(() => {
-        // console.log('bong!')
-    })
+    createEffect(() => {})
 
     return (
         <Field
