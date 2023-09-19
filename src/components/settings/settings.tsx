@@ -23,6 +23,7 @@ import { Transition } from 'solid-transition-group'
 import { ButtonGroup } from '../button-group/button-group'
 import Shifter from '../shifter/shifter'
 import { AppSettings, UnitSettings, UserSettings } from './settings.parts'
+import Responsive from '../../lib/components/responsive/responsive'
 
 interface Args {
     // unit?: Unit
@@ -51,11 +52,6 @@ export default (a: Args) => {
             }}
         >
             <Field a col>
-                <Field s h={60} focus jce>
-                    <Button h={60} w={60}>
-                        <FiX {...iconStyle} />
-                    </Button>
-                </Field>
                 <Field s h={60} focus>
                     <ButtonGroup
                         secondary
@@ -82,6 +78,16 @@ export default (a: Args) => {
                             </Text>
                         </Field>
                     </ButtonGroup>
+
+                    <Field
+                        res={{ tertiary: true, s: true, jce: true, aie: true }}
+                    >
+                        <Field w={60} h={60} jce>
+                            <Button h={60} w={60} style={'z-index:1'}>
+                                <FiX {...iconStyle} />
+                            </Button>
+                        </Field>
+                    </Field>
                 </Field>
 
                 <Field col gmd>

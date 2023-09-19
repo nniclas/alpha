@@ -9,7 +9,6 @@ interface Args {
     buttonContent?: any
     items: any[]
     open?: boolean
-    opened?: (o: boolean) => void
 }
 
 export default (a: Args & BaseArgs & FieldArgs) => {
@@ -18,7 +17,6 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     createEffect(() => {
         if (a.open != undefined) {
             setOpen(a.open)
-            console.log('burka!')
         }
     })
 
@@ -28,7 +26,6 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                 <Button
                     onClick={(e) => {
                         setOpen(true)
-                        a.opened?.(true)
                         e.stopPropagation()
                     }}
                 >
@@ -49,7 +46,6 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     style='position:fixed;z-index:100'
                     onClick={(e) => {
                         setOpen(false)
-                        a.opened?.(false)
                     }}
                 />
 
@@ -64,7 +60,6 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     } left:0;z-index:101;  height:auto;`}
                     onClick={(e) => {
                         setOpen(false) // clicking anywhere in menu or outside will close menu
-                        a.opened?.(false)
                         // e.preventDefault()
                         // e.stopPropagation()
                         // return false
