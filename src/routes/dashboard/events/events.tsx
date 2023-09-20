@@ -70,21 +70,24 @@ export const Events = () => {
                             icon={<FiZap />}
                             iconTheme='tertiary'
                             tool={
-                                as.section() == 'events' ? (
-                                    <Button
-                                        onClick={() => setEntryMenuOpen(true)}
-                                    >
-                                        <Field s w={80} res={{ w: 60 }} c>
-                                            <Label
-                                                size='md'
-                                                icon={<FiPlusCircle />}
-                                                iconTheme='accent'
-                                            />
-                                        </Field>
-                                    </Button>
-                                ) : (
-                                    <></>
-                                )
+                                // as.section() == 'events' ? (
+                                <Button
+                                    onClick={() => {
+                                        as.setSection('events')
+                                        setEntryMenuOpen(true)
+                                    }}
+                                >
+                                    <Field s w={80} res={{ w: 60 }} c>
+                                        <Label
+                                            size='md'
+                                            icon={<FiPlusCircle />}
+                                            iconTheme='accent'
+                                        />
+                                    </Field>
+                                </Button>
+                                // ) : (
+                                //     <></>
+                                // )
                                 // <Modal
                                 //     jcc
                                 //     buttonContent={
