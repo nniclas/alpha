@@ -55,7 +55,7 @@ export const App: Component = () => {
                 <Field s col>
                     <Responsive compact={<></>}>
                         <SectionHeader
-                            bg='var(--color-strongest)'
+                            bg='var(--color-morestrongest)'
                             title='Alert'
                             aux={
                                 <Field aic>

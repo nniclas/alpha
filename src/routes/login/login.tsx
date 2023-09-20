@@ -34,28 +34,26 @@ export const Login: Component = () => {
     const demoUsersDropdown = () => {
         return (
             <Field s col c gsm>
-                {/* <Text>Demo users</Text> */}
                 <Field s>
                     <Dropdown
                         jce
                         dock='left'
                         buttonContent={
                             <Button w={180} h={80}>
-                                <Text color='var(--color-dim)'>
+                                <Text xs color='var(--color-dim)'>
                                     {user().email}
                                 </Text>
                             </Button>
                         }
                         items={demoUsers.map((u) => (
-                            <Button
-                                secondary
-                                w={180}
-                                h={80}
-                                onClick={() => setUser(u)}
-                            >
-                                <Field s col gxs>
-                                    <Text primary>{u.email}</Text>
-                                    <Text accent>{u.access}</Text>
+                            <Button secondary onClick={() => setUser(u)}>
+                                <Field s col gxs w={180} h={80} c>
+                                    <Text xs primary>
+                                        {u.email}
+                                    </Text>
+                                    <Text xs accent>
+                                        {u.access}
+                                    </Text>
                                 </Field>
                             </Button>
                         ))}
@@ -150,9 +148,18 @@ export const Login: Component = () => {
                     }
                 >
                     <Field jce plg c>
-                        <Field s style='border:2px solid var(--color-middle)'>
-                            {demoUsersDropdown()}
+                        <Field s col gxs>
+                            <Text xs color='var(--color-dim)'>
+                                Demo users
+                            </Text>
+                            <Field
+                                s
+                                style='border:2px solid var(--color-middle)'
+                            >
+                                {demoUsersDropdown()}
+                            </Field>
                         </Field>
+
                         {form('var(--color-stronger)', 'var(--color-dim)')}
                     </Field>
                 </Responsive>

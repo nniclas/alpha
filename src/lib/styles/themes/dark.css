@@ -16,6 +16,7 @@
     --color-strong: hsl(var(--th-hue), var(--th-saturation), 23%);
     --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
     --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
+    --color-morestrongest: hsl(var(--th-hue), var(--th-saturation), 16%);
     --color-black: hsl(var(--th-hue), var(--th-saturation), 8%);
 
     --color-accent: hsl(50, 36%, 62%);

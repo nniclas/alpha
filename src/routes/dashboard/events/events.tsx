@@ -11,7 +11,7 @@ import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
-import { FiPlusCircle, FiZap } from 'solid-icons/fi'
+import { FiPlusCircle, FiX, FiZap } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
 import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
@@ -32,13 +32,13 @@ import SelectField from '../../../lib/components/select-field/select-field'
 import { Label } from '../../../lib/components/label/label'
 import { TimeLine } from '../../../components/timeline/timeline'
 import { Loader } from '../../../components/loader/loader'
+import { Sidemenu } from '../../../components/sidemenu/sidemenu'
+import Button from '../../../lib/elements/button/button'
 
-// const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export const Events = () => {
-    // createEffect(() => {
-    //     console.log()
-    // })
+    const [entryMenuOpen, setEntryMenuOpen] = createSignal<boolean>(false)
 
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
@@ -55,7 +55,7 @@ export const Events = () => {
         )
     }
     return (
-        <Field rel a col bg='var(--color-stronger)'>
+        <Field rel a bg='var(--color-stronger)'>
             <Transition name='fade'>
                 <Suspense
                     fallback={
@@ -64,47 +64,35 @@ export const Events = () => {
                         </Field>
                     }
                 >
-                    {/* <Field layer col style='pointer-events:none'>
-                <Responsive
-                    compact={
-                        <div
-                            style={`transition:.4s ease border; flex:1; border-left:12px solid ${
-                                unitColorsDarker[
-                                    ds.getUnitIndex(ds.selectedUnitId())
-                                ]
-                            }`}
-                        ></div>
-                    }
-                >
-                    <div
-                        style={`transition:.4s ease border; flex:1; border-top:12px solid ${
-                            unitColorsDarker[
-                                ds.getUnitIndex(ds.selectedUnitId())
-                            ]
-                        }`}
-                    ></div>
-                </Responsive>
-            </Field> */}
                     <Field rel a col bg='var(--color-stronger)'>
                         <SectionHeader
                             title='Events'
                             icon={<FiZap />}
                             iconTheme='tertiary'
                             tool={
-                                <Modal
-                                    jcc
-                                    buttonContent={
-                                        <Field s w={80} res={{ w: 60 }} c>
-                                            <Label
-                                                size='md'
-                                                icon={<FiPlusCircle />}
-                                                iconTheme='accent'
-                                            />
-                                        </Field>
-                                    }
-                                >
-                                    <EditEntry />
-                                </Modal>
+                                <Button onClick={() => setEntryMenuOpen(true)}>
+                                    <Field s w={80} res={{ w: 60 }} c>
+                                        <Label
+                                            size='md'
+                                            icon={<FiPlusCircle />}
+                                            iconTheme='accent'
+                                        />
+                                    </Field>
+                                </Button>
+                                // <Modal
+                                //     jcc
+                                //     buttonContent={
+                                //         <Field s w={80} res={{ w: 60 }} c>
+                                //             <Label
+                                //                 size='md'
+                                //                 icon={<FiPlusCircle />}
+                                //                 iconTheme='accent'
+                                //             />
+                                //         </Field>
+                                //     }
+                                // >
+                                //     <EditEntry />
+                                // </Modal>
                             }
                             click={() => as.setSection('events')}
                             // color={}
@@ -151,6 +139,20 @@ export const Events = () => {
                     </Field>
                 </Suspense>
             </Transition>
+            <Sidemenu open={entryMenuOpen()}>
+                <Field plg secondary glg>
+                    <Text>hello there</Text>
+                    <Button
+                        w={60}
+                        h={60}
+                        secondary
+                        onClick={() => setEntryMenuOpen(false)}
+                    >
+                        <FiX {...iconStyle} />
+                    </Button>
+                    {/* <EditEntry /> */}
+                </Field>
+            </Sidemenu>
         </Field>
     )
 }
