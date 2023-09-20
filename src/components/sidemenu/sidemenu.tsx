@@ -6,6 +6,7 @@ import { createEffect, createSignal } from 'solid-js'
 interface Args {
     open: boolean
     children: any
+    maxWidth?: number
 }
 
 export const Sidemenu = (a: Args) => {
@@ -18,11 +19,13 @@ export const Sidemenu = (a: Args) => {
     })
 
     return (
-        <Field class={styles.container}>
+        <Field s class={styles.container}>
             <Field
                 id='heeeeeeeeeeey'
                 class={`${styles.content}`}
-                style={`${open() ? 'transform: translateX(0);' : ''}`}
+                style={`${a.maxWidth ? `max-width:${a.maxWidth}px;` : ''} ${
+                    open() ? 'transform: translateX(0);' : ''
+                }`}
             >
                 {a.children}
             </Field>

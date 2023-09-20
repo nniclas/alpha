@@ -50,11 +50,10 @@ export default (a: Args) => {
     return (
         <Field
             rel
-            w={800}
-            h={800}
-            s
+            // h={800}
+
             res={{ s: false, w: 'auto', h: 'auto' }}
-            secondary
+            tertiary
             onClick={(e: any) => {
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
@@ -62,8 +61,8 @@ export default (a: Args) => {
             <Field a col>
                 <Transition name='fade'>
                     <Field a col>
-                        <Field s h={32} focus pmd c>
-                            <Field s c>
+                        <Field s h={80} c>
+                            <Field s c pmd>
                                 {isEntryChanged() ? (
                                     <Text lg accent>
                                         •
@@ -75,7 +74,7 @@ export default (a: Args) => {
                             <Field c>
                                 <Text accent>{entry()?.id ?? 'New entry'}</Text>
                             </Field>
-                            <Button
+                            {/* <Button
                                 w={48}
                                 h={48}
                                 onClick={(e) => {
@@ -83,11 +82,11 @@ export default (a: Args) => {
                                 }}
                             >
                                 <FiXCircle {...iconStyle} />
-                            </Button>
+                            </Button> */}
                         </Field>
 
-                        <Field plg col glg>
-                            <Field s gmd res={{ col: true }}>
+                        <Field plg col gmd c>
+                            <Field s gmd col>
                                 <Field s col gsm>
                                     <Text xs primary>
                                         Event
@@ -131,13 +130,12 @@ export default (a: Args) => {
                                     />
                                 </Field>
                             </Field>
-                            <Field s gmd res={{ col: true }}>
+                            <Field s gmd col>
                                 <Field
                                     s
                                     col
                                     gsm
-                                    h={48}
-                                    w={300}
+                                    w={200}
                                     res={{ w: 200, h: 48 }}
                                 >
                                     <Text xs primary>
@@ -149,7 +147,7 @@ export default (a: Args) => {
                                             <Field
                                                 c
                                                 h={48}
-                                                w={300}
+                                                w={200}
                                                 res={{ w: 200, h: 48 }}
                                             >
                                                 <Text xs accent>
@@ -164,13 +162,12 @@ export default (a: Args) => {
                                         }}
                                         buttonArgs={btnStyle}
                                     />
-                                </Field>{' '}
+                                </Field>
                                 <Field
                                     s
                                     col
                                     gsm
-                                    h={48}
-                                    w={300}
+                                    w={200}
                                     res={{ w: 200, h: 48 }}
                                 >
                                     <Text xs primary>
@@ -193,12 +190,12 @@ export default (a: Args) => {
                                     </Textfield>
                                 </Field>
                             </Field>
-                            <Field s col gsm w={300} res={{ w: 200 }}>
+                            <Field s col gsm w={200} res={{ w: 200 }}>
                                 <Text xs primary>
                                     Notes
                                 </Text>
                                 <Textfield
-                                    multiline
+                                    // multiline
                                     xs
                                     placeholder='Notes'
                                     value={entry()?.notes}
@@ -214,7 +211,7 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field secondary s gsm jce pmd>
+                        <Field s gsm jce pmd>
                             {action == 'edit' && (
                                 <Modal
                                     jcc

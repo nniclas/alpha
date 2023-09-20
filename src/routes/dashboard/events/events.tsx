@@ -70,15 +70,21 @@ export const Events = () => {
                             icon={<FiZap />}
                             iconTheme='tertiary'
                             tool={
-                                <Button onClick={() => setEntryMenuOpen(true)}>
-                                    <Field s w={80} res={{ w: 60 }} c>
-                                        <Label
-                                            size='md'
-                                            icon={<FiPlusCircle />}
-                                            iconTheme='accent'
-                                        />
-                                    </Field>
-                                </Button>
+                                as.section() == 'events' ? (
+                                    <Button
+                                        onClick={() => setEntryMenuOpen(true)}
+                                    >
+                                        <Field s w={80} res={{ w: 60 }} c>
+                                            <Label
+                                                size='md'
+                                                icon={<FiPlusCircle />}
+                                                iconTheme='accent'
+                                            />
+                                        </Field>
+                                    </Button>
+                                ) : (
+                                    <></>
+                                )
                                 // <Modal
                                 //     jcc
                                 //     buttonContent={
@@ -139,18 +145,21 @@ export const Events = () => {
                     </Field>
                 </Suspense>
             </Transition>
-            <Sidemenu open={entryMenuOpen()}>
-                <Field plg secondary glg>
-                    <Text>hello there</Text>
-                    <Button
-                        w={60}
-                        h={60}
-                        secondary
-                        onClick={() => setEntryMenuOpen(false)}
-                    >
-                        <FiX {...iconStyle} />
-                    </Button>
-                    {/* <EditEntry /> */}
+            <Sidemenu maxWidth={500} open={entryMenuOpen()}>
+                <Field layer>
+                    <EditEntry />
+                </Field>
+                <Field layer pevn jce h={80}>
+                    <Field s peva>
+                        <Button
+                            w={80}
+                            h={80}
+                            res={{ w: 60, h: 60 }}
+                            onClick={() => setEntryMenuOpen(false)}
+                        >
+                            <FiX {...iconStyle} />
+                        </Button>
+                    </Field>
                 </Field>
             </Sidemenu>
         </Field>
