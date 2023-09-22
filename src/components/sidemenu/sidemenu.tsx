@@ -14,14 +14,11 @@ export const Sidemenu = (a: Args) => {
 
     createEffect(() => {
         if (a.open != open()) setOpen(a.open)
-
-        console.log(a.open)
     })
 
     return (
         <Field s class={styles.container}>
             <Field
-                id='heeeeeeeeeeey'
                 class={`${styles.content}`}
                 style={`${a.maxWidth ? `max-width:${a.maxWidth}px;` : ''} ${
                     open() ? 'transform: translateX(0);' : ''

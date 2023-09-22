@@ -5,14 +5,10 @@
 /**
  * Get signal strength from machine data of unit.
  *
- * @param {number} unitId The id of a unit
+ * @param {number} lastReading Last reading as base value
  * @return {number} The signal strength in percent
  */
-export const getSignalStrength = (unitId: number, lastReading: number) => {
-    //////////////////////////////////////////
-    // todo: make min/max vary based on unitId
-    //////////////////////////////////////////
-
+export const getSignalStrength = (lastReading: number) => {
     let min = lastReading == 0 ? 80 : lastReading - 10
     let max = lastReading == 0 ? 100 : lastReading + 10
     if (min < 0) min = 0
@@ -27,10 +23,10 @@ export const getSignalStrength = (unitId: number, lastReading: number) => {
 /**
  * Get processor usage from machine data of unit.
  *
- * @param {number} unitId The id of a unit
+ * @param {number} lastReading Last reading as base value
  * @return {number} The processor usage in percent
  */
-export const getProcessorUsage = (unitId: number, lastReading: number) => {
+export const getProcessorUsage = (lastReading: number) => {
     //////////////////////////////////////////
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
@@ -45,10 +41,10 @@ export const getProcessorUsage = (unitId: number, lastReading: number) => {
 /**
  * Get battery level from machine data of unit.
  *
- * @param {number} unitId The id of a unit
+ * @param {number} lastReading Last reading as base value
  * @return {number} The battery level in percent
  */
-export const getBatteryLevel = (unitId: number, lastReading: number) => {
+export const getBatteryLevel = (lastReading: number) => {
     //////////////////////////////////////////
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////

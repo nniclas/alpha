@@ -12,6 +12,7 @@ import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
 import { UnitMeter } from '../../components/unit-meter/unit-meter'
 import {
+    FiBatteryCharging,
     FiEdit,
     FiEdit2,
     FiEdit3,
@@ -37,6 +38,9 @@ import EditUnit from '../../components/edit-unit/edit-unit'
 import { unitColors } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
 import Settings from '../../components/settings/settings'
+import { randInt } from '../../common/utils'
+
+const iconStyle = { size: 18, color: 'var(--color-medium)' }
 
 const meterColors = {
     meterColor: 'var(--color-strong)',
@@ -84,10 +88,10 @@ export const MiniUnit = (a: { u: Unit }) => {
                     </Field>
                 </Field>
                 <Field>
-                    <Field w={200} h={24} pmd>
+                    <Field w={200} h={40} psm gxs>
+                        <FiBatteryCharging {...iconStyle} />
                         <SvgUnitMeter
-                            scale={50}
-                            value={47}
+                            value={randInt(30, 80)}
                             valueColor={unitColors[ds.getUnitIndex(a.u.id)]}
                             meterColor='var(--color-light)'
                         />

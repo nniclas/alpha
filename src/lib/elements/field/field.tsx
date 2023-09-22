@@ -17,6 +17,10 @@ import { batch, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     const ssDefault = scopeStyles(styles, a)
     const csDefault = customStyles(a, styleMap)
+
+    // const [args, setArgs] = createSignal<any>(a)
+    const [resArgs, setResArgs] = createSignal<any>(a.res)
+
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
 
@@ -29,9 +33,35 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
         // !!!
         // investigate this: when parent has a res prop all Field children is rendered twice.
         // see replaceWithLayeredStyles() where it happens
-        ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
-        csRes = customStyles(a.res, styleMap)
-    })
+
+        // if (JSON.stringify(a.res) != JSON.stringify(resArgs())) {
+        // ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
+        // csRes = customStyles(a.res, styleMap)
+
+        // setResArgs(a.res)
+        // setArgs(a)
+
+        if ((JSON.stringify(a.res), JSON.stringify(resArgs()))) {
+            ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
+            csRes = customStyles(a.res, styleMap)
+
+            // console.log(a.res)
+            setResArgs()
+        }
+
+        // if (JSON.stringify(a.res) != JSON.stringify(resArgs())) {
+        //     console.log('hej')
+        // }
+    }, resArgs())
+
+    // createEffect(() => {
+    //     // const updated = resArgs();
+
+    //     if (JSON.stringify(a.res) != JSON.stringify(resArgs())) {
+    //         setResArgs(a.res)
+    //     }
+    //     // return updated
+    // }, resArgs())
 
     // when manually using class prop
     let ac

@@ -40,6 +40,10 @@ const iconStyle = { size: 18, color: 'var(--color-accent)' }
 export const Events = () => {
     const [entryMenuOpen, setEntryMenuOpen] = createSignal<boolean>(false)
 
+    createEffect(() => {
+        if (as.section() != 'events') setEntryMenuOpen(false)
+    })
+
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (

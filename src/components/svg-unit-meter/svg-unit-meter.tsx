@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal } from 'solid-js'
+import { For, createEffect, createSignal, onMount } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 
 interface Args {
@@ -6,25 +6,28 @@ interface Args {
     valueColor: string
     meterColor: string
     style?: any
-    scale: number // how long scale (independent of pct value)
+    // scale: number // how long scale (independent of pct value)
 }
 
+const scale = 100
 const size = 2
 const startPath = 'M0 10 L0 10'
+const fullPath = `M0 10 L200 10`
 
 const createPath = (val: number, scale: number) => {
     const rv = val / 100
-    const pxv = size * (rv * scale) * 2
-    const pxvr = Math.round(pxv / scale) * scale
-    return `M0 10 ${pxvr} 10`
+    const pxv = size * (rv * scale)
+    const pxvr = (pxv / scale) * scale
+    return `M0 10 L${pxvr} 10`
 }
 
 export const SvgUnitMeter = (a: Args) => {
     const [path, setPath] = createSignal<string>(startPath)
 
     createEffect(() => {
+        //console.log(a.value)
         if (a.value) {
-            setPath(createPath(a.value, a.scale))
+            setPath(createPath(a.value, scale))
         }
     })
 
@@ -41,7 +44,7 @@ export const SvgUnitMeter = (a: Args) => {
                     ...{ ...baseStyle },
                     stroke: a.meterColor,
                 }}
-                d={createPath(100, a.scale)}
+                d={fullPath}
             />
             <path
                 style={{

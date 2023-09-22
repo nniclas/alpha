@@ -17,6 +17,7 @@ import { Unit } from '../../types/entities/unit'
 import { Loader } from '../../components/loader/loader'
 import { Collapser } from '../../components/collapser/collapser'
 import { unitColors } from '../../common/constants'
+import machineDataStore from '../../core/machine-data-store'
 
 export const Dashboard: Component = () => {
     createEffect(() => {
@@ -31,6 +32,7 @@ export const Dashboard: Component = () => {
 
     return (
         <Field col>
+            {/* <Text>{machineDataStore.testCount()}</Text> */}
             <Field
                 a
                 style={`height:8px; flex:none; background: ${
@@ -40,10 +42,8 @@ export const Dashboard: Component = () => {
             <Field rel>
                 {ds.selectedUnitRes() && (
                     <Collapser
-                        sections={[
-                            { s: 'operation', c: <Operation /> },
-                            { s: 'events', c: <Events /> },
-                        ]}
+                        sections={[<Operation />, <Events />]}
+                        names={['operation', 'events']}
                         openAction={(sec: any) => appStore.setSection(sec)}
                     />
                 )}

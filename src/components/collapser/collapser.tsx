@@ -30,14 +30,15 @@ const flexOpenCompact = `flex-basis:calc(100% - ${COMPACT_HEADER_SIZE}px)`
 const style = `transition:1s cubic-bezier(0.19, 1, 0.22, 1) all`
 
 interface Args {
-    sections: { s: string; c: any }[] // 2
+    sections: any[]
+    names: string[]
     openAction: (s: string) => void
 }
 
 // responsive collapser
 export const Collapser = (a: Args) => {
     const [compact, setCompact] = createSignal<boolean>(false)
-    const [section, setSection] = createSignal<string>(a.sections[0].s)
+    const [section, setSection] = createSignal<string>(a.names[0])
 
     createEffect(() => {
         if (appStore.section()) setSection(appStore.section())
@@ -63,7 +64,7 @@ export const Collapser = (a: Args) => {
                             <Field
                                 trim
                                 style={
-                                    section() == sec.s
+                                    section() == a.names[i()]
                                         ? [
                                               compact()
                                                   ? flexOpenCompact
@@ -82,7 +83,7 @@ export const Collapser = (a: Args) => {
                                 //     setSection(sec.s)
                                 // }}
                             >
-                                {sec.c}
+                                {sec}
                             </Field>
                         )
                     }}

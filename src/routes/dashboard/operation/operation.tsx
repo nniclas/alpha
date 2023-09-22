@@ -30,16 +30,19 @@ import { isCompact } from '../../../lib/utils'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../../components/loader/loader'
 
+declare var global: any
+
 export const Operation = () => {
     let container: any
 
     createEffect(() => {
         if (ds.selectedUnitRes()) {
-            mds.reset()
+            mds.start()
+            // console.log('start?')
         }
 
         if (as.section()) {
-            container.scrollTo({
+            container?.scrollTo({
                 top: 0,
                 behavior: 'smooth',
             })
@@ -47,11 +50,12 @@ export const Operation = () => {
     })
 
     const scrollHandler = (e: Event) => {
-        if (isCompact() && as.section() != 'operation') container.scrollTop = 0
+        if (isCompact() && as.section() != 'operation' && container)
+            container.scrollTop = 0
     }
 
-    onMount(() => container.addEventListener('scroll', scrollHandler))
-    onCleanup(() => container.removeEventListener('resize', scrollHandler))
+    onMount(() => container?.addEventListener('scroll', scrollHandler))
+    onCleanup(() => container?.removeEventListener('resize', scrollHandler))
 
     return (
         <Field rel>
@@ -64,16 +68,7 @@ export const Operation = () => {
                     }
                 >
                     <Field rel a secondary>
-                        <Field
-                            col
-                            ref={container}
-                            style={`overflow:scroll`}
-                            // res={{
-                            //     style: `overflow:${
-                            //         as.section() == 'operation' ? 'scroll' : 'visible'
-                            //     }`,
-                            // }}
-                        >
+                        <Field col ref={container} style={`overflow:scroll`}>
                             <SectionHeader
                                 title='Operation'
                                 icon={<FiSettings />}

@@ -15,6 +15,7 @@ import { FiArrowDownRight, FiArrowRight, FiArrowUpRight } from 'solid-icons/fi'
 import { Area } from '../../../components/area/area'
 import { Mover } from '../../../components/mover/mover'
 import Button from '../../../lib/elements/button/button'
+import { createEffect, onMount } from 'solid-js'
 
 const meterColors = {
     meterColor: 'var(--color-strongest)',
@@ -29,7 +30,7 @@ export const SignalStrengthArea = () => {
             <Field col gsm aic>
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
-                        scale={50}
+                        // scale={100}
                         value={mds.signalStrength()}
                         {...meterColors}
                     />
@@ -56,11 +57,7 @@ export const BatteryLevelArea = () => {
         <Area header='Battery level'>
             <Field col gsm aic>
                 <Field s w={200} h={24}>
-                    <SvgUnitMeter
-                        scale={50}
-                        value={mds.batteryLevel()}
-                        {...meterColors}
-                    />
+                    <SvgUnitMeter value={mds.batteryLevel()} {...meterColors} />
                 </Field>
                 <Field s aic gsm>
                     <Text xs>Recharge frequency</Text>
@@ -82,7 +79,6 @@ export const ProcessorUsageArea = () => {
             <Field col gsm aic>
                 <Field s h={24} w={200}>
                     <SvgUnitMeter
-                        scale={50}
                         value={mds.processorUsage()}
                         {...meterColors}
                     />

@@ -21,6 +21,7 @@ import Responsive from './lib/components/responsive/responsive'
 import Text from './lib/elements/text/text'
 import { SectionHeader } from './parts/section-header/section-header'
 import { FiAlertTriangle } from 'solid-icons/fi'
+import machineDataStore from './core/machine-data-store'
 
 // import BG from './assets/bg2.svg?component-solid'
 
@@ -37,8 +38,6 @@ export const App: Component = () => {
                 <Field rel col>
                     <Transition name='bar'>
                         <Routes>
-                            {/* <Route path='/' component={App} /> */}
-
                             <Route path='/login' component={Login} />
                             <Route path='/' component={RouteGuard}>
                                 <Route path='/' component={Dashboard} />

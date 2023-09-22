@@ -16,6 +16,9 @@ import { styleMap } from './style-map'
 export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     const ssDefault = scopeStyles(styles, a)
     const csDefault = customStyles(a, styleMap)
+
+    const [resArgs, setResArgs] = createSignal<any>(a.res)
+
     const [ss, setSs] = createSignal<string>(ssDefault)
     const [cs, setCs] = createSignal<string>(csDefault)
 
@@ -23,15 +26,25 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     let csRes: any
 
     createEffect(() => {
-        if (a.res && isCompact()) {
+        if ((JSON.stringify(a.res), JSON.stringify(resArgs()))) {
             ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
-            setSs(ssRes)
-            setCs(csRes)
-        } else {
-            setSs(scopeStyles(styles, a))
-            setCs(customStyles(a, styleMap))
+            csRes = customStyles(a.res, styleMap)
+            setResArgs()
         }
-    })
+    }, resArgs())
+
+    // createEffect(() => {
+    //     if (a.res && isCompact()) {
+    //         ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
+    //         setSs(ssRes)
+    //         setCs(csRes)
+
+    //         console.log('hjeh')
+    //     } else {
+    //         setSs(scopeStyles(styles, a))
+    //         setCs(customStyles(a, styleMap))
+    //     }
+    // })
 
     // when manually using class prop
     let ac

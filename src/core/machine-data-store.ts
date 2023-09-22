@@ -5,6 +5,7 @@ import {
     getBatteryLevel,
 } from './machine-api'
 import dataStore from './data-store'
+import { randInt } from '../common/utils'
 
 // simulator!
 
@@ -16,16 +17,18 @@ function createDataState() {
     const [batteryLevel, setBatteryLevel] = createSignal<number>(0) // battery level of current monitored unit
 
     const start = () => {
-        if (!iSignalInterval)
+        if (iSignalInterval == undefined)
             iSignalInterval = setInterval(() => {
-                // console.log(signalStrength())
-                setSignalStrength(getSignalStrength(0, signalStrength()))
-            }, 1400)
-        if (!iProcessorInterval)
+                // console.log('set', signalStrength())
+                setSignalStrength(getSignalStrength(signalStrength()))
+            }, 2400)
+
+        if (iProcessorInterval == undefined)
             iProcessorInterval = setInterval(() => {
-                setProcessorUsage(getProcessorUsage(0, processorUsage()))
-            }, 1100)
-        setBatteryLevel(getBatteryLevel(0, 0))
+                setProcessorUsage(getProcessorUsage(processorUsage()))
+            }, 1700)
+
+        setBatteryLevel(randInt(30, 90))
     }
 
     const stop = () => {
