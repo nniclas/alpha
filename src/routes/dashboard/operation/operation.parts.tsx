@@ -31,7 +31,8 @@ export const SignalStrengthArea = () => {
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
                         // scale={100}
-                        value={mds.signalStrength()}
+                        // value={mds.signalStrength()}
+                        value={50} ///////////////////////////////////////////////////////////
                         {...meterColors}
                     />
                 </Field>
@@ -57,7 +58,11 @@ export const BatteryLevelArea = () => {
         <Area header='Battery level'>
             <Field col gsm aic>
                 <Field s w={200} h={24}>
-                    <SvgUnitMeter value={mds.batteryLevel()} {...meterColors} />
+                    <SvgUnitMeter
+                        // value={mds.batteryLevel()}
+                        value={50} ///////////////////////////////////////////////////////////
+                        {...meterColors}
+                    />
                 </Field>
                 <Field s aic gsm>
                     <Text xs>Recharge frequency</Text>
@@ -79,7 +84,8 @@ export const ProcessorUsageArea = () => {
             <Field col gsm aic>
                 <Field s h={24} w={200}>
                     <SvgUnitMeter
-                        value={mds.processorUsage()}
+                        // value={mds.processorUsage()}
+                        value={50} ///////////////////////////////////////////////////////////
                         {...meterColors}
                     />
                 </Field>

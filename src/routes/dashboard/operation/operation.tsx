@@ -29,17 +29,40 @@ import { Container } from '../../../components/area/container'
 import { isCompact } from '../../../lib/utils'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../../components/loader/loader'
+import {
+    getSignalStrength,
+    getBatteryLevel,
+    getProcessorUsage,
+} from '../../../core/machine-readers'
 
-declare var global: any
+const measures = ['Signal strength', 'Battery level', 'Processor usage']
+const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
+const timings = [2100, 5400, 1200]
 
 export const Operation = () => {
     let container: any
 
-    createEffect(() => {
+    onMount(() => {
         if (ds.selectedUnitRes()) {
-            mds.start()
-            // console.log('start?')
+            // mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
+            mds.initialize(1, [measures[0]], [readers[0]], [timings[0]])
+            //mds.changeUnit(0)
+
+            console.log('start?')
         }
+    })
+
+    createEffect(() => {
+        // console.log(mds.data()![0].measures[0].value)
+    })
+
+    createEffect(() => {
+        // if (ds.selectedUnitRes()) {
+        //     // mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
+        //     mds.initialize(1, measures, readers, timings)
+        //     mds.changeUnit(0)
+        //     // console.log('start?')
+        // }
 
         if (as.section()) {
             container?.scrollTo({
@@ -76,10 +99,32 @@ export const Operation = () => {
                                 click={() => as.setSection('operation')}
                             />
 
-                            <Field s pwmd>
+                            <Field s pwmd gmd>
                                 <Text md accent>
                                     Monitoring - {ds.selectedUnitRes()?.name}
                                 </Text>
+                                {/* <Text accent>
+                                    {mds.data() &&
+                                        mds.data()![0].measures[0].name}
+                                    -
+                                    {mds.data() &&
+                                        mds.data()![0].measures[0].value}
+                                </Text> */}
+                                {/* <Text accent>
+                                    {mds.data()![0].measures[0].name} -
+                                    {mds.data()![0].measures[0].value}
+                                </Text> */}
+                                {/* <Text accent>
+                                    {mds.data() &&
+                                        mds.data()![0].measures[1].name}{' '}
+                                    -
+                                    {mds.data() &&
+                                        mds.data()![0].measures[1].value}
+                                </Text> */}
+                                {/* <Text accent>
+                                    {mds.data()![0].measures[2].name} -
+                                    {mds.data()![0].measures[2].value}
+                                </Text> */}
                             </Field>
                             <Container>
                                 <SignalStrengthArea />

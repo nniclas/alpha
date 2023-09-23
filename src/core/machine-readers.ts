@@ -8,9 +8,9 @@
  * @param {number} lastReading Last reading as base value
  * @return {number} The signal strength in percent
  */
-export const getSignalStrength = (lastReading: number) => {
-    let min = lastReading == 0 ? 80 : lastReading - 10
-    let max = lastReading == 0 ? 100 : lastReading + 10
+export const getSignalStrength = (prev: number): number => {
+    let min = prev == 0 ? 80 : prev - 10
+    let max = prev == 0 ? 100 : prev + 10
     if (min < 0) min = 0
     if (max > 100) max = 100
 
@@ -23,16 +23,16 @@ export const getSignalStrength = (lastReading: number) => {
 /**
  * Get processor usage from machine data of unit.
  *
- * @param {number} lastReading Last reading as base value
+ * @param {number} prev Last reading as base value
  * @return {number} The processor usage in percent
  */
-export const getProcessorUsage = (lastReading: number) => {
+export const getProcessorUsage = (prev: number): number => {
     //////////////////////////////////////////
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    let min = lastReading == 0 ? 20 : lastReading - 10
-    let max = lastReading == 0 ? 90 : lastReading + 10
+    let min = prev == 0 ? 20 : prev - 10
+    let max = prev == 0 ? 90 : prev + 10
     if (min < 0) min = 0
     if (max > 100) max = 100
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -41,16 +41,16 @@ export const getProcessorUsage = (lastReading: number) => {
 /**
  * Get battery level from machine data of unit.
  *
- * @param {number} lastReading Last reading as base value
+ * @param {number} prev Last reading as base value
  * @return {number} The battery level in percent
  */
-export const getBatteryLevel = (lastReading: number) => {
+export const getBatteryLevel = (prev: number): number => {
     //////////////////////////////////////////
     // todo: make min/max vary based on unitId
     //////////////////////////////////////////
 
-    let min = lastReading == 0 ? 10 : lastReading - 10
-    let max = lastReading == 0 ? 90 : lastReading + 10
+    let min = prev == 0 ? 10 : prev - 10
+    let max = prev == 0 ? 90 : prev + 10
     if (min < 0) min = 0
     if (max > 100) max = 100
     return Math.floor(Math.random() * (max - min + 1) + min)

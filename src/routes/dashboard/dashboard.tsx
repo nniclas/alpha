@@ -5,6 +5,7 @@ import {
     createEffect,
     createSignal,
     lazy,
+    onMount,
 } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
@@ -20,7 +21,7 @@ import { unitColors } from '../../common/constants'
 import machineDataStore from '../../core/machine-data-store'
 
 export const Dashboard: Component = () => {
-    createEffect(() => {
+    onMount(() => {
         // on successful log on (user has entered dashboard) manually trigger resource fetches
         // if (!ds.selectedUnitRes()) {
         //     ds.initalize()

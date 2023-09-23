@@ -3,13 +3,13 @@ import {
     getSignalStrength,
     getProcessorUsage,
     getBatteryLevel,
-} from './machine-api'
+} from './machine-readers'
 import dataStore from './data-store'
 import { randInt } from '../common/utils'
 
 // simulator!
 
-let intervals: (NodeJS.Timer | undefined)[][] // matrix ordered by units and measures
+// let intervals: (NodeJS.Timer | undefined)[][] // matrix ordered by units and measures
 
 interface UnitEntry {
     measures: MachineMeasure[]
@@ -17,49 +17,81 @@ interface UnitEntry {
 
 interface MachineMeasure {
     name: string
-    reader: (lr: number) => number
+    reader: (prev: number) => number
     timing: number
     value: number
 }
 
-const defaultData: UnitEntry[] = [
-    { measures: [{ name: '_', reader: () => 0, timing: 1000, value: 0 }] },
-]
+// const defaultData: UnitEntry[] = [
+//     { measures: [{ name: '_', reader: () => 0, timing: 1000, value: 0 }] },
+// ]
 
 // let iSignalInterval: NodeJS.Timer, iProcessorInterval: NodeJS.Timer
 
 function createDataState() {
     // const [unitCount, setUnitCount] = createSignal<number>(1)
+
+    const [intervalData, setIntervalData] = createSignal<
+        (NodeJS.Timer | undefined)[][]
+    >([])
+
     const [selectedUnit, setSelectedUnit] = createSignal<number>(0)
-    const [data, setData] = createSignal<UnitEntry[]>(defaultData) //
+    const [data, setData] = createSignal<UnitEntry[]>() //
 
     // const [signalStrength, setSignalStrength] = createSignal<number[]>([0]) // signal strength of current monitored unit
     // const [processorUsage, setProcessorUsage] = createSignal<number[]>([0]) // processor usage of current monitored unit
     // const [batteryLevel, setBatteryLevel] = createSignal<number[]>([0]) // battery level of current monitored unit
 
     const read = (ui: number, mi: number) => {
+        // console.log('reading from the depths of the mysterious catacombs..')
+
         // total destructuring for immutability..
-        const d = [...data()]
+        const d = [...data()!]
         const ud = { ...d[ui] }
         const udm = { ...[...ud.measures][mi] }
 
         const val = udm.reader(udm.value)
-        ud.measures[mi].value == val
+
+        udm.value = val
+        ud.measures[mi] = udm
+        d[ui] = ud
+
+        if (mi == 0) console.log(mi, val)
+
+        // d[ui].measures[mi].value == val
+
+        // console.log(d[ui].measures[mi].value)
+
         setData(d) // update state
     }
 
     // set interval of a measure or all measures of a unit
     const start = (u: number, m?: number) => {
         const set = (m: number) => {
-            if (intervals[u][m] == undefined)
-                intervals[u][m] = setInterval(
+            console.log(intervalData())
+            stop(u, m)
+            // clearInterval(intervalData()[0][0])
+
+            if (intervalData()[u][m] == undefined) {
+                const intvl = setInterval(
                     () => read(u, m),
-                    data()[u].measures[m].timing
+                    data()![u].measures[m].timing
                 )
+
+                const intvldata = [...intervalData()]
+                const intvalsUnit = [...intvldata[u]]
+
+                intvalsUnit[m] = intvl
+                intvldata[u] = intvalsUnit
+
+                setIntervalData(intvldata)
+
+                console.log(intervalData())
+            }
         }
 
         if (!m) {
-            intervals[u].forEach((ivl, i) => set(i))
+            intervalData()[u].forEach((ivl, i) => set(i))
             return
         }
 
@@ -69,12 +101,13 @@ function createDataState() {
     // clear interval of a measure or all measures of a unit
     const stop = (u: number, m?: number) => {
         const clear = (m: number) => {
-            clearInterval(intervals[u][m])
-            intervals[u][m] = undefined
+            clearInterval(intervalData()[u][m])
+            // intervals[u][m] = undefined
         }
 
         if (!m) {
-            intervals[u].forEach((ivl, i) => clear(i))
+            // console.log(intervals)
+            intervalData()[u].forEach((ivl, i) => clear(i))
             return
         }
 
@@ -84,10 +117,11 @@ function createDataState() {
     const initialize = (
         unitCount: number,
         mnames: string[],
-        readers: (() => number)[],
+        readers: ((prev: number) => number)[],
         timings: number[]
     ) => {
         const data: UnitEntry[] = []
+        const intvls = []
         for (let ui = 0; ui < unitCount; ui++) {
             data.push({
                 measures: mnames.map((n, ni) => ({
@@ -97,18 +131,17 @@ function createDataState() {
                     value: 0,
                 })),
             })
-
-            for (let mi = 0; mi < readers.length; mi++) {
-                // hmm this will create intervals for measure-count TIMES machines...
-                // but we can have one machine active and toggle interval group on/off.. using setSelected state
-                start(ui, mi)
-            }
+            intvls.push(mnames.map((n) => undefined))
         }
+        console.log('init..')
+        setIntervalData(intvls)
+        setData(data)
     }
 
     const changeUnit = (u: number) => {
-        data().forEach((u, ui) => stop(ui)) // stop all
+        data()!.forEach((u, ui) => stop(ui)) // stop all
         start(u) // start selected
+        console.log('start ', u)
         setSelectedUnit(u)
     }
 
