@@ -1,5 +1,11 @@
-import { createSignal, createRoot, createEffect } from 'solid-js'
+import {
+    createSignal,
+    createRoot,
+    createEffect,
+    createResource,
+} from 'solid-js'
 import { clear, tick } from '../common/timer-utils'
+import { delay } from '../common/utils'
 
 // simulator!
 
@@ -16,6 +22,20 @@ interface MachineMeasure {
 function createDataState() {
     const [selectedUnit, setSelectedUnit] = createSignal<number>(0)
     const [data, setData] = createSignal<UnitEntry[]>() //
+    const [loaded, setLoaded] = createSignal<boolean>(false) //
+
+    // intentional set-loaded resource
+    const [loadedRes] = createResource<boolean, number>(
+        selectedUnit,
+        async () => {
+            await delay(800)
+            return true
+        }
+    )
+
+    // createEffect(() => {
+    //     console.log(data())
+    // })
 
     const read = (ui: number, mi: number) => {
         // console.log('reading from the depths of the mysterious catacombs..')
@@ -40,7 +60,9 @@ function createDataState() {
     }
 
     //
-    const start = (ui: number, mi?: number) => {
+    const startRead = async (ui: number, mi?: number) => {
+        setLoaded(false)
+
         tick(
             data()![ui].measures.map((m, mi) => () => {
                 // console.log('read ', ui, mi)
@@ -77,12 +99,13 @@ function createDataState() {
     }
 
     const readUnit = (u: number) => {
-        start(u) // start selected
+        startRead(u) // start selected
         setSelectedUnit(u)
     }
 
     return {
         initialize,
+        loadedRes,
         readUnit,
         selectedUnit,
         data,

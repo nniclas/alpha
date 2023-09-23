@@ -64,6 +64,10 @@ export const Operation = () => {
         }
     })
 
+    createEffect(() => {
+        console.log(mds.loadedRes())
+    })
+
     const scrollHandler = (e: Event) => {
         if (isCompact() && as.section() != 'operation' && container)
             container.scrollTop = 0
@@ -82,17 +86,25 @@ export const Operation = () => {
                         </Field>
                     }
                 >
-                    <Field rel a secondary>
-                        <Field col ref={container} style={`overflow:scroll`}>
-                            <SectionHeader
-                                title='Operation'
-                                icon={<FiSettings />}
-                                iconTheme='tertiary'
-                                click={() => as.setSection('operation')}
-                            />
+                    {mds.loadedRes() && (
+                        <Field rel a secondary>
+                            <Field
+                                col
+                                ref={container}
+                                style={`overflow:scroll`}
+                            >
+                                <SectionHeader
+                                    title='Operation'
+                                    icon={<FiSettings />}
+                                    iconTheme='tertiary'
+                                    click={() => as.setSection('operation')}
+                                />
 
-                            <Field s pwmd gmd>
-                                {/* <Text md accent>
+                                <Field s pwmd gmd>
+                                    <Text md accent>
+                                        Monitoring
+                                    </Text>
+                                    {/* <Text md accent>
                                     Monitoring - {ds.selectedUnitRes()?.name}
                                 </Text>
                                 <Text accent>
@@ -116,23 +128,24 @@ export const Operation = () => {
                                     {mds.data() &&
                                         mds.data()![0].measures[2].value}
                                 </Text> */}
+                                </Field>
+                                <Container>
+                                    <SignalStrengthArea />
+                                    <BatteryLevelArea />
+                                    <ProcessorUsageArea />
+                                </Container>
+                                <Field s pwmd>
+                                    <Text md accent>
+                                        Controls
+                                    </Text>
+                                </Field>
+                                <Container>
+                                    <ChargeControlArea />
+                                    <MachineControlArea />
+                                </Container>
                             </Field>
-                            <Container>
-                                <SignalStrengthArea />
-                                <BatteryLevelArea />
-                                <ProcessorUsageArea />
-                            </Container>
-                            <Field s pwmd>
-                                <Text md accent>
-                                    Controls
-                                </Text>
-                            </Field>
-                            <Container>
-                                <ChargeControlArea />
-                                <MachineControlArea />
-                            </Container>
                         </Field>
-                    </Field>
+                    )}
                 </Suspense>
             </Transition>
         </Field>

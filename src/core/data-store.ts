@@ -54,7 +54,9 @@ function createDataState() {
         const us = await unitsResActions.refetch()
         if (us && us?.length > 0) {
             setSelectedUnitId(us[0].id)
+            return
         }
+        setSelectedUnitId((await unitsResActions.refetch())![0].id)
     }
 
     const [unitsRes, unitsResActions] = createResource<Unit[], Unit[]>(

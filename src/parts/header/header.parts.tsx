@@ -89,7 +89,10 @@ export const MiniUnit = (a: { u: Unit }) => {
                 </Field>
                 <Field>
                     <Field w={200} h={40} psm gxs>
-                        <FiBatteryCharging {...iconStyle} />
+                        <FiBatteryCharging
+                            {...iconStyle}
+                            color={unitColors[ds.getUnitIndex(a.u.id)]}
+                        />
                         <SvgUnitMeter
                             value={randInt(30, 80)}
                             valueColor={unitColors[ds.getUnitIndex(a.u.id)]}
