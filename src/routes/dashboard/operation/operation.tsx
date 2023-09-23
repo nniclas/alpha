@@ -35,23 +35,24 @@ import {
     getProcessorUsage,
 } from '../../../core/machine-readers'
 
-const measures = ['Signal strength', 'Battery level', 'Processor usage']
+const mnames = ['Signal strength', 'Battery level', 'Processor usage']
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
-const timings = [2100, 5400, 1200]
 
 export const Operation = () => {
     let container: any
 
     onMount(() => {
+        // initialize machine units with readers
         if (ds.selectedUnitRes()) {
-            mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
-            // mds.initialize(1, [measures[0]], [readers[0]], [timings[0]])
-            mds.changeUnit(0)
+            mds.initialize(ds.unitsRes()!.length, mnames, readers)
         }
     })
 
+    // switch read machine when changing unit
     createEffect(() => {
-        // console.log(mds.data()![0].measures[0].value)
+        if (ds.selectedUnitRes()) {
+            mds.readUnit(ds.getUnitIndex(ds.selectedUnitId()))
+        }
     })
 
     createEffect(() => {

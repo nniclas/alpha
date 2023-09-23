@@ -31,7 +31,10 @@ export const SignalStrengthArea = () => {
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
                         // scale={100}
-                        value={mds.data()![0].measures[0].value}
+                        value={
+                            mds.data()![ds.getUnitIndex(ds.selectedUnitId())]
+                                .measures[0].value
+                        }
                         // value={50} ///////////////////////////////////////////////////////////
                         {...meterColors}
                     />
@@ -60,7 +63,10 @@ export const BatteryLevelArea = () => {
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
                         // value={mds.batteryLevel()}
-                        value={mds.data()![0].measures[1].value}
+                        value={
+                            mds.data()![ds.getUnitIndex(ds.selectedUnitId())]
+                                .measures[1].value
+                        }
                         // value={50} ///////////////////////////////////////////////////////////
                         {...meterColors}
                     />
@@ -86,7 +92,10 @@ export const ProcessorUsageArea = () => {
                 <Field s h={24} w={200}>
                     <SvgUnitMeter
                         // value={mds.processorUsage()}
-                        value={mds.data()![0].measures[2].value}
+                        value={
+                            mds.data()![ds.getUnitIndex(ds.selectedUnitId())]
+                                .measures[2].value
+                        }
                         // value={50} ///////////////////////////////////////////////////////////
                         {...meterColors}
                     />

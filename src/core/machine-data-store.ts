@@ -1,5 +1,4 @@
 import { createSignal, createRoot, createEffect } from 'solid-js'
-import dataStore from './data-store'
 import { clear, tick } from '../common/timer-utils'
 
 // simulator!
@@ -60,8 +59,7 @@ function createDataState() {
     const initialize = (
         unitCount: number,
         mnames: string[],
-        readers: ((prev: number) => number)[],
-        timings: number[]
+        readers: ((prev: number) => number)[]
     ) => {
         const data: UnitEntry[] = []
         const intvls = []
@@ -70,8 +68,6 @@ function createDataState() {
                 measures: mnames.map((n, ni) => ({
                     name: mnames[ni],
                     reader: readers[ni],
-                    timerRef: undefined,
-                    timing: timings[ni],
                     value: 0,
                 })),
             })
@@ -80,14 +76,14 @@ function createDataState() {
         setData(data)
     }
 
-    const changeUnit = (u: number) => {
+    const readUnit = (u: number) => {
         start(u) // start selected
         setSelectedUnit(u)
     }
 
     return {
         initialize,
-        changeUnit,
+        readUnit,
         selectedUnit,
         data,
         stop,

@@ -22,7 +22,7 @@ const getWithAuth = async <T>(path: string): Promise<T> => {
         return [] as any /// just disable api calls ?????
     }
 
-    console.log('authenticated..')
+    // console.log('authenticated..')
 
     return await get<T>(path)
 }
@@ -60,7 +60,7 @@ function createDataState() {
     const [unitsRes, unitsResActions] = createResource<Unit[], Unit[]>(
         units,
         async () => {
-            console.log('trying to fetch all units..')
+            // console.log('trying to fetch all units..')
             return await getWithAuth<Unit[]>('units')
         }
     )
