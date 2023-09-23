@@ -44,11 +44,9 @@ export const Operation = () => {
 
     onMount(() => {
         if (ds.selectedUnitRes()) {
-            // mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
-            mds.initialize(1, [measures[0]], [readers[0]], [timings[0]])
-            //mds.changeUnit(0)
-
-            console.log('start?')
+            mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
+            // mds.initialize(1, [measures[0]], [readers[0]], [timings[0]])
+            mds.changeUnit(0)
         }
     })
 
@@ -57,13 +55,6 @@ export const Operation = () => {
     })
 
     createEffect(() => {
-        // if (ds.selectedUnitRes()) {
-        //     // mds.initialize(ds.unitsRes()!.length, measures, readers, timings)
-        //     mds.initialize(1, measures, readers, timings)
-        //     mds.changeUnit(0)
-        //     // console.log('start?')
-        // }
-
         if (as.section()) {
             container?.scrollTo({
                 top: 0,
@@ -100,30 +91,29 @@ export const Operation = () => {
                             />
 
                             <Field s pwmd gmd>
-                                <Text md accent>
+                                {/* <Text md accent>
                                     Monitoring - {ds.selectedUnitRes()?.name}
                                 </Text>
-                                {/* <Text accent>
+                                <Text accent>
                                     {mds.data() &&
                                         mds.data()![0].measures[0].name}
                                     -
                                     {mds.data() &&
                                         mds.data()![0].measures[0].value}
-                                </Text> */}
-                                {/* <Text accent>
-                                    {mds.data()![0].measures[0].name} -
-                                    {mds.data()![0].measures[0].value}
-                                </Text> */}
-                                {/* <Text accent>
+                                </Text>
+                                <Text accent>
                                     {mds.data() &&
-                                        mds.data()![0].measures[1].name}{' '}
+                                        mds.data()![0].measures[1].name}
                                     -
                                     {mds.data() &&
                                         mds.data()![0].measures[1].value}
-                                </Text> */}
-                                {/* <Text accent>
-                                    {mds.data()![0].measures[2].name} -
-                                    {mds.data()![0].measures[2].value}
+                                </Text>
+                                <Text accent>
+                                    {mds.data() &&
+                                        mds.data()![0].measures[2].name}
+                                    -
+                                    {mds.data() &&
+                                        mds.data()![0].measures[2].value}
                                 </Text> */}
                             </Field>
                             <Container>
