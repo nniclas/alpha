@@ -61,10 +61,10 @@ export default (a: Args) => {
             <Field a col>
                 <Transition name='fade'>
                     <Field a col>
-                        <Field s h={80} c>
-                            <Field s c pmd>
+                        <Field s h={80} res={{ h: 60 }} c>
+                            <Field s c h={80} w={80} res={{ h: 60, w: 60 }}>
                                 {isEntryChanged() ? (
-                                    <Text lg accent>
+                                    <Text lg accent style='margin-top:-6px'>
                                         •
                                     </Text>
                                 ) : (

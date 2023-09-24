@@ -162,7 +162,9 @@ export const Events = () => {
                             w={80}
                             h={80}
                             res={{ w: 60, h: 60 }}
-                            onClick={() => setEntryMenuOpen(false)}
+                            onClick={(e) => {
+                                setEntryMenuOpen(false)
+                            }}
                         >
                             <FiX {...iconStyle} />
                         </Button>
