@@ -27,13 +27,18 @@ import {
     getProcessorUsage,
 } from '../../../core/machine-readers'
 import { LineChart } from '../../../components/line-chart/line-chart'
+import {
+    BatteryLevelArea,
+    ChargeControlArea,
+    MachineControlArea,
+    ProcessorUsageArea,
+    SignalStrengthArea,
+} from './operation.parts'
 
 const mnames = ['Signal strength', 'Battery level', 'Processor usage']
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 
 export const Operation = () => {
-    const [chartData, setChartData] = createSignal<number[]>([0, 0, 0, 0, 0])
-
     let container: any
 
     onMount(() => {
@@ -41,14 +46,6 @@ export const Operation = () => {
         if (ds.selectedUnitRes()) {
             mds.initialize(ds.unitsRes()!.length, mnames, readers)
         }
-
-        setTimeout(() => {
-            setChartData([14, 45, 23, 78, 34])
-        }, 1000)
-
-        setTimeout(() => {
-            setChartData([24, 85, 43, 68, 54])
-        }, 2000)
     })
 
     // switch read machine when changing unit
@@ -109,14 +106,7 @@ export const Operation = () => {
                                     </Text>
                                 </Field>
 
-                                <LineChart
-                                    data={chartData()}
-                                    scale={{ min: 0, max: 100 }}
-                                    areaColor='var(--color-strong)'
-                                    // lineColor='var(--color-middle)'
-                                />
-
-                                {/* <Container>
+                                <Container>
                                     <SignalStrengthArea />
                                     <BatteryLevelArea />
                                     <ProcessorUsageArea />
@@ -129,7 +119,7 @@ export const Operation = () => {
                                 <Container>
                                     <ChargeControlArea />
                                     <MachineControlArea />
-                                </Container> */}
+                                </Container>
                             </Field>
                         </Field>
                     )}

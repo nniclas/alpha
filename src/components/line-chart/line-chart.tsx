@@ -40,7 +40,7 @@ export const LineChart = (a: Args) => {
     })
 
     const baseStyle = {
-        transition: '.6s ease d',
+        transition: '.6s ease d, .6s ease fill',
     }
 
     return (

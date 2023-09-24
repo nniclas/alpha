@@ -34,6 +34,7 @@ import { TimeLine } from '../../../components/timeline/timeline'
 import { Loader } from '../../../components/loader/loader'
 import { Sidemenu } from '../../../components/sidemenu/sidemenu'
 import Button from '../../../lib/elements/button/button'
+import { Statistics } from '../statistics/statistics'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -58,6 +59,7 @@ export const Events = () => {
             </HeaderCell>
         )
     }
+
     return (
         <Field rel a bg='var(--color-stronger)'>
             <Transition name='fade'>
@@ -70,7 +72,7 @@ export const Events = () => {
                 >
                     <Field rel a col bg='var(--color-stronger)'>
                         <SectionHeader
-                            title='Events'
+                            title='Events | Statistics'
                             icon={<FiZap />}
                             iconTheme='tertiary'
                             tool={
@@ -89,27 +91,12 @@ export const Events = () => {
                                         />
                                     </Field>
                                 </Button>
-                                // ) : (
-                                //     <></>
-                                // )
-                                // <Modal
-                                //     jcc
-                                //     buttonContent={
-                                //         <Field s w={80} res={{ w: 60 }} c>
-                                //             <Label
-                                //                 size='md'
-                                //                 icon={<FiPlusCircle />}
-                                //                 iconTheme='accent'
-                                //             />
-                                //         </Field>
-                                //     }
-                                // >
-                                //     <EditEntry />
-                                // </Modal>
                             }
                             click={() => as.setSection('events')}
-                            // color={}
                         />
+                        {/* <Field>
+                            <Statistics />
+                        </Field> */}
 
                         <Field s pmd res={{ pwxs: true }}>
                             <TimeLine />
@@ -128,14 +115,11 @@ export const Events = () => {
                         >
                             <TableContainer trig={as.section() == 'events'}>
                                 <Table>
-                                    {/* table headers */}
-
                                     <Row>
                                         {hcell('Event', true)}
                                         {hcell('Date', true)}
                                         {hcell('Controller')}
                                         {hcell('Remark')}
-                                        {/* {hcell('Measure')} */}
                                     </Row>
 
                                     <For each={ds.entriesRes()}>
