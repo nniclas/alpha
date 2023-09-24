@@ -40,7 +40,7 @@ export const LineChart = (a: Args) => {
     })
 
     const baseStyle = {
-        transition: '.4s ease all',
+        transition: '.6s ease d',
     }
 
     return (
@@ -57,7 +57,7 @@ export const LineChart = (a: Args) => {
                         <g class='area'>
                             <path
                                 vector-effect='non-scaling-stroke'
-                                style=' transition: .4s ease d;'
+                                style={{ ...baseStyle }}
                                 d={`${area()}`}
                                 fill={a.areaColor}
                             />
@@ -68,7 +68,7 @@ export const LineChart = (a: Args) => {
                         <g class='line'>
                             <path
                                 vector-effect='non-scaling-stroke'
-                                style=' transition: .4s ease d;'
+                                style={{ ...baseStyle }}
                                 d={`${line()}`}
                                 fill='transparent'
                                 stroke={a.lineColor}
@@ -77,9 +77,12 @@ export const LineChart = (a: Args) => {
                         </g>
                     )}
                 </svg>
-                <Field layer c aie>
-                    <Field s pmd>
-                        <Text xs>Chart test</Text>
+                <Field layer c aie pevn>
+                    <Field plg>
+                        <Text xs>From</Text>
+                    </Field>
+                    <Field jce plg c>
+                        <Text xs>To</Text>
                     </Field>
                 </Field>
             </Field>
