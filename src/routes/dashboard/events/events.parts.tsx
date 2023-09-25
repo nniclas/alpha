@@ -23,6 +23,8 @@ import { Label } from '../../../lib/components/label/label'
 import Dropdown from '../../../lib/components/dropdown/dropdown'
 import { measures } from '../../../common/constants'
 
+// const eventsSectionName = 'secondary'
+
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const Details = (a: { entry: Entry; compact?: boolean }) => {
@@ -48,14 +50,18 @@ const Details = (a: { entry: Entry; compact?: boolean }) => {
                     field('Measure', measures[a.entry.measure - 1].title)}
                 <Responsive
                     compact={a.entry.user && field('User', a.entry.user.email)}
-                    addRule={as.section() != 'events'}
+                    // addRule={as.section() != eventsSectionName}
                 />
             </Field>
         </Field>
     )
 }
 
-export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
+export const EntryRow = (a: {
+    e: Entry
+    t: ValueIdTitle
+    compact: boolean
+}) => {
     const [open, setOpen] = createSignal<boolean>(false)
     const [details, setDetails] = createSignal<boolean>(false)
 
@@ -86,7 +92,13 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                     </Field>
                 )} */}
 
-                    <Responsive
+                    <Field gsm>
+                        <EventIcon value={a.t.value} />
+                        <Text res xs tertiary>
+                            {a.t.title}
+                        </Text>
+                    </Field>
+                    {/* <Responsive
                         compact={
                             <Field gsm>
                                 <EventIcon value={a.t.value} />
@@ -95,7 +107,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                                 </Text>
                             </Field>
                         }
-                        addRule={as.section() != 'events'}
+                        addRule={as.section() != eventsSectionName}
                     >
                         <Field gsm>
                             <EventIcon value={a.t.value} />
@@ -103,23 +115,22 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
                                 {a.t.title}
                             </Text>
                         </Field>
-                    </Responsive>
+                    </Responsive> */}
                     <Field layer style='top:32px; left:18px'>
                         {details() && <Details entry={a.e} />}
                     </Field>
                 </Field>
             </Cell>
             <Cell>
-                <Text xs tertiary>
-                    {date(a.e.date)}
-                </Text>
+                <Responsive compact={<></>} addRule={a.compact}>
+                    <Text xs tertiary>
+                        {date(a.e.date)}
+                    </Text>
+                </Responsive>
             </Cell>
             <Cell>
                 {a.e.user && (
-                    <Responsive
-                        compact={<></>}
-                        addRule={as.section() != 'events'}
-                    >
+                    <Responsive compact={<></>} addRule={a.compact}>
                         <Text xs primary>
                             <Field gsm>
                                 <FiUser {...iconStyle} />
@@ -133,10 +144,7 @@ export const EntryRow = (a: { e: Entry; t: ValueIdTitle }) => {
             </Cell>
             <Cell>
                 {a.e.notes && (
-                    <Responsive
-                        compact={<></>}
-                        addRule={as.section() != 'events'}
-                    >
+                    <Responsive compact={<></>} addRule={a.compact}>
                         <FiMessageCircle {...iconStyle} />
                     </Responsive>
                 )}

@@ -14,7 +14,7 @@ import Text from '../../../lib/elements/text/text'
 import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import mds from '../../../core/machine-data-store'
-import { FiSettings, FiSunrise } from 'solid-icons/fi'
+import { FiMonitor, FiSettings, FiSunrise } from 'solid-icons/fi'
 import { SectionHeader } from '../../../parts/section-header/section-header'
 
 import { Container } from '../../../components/area/container'
@@ -34,11 +34,18 @@ import {
     ProcessorUsageArea,
     SignalStrengthArea,
 } from './operation.parts'
+import { Section } from 'types/_types'
+
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const mnames = ['Signal strength', 'Battery level', 'Processor usage']
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 
-export const Operation = () => {
+interface Args {
+    section: Section
+}
+
+export const Operation = (a: Args) => {
     let container: any
 
     onMount(() => {
@@ -69,7 +76,7 @@ export const Operation = () => {
     // })
 
     const scrollHandler = (e: Event) => {
-        if (isCompact() && as.section() != 'operation' && container)
+        if (isCompact() && as.section() != a.section && container)
             container.scrollTop = 0
     }
 
@@ -93,12 +100,34 @@ export const Operation = () => {
                                 ref={container}
                                 style={`overflow:scroll`}
                             >
-                                <SectionHeader
+                                <Field
+                                    aic
+                                    s
+                                    jcs
+                                    h={80}
+                                    res={{ h: 60 }}
+                                    onClick={() => {
+                                        as.setSection(a.section)
+                                        as.setShowCharts(false)
+                                    }}
+                                >
+                                    <Field
+                                        s
+                                        w={80}
+                                        h={80}
+                                        c
+                                        res={{ w: 60, h: 60 }}
+                                    >
+                                        <FiMonitor {...iconStyle} />
+                                    </Field>
+                                    <Text>Operation</Text>
+                                </Field>
+                                {/* <SectionHeader
                                     title='Operation'
                                     icon={<FiSettings />}
                                     iconTheme='tertiary'
-                                    click={() => as.setSection('operation')}
-                                />
+                                    click={() => as.setSection(a.section)}
+                                /> */}
 
                                 <Field s pwmd gmd>
                                     <Text md accent>

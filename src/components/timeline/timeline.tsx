@@ -8,7 +8,7 @@ import { trendColors } from '../../common/constants'
 import ds from '../../core/data-store'
 import { displayWeek, week } from '../../common/date-utils'
 
-const TESTWEEKS = ['2023-30', '2023-31', '2023-32', '2023-33', '2023-34']
+const TESTWEEKS = ['2023-31', '2023-32', '2023-33', '2023-34']
 
 export const TimeLine = () => {
     // createEffect(() => {

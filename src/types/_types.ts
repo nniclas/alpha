@@ -25,3 +25,5 @@ export interface Session {
 }
 
 export type Theme = 'dark' | 'lite'
+
+export type Section = 'primary' | 'secondary'

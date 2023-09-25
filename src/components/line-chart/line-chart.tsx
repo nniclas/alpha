@@ -44,7 +44,7 @@ export const LineChart = (a: Args) => {
     }
 
     return (
-        <Field rel ref={container}>
+        <Field rel ref={container} trim>
             <Field layer>
                 <svg
                     width='100%'
@@ -77,13 +77,13 @@ export const LineChart = (a: Args) => {
                         </g>
                     )}
                 </svg>
-                <Field layer c aie pevn>
-                    <Field plg>
-                        <Text xs>From</Text>
-                    </Field>
-                    <Field jce plg c>
-                        <Text xs>To</Text>
-                    </Field>
+            </Field>
+            <Field layer c aie pevn>
+                <Field plg>
+                    <Text xs>From</Text>
+                </Field>
+                <Field jce plg c>
+                    <Text xs>To</Text>
                 </Field>
             </Field>
         </Field>

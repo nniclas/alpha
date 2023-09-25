@@ -11,23 +11,65 @@ import {
 import { LineChart } from '../../../components/line-chart/line-chart'
 import { unitColors } from '../../../common/constants'
 import ds from '../../../core/data-store'
+import Field from '../../../lib/elements/field/field'
+import { FiTrendingUp } from 'solid-icons/fi'
+import Text from '../../../lib/elements/text/text'
+import { Section } from 'types/_types'
+import as from '../../../core/app-store'
 
-export const Statistics = () => {
-    const [chartData, setChartData] = createSignal<number[]>([0, 0, 0, 0, 0])
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
+
+interface Args {
+    section: Section
+}
+
+const testDataZeroes = [0, 0, 0, 0, 0]
+const testData = [14, 45, 23, 78, 34]
+
+export const Statistics = (a: Args) => {
+    const [chartData, setChartData] = createSignal<number[]>(testDataZeroes)
 
     onMount(() => {
         // testing...
-        setTimeout(() => setChartData([14, 45, 23, 78, 34]), 1000)
-        setTimeout(() => setChartData([24, 85, 43, 68, 54]), 2000)
+        setTimeout(() => setChartData(testData), 1000)
+    })
+
+    createEffect(() => {
+        if (as.showCharts() == false) setChartData(testDataZeroes)
+        if (as.showCharts() == true) setChartData(testData)
     })
 
     return (
-        <LineChart
-            data={chartData()}
-            scale={{ min: 0, max: 100 }}
-            areaColor={unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]}
-            // areaColor='var(--color-medium)'
-            // lineColor='var(--color-medium)'
-        />
+        <Field tertiary col>
+            <Field
+                s
+                h={80}
+                res={{ h: 60 }}
+                aic
+                jcs
+                onClick={() => {
+                    as.setSection(a.section)
+                    as.setShowCharts(true)
+                }}
+            >
+                <Field s w={80} h={80} res={{ w: 60, h: 60 }} c>
+                    <FiTrendingUp {...iconStyle} />
+                </Field>
+                <Text>Stats</Text>
+            </Field>
+
+            <Field rel>
+                {/* <Field s w={80} res={60}></Field> */}
+                <LineChart
+                    data={chartData()}
+                    scale={{ min: 0, max: 100 }}
+                    areaColor={
+                        unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]
+                    }
+                    // areaColor='var(--color-medium)'
+                    // lineColor='var(--color-medium)'
+                />
+            </Field>
+        </Field>
     )
 }

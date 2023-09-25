@@ -9,7 +9,7 @@ import {
 } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
-import appStore from '../../core/app-store'
+import as from '../../core/app-store'
 import ds from '../../core/data-store'
 import { Operation } from './operation/operation'
 import { Events } from './events/events'
@@ -19,6 +19,11 @@ import { Loader } from '../../components/loader/loader'
 import { Collapser } from '../../components/collapser/collapser'
 import { unitColors } from '../../common/constants'
 import machineDataStore from '../../core/machine-data-store'
+import { Minimizer } from '../../components/minimizer/minimizer'
+import { FiTrendingUp } from 'solid-icons/fi'
+import { Statistics } from './statistics/statistics'
+
+const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 export const Dashboard: Component = () => {
     onMount(() => {
@@ -30,6 +35,20 @@ export const Dashboard: Component = () => {
 
         ds.initialize()
     })
+
+    const primary = () => <Operation section='primary' />
+    const secondary = () => (
+        <Minimizer
+            sections={[
+                <Events section='secondary' />,
+                <Statistics section='secondary' />,
+            ]}
+            names={['events', 'statistics']}
+            // openAction={(sec: any) => console.log('hello there')}
+            minSize={80}
+            section={as.showCharts() ? 'statistics' : 'events'}
+        />
+    )
 
     return (
         <Field col>
@@ -43,9 +62,10 @@ export const Dashboard: Component = () => {
             <Field rel>
                 {ds.selectedUnitRes() && (
                     <Collapser
-                        sections={[<Operation />, <Events />]}
-                        names={['operation', 'events']}
-                        openAction={(sec: any) => appStore.setSection(sec)}
+                        sections={[primary(), secondary()]}
+                        names={['primary', 'secondary']}
+                        // openAction={(sec: any) => appStore.setSection(sec)}
+                        section={as.section()?.toString()!}
                     />
                 )}
             </Field>

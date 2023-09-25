@@ -1,4 +1,4 @@
-import { Session, Theme } from '../types/_types'
+import { Section, Session, Theme } from '../types/_types'
 import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
 import { createSignal, createRoot, createEffect } from 'solid-js'
 function createDataState() {
@@ -6,9 +6,9 @@ function createDataState() {
 
     const [theme, setTheme] = createSignal<Theme>('dark')
     const [condensed, setCondensed] = createSignal<boolean>(false)
-    const [section, setSection] = createSignal<'operation' | 'events'>(
-        'operation'
-    )
+    const [section, setSection] = createSignal<Section>() // main dashboard sections, left/right or top/bottom
+    const [showCharts, setShowCharts] = createSignal<boolean>()
+
     const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
 
     createEffect(() => {
@@ -51,6 +51,8 @@ function createDataState() {
         removeSession,
         section,
         setSection,
+        showCharts,
+        setShowCharts,
         week,
         setWeek,
     }

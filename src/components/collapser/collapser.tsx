@@ -21,10 +21,10 @@ import { isCompact } from '../../lib/utils'
 
 // todo: in constants
 const COMPACT_HEADER_SIZE = 60
-const MINIMIZED_WIDTH = 500
+const DESKTOP_MINIMIZED_WIDTH = 600
 
-const flexClosed = `flex-basis:${MINIMIZED_WIDTH}px; min-width:${MINIMIZED_WIDTH}px`
-const flexOpen = `flex-basis:calc(100% - ${MINIMIZED_WIDTH}px)`
+const flexClosed = `flex-basis:${DESKTOP_MINIMIZED_WIDTH}px; min-width:${DESKTOP_MINIMIZED_WIDTH}px`
+const flexOpen = `flex-basis:calc(100% - ${DESKTOP_MINIMIZED_WIDTH}px)`
 const flexClosedCompact = `flex-basis:${COMPACT_HEADER_SIZE}px; min-height:${COMPACT_HEADER_SIZE}px`
 const flexOpenCompact = `flex-basis:calc(100% - ${COMPACT_HEADER_SIZE}px)`
 const style = `transition:1s cubic-bezier(0.19, 1, 0.22, 1) all`
@@ -32,7 +32,8 @@ const style = `transition:1s cubic-bezier(0.19, 1, 0.22, 1) all`
 interface Args {
     sections: any[]
     names: string[]
-    openAction: (s: string) => void
+    // openAction: (s: string) => void
+    section: string
 }
 
 // responsive collapser
@@ -41,7 +42,10 @@ export const Collapser = (a: Args) => {
     const [section, setSection] = createSignal<string>(a.names[0])
 
     createEffect(() => {
-        if (appStore.section()) setSection(appStore.section())
+        if (a.section) {
+            setSection(a.section)
+        }
+        // if (appStore.section()) setSection(appStore.section())
     })
 
     createEffect(() => {
@@ -62,6 +66,7 @@ export const Collapser = (a: Args) => {
                     {(sec, i) => {
                         return (
                             <Field
+                                rel
                                 trim
                                 style={
                                     section() == a.names[i()]
