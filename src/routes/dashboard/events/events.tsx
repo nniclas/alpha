@@ -11,7 +11,7 @@ import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
-import { FiPlusCircle, FiX, FiZap } from 'solid-icons/fi'
+import { FiPlusCircle, FiTrendingUp, FiX, FiZap } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
 import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
@@ -35,6 +35,8 @@ import { Loader } from '../../../components/loader/loader'
 import { Sidemenu } from '../../../components/sidemenu/sidemenu'
 import Button from '../../../lib/elements/button/button'
 import { Statistics } from '../statistics/statistics'
+import { Collapser } from '../../../components/collapser/collapser'
+import { Minimizer } from '../../../components/minimizer/minimizer'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -60,82 +62,103 @@ export const Events = () => {
         )
     }
 
+    const Evts = () => (
+        <Transition name='fade'>
+            <Suspense
+                fallback={
+                    <Field a layer c style='pointer-events:none'>
+                        <Loader />
+                    </Field>
+                }
+            >
+                <Field rel a col bg='var(--color-stronger)'>
+                    <SectionHeader
+                        title='Events'
+                        icon={<FiZap />}
+                        iconTheme='tertiary'
+                        tool={
+                            // as.section() == 'events' ? (
+                            <Button
+                                onClick={() => {
+                                    as.setSection('events')
+                                    setEntryMenuOpen(true)
+                                }}
+                            >
+                                <Field s w={80} res={{ w: 60 }} c>
+                                    <Label
+                                        size='md'
+                                        icon={<FiPlusCircle />}
+                                        iconTheme='accent'
+                                    />
+                                </Field>
+                            </Button>
+                        }
+                        click={() => as.setSection('events')}
+                    />
+                    {/* <Field>
+                <Statistics />
+            </Field> */}
+
+                    <Field s pmd res={{ pwxs: true }}>
+                        <TimeLine />
+                    </Field>
+
+                    <Field
+                        col
+                        gsm
+                        plg
+                        res={{ col: false, pmd: true }}
+                        style={`flex-direction:${
+                            as.section() == 'events' || !isCompact()
+                                ? 'column'
+                                : 'row'
+                        } `}
+                    >
+                        <TableContainer trig={as.section() == 'events'}>
+                            <Table>
+                                <Row>
+                                    {hcell('Event', true)}
+                                    {hcell('Date', true)}
+                                    {hcell('Controller')}
+                                    {hcell('Remark')}
+                                </Row>
+
+                                <For each={ds.entriesRes()}>
+                                    {(e, i) => {
+                                        const et = tags.find(
+                                            (t) => t.value == e.tag
+                                        )!
+                                        return <EntryRow e={e} t={et} />
+                                    }}
+                                </For>
+                            </Table>
+                        </TableContainer>
+                    </Field>
+                </Field>
+            </Suspense>
+        </Transition>
+    )
+
+    const Stats = () => (
+        <Field tertiary pmd>
+            <FiTrendingUp {...iconStyle} />
+        </Field>
+    )
+
     return (
         <Field rel a bg='var(--color-stronger)'>
-            <Transition name='fade'>
-                <Suspense
-                    fallback={
-                        <Field a layer c style='pointer-events:none'>
-                            <Loader />
-                        </Field>
-                    }
-                >
-                    <Field rel a col bg='var(--color-stronger)'>
-                        <SectionHeader
-                            title='Events | Statistics'
-                            icon={<FiZap />}
-                            iconTheme='tertiary'
-                            tool={
-                                // as.section() == 'events' ? (
-                                <Button
-                                    onClick={() => {
-                                        as.setSection('events')
-                                        setEntryMenuOpen(true)
-                                    }}
-                                >
-                                    <Field s w={80} res={{ w: 60 }} c>
-                                        <Label
-                                            size='md'
-                                            icon={<FiPlusCircle />}
-                                            iconTheme='accent'
-                                        />
-                                    </Field>
-                                </Button>
-                            }
-                            click={() => as.setSection('events')}
-                        />
-                        {/* <Field>
-                            <Statistics />
-                        </Field> */}
+            <Minimizer
+                sections={[<Evts />, <Stats />]}
+                names={['evts', 'stats']}
+                openAction={(sec: any) => console.log('hej')}
+            />
 
-                        <Field s pmd res={{ pwxs: true }}>
-                            <TimeLine />
-                        </Field>
+            {/* <Collapser
+                sections={[<Evts />, <Stats />]}
+                names={['evts', 'stats']}
+                openAction={(sec: any) => console.log('hej')}
+            /> */}
 
-                        <Field
-                            col
-                            gsm
-                            plg
-                            res={{ col: false, pmd: true }}
-                            style={`flex-direction:${
-                                as.section() == 'events' || !isCompact()
-                                    ? 'column'
-                                    : 'row'
-                            } `}
-                        >
-                            <TableContainer trig={as.section() == 'events'}>
-                                <Table>
-                                    <Row>
-                                        {hcell('Event', true)}
-                                        {hcell('Date', true)}
-                                        {hcell('Controller')}
-                                        {hcell('Remark')}
-                                    </Row>
-
-                                    <For each={ds.entriesRes()}>
-                                        {(e, i) => {
-                                            const et = tags.find(
-                                                (t) => t.value == e.tag
-                                            )!
-                                            return <EntryRow e={e} t={et} />
-                                        }}
-                                    </For>
-                                </Table>
-                            </TableContainer>
-                        </Field>
-                    </Field>
-                </Suspense>
-            </Transition>
             <Sidemenu maxWidth={500} open={entryMenuOpen()}>
                 <Field layer>
                     <EditEntry />
