@@ -89,6 +89,16 @@ function createDataState() {
         }
     )
 
+    const [madchineStatsRes] = createResource(
+        () => [selectedUnitId(), selectedWeek(), 'week'] as const, //////////////// RESOLUTION..........
+        ([unitId, element, res]) => {
+            if (!unitId) return []
+            return getWithAuth<Entry[]>(
+                `machineStats/unit/${unitId}/element/${element}/res/${res}`
+            )
+        }
+    )
+
     /////// WIP WIP
     const addUnit = (u: Unit) => {
         addItem<Unit>(u, 'units')

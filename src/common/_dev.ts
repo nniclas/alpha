@@ -110,5 +110,5 @@ export const generateSomeEntries = (
 /////////////// CONSOLE LOG SQL SCRIPTS (comment/uncomment to run/disable)
 //////////////////////////////////////////////////////
 
-console.log(generateSomeStats([1, 2, 3, 4], 30))
+//console.log(generateSomeStats([1, 2, 3, 4], 30))
 //console.log(generateSomeEntries([1, 2, 3, 4], [1, 2, 3], 30))
