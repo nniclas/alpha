@@ -2,6 +2,34 @@ import { subDays, subMinutes } from 'date-fns'
 import { randInt } from './utils'
 import { date } from './date-utils'
 
+export const generateSomeStats = (unitIds: number[], count: number) => {
+    const elements = ['Battery', 'Signal strength', 'Processor']
+
+    let result = `
+        INSERT INTO 
+            stats(unitid, element, value, date) 
+        VALUES 
+            `
+
+    let someDates = []
+    const today = new Date()
+    for (let i = 0; i < count; i++)
+        someDates.push(date(subMinutes(subDays(today, i), randInt(0, 1440))))
+
+    for (let e of elements) {
+        for (let i = 0; i < count; i++) {
+            const unitid = unitIds[randInt(0, unitIds.length - 1)]
+            const value = randInt(30, 90) // completely random here....
+            result += `
+            (${unitid}, ${e}, ${value}, ${someDates[i]}")${
+                i < count - 1 ? ',' : ';'
+            } `
+        }
+    }
+
+    return result
+}
+
 export const generateSomeEntries = (
     unitIds: number[],
     userIds: number[],
@@ -54,7 +82,7 @@ export const generateSomeEntries = (
         const date = someDates[randInt(0, unitIds.length - 1)]
 
         result += `
-        (${unitid}, ${userid}, ${event}, ${measure}, ${tag}, ${notes}, "${date}")${
+            (${unitid}, ${userid}, ${event}, ${measure}, ${tag}, ${notes}, "${date}")${
             i < count - 1 ? ',' : ';'
         } `
     }

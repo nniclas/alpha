@@ -29,14 +29,18 @@ const testData = [14, 45, 23, 78, 34]
 export const Statistics = (a: Args) => {
     const [chartData, setChartData] = createSignal<number[]>(testDataZeroes)
 
-    onMount(() => {
-        // testing...
-        setTimeout(() => setChartData(testData), 1000)
-    })
+    // onMount(() => {
+    //     // testing...
+    //     setTimeout(() => setChartData(testData), 1000)
+    // })
 
     createEffect(() => {
-        if (as.showCharts() == false) setChartData(testDataZeroes)
-        if (as.showCharts() == true) setChartData(testData)
+        // console.log(as.showCharts())
+        if (as.showCharts() == undefined || as.showCharts() == false)
+            setChartData(testDataZeroes)
+        if (as.showCharts() == true) {
+            setTimeout(() => setChartData(testData), 500)
+        }
     })
 
     return (
@@ -63,9 +67,10 @@ export const Statistics = (a: Args) => {
                 <LineChart
                     data={chartData()}
                     scale={{ min: 0, max: 100 }}
-                    areaColor={
-                        unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]
-                    }
+                    areaColor='var(--color-accent)'
+                    // areaColor={
+                    //     unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]
+                    // }
                     // areaColor='var(--color-medium)'
                     // lineColor='var(--color-medium)'
                 />
