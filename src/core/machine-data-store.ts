@@ -14,7 +14,7 @@ interface UnitEntry {
 }
 
 interface MachineMeasure {
-    name: string
+    element: string
     reader: (prev: number) => number
     value: number
 }
@@ -80,20 +80,20 @@ function createDataState() {
 
     const initialize = (
         unitCount: number,
-        mnames: string[],
+        elements: string[],
         readers: ((prev: number) => number)[]
     ) => {
         const data: UnitEntry[] = []
         const intvls = []
         for (let ui = 0; ui < unitCount; ui++) {
             data.push({
-                measures: mnames.map((n, ni) => ({
-                    name: mnames[ni],
-                    reader: readers[ni],
+                measures: elements.map((n, ei) => ({
+                    element: elements[ei],
+                    reader: readers[ei],
                     value: 0,
                 })),
             })
-            intvls.push(mnames.map((n) => undefined))
+            intvls.push(elements.map((e) => undefined))
         }
         setData(data)
     }

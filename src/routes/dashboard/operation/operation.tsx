@@ -25,6 +25,7 @@ import {
     getSignalStrength,
     getBatteryLevel,
     getProcessorUsage,
+    machineElements,
 } from '../../../core/machine-readers'
 import { LineChart } from '../../../components/line-chart/line-chart'
 import {
@@ -38,7 +39,6 @@ import { Section } from 'types/_types'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
-const mnames = ['Signal strength', 'Battery level', 'Processor usage']
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 
 interface Args {
@@ -51,7 +51,7 @@ export const Operation = (a: Args) => {
     onMount(() => {
         // initialize machine units with readers
         if (ds.selectedUnitRes()) {
-            mds.initialize(ds.unitsRes()!.length, mnames, readers)
+            mds.initialize(ds.unitsRes()!.length, machineElements, readers)
         }
     })
 

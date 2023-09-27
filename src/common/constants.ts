@@ -2,6 +2,8 @@ import { IdValuePair, Theme, ValueIdTitle } from 'types/_types'
 
 export const themes: Theme[] = ['dark', 'lite']
 
+export const statResolutions = ['Week', 'Month', 'Quarter']
+
 // export const stateColors: IdValuePair[] = [
 //     { id: 1, value: 'rgb(80,80,110)' },
 //     { id: 2, value: 'rgb(80,110,80)' },

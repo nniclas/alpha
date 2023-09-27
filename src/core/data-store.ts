@@ -12,7 +12,12 @@ import { User } from 'types/entities/user'
 import { Entry } from 'types/entities/entry'
 import appStore from './app-store'
 import { delay } from '../common/utils'
-import { unitColors, unitColorsDarker } from '../common/constants'
+import {
+    statResolutions,
+    unitColors,
+    unitColorsDarker,
+} from '../common/constants'
+import { machineElements } from './machine-readers'
 
 const getWithAuth = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
@@ -89,15 +94,26 @@ function createDataState() {
         }
     )
 
-    const [madchineStatsRes] = createResource(
-        () => [selectedUnitId(), selectedWeek(), 'week'] as const, //////////////// RESOLUTION..........
+    const [machineStatsRes] = createResource(
+        () =>
+            [selectedUnitId(), machineElements[0], statResolutions[0]] as const, //////////////// RESOLUTION..........
         ([unitId, element, res]) => {
             if (!unitId) return []
             return getWithAuth<Entry[]>(
-                `machineStats/unit/${unitId}/element/${element}/res/${res}`
+                `stats/machine/unit/${unitId}/element/${element}/res/${res}`
             )
         }
     )
+
+    // const [entryStatsRes] = createResource(
+    //     () => [selectedUnitId(), statResolutions[0]] as const, //////////////// RESOLUTION..........
+    //     ([unitId, res]) => {
+    //         if (!unitId) return []
+    //         return getWithAuth<Entry[]>(
+    //             `stats/entries/unit/${unitId}/res/${res}`
+    //         )
+    //     }
+    // )
 
     /////// WIP WIP
     const addUnit = (u: Unit) => {
@@ -131,6 +147,8 @@ function createDataState() {
         unitsRes,
         selectedUnitRes,
         entriesRes,
+        machineStatsRes,
+        // entryStatsRes,
         initialize,
         selectedUnitId,
         setSelectedUnitId,

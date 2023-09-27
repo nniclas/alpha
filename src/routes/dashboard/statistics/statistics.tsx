@@ -29,10 +29,14 @@ const testData = [14, 45, 23, 78, 34]
 export const Statistics = (a: Args) => {
     const [chartData, setChartData] = createSignal<number[]>(testDataZeroes)
 
-    // onMount(() => {
-    //     // testing...
-    //     setTimeout(() => setChartData(testData), 1000)
-    // })
+    onMount(() => {
+        // // testing...
+        // setTimeout(() => setChartData(testData), 1000)
+
+        setTimeout(() => {
+            console.log(ds.machineStatsRes())
+        }, 2000)
+    })
 
     createEffect(() => {
         // console.log(as.showCharts())
