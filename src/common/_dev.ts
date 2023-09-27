@@ -20,14 +20,20 @@ export const generateSomeStats = (units: number[], count: number) => {
             date(subMinutes(subDays(backToThePast, i), randInt(0, 1440)))
         )
 
-    for (let u of units) {
-        for (let e of elements) {
+    for (let u = 0; u < units.length; u++) {
+        for (let e = 0; e < elements.length; e++) {
             for (let i = 0; i < count; i++) {
                 const value = randInt(30, 90) // completely random here....
                 result += `
-            (${u}, "${e}", ${value}, "${someDates[i]}")${
-                    u != units.length - 1 && i < count - 1 ? ',' : ';'
-                } `
+                    (${units[u]}, "${elements[e]}", ${value}, "${
+                    someDates[i]
+                }")${
+                    u == units.length - 1 &&
+                    e == elements.length - 1 &&
+                    i == count - 1
+                        ? ';'
+                        : ','
+                }`
             }
         }
     }
