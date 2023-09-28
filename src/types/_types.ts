@@ -27,3 +27,13 @@ export interface Session {
 export type Theme = 'dark' | 'lite'
 
 export type Section = 'primary' | 'secondary'
+
+export interface StatData {
+    data: number[]
+    titles: string[]
+}
+
+// define object like { key1: {}, key2: {}, ...keyn: {} }
+export interface MachineStatData {
+    [statData: string]: StatData[]
+}

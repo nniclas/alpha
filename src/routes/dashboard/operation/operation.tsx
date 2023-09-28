@@ -36,6 +36,8 @@ import {
     SignalStrengthArea,
 } from './operation.parts'
 import { Section } from 'types/_types'
+import SelectField from '../../../lib/components/select-field/select-field'
+import { statResolutions } from '../../../common/constants'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -121,6 +123,43 @@ export const Operation = (a: Args) => {
                                         <FiMonitor {...iconStyle} />
                                     </Field>
                                     <Text>Operation</Text>
+                                    <Field jce>
+                                        <Field
+                                            s
+                                            w={100}
+                                            h={80}
+                                            c
+                                            res={{ w: 100, h: 60 }}
+                                        >
+                                            <SelectField
+                                                // index={entry()?.measure}
+                                                items={statResolutions.map(
+                                                    (r) => (
+                                                        <Field
+                                                            secondary
+                                                            c
+                                                            w={100}
+                                                            h={80}
+                                                            res={{
+                                                                w: 100,
+                                                                h: 60,
+                                                            }}
+                                                        >
+                                                            <Text xs accent>
+                                                                {r}
+                                                            </Text>
+                                                        </Field>
+                                                    )
+                                                )}
+                                                onChange={(v) => {
+                                                    // const e = { ...entry()! }
+                                                    // e.measure = v
+                                                    // setEntry(e)
+                                                }}
+                                                // buttonArgs={btnStyle}
+                                            />
+                                        </Field>
+                                    </Field>
                                 </Field>
                                 {/* <SectionHeader
                                     title='Operation'

@@ -16,6 +16,7 @@ import { FiTrendingUp } from 'solid-icons/fi'
 import Text from '../../../lib/elements/text/text'
 import { Section } from 'types/_types'
 import as from '../../../core/app-store'
+import { avg } from '../../../common/utils'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -34,7 +35,13 @@ export const Statistics = (a: Args) => {
         // setTimeout(() => setChartData(testData), 1000)
 
         setTimeout(() => {
-            console.log(ds.machineStatsRes())
+            // console.log(
+            //     ds
+            //         .machineStatsRes()
+            //         ['Battery'].data.map((x: string) => x.substring(0, 2))
+            // )
+            // console.log(ds.machineStatsRes()['Battery'].data)
+            // console.log(avg(ds.machineStatsRes()['Battery'].data, true))
         }, 2000)
     })
 

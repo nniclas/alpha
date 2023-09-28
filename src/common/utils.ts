@@ -23,3 +23,8 @@ export const setCondensedAttribute = (condensed: boolean) => {
     const path = condensed ? `src/lib/styles/themes/_layout-condensed.css` : ''
     document.getElementById('layout-condensed')?.setAttribute('href', path)
 }
+
+export const avg = (values: number[], round = false) => {
+    const result = values.reduce((acc, val) => acc + val, 0) / values.length
+    return round ? Math.round(result) : result
+}

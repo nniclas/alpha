@@ -18,6 +18,7 @@ import {
     unitColorsDarker,
 } from '../common/constants'
 import { machineElements } from './machine-readers'
+import { MachineStatData } from 'types/_types'
 
 const getWithAuth = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
@@ -61,6 +62,7 @@ function createDataState() {
             setSelectedUnitId(us[0].id)
             return
         }
+
         setSelectedUnitId((await unitsResActions.refetch())![0].id)
     }
 
@@ -86,27 +88,26 @@ function createDataState() {
     // see https://docs.solidjs.com/references/api-reference/basic-reactivity/createResource
     const [entriesRes] = createResource(
         () => [selectedUnitId(), selectedWeek()] as const,
-        ([unitId, week]) => {
+        async ([unitId, week]) => {
             if (!unitId) return []
-            return getWithAuth<Entry[]>(
+            return await getWithAuth<Entry[]>(
                 `entries/unit/${unitId}${week ? `/week/${week}` : ''}`
             )
         }
     )
 
     const [machineStatsRes] = createResource(
-        () =>
-            [selectedUnitId(), machineElements[0], statResolutions[0]] as const, //////////////// RESOLUTION..........
-        ([unitId, element, res]) => {
+        () => [selectedUnitId(), statResolutions[2]] as const,
+        async ([unitId, res]) => {
             if (!unitId) return []
-            return getWithAuth<Entry[]>(
-                `stats/machine/unit/${unitId}/element/${element}/res/${res}`
+            return await getWithAuth<any>(
+                `stats/machine/unit/${unitId}/res/${res}`
             )
         }
     )
 
     // const [entryStatsRes] = createResource(
-    //     () => [selectedUnitId(), statResolutions[0]] as const, //////////////// RESOLUTION..........
+    //     () => [selectedUnitId(), statResolutions[0]] as const,
     //     ([unitId, res]) => {
     //         if (!unitId) return []
     //         return getWithAuth<Entry[]>(
