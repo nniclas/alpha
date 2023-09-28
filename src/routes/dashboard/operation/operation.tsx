@@ -35,7 +35,7 @@ import {
     ProcessorUsageArea,
     SignalStrengthArea,
 } from './operation.parts'
-import { Section } from 'types/_types'
+import { Resolution, Section } from 'types/_types'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { statResolutions } from '../../../common/constants'
 
@@ -132,7 +132,9 @@ export const Operation = (a: Args) => {
                                             res={{ w: 100, h: 60 }}
                                         >
                                             <SelectField
-                                                // index={entry()?.measure}
+                                                index={statResolutions.indexOf(
+                                                    ds.selectedResolution()
+                                                )}
                                                 items={statResolutions.map(
                                                     (r) => (
                                                         <Field
@@ -152,9 +154,9 @@ export const Operation = (a: Args) => {
                                                     )
                                                 )}
                                                 onChange={(v) => {
-                                                    // const e = { ...entry()! }
-                                                    // e.measure = v
-                                                    // setEntry(e)
+                                                    ds.setSelectedResolution(
+                                                        statResolutions[v]
+                                                    )
                                                 }}
                                                 // buttonArgs={btnStyle}
                                             />

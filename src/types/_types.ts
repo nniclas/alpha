@@ -37,3 +37,5 @@ export interface StatData {
 export interface MachineStatData {
     [statData: string]: StatData[]
 }
+
+export type Resolution = 'Week' | 'Month' | 'Quarter'

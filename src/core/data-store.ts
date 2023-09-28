@@ -18,7 +18,7 @@ import {
     unitColorsDarker,
 } from '../common/constants'
 import { machineElements } from './machine-readers'
-import { MachineStatData } from 'types/_types'
+import { MachineStatData, Resolution } from 'types/_types'
 
 const getWithAuth = async <T>(path: string): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
@@ -52,6 +52,8 @@ function createDataState() {
     const [units] = createSignal<Unit[]>([])
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
     const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
+    const [selectedResolution, setSelectedResolution] =
+        createSignal<Resolution>('Week')
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {})
@@ -155,6 +157,8 @@ function createDataState() {
         setSelectedUnitId,
         selectedWeek,
         setSelectedWeek,
+        selectedResolution,
+        setSelectedResolution,
         getUnitIndex,
         addUnit,
     }

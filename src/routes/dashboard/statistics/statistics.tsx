@@ -9,7 +9,7 @@ import {
 } from 'solid-js'
 
 import { LineChart } from '../../../components/line-chart/line-chart'
-import { unitColors } from '../../../common/constants'
+import { statResolutions, unitColors } from '../../../common/constants'
 import ds from '../../../core/data-store'
 import Field from '../../../lib/elements/field/field'
 import { FiTrendingUp } from 'solid-icons/fi'
@@ -17,6 +17,7 @@ import Text from '../../../lib/elements/text/text'
 import { Section } from 'types/_types'
 import as from '../../../core/app-store'
 import { avg } from '../../../common/utils'
+import SelectField from '../../../lib/components/select-field/select-field'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -71,6 +72,35 @@ export const Statistics = (a: Args) => {
                     <FiTrendingUp {...iconStyle} />
                 </Field>
                 <Text>Stats</Text>
+                {/* <Field jce>
+                    <Field s w={100} h={80} c res={{ w: 100, h: 60 }}>
+                        <SelectField
+                            // index={entry()?.measure}
+                            items={statResolutions.map((r) => (
+                                <Field
+                                    bg='var(--color-strong)'
+                                    c
+                                    w={100}
+                                    h={80}
+                                    res={{
+                                        w: 100,
+                                        h: 60,
+                                    }}
+                                >
+                                    <Text xs accent>
+                                        {r}
+                                    </Text>
+                                </Field>
+                            ))}
+                            onChange={(v) => {
+                                // const e = { ...entry()! }
+                                // e.measure = v
+                                // setEntry(e)
+                            }}
+                            // buttonArgs={btnStyle}
+                        />
+                    </Field>
+                </Field> */}
             </Field>
 
             <Field rel>

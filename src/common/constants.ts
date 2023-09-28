@@ -1,8 +1,8 @@
-import { IdValuePair, Theme, ValueIdTitle } from 'types/_types'
+import { IdValuePair, Resolution, Theme, ValueIdTitle } from 'types/_types'
 
 export const themes: Theme[] = ['dark', 'lite']
 
-export const statResolutions = ['Week', 'Month', 'Quarter']
+export const statResolutions: Resolution[] = ['Week', 'Month', 'Quarter']
 
 // export const stateColors: IdValuePair[] = [
 //     { id: 1, value: 'rgb(80,80,110)' },
