@@ -50,6 +50,9 @@
     vertical-align: top;
     height: 60px;
 }
+.cell > div {
+    min-width: 200px;
+}
 
 .cell:first-child {
     padding-left: 6px;

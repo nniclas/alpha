@@ -33,6 +33,7 @@ export const Dashboard: Component = () => {
         // console.log(ds.getUnitIndex(ds.selectedUnitId()))
 
         ds.initialize()
+        console.log(as.showCharts())
     })
 
     const primary = () => <Operation section='primary' />

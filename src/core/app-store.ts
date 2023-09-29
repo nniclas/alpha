@@ -6,8 +6,8 @@ function createDataState() {
 
     const [theme, setTheme] = createSignal<Theme>('dark')
     const [condensed, setCondensed] = createSignal<boolean>(false)
-    const [section, setSection] = createSignal<Section>() // main dashboard sections, left/right or top/bottom
-    const [showCharts, setShowCharts] = createSignal<boolean>()
+    const [section, setSection] = createSignal<Section>('primary') // main dashboard sections, left/right or top/bottom
+    const [showCharts, setShowCharts] = createSignal<boolean>(false)
 
     // const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
 

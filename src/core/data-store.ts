@@ -100,7 +100,7 @@ function createDataState() {
     )
 
     const [machineStatsRes] = createResource(
-        () => [selectedUnitId(), statResolutions[2]] as const,
+        () => [selectedUnitId(), statResolutions[0]] as const,
         async ([unitId, res]) => {
             if (!unitId) return []
             return await getWithAuth<any>(

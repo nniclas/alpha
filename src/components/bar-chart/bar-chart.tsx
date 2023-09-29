@@ -5,38 +5,43 @@ import {
     bezierCommand,
     connectPathAsArea,
     dataToPoints,
+    getBarsPath,
     getSplineLinePath,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
 
 const mp = 100 // multipler
-const lineThickness = 2
+const barThickness = 20
 
 interface Args {
     visible?: boolean
     data: number[]
     scale?: { min: number; max: number }
-    lineColor?: string
-    areaColor?: string
+    color: string
 }
 
-export const LineChart = (a: Args) => {
+export const BarChart = (a: Args) => {
     const [visible, setVisible] = createSignal<boolean>(true)
-    const [line, setLine] = createSignal<string>('')
-    const [area, setArea] = createSignal<string>('')
+    const [bars, setBars] = createSignal<string>('')
     const [markers, setMarkers] = createSignal<boolean>(true)
     const [points, setPoints] = createSignal<Point[]>()
 
     let container: any
 
     const update = () => {
-        let ps = dataToPoints(a.data, mp, a.scale?.min, a.scale?.max)
+        const ps = dataToPoints(
+            a.data,
+            mp,
+            a.scale?.min,
+            a.scale?.max,
+            undefined,
+            0.1
+        )
         setPoints(ps)
-        let lpath = getSplineLinePath(ps, bezierCommand)
-        let apath = connectPathAsArea(ps, lpath, mp)
 
-        if (a.lineColor) setLine(lpath)
-        if (a.areaColor) setArea(apath)
+        const bPath = getBarsPath(ps)
+        console.log(bPath)
+        setBars(bPath)
     }
 
     onMount(() => {})
@@ -69,7 +74,7 @@ export const LineChart = (a: Args) => {
                     viewBox={`0 0 ${mp} ${mp}`}
                     xmlns='http://www.w3.org/2000/svg'
                 >
-                    {a.areaColor && (
+                    {/* {a.areaColor && (
                         <g class='area'>
                             <path
                                 vector-effect='non-scaling-stroke'
@@ -78,21 +83,21 @@ export const LineChart = (a: Args) => {
                                 fill={a.areaColor}
                             />
                         </g>
-                    )}
+                    )} */}
 
-                    {a.lineColor && (
+                    {a.color && (
                         <g class='line'>
                             <path
                                 vector-effect='non-scaling-stroke'
                                 style={{ ...baseStyle }}
-                                d={`${line()}`}
+                                d={`${bars()}`}
                                 fill='transparent'
-                                stroke={a.lineColor}
-                                stroke-width={lineThickness}
+                                stroke={a.color}
+                                stroke-width={barThickness}
                             />
                         </g>
                     )}
-                    {markers() && (
+                    {/* {markers() && (
                         <g class='markers'>
                             <For each={points()}>
                                 {(p, i) =>
@@ -111,7 +116,7 @@ export const LineChart = (a: Args) => {
                                 }
                             </For>
                         </g>
-                    )}
+                    )} */}
                 </svg>
             </Field>
             {/* <Field layer c aie pevn>

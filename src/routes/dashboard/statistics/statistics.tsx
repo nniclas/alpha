@@ -14,10 +14,11 @@ import ds from '../../../core/data-store'
 import Field from '../../../lib/elements/field/field'
 import { FiTrendingUp } from 'solid-icons/fi'
 import Text from '../../../lib/elements/text/text'
-import { Section } from 'types/_types'
+import { Section, StatCategory } from 'types/_types'
 import as from '../../../core/app-store'
 import { avg } from '../../../common/utils'
 import SelectField from '../../../lib/components/select-field/select-field'
+import { BarChart } from '../../../components/bar-chart/bar-chart'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -25,37 +26,35 @@ interface Args {
     section: Section
 }
 
-const testDataZeroes = [0, 0, 0, 0, 0]
-const testData = [14, 45, 23, 78, 34]
+// const testDataZeroes = [0, 0, 0, 0, 0]
+// const testData = [14, 45, 23, 78, 34]
 
 export const Statistics = (a: Args) => {
-    const [chartData, setChartData] = createSignal<number[]>(testDataZeroes)
+    const [chartData, setChartData] = createSignal<number[]>([0, 0])
 
-    onMount(() => {
-        // // testing...
-        // setTimeout(() => setChartData(testData), 1000)
+    let data: number[]
+    let zeroData: number[]
 
-        setTimeout(() => {
-            // console.log(
-            //     ds
-            //         .machineStatsRes()
-            //         ['Battery'].data.map((x: string) => x.substring(0, 2))
-            // )
-            // console.log(ds.machineStatsRes()['Battery'].data)
-            // console.log(avg(ds.machineStatsRes()['Battery'].data, true))
-        }, 2000)
-    })
+    onMount(async () => {})
 
     createEffect(() => {
+        if (!data) {
+            const batteryData = ds.machineStatsRes()['Battery']?.data
+            if (batteryData) {
+                data = batteryData
+                zeroData = batteryData.map((v: number) => 0)
+            }
+        }
+
         // console.log(as.showCharts())
         if (as.showCharts() == undefined || as.showCharts() == false)
-            setChartData(testDataZeroes)
+            setChartData(zeroData)
         if (as.showCharts() == true) {
-            setTimeout(() => setChartData(testData), 500)
+            setTimeout(() => setChartData(data), 500)
         }
     })
 
-    const cats = Object.keys(stats)
+    const cats = Object.keys(stats) as StatCategory[]
 
     return (
         <Field tertiary col>
@@ -94,7 +93,7 @@ export const Statistics = (a: Args) => {
                                         w={100}
                                         h={80}
                                         res={{
-                                            w: 60,
+                                            w: 100,
                                             h: 60,
                                         }}
                                     >
@@ -142,15 +141,22 @@ export const Statistics = (a: Args) => {
 
             <Field rel>
                 {/* <Field s w={80} res={60}></Field> */}
-                <LineChart
+                {/* <LineChart
+                    visible={as.showCharts()}
                     data={chartData()}
-                    scale={{ min: 0, max: 100 }}
-                    areaColor='var(--color-accent)'
+                    scale={{ min: 0, max: 150 }}
+                    areaColor='var(--color-middle)'
                     // areaColor={
                     //     unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]
                     // }
                     // areaColor='var(--color-medium)'
                     // lineColor='var(--color-medium)'
+                /> */}
+                <BarChart
+                    visible={as.showCharts()}
+                    data={chartData()}
+                    scale={{ min: 0, max: 150 }}
+                    color='var(--color-middle)'
                 />
             </Field>
         </Field>

@@ -92,20 +92,36 @@ export const dataToPoints = (
     multiplier?: number,
     scaleMin?: number,
     scaleMax?: number,
-    nonInvert?: boolean
+    nonInvert?: boolean,
+    rMargin?: number // ratio horizontal margin
 ): Point[] => {
     const min = scaleMin != undefined ? scaleMin : Math.min(...data)
     const max = scaleMax != undefined ? scaleMax : Math.max(...data)
 
     return data.map((dp, dpi) => {
-        let rx = dpi / (data.length - 1)
-        let ry = (dp - min) / (max - min) || 0
+        const rm = rMargin || 0
+        const rx = dpi / (data.length - 1)
+        const rxm = rx * (1 - rm) + (1 - rx) * rm
 
+        let ry = (dp - min) / (max - min) || 0
         let y = nonInvert ? ry : 1 - ry
 
         return {
-            x: rx * (multiplier || 1),
+            x: rxm * (multiplier || 1),
             y: y * (multiplier || 1),
         }
     })
 }
+
+// export const getBarsPath = (points: Point[]) =>
+//     points.reduce((acc, p, i) => `M ${p.x},${p.y} L ${p.x},${p.y}`)
+
+export const getBarsPath = (points: Point[]) =>
+    points.reduce(
+        (acc, point, i, a) =>
+            `${acc} 
+            M ${Math.round(point.x)},100
+            L ${Math.round(point.x)},${Math.round(point.y - 0)}`,
+
+        ''
+    )
