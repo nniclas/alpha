@@ -9,7 +9,7 @@ function createDataState() {
     const [section, setSection] = createSignal<Section>() // main dashboard sections, left/right or top/bottom
     const [showCharts, setShowCharts] = createSignal<boolean>()
 
-    const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
+    // const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
 
     createEffect(() => {
         // reassign to data store if browser refreshes
@@ -53,8 +53,8 @@ function createDataState() {
         setSection,
         showCharts,
         setShowCharts,
-        week,
-        setWeek,
+        // week,
+        // setWeek,
     }
 }
 

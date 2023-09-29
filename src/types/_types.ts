@@ -38,4 +38,10 @@ export interface MachineStatData {
     [statData: string]: StatData[]
 }
 
-export type Resolution = 'Week' | 'Month' | 'Quarter'
+export type StatCategory = 'machine' | 'events'
+export type Resolution = 'week' | 'month' | 'quarter'
+
+export type Stats = {
+    machine: string[]
+    events: string[]
+}

@@ -1,7 +1,7 @@
 import { subDays, subMinutes } from 'date-fns'
 import { randInt } from './utils'
 import { date } from './date-utils'
-import { machineElements } from '../core/machine-readers'
+import { stats } from './constants'
 
 const backToThePast = new Date('2023-08-14')
 
@@ -20,15 +20,15 @@ export const generateSomeStats = (units: number[], count: number) => {
         )
 
     for (let u = 0; u < units.length; u++) {
-        for (let e = 0; e < machineElements.length; e++) {
+        for (let e = 0; e < stats.machine.length; e++) {
             for (let i = 0; i < count; i++) {
                 const value = randInt(30, 90) // completely random here....
                 result += `
-                    (${units[u]}, "${machineElements[e]}", ${value}, "${
+                    (${units[u]}, "${stats.machine[e]}", ${value}, "${
                     someDates[i]
                 }")${
                     u == units.length - 1 &&
-                    e == machineElements.length - 1 &&
+                    e == stats.machine.length - 1 &&
                     i == count - 1
                         ? ';'
                         : ','

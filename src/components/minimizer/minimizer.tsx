@@ -14,6 +14,7 @@ interface Args {
     // openAction: (s: string) => void
     minSize: number
     section: string
+    colRes?: boolean
 }
 
 // responsive minimizer
@@ -43,8 +44,10 @@ export const Minimizer = (a: Args) => {
     onCleanup(() => window.removeEventListener('resize', size))
 
     const createPage = () => {
+        const colRes = a.colRes ? { res: { col: true } } : {}
+
         return (
-            <Field>
+            <Field layer {...colRes}>
                 <For each={a.sections}>
                     {(sec, i) => {
                         return (
@@ -66,10 +69,6 @@ export const Minimizer = (a: Args) => {
                                               style,
                                           ].join(';')
                                 }
-                                // onClick={() => {
-                                //     a.openAction(sec.s)
-                                //     setSection(sec.s)
-                                // }}
                             >
                                 {sec}
                             </Field>

@@ -41,7 +41,6 @@ import { Loader } from '../../../components/loader/loader'
 import { Sidemenu } from '../../../components/sidemenu/sidemenu'
 import Button from '../../../lib/elements/button/button'
 import { Statistics } from '../statistics/statistics'
-import { Collapser } from '../../../components/collapser/collapser'
 import { Minimizer } from '../../../components/minimizer/minimizer'
 import appStore from '../../../core/app-store'
 import { Section } from 'types/_types'
@@ -79,9 +78,11 @@ export const Events = (a: Args) => {
             <Transition name='fade'>
                 <Suspense
                     fallback={
-                        <Field layer c style='pointer-events:none'>
-                            <Loader />
-                        </Field>
+                        as.section() == a.section && (
+                            <Field layer c style='pointer-events:none'>
+                                <Loader />
+                            </Field>
+                        )
                     }
                 >
                     <Field rel col bg='var(--color-stronger)'>
@@ -100,6 +101,24 @@ export const Events = (a: Args) => {
                                 <FiAlertCircle {...iconStyle} />
                             </Field>
                             <Text>Events</Text>
+                            <Field jce>
+                                <Field s h={80} c res={{ h: 60 }}>
+                                    <Button
+                                        onClick={() => {
+                                            as.setSection('secondary')
+                                            setEntryMenuOpen(true)
+                                        }}
+                                    >
+                                        <Field s w={80} res={{ w: 60 }} c>
+                                            <Label
+                                                size='md'
+                                                icon={<FiPlusCircle />}
+                                                iconTheme='accent'
+                                            />
+                                        </Field>
+                                    </Button>
+                                </Field>
+                            </Field>
                         </Field>
 
                         {/* <SectionHeader
@@ -197,7 +216,7 @@ export const Events = (a: Args) => {
                 openAction={(sec: any) => console.log('hej')}
             /> */}
 
-            {/* <Sidemenu maxWidth={500} open={entryMenuOpen()}>
+            <Sidemenu maxWidth={500} open={entryMenuOpen()}>
                 <Field layer>
                     <EditEntry />
                 </Field>
@@ -215,7 +234,7 @@ export const Events = (a: Args) => {
                         </Button>
                     </Field>
                 </Field>
-            </Sidemenu> */}
+            </Sidemenu>
         </Field>
     )
 }

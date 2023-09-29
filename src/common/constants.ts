@@ -1,8 +1,23 @@
-import { IdValuePair, Resolution, Theme, ValueIdTitle } from 'types/_types'
+import {
+    IdValuePair,
+    Resolution,
+    StatCategory,
+    Theme,
+    ValueIdTitle,
+    Stats,
+} from 'types/_types'
 
 export const themes: Theme[] = ['dark', 'lite']
 
-export const statResolutions: Resolution[] = ['Week', 'Month', 'Quarter']
+export const stats: Stats = {
+    machine: ['battery', 'signal', 'processor'],
+    events: ['alerts', 'reports', 'followups'],
+}
+
+// export const statCategories: StatCategory[] = ['Machine', 'Events']
+export const statResolutions: Resolution[] = ['week', 'month', 'quarter']
+
+// export const machineElements = ['Signal', 'Battery', 'Processor']
 
 // export const stateColors: IdValuePair[] = [
 //     { id: 1, value: 'rgb(80,80,110)' },

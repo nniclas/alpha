@@ -25,7 +25,6 @@ import {
     getSignalStrength,
     getBatteryLevel,
     getProcessorUsage,
-    machineElements,
 } from '../../../core/machine-readers'
 import { LineChart } from '../../../components/line-chart/line-chart'
 import {
@@ -37,7 +36,7 @@ import {
 } from './operation.parts'
 import { Resolution, Section } from 'types/_types'
 import SelectField from '../../../lib/components/select-field/select-field'
-import { statResolutions } from '../../../common/constants'
+import { statResolutions, stats } from '../../../common/constants'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -53,7 +52,7 @@ export const Operation = (a: Args) => {
     onMount(() => {
         // initialize machine units with readers
         if (ds.selectedUnitRes()) {
-            mds.initialize(ds.unitsRes()!.length, machineElements, readers)
+            mds.initialize(ds.unitsRes()!.length, stats.machine, readers)
         }
     })
 

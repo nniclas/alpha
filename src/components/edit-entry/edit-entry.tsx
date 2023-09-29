@@ -58,7 +58,7 @@ export default (a: Args) => {
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >
-            <Field a col>
+            <Field a col bg='var(--color-medium)'>
                 <Transition name='fade'>
                     <Field a col>
                         <Field s h={80} res={{ h: 60 }} c>
@@ -71,7 +71,7 @@ export default (a: Args) => {
                                     <></>
                                 )}
                             </Field>
-                            <Field c>
+                            <Field>
                                 <Text accent>{entry()?.id ?? 'New entry'}</Text>
                             </Field>
                             {/* <Button
@@ -175,10 +175,9 @@ export default (a: Args) => {
                                     </Text>
                                     <Textfield
                                         xs
-                                        secondary
+                                        tertiary
                                         placeholder='Today'
                                         value={entry()?.notes}
-                                        focus
                                         psm
                                         color='var(--color-accent)'
                                         change={(v) => {
@@ -199,7 +198,7 @@ export default (a: Args) => {
                                     xs
                                     placeholder='Notes'
                                     value={entry()?.notes}
-                                    focus
+                                    tertiary
                                     psm
                                     color='var(--color-accent)'
                                     change={(v) => {

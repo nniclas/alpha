@@ -16,7 +16,6 @@ import { Events } from './events/events'
 import { Transition } from 'solid-transition-group'
 import { Unit } from '../../types/entities/unit'
 import { Loader } from '../../components/loader/loader'
-import { Collapser } from '../../components/collapser/collapser'
 import { unitColors } from '../../common/constants'
 import machineDataStore from '../../core/machine-data-store'
 import { Minimizer } from '../../components/minimizer/minimizer'
@@ -61,10 +60,11 @@ export const Dashboard: Component = () => {
             />
             <Field rel>
                 {ds.selectedUnitRes() && (
-                    <Collapser
+                    <Minimizer
+                        minSize={600}
+                        colRes
                         sections={[primary(), secondary()]}
                         names={['primary', 'secondary']}
-                        // openAction={(sec: any) => appStore.setSection(sec)}
                         section={as.section()?.toString()!}
                     />
                 )}

@@ -9,7 +9,7 @@ import {
 } from 'solid-js'
 
 import { LineChart } from '../../../components/line-chart/line-chart'
-import { statResolutions, unitColors } from '../../../common/constants'
+import { statResolutions, stats, unitColors } from '../../../common/constants'
 import ds from '../../../core/data-store'
 import Field from '../../../lib/elements/field/field'
 import { FiTrendingUp } from 'solid-icons/fi'
@@ -55,13 +55,14 @@ export const Statistics = (a: Args) => {
         }
     })
 
+    const cats = Object.keys(stats)
+
     return (
         <Field tertiary col>
             <Field
                 s
                 h={80}
                 res={{ h: 60 }}
-                aic
                 jcs
                 onClick={() => {
                     as.setSection(a.section)
@@ -71,36 +72,72 @@ export const Statistics = (a: Args) => {
                 <Field s w={80} h={80} res={{ w: 60, h: 60 }} c>
                     <FiTrendingUp {...iconStyle} />
                 </Field>
-                <Text>Stats</Text>
-                {/* <Field jce>
-                    <Field s w={100} h={80} c res={{ w: 100, h: 60 }}>
-                        <SelectField
-                            // index={entry()?.measure}
-                            items={statResolutions.map((r) => (
-                                <Field
-                                    bg='var(--color-strong)'
-                                    c
-                                    w={100}
-                                    h={80}
-                                    res={{
-                                        w: 100,
-                                        h: 60,
+                <Field aic>
+                    <Text>Stats</Text>
+                </Field>
+                <Field jce>
+                    <Field rel s w={100} res={{ w: 100 }}>
+                        <Field
+                            layer
+                            s
+                            w={80}
+                            res={{ w: 60, h: 60 }}
+                            col
+                            style='z-index:1'
+                        >
+                            <SelectField
+                                // index={entry()?.measure}
+                                items={cats.map((c: string) => (
+                                    <Field
+                                        bg='var(--color-strong)'
+                                        c
+                                        w={100}
+                                        h={80}
+                                        res={{
+                                            w: 60,
+                                            h: 60,
+                                        }}
+                                    >
+                                        <Text xs accent>
+                                            {c}
+                                        </Text>
+                                    </Field>
+                                ))}
+                                onChange={(v) => {
+                                    ds.setSelectedStatCategory(cats[v])
+                                }}
+                                // buttonArgs={btnStyle}
+                            />
+                            {ds.selectedStatCategory() == 'machine' && (
+                                <SelectField
+                                    // index={entry()?.measure}
+                                    items={statResolutions.map((r) => (
+                                        <Field
+                                            bg='var(--color-strong)'
+                                            c
+                                            w={100}
+                                            h={80}
+                                            res={{
+                                                w: 100,
+                                                h: 60,
+                                            }}
+                                        >
+                                            <Text xs accent>
+                                                {r}
+                                            </Text>
+                                        </Field>
+                                    ))}
+                                    onChange={(v) => {
+                                        // const e = { ...entry()! }
+                                        // e.measure = v
+                                        // setEntry(e)
                                     }}
-                                >
-                                    <Text xs accent>
-                                        {r}
-                                    </Text>
-                                </Field>
-                            ))}
-                            onChange={(v) => {
-                                // const e = { ...entry()! }
-                                // e.measure = v
-                                // setEntry(e)
-                            }}
-                            // buttonArgs={btnStyle}
-                        />
+                                    // buttonArgs={btnStyle}
+                                />
+                            )}
+                        </Field>
                     </Field>
-                </Field> */}
+                </Field>
             </Field>
 
             <Field rel>

@@ -2,8 +2,6 @@
 // Simulation demo functions to provide real time ready machine data
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const machineElements = ['Signal', 'Battery', 'Processor']
-
 /**
  * Get signal strength from machine data of unit.
  *

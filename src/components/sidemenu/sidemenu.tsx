@@ -27,7 +27,6 @@ export const Sidemenu = (a: Args) => {
                         pointer-events:${open() ? 'auto' : 'none'}; 
                         position:fixed;z-index:101; background:rgba(0,0,0,0.2);`}
                 onClick={(e) => {
-                    console.log('woff')
                     setOpen(false)
 
                     e.stopPropagation()
