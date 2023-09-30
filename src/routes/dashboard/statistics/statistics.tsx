@@ -19,6 +19,8 @@ import as from '../../../core/app-store'
 import { avg } from '../../../common/utils'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { BarChart } from '../../../components/bar-chart/bar-chart'
+import { SliderButton } from '../../../components/slider-button/slider-button'
+import Shifter from '../../../components/shifter/shifter'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -107,9 +109,8 @@ export const Statistics = (a: Args) => {
                                 }}
                                 // buttonArgs={btnStyle}
                             />
-                            {ds.selectedStatCategory() == 'machine' && (
+                            {/* {ds.selectedStatCategory() == 'machine' && (
                                 <SelectField
-                                    // index={entry()?.measure}
                                     items={statResolutions.map((r) => (
                                         <Field
                                             bg='var(--color-strong)'
@@ -126,17 +127,27 @@ export const Statistics = (a: Args) => {
                                             </Text>
                                         </Field>
                                     ))}
-                                    onChange={(v) => {
-                                        // const e = { ...entry()! }
-                                        // e.measure = v
-                                        // setEntry(e)
-                                    }}
-                                    // buttonArgs={btnStyle}
+                                    onChange={(v) => {}}
                                 />
-                            )}
+                            )} */}
                         </Field>
                     </Field>
                 </Field>
+            </Field>
+
+            <Field pmd rel>
+                <Shifter>
+                    {as.showCharts() &&
+                        ds.selectedStatCategory() == 'machine' && (
+                            <SliderButton
+                                value={statResolutions.indexOf(
+                                    ds.selectedResolution()
+                                )}
+                                change={(v) => {}}
+                                values={statResolutions}
+                            />
+                        )}
+                </Shifter>
             </Field>
 
             <Field rel>
