@@ -53,8 +53,12 @@ function createDataState() {
     const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
     const [selectedStatCategory, setSelectedStatCategory] =
         createSignal<StatCategory>('machine')
-    const [selectedResolution, setSelectedResolution] =
+    const [selectedOperationResolution, setSelectedOperationResolution] =
         createSignal<Resolution>('week')
+    const [
+        selectedMachineStatisticsOperationResolution,
+        setSelectedMachineStatisticsOperationResolution,
+    ] = createSignal<Resolution>('week')
     // const [entries] = createSignal<Entry[]>([])
 
     createEffect(() => {})
@@ -100,7 +104,11 @@ function createDataState() {
     )
 
     const [machineStatsRes] = createResource(
-        () => [selectedUnitId(), statResolutions[0]] as const,
+        () =>
+            [
+                selectedUnitId(),
+                selectedMachineStatisticsOperationResolution(),
+            ] as const,
         async ([unitId, res]) => {
             if (!unitId) return []
             return await getWithAuth<any>(
@@ -160,8 +168,10 @@ function createDataState() {
         setSelectedWeek,
         selectedStatCategory,
         setSelectedStatCategory,
-        selectedResolution,
-        setSelectedResolution,
+        selectedOperationResolution,
+        setSelectedOperationResolution,
+        selectedMachineStatisticsOperationResolution,
+        setSelectedMachineStatisticsOperationResolution,
         getUnitIndex,
         addUnit,
     }

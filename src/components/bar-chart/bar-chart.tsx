@@ -40,7 +40,7 @@ export const BarChart = (a: Args) => {
         setPoints(ps)
 
         const bPath = getBarsPath(ps)
-        console.log(bPath)
+        // console.log(bPath)
         setBars(bPath)
     }
 

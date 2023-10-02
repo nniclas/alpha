@@ -132,7 +132,7 @@ export const Operation = (a: Args) => {
                                         >
                                             <SelectField
                                                 index={statResolutions.indexOf(
-                                                    ds.selectedResolution()
+                                                    ds.selectedOperationResolution()
                                                 )}
                                                 items={statResolutions.map(
                                                     (r) => (
@@ -153,7 +153,7 @@ export const Operation = (a: Args) => {
                                                     )
                                                 )}
                                                 onChange={(v) => {
-                                                    ds.setSelectedResolution(
+                                                    ds.setSelectedOperationResolution(
                                                         statResolutions[v]
                                                     )
                                                 }}

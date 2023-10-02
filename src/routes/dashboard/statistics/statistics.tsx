@@ -40,15 +40,13 @@ export const Statistics = (a: Args) => {
     onMount(async () => {})
 
     createEffect(() => {
-        if (!data) {
-            const batteryData = ds.machineStatsRes()['Battery']?.data
-            if (batteryData) {
-                data = batteryData
-                zeroData = batteryData.map((v: number) => 0)
-            }
+        const batteryData = ds.machineStatsRes()['Battery']?.data
+
+        if (batteryData) {
+            data = batteryData
+            zeroData = batteryData.map((v: number) => 0)
         }
 
-        // console.log(as.showCharts())
         if (as.showCharts() == undefined || as.showCharts() == false)
             setChartData(zeroData)
         if (as.showCharts() == true) {
@@ -135,20 +133,30 @@ export const Statistics = (a: Args) => {
                 </Field>
             </Field>
 
-            <Field pmd rel>
-                <Shifter>
-                    {as.showCharts() &&
-                        ds.selectedStatCategory() == 'machine' && (
-                            <SliderButton
-                                value={statResolutions.indexOf(
-                                    ds.selectedResolution()
-                                )}
-                                change={(v) => {}}
-                                values={statResolutions}
-                            />
-                        )}
-                </Shifter>
-            </Field>
+            <Shifter>
+                {as.showCharts() && ds.selectedStatCategory() == 'machine' && (
+                    <Field s pwlg>
+                        <SliderButton
+                            w={80}
+                            h={40}
+                            value={statResolutions.indexOf(
+                                ds.selectedMachineStatisticsOperationResolution()
+                            )}
+                            change={(v) => {
+                                console.log(
+                                    ds.setSelectedMachineStatisticsOperationResolution(
+                                        statResolutions[v]
+                                    )
+                                )
+                                ds.setSelectedMachineStatisticsOperationResolution(
+                                    statResolutions[v]
+                                )
+                            }}
+                            values={statResolutions}
+                        />
+                    </Field>
+                )}
+            </Shifter>
 
             <Field rel>
                 {/* <Field s w={80} res={60}></Field> */}
