@@ -22,7 +22,7 @@ interface MachineMeasure {
 function createDataState() {
     const [selectedUnit, setSelectedUnit] = createSignal<number>(0)
     const [data, setData] = createSignal<UnitEntry[]>() //
-    const [loaded, setLoaded] = createSignal<boolean>(false) //
+    // const [loaded, setLoaded] = createSignal<boolean>(false) //
 
     // intentional set-loaded resource
     const [loadedRes] = createResource<boolean, number>(
@@ -61,7 +61,7 @@ function createDataState() {
 
     //
     const startRead = async (ui: number, mi?: number) => {
-        setLoaded(false)
+        // setLoaded(false)
 
         tick(
             data()![ui].measures.map((m, mi) => () => {

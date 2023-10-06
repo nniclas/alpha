@@ -7,6 +7,7 @@ import {
     dataToPoints,
     getBarsPath,
     getSplineLinePath,
+    timedPointCountSwitch,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
 
@@ -31,7 +32,6 @@ export const BarChart = (a: Args) => {
 
     const update = () => {
         if (a.data == undefined) a.data = [0, 0]
-
         const newps = dataToPoints(
             a.data,
             mp,
@@ -40,11 +40,10 @@ export const BarChart = (a: Args) => {
             undefined,
             0.1
         )
-
-        setBarRendering(newps, lastps?.length != newps.length)
+        setRendering(newps, lastps?.length != newps.length)
     }
 
-    const setBarRendering = (ps: Point[], reset = false) => {
+    const setRendering = (ps: Point[], reset = false) => {
         const set = (ps: Point[]) => {
             setPoints(ps)
             const bPath = getBarsPath(ps)
@@ -53,16 +52,7 @@ export const BarChart = (a: Args) => {
         }
 
         if (reset && lastps != undefined) {
-            set(lastps.map((p) => ({ x: p.x, y: 100 }))) // create zeroline from lastps
-
-            setTimeout(() => {
-                set(ps.map((p) => ({ x: p.x, y: 100 }))) // create zeroline from newps
-            }, 200)
-
-            setTimeout(() => {
-                set(ps) // render new ps
-            }, 400)
-
+            timedPointCountSwitch(set, ps, lastps)
             return
         }
 

@@ -50,17 +50,23 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 
 function createDataState() {
     const [units] = createSignal<Unit[]>([])
+    // const [entries] = createSignal<Entry[]>([])
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
     const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
     const [selectedStatCategory, setSelectedStatCategory] =
         createSignal<StatCategory>('machine')
-    const [selectedOperationResolution, setSelectedOperationResolution] =
-        createSignal<Resolution>('week')
     const [
-        selectedMachineStatisticsOperationResolution,
-        setSelectedMachineStatisticsOperationResolution,
+        selectedMachineStatisticsElement,
+        setSelectedMachineStatisticsElement,
+    ] = createSignal<string>()
+    const [
+        selectedMachineStatisticsResolution,
+        setSelectedMachineStatisticsResolution,
     ] = createSignal<Resolution>('week')
-    // const [entries] = createSignal<Entry[]>([])
+    const [
+        selectedEventsStatisticsResolution,
+        setSelectedEventsStatisticsResolution,
+    ] = createSignal<Resolution>('week')
 
     createEffect(() => {})
 
@@ -106,10 +112,7 @@ function createDataState() {
 
     const [machineStatsRes] = createResource(
         () =>
-            [
-                selectedUnitId(),
-                selectedMachineStatisticsOperationResolution(),
-            ] as const,
+            [selectedUnitId(), selectedMachineStatisticsResolution()] as const,
         async ([unitId, res]) => {
             if (!unitId) return []
             return await getWithAuth<any>(
@@ -119,15 +122,24 @@ function createDataState() {
         }
     )
 
-    // const [entryStatsRes] = createResource(
-    //     () => [selectedUnitId(), statResolutions[0]] as const,
-    //     ([unitId, res]) => {
-    //         if (!unitId) return []
-    //         return getWithAuth<Entry[]>(
-    //             `stats/entries/unit/${unitId}/res/${res}`
-    //         )
-    //     }
-    // )
+    const [entryStatsRes] = createResource(
+        () => [selectedUnitId(), selectedEventsStatisticsResolution()] as const,
+        async ([unitId, res]) => {
+            if (!unitId) return []
+
+            var hej = await getWithAuth<any>(
+                `stats/entries/unit/${unitId}/res/${res}`,
+                false
+            )
+
+            console.log(hej)
+
+            return await getWithAuth<any>(
+                `stats/entries/unit/${unitId}/res/${res}`,
+                false
+            )
+        }
+    )
 
     /////// WIP WIP
     const addUnit = (u: Unit) => {
@@ -135,16 +147,6 @@ function createDataState() {
 
         // refresh here??? update units resource
     }
-
-    // const [entriesByWeekRes] = createResource<Entry[], string>(
-    //     selectedWeek,
-    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}/week/${unitId}`)
-    // )
-
-    // const [entriesRes] = createResource<Entry[], number>(
-    //     selectedUnitId,
-    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
-    // )
 
     const getUnitIndex = (unitId?: number) => {
         if (!unitsRes()) return 0
@@ -162,7 +164,7 @@ function createDataState() {
         selectedUnitRes,
         entriesRes,
         machineStatsRes,
-        // entryStatsRes,
+        entryStatsRes,
         initialize,
         selectedUnitId,
         setSelectedUnitId,
@@ -170,10 +172,12 @@ function createDataState() {
         setSelectedWeek,
         selectedStatCategory,
         setSelectedStatCategory,
-        selectedOperationResolution,
-        setSelectedOperationResolution,
-        selectedMachineStatisticsOperationResolution,
-        setSelectedMachineStatisticsOperationResolution,
+        selectedMachineStatisticsElement,
+        setSelectedMachineStatisticsElement,
+        selectedMachineStatisticsResolution,
+        setSelectedMachineStatisticsResolution,
+        selectedEventsStatisticsResolution,
+        setSelectedEventsStatisticsResolution,
         getUnitIndex,
         addUnit,
     }

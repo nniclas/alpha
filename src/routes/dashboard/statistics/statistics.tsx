@@ -21,6 +21,7 @@ import SelectField from '../../../lib/components/select-field/select-field'
 import { BarChart } from '../../../components/bar-chart/bar-chart'
 import { SliderButton } from '../../../components/slider-button/slider-button'
 import Shifter from '../../../components/shifter/shifter'
+import { EventsChartArea, MachineChartArea } from './statistics.parts'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
@@ -29,24 +30,6 @@ interface Args {
 }
 
 export const Statistics = (a: Args) => {
-    const [chartData, setChartData] = createSignal<number[]>()
-
-    let data: number[]
-    let zeroData: number[]
-
-    onMount(async () => {})
-
-    createEffect(() => {
-        const batteryData = ds.machineStatsRes()['Battery']?.data
-
-        if (batteryData) {
-            data = batteryData
-            zeroData = batteryData.map((v: number) => 0)
-        }
-
-        setChartData(data)
-    })
-
     const cats = Object.keys(stats) as StatCategory[]
 
     return (
@@ -113,42 +96,11 @@ export const Statistics = (a: Args) => {
                         },
                         {
                             condition: ds.selectedStatCategory() == 'machine',
-                            content: (
-                                <Field col>
-                                    <Field s pwlg>
-                                        <SliderButton
-                                            w={80}
-                                            h={40}
-                                            value={statResolutions.indexOf(
-                                                ds.selectedMachineStatisticsOperationResolution()
-                                            )}
-                                            change={(v) => {
-                                                ds.setSelectedMachineStatisticsOperationResolution(
-                                                    statResolutions[v]
-                                                )
-                                            }}
-                                            values={statResolutions}
-                                        />
-                                    </Field>
-                                    <BarChart
-                                        visible={as.showCharts()}
-                                        data={chartData()}
-                                        scale={{ min: 0, max: 150 }}
-                                        color='var(--color-middle)'
-                                    />
-                                </Field>
-                            ),
+                            content: <MachineChartArea />,
                         },
                         {
                             condition: ds.selectedStatCategory() == 'events',
-                            content: (
-                                <LineChart
-                                    visible={as.showCharts()}
-                                    data={chartData()}
-                                    scale={{ min: 0, max: 150 }}
-                                    areaColor='var(--color-middle)'
-                                />
-                            ),
+                            content: <EventsChartArea />,
                         },
                     ]}
                 ></Shifter>

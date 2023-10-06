@@ -47,7 +47,7 @@ export const SignalStrengthArea = () => {
                             color={trendColors[0]}
                         />
                         <Text lg color={trendColors[0]}>
-                            {12} % {ds.selectedOperationResolution()}
+                            {12} % {ds.selectedMachineStatisticsResolution()}
                         </Text>
                     </Field>
                 </Field>

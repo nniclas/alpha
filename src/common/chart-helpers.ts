@@ -125,3 +125,21 @@ export const getBarsPath = (points: Point[]) =>
 
         ''
     )
+
+export const zeroLine = (ps: Point[]) => ps.map((p) => ({ x: p.x, y: 100 }))
+
+export const timedPointCountSwitch = (
+    set: (ps: Point[]) => void,
+    newps: Point[],
+    lastps: Point[]
+) => {
+    set(zeroLine(lastps))
+
+    setTimeout(() => {
+        set(zeroLine(newps))
+    }, 200)
+
+    setTimeout(() => {
+        set(newps)
+    }, 400)
+}

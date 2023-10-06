@@ -6,6 +6,8 @@ import {
     connectPathAsArea,
     dataToPoints,
     getSplineLinePath,
+    timedPointCountSwitch,
+    zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
 
@@ -28,17 +30,31 @@ export const LineChart = (a: Args) => {
     const [points, setPoints] = createSignal<Point[]>()
 
     let container: any
+    let lastps: Point[]
 
     const update = () => {
         if (a.data == undefined) a.data = [0, 0]
+        let newps = dataToPoints(a.data, mp, a.scale?.min, a.scale?.max)
+        setRendering(newps, lastps?.length != newps.length)
+    }
 
-        let ps = dataToPoints(a.data, mp, a.scale?.min, a.scale?.max)
-        setPoints(ps)
-        let lpath = getSplineLinePath(ps, bezierCommand)
-        let apath = connectPathAsArea(ps, lpath, mp)
+    const setRendering = (ps: Point[], reset = false) => {
+        const set = (ps: Point[]) => {
+            setPoints(ps)
+            let lpath = getSplineLinePath(ps, bezierCommand)
+            let apath = connectPathAsArea(ps, lpath, mp)
 
-        if (a.lineColor) setLine(lpath)
-        if (a.areaColor) setArea(apath)
+            if (a.lineColor) setLine(lpath)
+            if (a.areaColor) setArea(apath)
+            lastps = ps
+        }
+
+        if (reset && lastps != undefined) {
+            timedPointCountSwitch(set, ps, lastps)
+            return
+        }
+
+        set(ps)
     }
 
     onMount(() => {})
