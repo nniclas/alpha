@@ -19,10 +19,11 @@ import {
 } from '../common/constants'
 import { MachineStatData, Resolution, StatCategory } from 'types/_types'
 
-const getWithAuth = async <T>(path: string): Promise<T> => {
+const getWithAuth = async <T>(path: string, simDelay = true): Promise<T> => {
     // !!!! todo: also enable [Authorize] and checks in backend
 
-    await delay(500) // intentional additional delay for demo purposes
+    if (simDelay) await delay(500) // intentional additional delay for demo purposes
+
     if (!appStore.session()?.token) {
         return [] as any /// just disable api calls ?????
     }
@@ -112,7 +113,8 @@ function createDataState() {
         async ([unitId, res]) => {
             if (!unitId) return []
             return await getWithAuth<any>(
-                `stats/machine/unit/${unitId}/res/${res}`
+                `stats/machine/unit/${unitId}/res/${res}`,
+                false
             )
         }
     )

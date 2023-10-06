@@ -15,7 +15,7 @@ const barThickness = 20
 
 interface Args {
     visible?: boolean
-    data: number[]
+    data: number[] | undefined
     scale?: { min: number; max: number }
     color: string
 }
@@ -23,13 +23,16 @@ interface Args {
 export const BarChart = (a: Args) => {
     const [visible, setVisible] = createSignal<boolean>(true)
     const [bars, setBars] = createSignal<string>('')
-    const [markers, setMarkers] = createSignal<boolean>(true)
+    // const [markers, setMarkers] = createSignal<boolean>(true)
     const [points, setPoints] = createSignal<Point[]>()
 
     let container: any
+    let lastps: Point[]
 
     const update = () => {
-        const ps = dataToPoints(
+        if (a.data == undefined) a.data = [0, 0]
+
+        const newps = dataToPoints(
             a.data,
             mp,
             a.scale?.min,
@@ -37,11 +40,33 @@ export const BarChart = (a: Args) => {
             undefined,
             0.1
         )
-        setPoints(ps)
 
-        const bPath = getBarsPath(ps)
-        // console.log(bPath)
-        setBars(bPath)
+        setBarRendering(newps, lastps?.length != newps.length)
+    }
+
+    const setBarRendering = (ps: Point[], reset = false) => {
+        const set = (ps: Point[]) => {
+            setPoints(ps)
+            const bPath = getBarsPath(ps)
+            setBars(bPath)
+            lastps = ps
+        }
+
+        if (reset && lastps != undefined) {
+            set(lastps.map((p) => ({ x: p.x, y: 100 }))) // create zeroline from lastps
+
+            setTimeout(() => {
+                set(ps.map((p) => ({ x: p.x, y: 100 }))) // create zeroline from newps
+            }, 200)
+
+            setTimeout(() => {
+                set(ps) // render new ps
+            }, 400)
+
+            return
+        }
+
+        set(ps)
     }
 
     onMount(() => {})
@@ -55,7 +80,7 @@ export const BarChart = (a: Args) => {
     })
 
     const baseStyle = {
-        transition: '.6s ease d, .6s ease fill',
+        transition: '.3s ease d, .6s ease fill',
     }
 
     return (

@@ -28,11 +28,8 @@ interface Args {
     section: Section
 }
 
-// const testDataZeroes = [0, 0, 0, 0, 0]
-// const testData = [14, 45, 23, 78, 34]
-
 export const Statistics = (a: Args) => {
-    const [chartData, setChartData] = createSignal<number[]>([0, 0])
+    const [chartData, setChartData] = createSignal<number[]>()
 
     let data: number[]
     let zeroData: number[]
@@ -47,11 +44,7 @@ export const Statistics = (a: Args) => {
             zeroData = batteryData.map((v: number) => 0)
         }
 
-        if (as.showCharts() == undefined || as.showCharts() == false)
-            setChartData(zeroData)
-        if (as.showCharts() == true) {
-            setTimeout(() => setChartData(data), 500)
-        }
+        setChartData(data)
     })
 
     const cats = Object.keys(stats) as StatCategory[]
@@ -105,78 +98,60 @@ export const Statistics = (a: Args) => {
                                 onChange={(v) => {
                                     ds.setSelectedStatCategory(cats[v])
                                 }}
-                                // buttonArgs={btnStyle}
                             />
-                            {/* {ds.selectedStatCategory() == 'machine' && (
-                                <SelectField
-                                    items={statResolutions.map((r) => (
-                                        <Field
-                                            bg='var(--color-strong)'
-                                            c
-                                            w={100}
-                                            h={80}
-                                            res={{
-                                                w: 100,
-                                                h: 60,
-                                            }}
-                                        >
-                                            <Text xs accent>
-                                                {r}
-                                            </Text>
-                                        </Field>
-                                    ))}
-                                    onChange={(v) => {}}
-                                />
-                            )} */}
                         </Field>
                     </Field>
                 </Field>
             </Field>
 
-            <Shifter>
-                {as.showCharts() && ds.selectedStatCategory() == 'machine' && (
-                    <Field s pwlg>
-                        <SliderButton
-                            w={80}
-                            h={40}
-                            value={statResolutions.indexOf(
-                                ds.selectedMachineStatisticsOperationResolution()
-                            )}
-                            change={(v) => {
-                                console.log(
-                                    ds.setSelectedMachineStatisticsOperationResolution(
-                                        statResolutions[v]
-                                    )
-                                )
-                                ds.setSelectedMachineStatisticsOperationResolution(
-                                    statResolutions[v]
-                                )
-                            }}
-                            values={statResolutions}
-                        />
-                    </Field>
-                )}
-            </Shifter>
-
             <Field rel>
-                {/* <Field s w={80} res={60}></Field> */}
-                {/* <LineChart
-                    visible={as.showCharts()}
-                    data={chartData()}
-                    scale={{ min: 0, max: 150 }}
-                    areaColor='var(--color-middle)'
-                    // areaColor={
-                    //     unitColors[ds.getUnitIndex(ds.selectedUnitId()!)]
-                    // }
-                    // areaColor='var(--color-medium)'
-                    // lineColor='var(--color-medium)'
-                /> */}
-                <BarChart
-                    visible={as.showCharts()}
-                    data={chartData()}
-                    scale={{ min: 0, max: 150 }}
-                    color='var(--color-middle)'
-                />
+                <Shifter
+                    pages={[
+                        {
+                            condition: !as.showCharts(),
+                            content: <></>,
+                        },
+                        {
+                            condition: ds.selectedStatCategory() == 'machine',
+                            content: (
+                                <Field col>
+                                    <Field s pwlg>
+                                        <SliderButton
+                                            w={80}
+                                            h={40}
+                                            value={statResolutions.indexOf(
+                                                ds.selectedMachineStatisticsOperationResolution()
+                                            )}
+                                            change={(v) => {
+                                                ds.setSelectedMachineStatisticsOperationResolution(
+                                                    statResolutions[v]
+                                                )
+                                            }}
+                                            values={statResolutions}
+                                        />
+                                    </Field>
+                                    <BarChart
+                                        visible={as.showCharts()}
+                                        data={chartData()}
+                                        scale={{ min: 0, max: 150 }}
+                                        color='var(--color-middle)'
+                                    />
+                                </Field>
+                            ),
+                        },
+                        {
+                            condition: ds.selectedStatCategory() == 'events',
+                            content: (
+                                <LineChart
+                                    visible={as.showCharts()}
+                                    data={chartData()}
+                                    scale={{ min: 0, max: 150 }}
+                                    areaColor='var(--color-middle)'
+                                />
+                            ),
+                        },
+                    ]}
+                ></Shifter>
             </Field>
         </Field>
     )

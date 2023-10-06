@@ -14,7 +14,7 @@ const lineThickness = 2
 
 interface Args {
     visible?: boolean
-    data: number[]
+    data: number[] | undefined
     scale?: { min: number; max: number }
     lineColor?: string
     areaColor?: string
@@ -30,6 +30,8 @@ export const LineChart = (a: Args) => {
     let container: any
 
     const update = () => {
+        if (a.data == undefined) a.data = [0, 0]
+
         let ps = dataToPoints(a.data, mp, a.scale?.min, a.scale?.max)
         setPoints(ps)
         let lpath = getSplineLinePath(ps, bezierCommand)
