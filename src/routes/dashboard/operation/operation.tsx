@@ -46,13 +46,17 @@ interface Args {
     section: Section
 }
 
+const initMds = () => {
+    mds.initialize(ds.unitsRes()!.length, stats.machine, readers)
+}
+
 export const Operation = (a: Args) => {
     let container: any
 
     onMount(() => {
         // initialize machine units with readers
         if (ds.selectedUnitRes()) {
-            mds.initialize(ds.unitsRes()!.length, stats.machine, readers)
+            initMds()
         }
     })
 
@@ -64,11 +68,11 @@ export const Operation = (a: Args) => {
     })
 
     createEffect(() => {
-        if (as.section()) {
-            container?.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            })
+        if (
+            ds.selectedUnitRes() &&
+            ds.unitsRes()?.length != mds.data()?.length
+        ) {
+            initMds()
         }
     })
 

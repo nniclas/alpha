@@ -34,14 +34,14 @@ interface Args {
 }
 
 export default (a: Args) => {
-    const createChild = (c: any) => {
-        return <Field layer>{c}</Field>
+    const create = (content: any) => {
+        return <Field layer>{content}</Field>
     }
 
     return (
         <Field rel trim>
             <Transition name={a.tr || 'slide-fade'}>
-                {a.children && createChild(a.children)}
+                {a.children && create(a.children)}
                 {a.pages && (
                     <For each={a.pages}>
                         {(p) => p.condition && <Field layer>{p.content}</Field>}

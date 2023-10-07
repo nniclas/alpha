@@ -34,14 +34,24 @@ const getWithAuth = async <T>(path: string, simDelay = true): Promise<T> => {
     return await get<T>(path)
 }
 
-const addItem = async <T>(item: T, path: string, refetch?: () => void) => {
-    await post<T>(path, item)
+const addItem = async <T>(
+    item: T,
+    path: string,
+    refetch?: () => void
+): Promise<T> => {
+    const addedItem = await post<T>(path, item)
     refetch?.()
+    return addedItem
 }
 
-const updateItem = async <T>(item: T, path: string, refetch?: () => void) => {
-    await put<T>(path, item)
+const updateItem = async <T>(
+    item: T,
+    path: string,
+    refetch?: () => void
+): Promise<T> => {
+    const updatedItem = await put<T>(path, item)
     refetch?.()
+    return updatedItem
 }
 
 const deleteItem = async (path: string, refetch?: () => void) => {
@@ -134,39 +144,38 @@ function createDataState() {
         }
     )
 
+    const addUnit = async (u: Unit) => {
+        const addedUnit = await addItem<Unit>(u, 'units')
+        await unitsResActions.refetch()
+        setSelectedUnitId(addedUnit.id)
+    }
+
+    const updateUnit = async (u: Unit) => {
+        await updateItem<Unit>(u, `units/${u.id}`)
+        await unitsResActions.refetch()
+    }
+
+    const deleteUnit = async (u: Unit) => {
+        await deleteItem(`units/${u.id}`)
+        await unitsResActions.refetch()
+        setSelectedUnitId(unitsRes()![0].id)
+    }
+
     /////// WIP WIP
-    const addUnit = (u: Unit) => {
-        addItem<Unit>(u, 'units')
+    const addEntry = async (e: Entry) => {
+        await addItem<Entry>(e, 'entries')
         // refresh here??? update units resource
     }
 
     /////// WIP WIP
-    const updateUnit = (u: Unit) => {
-        updateItem<Unit>(u, 'units')
+    const updateEntry = async (e: Entry) => {
+        await updateItem<Entry>(e, `entries/${e.id}`)
         // refresh here??? update units resource
     }
 
     /////// WIP WIP
-    const deleteUnit = (u: Unit) => {
-        deleteItem(`units/${u.id}`)
-        // refresh here??? update units resource
-    }
-
-    /////// WIP WIP
-    const addEntry = (e: Entry) => {
-        addItem<Entry>(e, 'entries')
-        // refresh here??? update units resource
-    }
-
-    /////// WIP WIP
-    const updateEntry = (e: Entry) => {
-        updateItem<Entry>(e, 'entries')
-        // refresh here??? update units resource
-    }
-
-    /////// WIP WIP
-    const deleteEntry = (e: Entry) => {
-        deleteItem(`entries/${e.id}`)
+    const deleteEntry = async (e: Entry) => {
+        await deleteItem(`entries/${e.id}`)
         // refresh here??? update units resource
     }
 

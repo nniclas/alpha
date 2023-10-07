@@ -10,6 +10,7 @@ import { isABtn } from '../../common/utils'
 import { v4 as uuidv4 } from 'uuid'
 import { Transition } from 'solid-transition-group'
 import ConfirmModal from '../../components/confirm-modal/confirm-modal'
+import ds from '../../core/data-store'
 
 interface Args {
     unit?: Unit
@@ -18,18 +19,17 @@ interface Args {
 const iconStyle = { size: 18, color: 'var(--color-strong)' }
 
 export default (a: Args) => {
-    // const [firstOpen, setFirstOpen] = createSignal<boolean>(true)
     const [action, setAction] = createSignal<'edit' | 'add'>(
         a.unit ? 'edit' : 'add'
     )
-    const [done, setDone] = createSignal<boolean>(false)
+    // const [done, setDone] = createSignal<boolean>(false)
     const [isUnitChanged, setIsUnitChanged] = createSignal<boolean>(false)
     const [unit, setUnit] = createSignal<Unit>(
         a.unit ?? {
             name: 'New unit',
             machineId: uuidv4(),
             state: 0,
-        } // uuidv4 simplify demo
+        }
     )
 
     createEffect(() => {
@@ -110,8 +110,7 @@ export default (a: Args) => {
                         <Field aie gsm jce pmd>
                             {action() == 'edit' && (
                                 <Modal
-                                    jcc
-                                    pxl
+                                    jce
                                     buttonContent={
                                         <Field
                                             style='background:rgb(200,120,120)'
@@ -123,8 +122,7 @@ export default (a: Args) => {
                                 >
                                     <ConfirmModal
                                         confirmAction={() => {
-                                            console.log('ok lets go')
-                                            console.log('delete here..')
+                                            ds.deleteUnit(unit()!)
                                         }}
                                     />
                                 </Modal>
@@ -134,8 +132,9 @@ export default (a: Args) => {
                                 tertiary
                                 md
                                 onClick={(e) => {
-                                    console.log(action)
-                                    console.log('save here..')
+                                    if (action() == 'add') ds.addUnit(unit())
+                                    if (action() == 'edit')
+                                        ds.updateUnit(unit())
                                 }}
                             >
                                 <Text secondary xs>

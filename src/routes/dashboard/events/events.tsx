@@ -23,7 +23,6 @@ import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
-import EditEntry from '../../../parts/edit-entry/edit-entry'
 import {
     EntryRow,
     Table,
@@ -44,6 +43,7 @@ import { Statistics } from '../statistics/statistics'
 import { Minimizer } from '../../../components/minimizer/minimizer'
 import appStore from '../../../core/app-store'
 import { Section } from 'types/_types'
+import EditEntry from '../../../parts/edit-entry/edit-entry'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 

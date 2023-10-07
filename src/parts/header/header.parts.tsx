@@ -18,7 +18,7 @@ import { Label } from '../../lib/components/label/label'
 import { unitColors } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
 import { randInt } from '../../common/utils'
-import Settings from '../../parts/settings/settings'
+import Settings from '../settings/settings'
 
 const iconStyle = { size: 18, color: 'var(--color-medium)' }
 
