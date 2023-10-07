@@ -14,6 +14,7 @@ import appStore from './app-store'
 import { delay } from '../common/utils'
 import {
     statResolutions,
+    stats,
     unitColors,
     unitColorsDarker,
 } from '../common/constants'
@@ -58,7 +59,7 @@ function createDataState() {
     const [
         selectedMachineStatisticsElement,
         setSelectedMachineStatisticsElement,
-    ] = createSignal<string>()
+    ] = createSignal<string>(stats.machine[0])
     const [
         selectedMachineStatisticsResolution,
         setSelectedMachineStatisticsResolution,
@@ -66,7 +67,7 @@ function createDataState() {
     const [
         selectedEventsStatisticsResolution,
         setSelectedEventsStatisticsResolution,
-    ] = createSignal<Resolution>('week')
+    ] = createSignal<Resolution>('quarter')
 
     createEffect(() => {})
 
@@ -126,14 +127,6 @@ function createDataState() {
         () => [selectedUnitId(), selectedEventsStatisticsResolution()] as const,
         async ([unitId, res]) => {
             if (!unitId) return []
-
-            var hej = await getWithAuth<any>(
-                `stats/entries/unit/${unitId}/res/${res}`,
-                false
-            )
-
-            console.log(hej)
-
             return await getWithAuth<any>(
                 `stats/entries/unit/${unitId}/res/${res}`,
                 false

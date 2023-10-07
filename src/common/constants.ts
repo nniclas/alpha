@@ -4,14 +4,13 @@ import {
     StatCategory,
     Theme,
     ValueIdTitle,
-    Stats,
 } from 'types/_types'
 
 export const themes: Theme[] = ['dark', 'lite']
 
-export const stats: Stats = {
-    machine: ['battery', 'signal', 'processor'],
-    events: ['alerts', 'reports', 'followups'],
+export const stats = {
+    machine: ['Battery', 'Signal', 'Processor'],
+    events: null, // todo view multiple event params
 }
 
 // export const statCategories: StatCategory[] = ['Machine', 'Events']

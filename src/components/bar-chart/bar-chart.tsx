@@ -4,12 +4,15 @@ import {
     Point,
     bezierCommand,
     connectPathAsArea,
+    dataToPctData,
     dataToPoints,
     getBarsPath,
     getSplineLinePath,
     timedPointCountSwitch,
+    zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
+import Responsive from '../../lib/components/responsive/responsive'
 
 const mp = 100 // multipler
 const barThickness = 20
@@ -17,8 +20,10 @@ const barThickness = 20
 interface Args {
     visible?: boolean
     data: number[] | undefined
+    labels?: string[]
     scale?: { min: number; max: number }
     color: string
+    percentage?: boolean
 }
 
 export const BarChart = (a: Args) => {
@@ -32,8 +37,9 @@ export const BarChart = (a: Args) => {
 
     const update = () => {
         if (a.data == undefined) a.data = [0, 0]
+
         const newps = dataToPoints(
-            a.data,
+            a.percentage ? dataToPctData(a.data) : a.data,
             mp,
             a.scale?.min,
             a.scale?.max,
@@ -105,6 +111,18 @@ export const BarChart = (a: Args) => {
                             <path
                                 vector-effect='non-scaling-stroke'
                                 style={{ ...baseStyle }}
+                                d={`${getBarsPath(
+                                    points()?.map((p) => ({ x: p.x, y: 0 })) ||
+                                        []
+                                )}`}
+                                fill='transparent'
+                                stroke={a.color}
+                                opacity={0.2}
+                                stroke-width={barThickness + 8}
+                            />
+                            <path
+                                vector-effect='non-scaling-stroke'
+                                style={{ ...baseStyle }}
                                 d={`${bars()}`}
                                 fill='transparent'
                                 stroke={a.color}
@@ -112,6 +130,7 @@ export const BarChart = (a: Args) => {
                             />
                         </g>
                     )}
+
                     {/* {markers() && (
                         <g class='markers'>
                             <For each={points()}>
@@ -134,18 +153,35 @@ export const BarChart = (a: Args) => {
                     )} */}
                 </svg>
             </Field>
-            {/* <Field layer c aie pevn>
-                <Field c pmd>
-                    <Text xs secondary>
-                        From
-                    </Text>
+
+            {a.labels && (
+                <Field layer col jce>
+                    <For each={a.data}>
+                        {(n, i) => (
+                            <Field
+                                pmd
+                                s
+                                c
+                                col
+                                style={` position:absolute; left: ${
+                                    20 * (i() + 0.3)
+                                }%`}
+                                gxs
+                            >
+                                <Text caption>{n}</Text>
+
+                                <Text accent caption>
+                                    <Responsive
+                                        compact={a.labels![i()].substring(0, 2)}
+                                    >
+                                        {a.labels![i()]}
+                                    </Responsive>
+                                </Text>
+                            </Field>
+                        )}
+                    </For>
                 </Field>
-                <Field jce pmd c>
-                    <Text xs secondary>
-                        To
-                    </Text>
-                </Field>
-            </Field> */}
+            )}
         </Field>
     )
 }

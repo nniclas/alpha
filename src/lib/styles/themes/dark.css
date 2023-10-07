@@ -51,6 +51,7 @@
 
     /* TEXT */
     --text-font: 'Sofia Pro Regular';
+    --text-size-xxs-fat: 10px;
     --text-size-xxs: 12px;
     --text-size-xs: 13px;
     --text-size-sm: 14px;

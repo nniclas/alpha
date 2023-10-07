@@ -20,47 +20,42 @@ import { date } from '../../../common/date-utils'
 import Modal from '../../../lib/components/modal/modal'
 import { Label } from '../../../lib/components/label/label'
 import Dropdown from '../../../lib/components/dropdown/dropdown'
-import { measures, statResolutions } from '../../../common/constants'
+import { measures, statResolutions, stats } from '../../../common/constants'
 import { SliderButton } from '../../../components/slider-button/slider-button'
 import { LineChart } from '../../../components/line-chart/line-chart'
 import ds from '../../../core/data-store'
 import { BarChart } from '../../../components/bar-chart/bar-chart'
+import { StatData } from 'types/_types'
 
 export const MachineChartArea = () => {
-    const [chartData, setChartData] = createSignal<number[]>()
+    const [chartData, setChartData] = createSignal<StatData>()
 
-    let data: number[]
+    let data: StatData
 
     onMount(async () => {})
 
     createEffect(() => {
-        const batteryData = ds.machineStatsRes()['Battery']?.data
-
-        if (batteryData) {
-            data = batteryData
-        }
-
+        const d = ds.machineStatsRes()[ds.selectedMachineStatisticsElement()]
+        if (d) data = d
         setChartData(data)
     })
-
-    const elements: string[] = ['foo', 'bar']
 
     return (
         <Field col>
             <Field s pwlg col gsm>
                 <SliderButton
-                    w={80}
+                    w={100}
                     h={40}
-                    value={elements.indexOf(
+                    value={stats.machine.indexOf(
                         ds.selectedMachineStatisticsElement() || ''
                     )}
                     change={(v) => {
-                        ds.setSelectedMachineStatisticsElement(elements[v])
+                        ds.setSelectedMachineStatisticsElement(stats.machine[v])
                     }}
-                    values={elements}
+                    values={stats.machine}
                 />
                 <SliderButton
-                    w={80}
+                    w={100}
                     h={40}
                     value={statResolutions.indexOf(
                         ds.selectedMachineStatisticsResolution()
@@ -75,7 +70,8 @@ export const MachineChartArea = () => {
             </Field>
             <LineChart
                 visible={as.showCharts()}
-                data={chartData()}
+                data={chartData()?.data}
+                labels={chartData()?.titles}
                 scale={{ min: 0, max: 150 }}
                 areaColor='var(--color-middle)'
             />
@@ -84,13 +80,13 @@ export const MachineChartArea = () => {
 }
 
 export const EventsChartArea = () => {
-    const [chartData, setChartData] = createSignal<number[]>()
+    const [chartData, setChartData] = createSignal<StatData>()
 
-    let data: number[]
+    let data: StatData
     onMount(async () => {})
 
     createEffect(async () => {
-        const d = await ds.entryStatsRes().data
+        const d = await ds.entryStatsRes()
         if (d) data = d
         setChartData(data)
     })
@@ -99,7 +95,7 @@ export const EventsChartArea = () => {
         <Field col>
             <Field s pwlg col>
                 <SliderButton
-                    w={80}
+                    w={100}
                     h={40}
                     value={statResolutions.indexOf(
                         ds.selectedEventsStatisticsResolution()
@@ -113,9 +109,10 @@ export const EventsChartArea = () => {
                 />
             </Field>
             <BarChart
+                percentage
                 visible={as.showCharts()}
-                data={chartData()}
-                scale={{ min: 0, max: 150 }}
+                data={chartData()?.data}
+                labels={chartData()?.titles}
                 color='var(--color-middle)'
             />
         </Field>

@@ -87,6 +87,11 @@ export const getExtremes = (points: Point[]) => ({
     ymax: Math.max(...points.map((p) => p.y)),
 })
 
+export const dataToPctData = (data: number[]) => {
+    const max = Math.max(...data)
+    return data.map((n) => Math.round((n / max) * 100))
+}
+
 export const dataToPoints = (
     data: number[],
     multiplier?: number,

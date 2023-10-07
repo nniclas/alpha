@@ -17,6 +17,7 @@ const lineThickness = 2
 interface Args {
     visible?: boolean
     data: number[] | undefined
+    labels?: string[]
     scale?: { min: number; max: number }
     lineColor?: string
     areaColor?: string
@@ -132,18 +133,25 @@ export const LineChart = (a: Args) => {
                     )}
                 </svg>
             </Field>
-            {/* <Field layer c aie pevn>
-                <Field c pmd>
-                    <Text xs secondary>
-                        From
-                    </Text>
+
+            {a.labels && (
+                <Field layer>
+                    <For each={a.data}>
+                        {(n, i) => (
+                            <Field
+                                s
+                                col
+                                style={`position:absolute; left: ${
+                                    20 * (i() + 0.3)
+                                }%`}
+                            >
+                                <Text xs>{n}</Text>
+                                <Text xs>{a.labels![i()]}</Text>
+                            </Field>
+                        )}
+                    </For>
                 </Field>
-                <Field jce pmd c>
-                    <Text xs secondary>
-                        To
-                    </Text>
-                </Field>
-            </Field> */}
+            )}
         </Field>
     )
 }

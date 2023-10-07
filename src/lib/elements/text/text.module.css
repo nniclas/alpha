@@ -29,6 +29,12 @@
     font-size: var(--text-size-xxs);
     /* font-weight: 700; */
 }
+.text.caption {
+    font-family: var(--text-font);
+    font-weight: bold;
+    font-size: var(--text-size-xxs-fat);
+    letter-spacing: 2px;
+}
 @media only screen and (max-width: 1400px) {
     .text.lg.res {
         font-size: var(--text-size-md);
@@ -46,6 +52,12 @@
 
 .noselect {
     user-select: none;
+}
+.uc {
+    text-transform: uppercase;
+}
+.lc {
+    text-transform: lowercase;
 }
 
 /* --- THEMING --- */

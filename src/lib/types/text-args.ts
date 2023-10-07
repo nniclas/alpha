@@ -1,4 +1,5 @@
 export interface TextArgs {
+    caption?: boolean
     xs?: boolean
     sm?: boolean
     md?: boolean
@@ -8,4 +9,7 @@ export interface TextArgs {
     noselect?: boolean
 
     color?: string
+
+    uc?: boolean // uppercase
+    lc?: boolean // lowercase
 }

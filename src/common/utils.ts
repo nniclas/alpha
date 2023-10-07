@@ -28,3 +28,6 @@ export const avg = (values: number[], round = false) => {
     const result = values.reduce((acc, val) => acc + val, 0) / values.length
     return round ? Math.round(result) : result
 }
+
+export const capFirst = (str: string) =>
+    `${str.charAt(0).toUpperCase()}${str.slice(1)}`
