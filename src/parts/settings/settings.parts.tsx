@@ -1,6 +1,5 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
-import { SelectButton } from '../select-button/select-button'
 import as from '../../core/app-store'
 import { themes } from '../../common/constants'
 import { For, createSignal } from 'solid-js'
@@ -9,9 +8,10 @@ import Button from '../../lib/elements/button/button'
 import { Unit } from 'types/entities/unit'
 import Shifter from '../../components/shifter/shifter'
 import { Transition } from 'solid-transition-group'
-import EditUnit from '../../components/edit-unit/edit-unit'
 import { FiPlus } from 'solid-icons/fi'
 import Textfield from '../../lib/elements/textfield/textfield'
+import { SelectButton } from '../../components/select-button/select-button'
+import EditUnit from '../../parts/edit-unit/edit-unit'
 
 const iconStyle = { size: 18, color: 'var(--color-accent)' }
 

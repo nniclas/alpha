@@ -23,7 +23,7 @@ import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
-import EditEntry from '../../../components/edit-entry/edit-entry'
+import EditEntry from '../../../parts/edit-entry/edit-entry'
 import {
     EntryRow,
     Table,

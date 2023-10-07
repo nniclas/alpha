@@ -8,8 +8,8 @@ import { Unit } from '../../types/entities/unit'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
 import { v4 as uuidv4 } from 'uuid'
-import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
+import ConfirmModal from '../../components/confirm-modal/confirm-modal'
 
 interface Args {
     unit?: Unit

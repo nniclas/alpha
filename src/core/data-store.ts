@@ -137,7 +137,36 @@ function createDataState() {
     /////// WIP WIP
     const addUnit = (u: Unit) => {
         addItem<Unit>(u, 'units')
+        // refresh here??? update units resource
+    }
 
+    /////// WIP WIP
+    const updateUnit = (u: Unit) => {
+        updateItem<Unit>(u, 'units')
+        // refresh here??? update units resource
+    }
+
+    /////// WIP WIP
+    const deleteUnit = (u: Unit) => {
+        deleteItem(`units/${u.id}`)
+        // refresh here??? update units resource
+    }
+
+    /////// WIP WIP
+    const addEntry = (e: Entry) => {
+        addItem<Entry>(e, 'entries')
+        // refresh here??? update units resource
+    }
+
+    /////// WIP WIP
+    const updateEntry = (e: Entry) => {
+        updateItem<Entry>(e, 'entries')
+        // refresh here??? update units resource
+    }
+
+    /////// WIP WIP
+    const deleteEntry = (e: Entry) => {
+        deleteItem(`entries/${e.id}`)
         // refresh here??? update units resource
     }
 
@@ -173,6 +202,11 @@ function createDataState() {
         setSelectedEventsStatisticsResolution,
         getUnitIndex,
         addUnit,
+        updateUnit,
+        deleteUnit,
+        addEntry,
+        updateEntry,
+        deleteEntry,
     }
 }
 

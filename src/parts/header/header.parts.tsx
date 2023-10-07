@@ -10,35 +10,15 @@ import ds from '../../core/data-store'
 import Logo from '../../assets/logo.svg?component-solid'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
-import { UnitMeter } from '../../components/unit-meter/unit-meter'
-import {
-    FiBatteryCharging,
-    FiEdit,
-    FiEdit2,
-    FiEdit3,
-    FiLogOut,
-    FiMenu,
-    FiMoreHorizontal,
-    FiMoreVertical,
-    FiPlus,
-    FiPlusCircle,
-    FiPlusSquare,
-    FiSettings,
-    FiTool,
-} from 'solid-icons/fi'
-import { Transition } from 'solid-transition-group'
-import { Loader } from '../../components/loader/loader'
-import ManageUnitModal from '../../components/edit-unit/edit-unit'
+import { FiBatteryCharging, FiLogOut, FiMenu, FiSettings } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
-// import { stateColors } from '../../common/constants'
 import { Label } from '../../lib/components/label/label'
-import EditUnit from '../../components/edit-unit/edit-unit'
 import { unitColors } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
-import Settings from '../../components/settings/settings'
 import { randInt } from '../../common/utils'
+import Settings from '../../parts/settings/settings'
 
 const iconStyle = { size: 18, color: 'var(--color-medium)' }
 

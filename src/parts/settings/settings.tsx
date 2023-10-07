@@ -18,12 +18,11 @@ import { Unit } from '../../types/entities/unit'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
 import { v4 as uuidv4 } from 'uuid'
-import ConfirmModal from '../confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
-import { ButtonGroup } from '../button-group/button-group'
-import Shifter from '../shifter/shifter'
 import { AppSettings, UnitSettings, UserSettings } from './settings.parts'
 import Responsive from '../../lib/components/responsive/responsive'
+import { ButtonGroup } from '../../components/button-group/button-group'
+import Shifter from '../../components/shifter/shifter'
 
 interface Args {
     // unit?: Unit
