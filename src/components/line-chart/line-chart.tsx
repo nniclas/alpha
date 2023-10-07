@@ -10,6 +10,9 @@ import {
     zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
+import Responsive from '../../lib/components/responsive/responsive'
+import Shifter from '../../components/shifter/shifter'
+import { Transition } from 'solid-transition-group'
 
 const mp = 100 // multipler
 const lineThickness = 2
@@ -35,7 +38,16 @@ export const LineChart = (a: Args) => {
 
     const update = () => {
         if (a.data == undefined) a.data = [0, 0]
-        let newps = dataToPoints(a.data, mp, a.scale?.min, a.scale?.max)
+        let newps = dataToPoints(
+            a.data,
+            mp,
+            a.scale?.min,
+            a.scale?.max,
+            undefined,
+            'fraction',
+            true
+        )
+
         setRendering(newps, lastps?.length != newps.length)
     }
 
@@ -57,6 +69,30 @@ export const LineChart = (a: Args) => {
 
         set(ps)
     }
+
+    const labels = () => (
+        <Field layer aie>
+            <Field h={96}>
+                <For each={a.data}>
+                    {(n, i) => (
+                        <Field c col gxs>
+                            <Text caption color='var(--color-lighter)'>
+                                {n}
+                            </Text>
+
+                            <Text caption color='var(--color-lighter)'>
+                                <Responsive
+                                    compact={a.labels![i()].substring(0, 2)}
+                                >
+                                    {a.labels![i()]}
+                                </Responsive>
+                            </Text>
+                        </Field>
+                    )}
+                </For>
+            </Field>
+        </Field>
+    )
 
     onMount(() => {})
 
@@ -124,7 +160,7 @@ export const LineChart = (a: Args) => {
                                             x2={p.x}
                                             y2='98'
                                             stroke-width={lineThickness}
-                                            stroke={'var(--color-strong)'}
+                                            stroke={'var(--color-lighter)'}
                                         />
                                     )
                                 }
@@ -134,24 +170,7 @@ export const LineChart = (a: Args) => {
                 </svg>
             </Field>
 
-            {a.labels && (
-                <Field layer>
-                    <For each={a.data}>
-                        {(n, i) => (
-                            <Field
-                                s
-                                col
-                                style={`position:absolute; left: ${
-                                    20 * (i() + 0.3)
-                                }%`}
-                            >
-                                <Text xs>{n}</Text>
-                                <Text xs>{a.labels![i()]}</Text>
-                            </Field>
-                        )}
-                    </For>
-                </Field>
-            )}
+            {labels()}
         </Field>
     )
 }

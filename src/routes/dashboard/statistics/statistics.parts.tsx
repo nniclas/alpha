@@ -91,6 +91,16 @@ export const EventsChartArea = () => {
         setChartData(data)
     })
 
+    const chart = () => (
+        <BarChart
+            percentage
+            visible={as.showCharts()}
+            data={chartData()?.data}
+            labels={chartData()?.titles}
+            color='var(--color-middle)'
+        />
+    )
+
     return (
         <Field col>
             <Field s pwlg col>
@@ -108,13 +118,11 @@ export const EventsChartArea = () => {
                     values={statResolutions}
                 />
             </Field>
-            <BarChart
-                percentage
-                visible={as.showCharts()}
-                data={chartData()?.data}
-                labels={chartData()?.titles}
-                color='var(--color-middle)'
-            />
+            <Field s h={128} />
+
+            <Responsive compact={chart()}>
+                <Field style='padding:0 128px'>{chart()}</Field>
+            </Responsive>
         </Field>
     )
 }

@@ -44,7 +44,7 @@ export const BarChart = (a: Args) => {
             a.scale?.min,
             a.scale?.max,
             undefined,
-            0.1
+            'fraction'
         )
         setRendering(newps, lastps?.length != newps.length)
     }
@@ -155,31 +155,29 @@ export const BarChart = (a: Args) => {
             </Field>
 
             {a.labels && (
-                <Field layer col jce>
-                    <For each={a.data}>
-                        {(n, i) => (
-                            <Field
-                                pmd
-                                s
-                                c
-                                col
-                                style={` position:absolute; left: ${
-                                    20 * (i() + 0.3)
-                                }%`}
-                                gxs
-                            >
-                                <Text caption>{n}</Text>
+                <Field layer aie>
+                    <Field h={64}>
+                        <For each={a.data}>
+                            {(n, i) => (
+                                <Field c col gxs>
+                                    <Text caption color='var(--color-lighter)'>
+                                        {n}
+                                    </Text>
 
-                                <Text accent caption>
-                                    <Responsive
-                                        compact={a.labels![i()].substring(0, 2)}
-                                    >
-                                        {a.labels![i()]}
-                                    </Responsive>
-                                </Text>
-                            </Field>
-                        )}
-                    </For>
+                                    <Text caption color='var(--color-lighter)'>
+                                        <Responsive
+                                            compact={a.labels![i()].substring(
+                                                0,
+                                                2
+                                            )}
+                                        >
+                                            {a.labels![i()]}
+                                        </Responsive>
+                                    </Text>
+                                </Field>
+                            )}
+                        </For>
+                    </Field>
                 </Field>
             )}
         </Field>

@@ -98,13 +98,16 @@ export const dataToPoints = (
     scaleMin?: number,
     scaleMax?: number,
     nonInvert?: boolean,
-    rMargin?: number // ratio horizontal margin
+    rMargin?: number | 'fraction', // ratio horizontal margin, or use dist between points
+    fillSides?: boolean // if rMargin, add start end points to fill sides
 ): Point[] => {
     const min = scaleMin != undefined ? scaleMin : Math.min(...data)
     const max = scaleMax != undefined ? scaleMax : Math.max(...data)
 
-    return data.map((dp, dpi) => {
-        const rm = rMargin || 0
+    const fraction = 1 / data.length
+
+    const result = data.map((dp, dpi) => {
+        const rm = rMargin == 'fraction' ? fraction / 2 : rMargin || 0
         const rx = dpi / (data.length - 1)
         const rxm = rx * (1 - rm) + (1 - rx) * rm
 
@@ -116,6 +119,20 @@ export const dataToPoints = (
             y: y * (multiplier || 1),
         }
     })
+
+    if (fillSides) {
+        const fr =
+            rMargin == 'fraction' ? result[1].x - result[0].x : rMargin || 0
+
+        // interpolate to edges using first last points
+        result.unshift({ x: result[0].x - fr, y: result[0].y })
+        result.push({
+            x: result[result.length - 1].x + fr,
+            y: result[result.length - 1].y,
+        })
+    }
+
+    return result
 }
 
 // export const getBarsPath = (points: Point[]) =>
