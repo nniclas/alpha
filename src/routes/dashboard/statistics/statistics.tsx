@@ -60,12 +60,13 @@ export const Statistics = (a: Args) => {
                             w={80}
                             res={{ w: 60, h: 60 }}
                             col
-                            style='z-index:1'
+                            // style='z-index:1'
                         >
                             <SelectField
                                 // index={entry()?.measure}
                                 items={cats.map((c: string) => (
                                     <Field
+                                        tertiary
                                         bg='var(--color-strong)'
                                         c
                                         w={100}

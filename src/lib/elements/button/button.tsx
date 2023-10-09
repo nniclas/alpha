@@ -26,14 +26,15 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
     let csRes: any
 
     createEffect(() => {
-        if (JSON.stringify(a.res) != JSON.stringify(resArgs())) {
+        if ((JSON.stringify(a.res), JSON.stringify(resArgs()))) {
             ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
             csRes = customStyles(a.res, styleMap)
             setResArgs()
         } else {
-            // performance....???
-            setSs(scopeStyles(styles, a))
-            setCs(customStyles(a, styleMap))
+            if (JSON.stringify(a.res) == JSON.stringify(resArgs())) {
+                setSs(scopeStyles(styles, a))
+                setCs(customStyles(a, styleMap))
+            }
         }
     }, resArgs())
 

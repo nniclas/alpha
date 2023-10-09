@@ -31,6 +31,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
         <Field rel style={` z-index: ${open() ? 100 : 'auto'};`} {...a}>
             {a.buttonContent && (
                 <Button
+                    span
                     onClick={(e) => {
                         setOpen(true)
                         e.stopPropagation()

@@ -9,7 +9,7 @@
     resize: none; /* applicable to textarea only */
     box-sizing: border-box;
 }
-textarea::placeholder {
+.textfield::placeholder {
     color: var(--color-middle);
 }
 
@@ -38,7 +38,7 @@ textarea::placeholder {
     font-size: var(--text-size-xs);
     /* font-weight: 700; */
 }
-@media only screen and (max-width: 1400px) {
+/* @media only screen and (max-width: 1400px) {
     .textfield.lg.res {
         font-size: var(--text-size-md);
     }
@@ -48,7 +48,7 @@ textarea::placeholder {
     .textfield.sm.res {
         font-size: var(--text-size-xs);
     }
-}
+} */
 
 .pxs {
     padding: var(--xs) var(--sm);

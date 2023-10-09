@@ -217,7 +217,7 @@ export const Events = (a: Args) => {
             /> */}
 
             <Sidemenu maxWidth={500} open={entryMenuOpen()}>
-                <Field layer>
+                <Field>
                     <EditEntry />
                 </Field>
                 <Field layer pevn jce h={80}>

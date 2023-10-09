@@ -47,7 +47,7 @@ export const SignalStrengthArea = () => {
                             color={trendColors[0]}
                         />
                         <Text lg color={trendColors[0]}>
-                            {12} % {ds.selectedMachineStatisticsResolution()}
+                            {12} %
                         </Text>
                     </Field>
                 </Field>
@@ -128,10 +128,10 @@ export const MachineControlArea = () => {
     return (
         <Area header='Machine control'>
             <Field s style='gap:4px'>
-                <Button w={160} h={60} md res={{ md: true }} secondary>
+                <Button w={160} h={60} md res={{ w: 120 }} secondary>
                     <Text>Reboot</Text>
                 </Button>
-                <Button w={160} h={60} md res={{ w: 120, h: 40 }} secondary>
+                <Button w={160} h={60} md res={{ w: 120 }} secondary>
                     <Text>Run diagnostics</Text>
                 </Button>
             </Field>

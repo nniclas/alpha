@@ -128,7 +128,7 @@ export const Operation = (a: Args) => {
                                     <Text res title>
                                         Operation
                                     </Text>
-                                    <Field jce>
+                                    {/* <Field jce>
                                         <Field
                                             s
                                             w={100}
@@ -163,10 +163,9 @@ export const Operation = (a: Args) => {
                                                         statResolutions[v]
                                                     )
                                                 }}
-                                                // buttonArgs={btnStyle}
                                             />
                                         </Field>
-                                    </Field>
+                                    </Field> */}
                                 </Field>
                                 {/* <SectionHeader
                                     title='Operation'

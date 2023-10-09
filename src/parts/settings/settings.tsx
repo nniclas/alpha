@@ -20,7 +20,6 @@ import { isABtn } from '../../common/utils'
 import { v4 as uuidv4 } from 'uuid'
 import { Transition } from 'solid-transition-group'
 import { AppSettings, UnitSettings, UserSettings } from './settings.parts'
-import Responsive from '../../lib/components/responsive/responsive'
 import { ButtonGroup } from '../../components/button-group/button-group'
 import Shifter from '../../components/shifter/shifter'
 
@@ -55,7 +54,7 @@ export default (a: Args) => {
                     <ButtonGroup
                         secondary
                         w={160}
-                        res={{ span: true }}
+                        res={{ w: 'auto', span: true }}
                         change={(i) => setPage(i)}
                     >
                         <Field gsm c>

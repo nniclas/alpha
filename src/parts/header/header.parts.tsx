@@ -96,8 +96,8 @@ export const MainMenu = () => {
     const compactActions = [
         <Modal
             buttonContent={
-                <Field secondary psm h={80} c>
-                    <FiSettings color='var(--color-light)' size={18} />
+                <Field tertiary h={60} c>
+                    <FiSettings color='var(--color-light)' size={16} />
                     <Label size='md' iconTheme='secondary'>
                         settings
                     </Label>
@@ -106,9 +106,9 @@ export const MainMenu = () => {
         >
             <Settings />
         </Modal>,
-        <Button secondary onClick={logOut}>
-            <Field s h={80} psm aic gsm>
-                <FiLogOut color='var(--color-light)' size={18} />{' '}
+        <Button tertiary onClick={logOut}>
+            <Field s h={60} aic gsm>
+                <FiLogOut color='var(--color-light)' size={16} />{' '}
                 <Text xs>{appStore.session()?.username}</Text>
             </Field>
         </Button>,

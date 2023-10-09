@@ -110,9 +110,11 @@ export default (a: Args) => {
                         <Field aie gsm jce pmd>
                             {action() == 'edit' && (
                                 <Modal
-                                    jce
+                                    s
+                                    c
                                     buttonContent={
                                         <Field
+                                            s
                                             style='background:rgb(200,120,120)'
                                             psm
                                         >
@@ -121,6 +123,7 @@ export default (a: Args) => {
                                     }
                                 >
                                     <ConfirmModal
+                                        header='Delete unit?'
                                         confirmAction={() => {
                                             ds.deleteUnit(unit()!)
                                         }}
@@ -137,7 +140,7 @@ export default (a: Args) => {
                                         ds.updateUnit(unit())
                                 }}
                             >
-                                <Text secondary xs>
+                                <Text primary xs>
                                     {action() == 'edit' ? 'save' : 'add'}
                                 </Text>
                             </Button>

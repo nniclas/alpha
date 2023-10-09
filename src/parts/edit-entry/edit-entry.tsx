@@ -53,15 +53,14 @@ export default (a: Args) => {
             // h={800}
 
             res={{ s: false, w: 'auto', h: 'auto' }}
-            tertiary
             onClick={(e: any) => {
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >
-            <Field a col bg='var(--color-medium)'>
+            <Field a col>
                 <Transition name='fade'>
                     <Field a col>
-                        <Field s h={80} res={{ h: 60 }} c>
+                        <Field s h={80} res={{ h: 60 }} c secondary>
                             <Field s c h={80} w={80} res={{ h: 60, w: 60 }}>
                                 {isEntryChanged() ? (
                                     <Text lg accent style='margin-top:-6px'>
@@ -85,9 +84,9 @@ export default (a: Args) => {
                             </Button> */}
                         </Field>
 
-                        <Field plg col gmd c>
+                        <Field plg col gmd res={{ glg: true }} c secondary>
                             <Field s gmd col>
-                                <Field s col gsm>
+                                <Field s col gxs>
                                     <Text xs primary>
                                         Event
                                     </Text>
@@ -108,7 +107,7 @@ export default (a: Args) => {
                                         buttonArgs={btnStyle}
                                     />
                                 </Field>
-                                <Field s col gsm>
+                                <Field s col gxs>
                                     <Text xs primary>
                                         Measure
                                     </Text>
@@ -130,11 +129,11 @@ export default (a: Args) => {
                                     />
                                 </Field>
                             </Field>
-                            <Field s gmd col>
+                            <Field s glg col>
                                 <Field
                                     s
                                     col
-                                    gsm
+                                    gxs
                                     w={200}
                                     res={{ w: 200, h: 48 }}
                                 >
@@ -166,7 +165,7 @@ export default (a: Args) => {
                                 <Field
                                     s
                                     col
-                                    gsm
+                                    gxs
                                     w={200}
                                     res={{ w: 200, h: 48 }}
                                 >
@@ -174,7 +173,6 @@ export default (a: Args) => {
                                         Date
                                     </Text>
                                     <Textfield
-                                        xs
                                         tertiary
                                         placeholder='Today'
                                         value={entry()?.notes}
@@ -189,7 +187,7 @@ export default (a: Args) => {
                                     </Textfield>
                                 </Field>
                             </Field>
-                            <Field s col gsm w={200} res={{ w: 200 }}>
+                            <Field s col gxs w={200} res={{ w: 200 }}>
                                 <Text xs primary>
                                     Notes
                                 </Text>
@@ -210,10 +208,11 @@ export default (a: Args) => {
                             </Field>
                         </Field>
 
-                        <Field s gsm jce pmd>
+                        <Field s gsm jce pmd secondary>
                             {action == 'edit' && (
                                 <Modal
-                                    jcc
+                                    c
+                                    s
                                     pxl
                                     buttonContent={
                                         <Field
@@ -223,6 +222,7 @@ export default (a: Args) => {
                                     }
                                 >
                                     <ConfirmModal
+                                        header='Delete entry?'
                                         confirmAction={() => {
                                             console.log('ok lets go')
                                             console.log('delete here..')

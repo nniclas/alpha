@@ -49,9 +49,10 @@ export const Header: Component = () => {
             bg='var(--color-light)'
         >
             <Field col>
-                <Responsive s compact={header()}>
+                {header()}
+                {/* <Responsive s compact={header()}>
                     {header()}
-                </Responsive>
+                </Responsive> */}
 
                 <Field rel>
                     <Transition name='fade'>

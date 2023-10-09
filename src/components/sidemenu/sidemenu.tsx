@@ -2,6 +2,9 @@ import Field from '../../lib/elements/field/field'
 import { Transition } from 'solid-transition-group'
 import styles from './sidemenu.module.css'
 import { createEffect, createSignal } from 'solid-js'
+import { BaseArgs } from 'lib/types/base-args'
+import { ThemeArgs } from 'lib/types/theme-args'
+import { FieldArgs } from 'lib/types/field-args'
 
 interface Args {
     open: boolean
@@ -9,7 +12,7 @@ interface Args {
     maxWidth?: number
 }
 
-export const Sidemenu = (a: Args) => {
+export const Sidemenu = (a: Args & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
 
     createEffect(() => {
@@ -19,7 +22,7 @@ export const Sidemenu = (a: Args) => {
     })
 
     return (
-        <Field rel s class={styles.container}>
+        <Field rel s class={styles.container} {...a}>
             <Field
                 a
                 layer
