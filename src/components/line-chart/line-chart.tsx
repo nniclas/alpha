@@ -6,7 +6,7 @@ import {
     connectPathAsArea,
     dataToPoints,
     getSplineLinePath,
-    timedPointCountSwitch,
+    // timedPointCountSwitch,
     zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
@@ -62,10 +62,10 @@ export const LineChart = (a: Args) => {
             lastps = ps
         }
 
-        if (reset && lastps != undefined) {
-            timedPointCountSwitch(set, ps, lastps)
-            return
-        }
+        // if (reset && lastps != undefined) {
+        //     timedPointCountSwitch(set, ps, lastps)
+        //     return
+        // }
 
         set(ps)
     }
@@ -73,7 +73,7 @@ export const LineChart = (a: Args) => {
     const labels = () => (
         <Field layer aie>
             <Field h={96}>
-                <For each={a.data}>
+                <For each={a.data?.filter((v) => v != -1)}>
                     {(n, i) => (
                         <Field c col gxs>
                             <Text caption color='var(--color-lighter)'>
@@ -98,6 +98,9 @@ export const LineChart = (a: Args) => {
 
     createEffect(() => {
         if (a.data) update()
+
+        // console.log('liiiines')
+        // console.log(points())
     })
 
     createEffect(() => {
@@ -147,6 +150,7 @@ export const LineChart = (a: Args) => {
                             />
                         </g>
                     )}
+
                     {markers() && (
                         <g class='markers'>
                             <For each={points()}>

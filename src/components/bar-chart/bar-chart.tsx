@@ -8,7 +8,7 @@ import {
     dataToPoints,
     getBarsPath,
     getSplineLinePath,
-    timedPointCountSwitch,
+    // timedPointCountSwitch,
     zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
@@ -57,10 +57,10 @@ export const BarChart = (a: Args) => {
             lastps = ps
         }
 
-        if (reset && lastps != undefined) {
-            timedPointCountSwitch(set, ps, lastps)
-            return
-        }
+        // if (reset && lastps != undefined) {
+        //     timedPointCountSwitch(set, ps, lastps)
+        //     return
+        // }
 
         set(ps)
     }
@@ -69,6 +69,8 @@ export const BarChart = (a: Args) => {
 
     createEffect(() => {
         if (a.data) update()
+
+        // console.log('baars')
     })
 
     createEffect(() => {

@@ -3,6 +3,7 @@ import { randInt } from './utils'
 import { date } from './date-utils'
 import { stats } from './constants'
 
+const dOnlyFormat = 'yyyy-MM-dd'
 const backToThePast = new Date('2023-08-14')
 
 export const generateSomeStats = (units: number[], count: number) => {
@@ -16,13 +17,13 @@ export const generateSomeStats = (units: number[], count: number) => {
     let someDates = []
     for (let i = 0; i < count; i++)
         someDates.push(
-            date(subMinutes(subDays(backToThePast, i), randInt(0, 1440)))
+            date(subMinutes(subDays(backToThePast, i), 0), dOnlyFormat)
         )
 
     for (let u = 0; u < units.length; u++) {
         for (let e = 0; e < stats.machine.length; e++) {
             for (let i = 0; i < count; i++) {
-                const value = randInt(30, 90) // completely random here....
+                const value = randInt(10, 90) // completely random here....
                 result += `
                     (${units[u]}, "${stats.machine[e]}", ${value}, "${
                     someDates[i]
@@ -109,5 +110,5 @@ export const generateSomeEntries = (
 /////////////// CONSOLE LOG SQL SCRIPTS (comment/uncomment to run/disable)
 //////////////////////////////////////////////////////
 
-//console.log(generateSomeStats([1, 2, 3, 4], 30))
+//console.log(generateSomeStats([1, 2, 3, 4], 100))
 //console.log(generateSomeEntries([1, 2, 3, 4], [1, 2, 3], 30))

@@ -4,10 +4,10 @@ const DATEFORMAT = 'yyyy-MM-dd HH:mm'
 const WEEKFORMAT = '{y}-{w}'
 const WEEKDISPLAYFORMAT = 'w {w}'
 
-export const date = (d?: string | Date): string =>
+export const date = (d?: string | Date, df?: string): string =>
     d
-        ? format(typeof d === 'string' ? parseISO(d) : d, DATEFORMAT)
-        : format(new Date(), DATEFORMAT).toString()
+        ? format(typeof d === 'string' ? parseISO(d) : d, df || DATEFORMAT)
+        : format(new Date(), df || DATEFORMAT).toString()
 
 export const week = (d?: string, display = false): string => {
     const dp = parseISO(d!)

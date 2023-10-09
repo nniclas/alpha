@@ -104,11 +104,21 @@ export const dataToPoints = (
     const min = scaleMin != undefined ? scaleMin : Math.min(...data)
     const max = scaleMax != undefined ? scaleMax : Math.max(...data)
 
-    const fraction = 1 / data.length
+    const dActual = data.filter((v) => v != -1)
+
+    // make animation of d possible when switching data point count
+    // only apply when going to the edges (fillSides)
+    if (fillSides) {
+        for (let i = 0; i < 10; i++) {
+            if (data.length < i) data.push(-1)
+        }
+    }
+
+    const fraction = 1 / dActual.length
 
     const result = data.map((dp, dpi) => {
         const rm = rMargin == 'fraction' ? fraction / 2 : rMargin || 0
-        const rx = dpi / (data.length - 1)
+        const rx = dpi / (dActual.length - 1)
         const rxm = rx * (1 - rm) + (1 - rx) * rm
 
         let ry = (dp - min) / (max - min) || 0
@@ -150,18 +160,18 @@ export const getBarsPath = (points: Point[]) =>
 
 export const zeroLine = (ps: Point[]) => ps.map((p) => ({ x: p.x, y: 100 }))
 
-export const timedPointCountSwitch = (
-    set: (ps: Point[]) => void,
-    newps: Point[],
-    lastps: Point[]
-) => {
-    set(zeroLine(lastps))
+// export const timedPointCountSwitch = (
+//     set: (ps: Point[]) => void,
+//     newps: Point[],
+//     lastps: Point[]
+// ) => {
+//     set(zeroLine(lastps))
 
-    setTimeout(() => {
-        set(zeroLine(newps))
-    }, 200)
+//     setTimeout(() => {
+//         set(zeroLine(newps))
+//     }, 500)
 
-    setTimeout(() => {
-        set(newps)
-    }, 400)
-}
+//     setTimeout(() => {
+//         set(newps)
+//     }, 1000)
+// }
