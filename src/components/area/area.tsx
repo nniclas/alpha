@@ -22,7 +22,7 @@ export const Area = (a: Args) => {
                 pwmd
                 // res={{ pwsm: true }}
             >
-                <Text sm primary>
+                <Text sm primary caption>
                     {a.header}
                 </Text>
             </Field>

@@ -59,7 +59,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                     bg={unitColors[ds.getUnitIndex(a.u.id)]}
                 >
                     <Field psm>
-                        <Text sm color='var(--color-lighter)'>
+                        <Text sm color='var(--color-lighter)' title>
                             {a.u.name}
                         </Text>
                     </Field>

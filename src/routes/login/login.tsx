@@ -67,7 +67,9 @@ export const Login: Component = () => {
         return (
             <Field s a plg w={360} res={{ w: 240 }} col gsm>
                 <Field s pwsm>
-                    <Text color={color}>Account</Text>
+                    <Text color={color} title>
+                        Account
+                    </Text>
                 </Field>
                 <Field s>
                     <Textfield
@@ -96,7 +98,9 @@ export const Login: Component = () => {
                 <Field s jce>
                     <Field s>
                         <Button bg={bg} md onClick={logIn}>
-                            <Text color={color}>Sign in</Text>
+                            <Text color={color} caption>
+                                Sign in
+                            </Text>
                         </Button>
                     </Field>
                 </Field>

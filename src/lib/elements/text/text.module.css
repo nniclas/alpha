@@ -32,8 +32,14 @@
 .text.caption {
     font-family: var(--text-font);
     font-weight: bold;
-    font-size: var(--text-size-xxs-fat);
-    letter-spacing: 2px;
+    font-size: var(--text-size-xxs);
+    letter-spacing: 1px;
+}
+.text.title {
+    font-family: var(--text-font);
+    font-weight: bold;
+    font-size: var(--text-size-xs);
+    letter-spacing: 1px;
 }
 @media only screen and (max-width: 1400px) {
     .text.lg.res {
@@ -47,6 +53,12 @@
     }
     .text.xs.res {
         font-size: var(--text-size-xxs);
+    }
+    .text.caption.res {
+        font-size: var(--text-size-xxxs);
+    }
+    .text.title.res {
+        font-size: var(--text-size-xxxs);
     }
 }
 

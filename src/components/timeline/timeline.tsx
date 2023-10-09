@@ -47,7 +47,7 @@ export const TimeLine = () => {
                                             //         ? 'var(--color-accent)'
                                             //         : 'var(--color-middle)'
                                             // }
-                                            style={`font-weight:bold; color:${
+                                            style={`color:${
                                                 w == ds.selectedWeek()
                                                     ? 'var(--color-accent)'
                                                     : 'var(--color-middle)'

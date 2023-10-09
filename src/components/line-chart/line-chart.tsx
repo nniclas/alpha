@@ -12,7 +12,8 @@ import {
 import Text from '../../lib/elements/text/text'
 import Responsive from '../../lib/components/responsive/responsive'
 import Shifter from '../../components/shifter/shifter'
-import { Transition } from 'solid-transition-group'
+import { Transition, TransitionGroup } from 'solid-transition-group'
+import styles from './line-chart.module.css'
 
 const mp = 100 // multipler
 const lineThickness = 2
@@ -75,12 +76,12 @@ export const LineChart = (a: Args) => {
             <Field h={96}>
                 <For each={a.data?.filter((v) => v != -1)}>
                     {(n, i) => (
-                        <Field c col gxs>
-                            <Text caption color='var(--color-lighter)'>
-                                {n}
+                        <Field c col gxs class={styles.anim}>
+                            <Text caption res color='var(--color-lighter)'>
+                                {n}%
                             </Text>
 
-                            <Text caption color='var(--color-lighter)'>
+                            <Text caption res color='var(--color-lighter)'>
                                 <Responsive
                                     compact={a.labels![i()].substring(0, 2)}
                                 >
@@ -98,9 +99,6 @@ export const LineChart = (a: Args) => {
 
     createEffect(() => {
         if (a.data) update()
-
-        // console.log('liiiines')
-        // console.log(points())
     })
 
     createEffect(() => {
@@ -151,7 +149,7 @@ export const LineChart = (a: Args) => {
                         </g>
                     )}
 
-                    {markers() && (
+                    {/* {markers() && (
                         <g class='markers'>
                             <For each={points()}>
                                 {(p, i) =>
@@ -170,7 +168,7 @@ export const LineChart = (a: Args) => {
                                 }
                             </For>
                         </g>
-                    )}
+                    )} */}
                 </svg>
             </Field>
 

@@ -125,7 +125,9 @@ export const Operation = (a: Args) => {
                                     >
                                         <FiMonitor {...iconStyle} />
                                     </Field>
-                                    <Text>Operation</Text>
+                                    <Text res title>
+                                        Operation
+                                    </Text>
                                     <Field jce>
                                         <Field
                                             s

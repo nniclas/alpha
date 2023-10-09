@@ -64,7 +64,7 @@ export const Events = (a: Args) => {
             <HeaderCell bg='var(--color-stronger)' bb='var(--color-medium)'>
                 <Responsive {...comp} addRule={as.section() != a.section}>
                     <Field>
-                        <Text xs accent>
+                        <Text xs accent caption>
                             {text}
                         </Text>
                     </Field>
@@ -78,11 +78,9 @@ export const Events = (a: Args) => {
             <Transition name='fade'>
                 <Suspense
                     fallback={
-                        as.section() == a.section && (
-                            <Field layer c style='pointer-events:none'>
-                                <Loader />
-                            </Field>
-                        )
+                        <Field layer c style='pointer-events:none'>
+                            {!as.showCharts() && <Loader />}
+                        </Field>
                     }
                 >
                     <Field rel col bg='var(--color-stronger)'>
@@ -100,7 +98,9 @@ export const Events = (a: Args) => {
                             <Field s w={80} h={80} c res={{ w: 60, h: 60 }}>
                                 <FiAlertCircle {...iconStyle} />
                             </Field>
-                            <Text>Events</Text>
+                            <Text res title>
+                                Events
+                            </Text>
                             <Field jce>
                                 <Field s h={80} c res={{ h: 60 }}>
                                     <Button

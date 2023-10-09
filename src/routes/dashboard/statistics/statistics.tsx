@@ -48,7 +48,9 @@ export const Statistics = (a: Args) => {
                     <FiTrendingUp {...iconStyle} />
                 </Field>
                 <Field aic>
-                    <Text>Stats</Text>
+                    <Text res title>
+                        Stats
+                    </Text>
                 </Field>
                 <Field jce>
                     <Field rel s w={100} res={{ w: 100 }}>

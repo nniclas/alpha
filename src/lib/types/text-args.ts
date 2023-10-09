@@ -1,5 +1,6 @@
 export interface TextArgs {
     caption?: boolean
+    title?: boolean
     xs?: boolean
     sm?: boolean
     md?: boolean
