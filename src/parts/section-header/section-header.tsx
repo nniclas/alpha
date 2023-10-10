@@ -34,7 +34,8 @@ import styles from './section-header.module.css'
 
 interface Args {
     title: string
-    titleTheme?: string
+    // titleTheme?: string
+    titleColor?: string
     icon?: any
     iconTheme?: string
     aux?: any
@@ -45,7 +46,8 @@ interface Args {
 }
 
 export const SectionHeader = (a: Args & FieldArgs) => {
-    const titleTheme = a.titleTheme && { titleTheme: a.titleTheme }
+    // const titleTheme = a.titleTheme && { titleTheme: a.titleTheme }
+    const titleColor = a.titleColor && { color: a.titleColor }
     const icon = a.icon && { icon: a.icon }
     const iconTheme = a.iconTheme && { iconTheme: a.iconTheme }
 
@@ -64,7 +66,13 @@ export const SectionHeader = (a: Args & FieldArgs) => {
             // style={`border-top: 12px solid ${a.color}`}
         >
             <Field {...click}>
-                <Label size='md' {...titleTheme} {...icon} {...iconTheme}>
+                <Label
+                    size='md'
+                    // {...titleTheme}
+                    {...titleColor}
+                    {...icon}
+                    {...iconTheme}
+                >
                     {a.title}
                 </Label>
                 <Field s c>

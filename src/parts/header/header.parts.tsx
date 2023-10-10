@@ -120,6 +120,7 @@ export const MainMenu = () => {
             compact={
                 <Field s>
                     <Dropdown
+                        style='z-index:2'
                         dock='topfix'
                         buttonContent={
                             <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
@@ -147,11 +148,9 @@ export const MainMenu = () => {
                                 jcc
                                 buttonContent={
                                     <Field s h={80} w={80} c>
-                                        <Label
-                                            size='sm'
-                                            icon={<FiSettings />}
-                                            iconTheme='secondary'
-                                        />
+                                        <Button>
+                                            <FiSettings {...iconStyle} />
+                                        </Button>
                                     </Field>
                                 }
                             >

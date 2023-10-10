@@ -7,5 +7,5 @@
     overflow: hidden;
     /* box-sizing: border-box; */
     transition: 0.4s ease all;
-    background: var(--color-stronger);
+    background: var(--secondary-bg);
 }

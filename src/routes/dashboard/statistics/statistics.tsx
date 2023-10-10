@@ -33,7 +33,7 @@ export const Statistics = (a: Args) => {
     const cats = Object.keys(stats) as StatCategory[]
 
     return (
-        <Field tertiary col>
+        <Field primary col>
             <Field
                 s
                 h={80}
@@ -48,8 +48,8 @@ export const Statistics = (a: Args) => {
                     <FiTrendingUp {...iconStyle} />
                 </Field>
                 <Field aic>
-                    <Text res title>
-                        Stats
+                    <Text res title tertiary>
+                        Statistics
                     </Text>
                 </Field>
                 <Field jce>
@@ -66,8 +66,7 @@ export const Statistics = (a: Args) => {
                                 // index={entry()?.measure}
                                 items={cats.map((c: string) => (
                                     <Field
-                                        tertiary
-                                        bg='var(--color-strong)'
+                                        primary
                                         c
                                         w={100}
                                         h={80}

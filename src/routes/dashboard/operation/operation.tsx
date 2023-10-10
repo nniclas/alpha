@@ -99,7 +99,7 @@ export const Operation = (a: Args) => {
                     }
                 >
                     {mds.loadedRes() && (
-                        <Field rel a secondary>
+                        <Field rel a tertiary>
                             <Field
                                 col
                                 ref={container}
@@ -125,7 +125,7 @@ export const Operation = (a: Args) => {
                                     >
                                         <FiMonitor {...iconStyle} />
                                     </Field>
-                                    <Text res title>
+                                    <Text res title tertiary>
                                         Operation
                                     </Text>
                                     {/* <Field jce>

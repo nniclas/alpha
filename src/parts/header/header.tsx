@@ -34,7 +34,7 @@ export const Header: Component = () => {
                     <Logo />
                 </Field>
             }
-            titleTheme='secondary'
+            titleColor='var(--color-strong)'
             tool={<MainMenu />}
         />
     )

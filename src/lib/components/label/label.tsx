@@ -21,6 +21,9 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
     //         `color:var(--${a.titleTheme ? a.titleTheme : thToStr(a)}-color)`
     //     )
     // }
+
+    const color = a.color && { color: a.color }
+
     return (
         <Field s aic gsm h={80} res={{ h: 60, p: '0 20px' }} p='0 32px'>
             {a.icon && (
@@ -37,9 +40,10 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
                 <Text
                     res
                     size={a.size}
-                    style={`color:var(--${
-                        a.titleTheme ? a.titleTheme : thToStr(a)
-                    }-color)`}
+                    // style={`color:var(--${
+                    //     a.titleTheme ? a.titleTheme : thToStr(a)
+                    // }-color)`}
+                    {...color}
                 >
                     {a.children}
                 </Text>

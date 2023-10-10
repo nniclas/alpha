@@ -28,7 +28,7 @@ export const App: Component = () => {
         //     <Text secondary>hello there</Text>
         // </Field>
         <Router>
-            <Field layer col bg='var(--color-strong)' trim>
+            <Field layer col bg='var(--secondary-bg)' trim>
                 <Field s col>
                     <Header />
                 </Field>
@@ -51,7 +51,7 @@ export const App: Component = () => {
                 <Field s col>
                     <Responsive compact={<></>}>
                         <SectionHeader
-                            bg='var(--color-morestrongest)'
+                            bg='var(--color-intense)'
                             title='Alert'
                             aux={
                                 <Field aic>
@@ -62,7 +62,7 @@ export const App: Component = () => {
                                     </Text>
                                 </Field>
                             }
-                            titleTheme='primary'
+                            titleColor='var(--color-middle)'
                             iconTheme='accent'
                             icon={<FiAlertTriangle />}
                         />

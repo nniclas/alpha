@@ -39,7 +39,7 @@ export const AppSettings = () => {
                             </Field>
                             <Field gsm c>
                                 <Text sm res>
-                                    Light
+                                    Lite
                                 </Text>
                             </Field>
                         </SelectButton>

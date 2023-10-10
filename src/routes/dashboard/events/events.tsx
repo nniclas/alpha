@@ -19,7 +19,7 @@ import {
     FiZap,
 } from 'solid-icons/fi'
 import { Unit } from '../../../types/entities/unit'
-import { tags, unitColors, unitColorsDarker } from '../../../common/constants'
+import { tags } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
 import Modal from '../../../lib/components/modal/modal'
@@ -61,7 +61,7 @@ export const Events = (a: Args) => {
     const hcell = (text: string, showInCompact = false) => {
         const comp = !showInCompact && { ...{ compact: <></> } }
         return (
-            <HeaderCell bg='var(--color-stronger)' bb='var(--color-medium)'>
+            <HeaderCell bg='var(--secondary-bg)' bb='var(--color-medium)'>
                 <Responsive {...comp} addRule={as.section() != a.section}>
                     <Field>
                         <Text xs accent caption>
@@ -74,7 +74,7 @@ export const Events = (a: Args) => {
     }
 
     return (
-        <Field rel a bg='var(--color-stronger)'>
+        <Field rel a secondary>
             <Transition name='fade'>
                 <Suspense
                     fallback={
@@ -83,7 +83,7 @@ export const Events = (a: Args) => {
                         </Field>
                     }
                 >
-                    <Field rel col bg='var(--color-stronger)'>
+                    <Field rel col>
                         <Field
                             aic
                             s

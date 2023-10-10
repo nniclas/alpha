@@ -38,7 +38,7 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
             >
                 <Text
                     noselect
-                    color='var(--color-dim)'
+                    color='var(--tertiary-color)'
                     xs
                     // style='font-weight:bold; '
                 >

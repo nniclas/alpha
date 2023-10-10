@@ -26,7 +26,7 @@ const iconStyle = { size: 26, color: 'var(--color-accent)' }
 
 export const SignalStrengthArea = () => {
     return (
-        <Area header='Signal strength'>
+        <Area header='Signal strength' secondary>
             <Field col gsm aic>
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
@@ -58,7 +58,7 @@ export const SignalStrengthArea = () => {
 
 export const BatteryLevelArea = () => {
     return (
-        <Area header='Battery level'>
+        <Area header='Battery level' secondary>
             <Field col gsm aic>
                 <Field s w={200} h={24}>
                     <SvgUnitMeter
@@ -87,7 +87,7 @@ export const BatteryLevelArea = () => {
 
 export const ProcessorUsageArea = () => {
     return (
-        <Area header='Processor usage'>
+        <Area header='Processor usage' secondary>
             <Field col gsm aic>
                 <Field s h={24} w={200}>
                     <SvgUnitMeter
@@ -116,7 +116,7 @@ export const ProcessorUsageArea = () => {
 
 export const ChargeControlArea = () => {
     return (
-        <Area header='Charge threshold'>
+        <Area header='Charge threshold' secondary>
             <Field col gsm>
                 <Mover />
             </Field>
@@ -126,7 +126,7 @@ export const ChargeControlArea = () => {
 
 export const MachineControlArea = () => {
     return (
-        <Area header='Machine control'>
+        <Area header='Machine control' secondary>
             <Field s style='gap:4px'>
                 <Button w={160} h={60} md res={{ w: 120 }} secondary>
                     <Text>Reboot</Text>

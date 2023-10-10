@@ -22,8 +22,6 @@ import { Minimizer } from '../../components/minimizer/minimizer'
 import { FiTrendingUp } from 'solid-icons/fi'
 import { Statistics } from './statistics/statistics'
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
-
 export const Dashboard: Component = () => {
     onMount(() => {
         // on successful log on (user has entered dashboard) manually trigger resource fetches

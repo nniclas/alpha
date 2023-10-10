@@ -41,14 +41,14 @@ export const unitColors: string[] = [
     'rgb(110,110,80)',
     'rgb(110,80,110)',
 ]
-export const unitColorsDarker: string[] = [
-    'rgb(75,75,105)',
-    'rgb(75,105,75)',
-    'rgb(75,105,105)',
-    'rgb(105,75,75)',
-    'rgb(105,105,75)',
-    'rgb(105,75,105)',
-]
+// export const unitColorsLighter: string[] = [
+//     'rgb(100,100,130)',
+//     'rgb(75,105,75)',
+//     'rgb(75,105,105)',
+//     'rgb(105,75,75)',
+//     'rgb(105,105,75)',
+//     'rgb(105,75,105)',
+// ]
 
 // names in default EN
 

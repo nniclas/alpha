@@ -35,21 +35,30 @@ export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
             <For each={a.children}>
                 {(c, i) => {
                     return (
-                        <Button
-                            {...a}
-                            a
-                            secondary={selected() == i()}
-                            onClick={(e) => {
-                                a.change(i())
-                                setSelected(i())
-                                e.stopPropagation()
-                            }}
-                            // style={`background:var(--color-${
-                            //     selected() == i() ? 'accent' : 'primary'
-                            // })`}
-                        >
-                            {c}
-                        </Button>
+                        <Field rel>
+                            <Field
+                                s
+                                layer
+                                a
+                                style={`height:2px; top:58px; background:var(--color-${
+                                    selected() == i() ? 'accent' : 'primary'
+                                })`}
+                            >
+                                {c}
+                            </Field>
+                            <Button
+                                {...a}
+                                a
+                                // secondary={selected() == i()}
+                                onClick={(e) => {
+                                    a.change(i())
+                                    setSelected(i())
+                                    e.stopPropagation()
+                                }}
+                            >
+                                {c}
+                            </Button>
+                        </Field>
                     )
                 }}
             </For>

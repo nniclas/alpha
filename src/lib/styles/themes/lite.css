@@ -3,39 +3,38 @@
     --th-saturation: 12%;
 
     /* PALETTE */
-    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 85%);
+    --color-white: hsl(var(--th-hue), var(--th-saturation), 85%);
+    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 80%);
     --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
     --color-light: hsl(var(--th-hue), var(--th-saturation), 65%);
 
     --color-dim: hsl(var(--th-hue), var(--th-saturation), 55%);
-
     --color-middle: hsl(var(--th-hue), var(--th-saturation), 40%);
-
     --color-medium: hsl(var(--th-hue), var(--th-saturation), 30%);
 
     --color-strong: hsl(var(--th-hue), var(--th-saturation), 23%);
     --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
     --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
-    --color-morestrongest: hsl(var(--th-hue), var(--th-saturation), 16%);
+    --color-intense: hsl(var(--th-hue), var(--th-saturation), 16%);
     --color-black: hsl(var(--th-hue), var(--th-saturation), 8%);
 
-    --color-accent: hsl(50, 36%, 62%);
-    --color-accent-light: hsl(50, 36%, 72%);
-
-    --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
-    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5);
+    --color-accent: hsl(10, 22%, 36%);
+    /* --color-accent-light: hsl(50, 36%, 72%); */
+    /* --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
+    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5); */
 
     /* THEME VARIANTS */
-    --primary-bg: var(--color-strongest);
-    --primary-color: var(--color-light);
-    --secondary-bg: var(--color-lightest);
-    --secondary-color: var(--color-medium);
-    --tertiary-bg: var(--color-accent);
-    --tertiary-color: var(--color-lightest);
+    --primary-bg: var(--color-lightest);
+    --secondary-bg: var(--color-lighter);
+    --tertiary-bg: var(--color-light);
+    --focus-bg: var(--color-white);
     --accent-bg: var(--color-accent);
+
+    --primary-color: var(--color-strong);
+    --secondary-color: var(--color-stronger);
+    --tertiary-color: var(--color-medium);
+    --focus-color: var(--color-intense);
     --accent-color: var(--color-accent);
-    --focus-bg: var(--color-tr-dark);
-    --illume-bg: var(--color-tr-light);
 
     /* LAYOUT */
     --xxs: 4px;

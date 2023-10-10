@@ -109,7 +109,7 @@ export const Login: Component = () => {
     }
 
     return (
-        <Field fixed secondary>
+        <Field fixed bg='var(--color-strongest)'>
             <Field layer s class={styles.abstract} pevn />
 
             <Field layer s class={styles.bg} pevn />
@@ -125,7 +125,7 @@ export const Login: Component = () => {
                         ALPHA
                     </Text>
                     <Text md res color='var(--color-middle)'>
-                        Remote operating technical tool.
+                        Remote technical tool.
                     </Text>
                 </Field>
             </Field>
@@ -173,7 +173,7 @@ export const Login: Component = () => {
                 <Responsive>
                     <Field layer jcc aie pevn>
                         <Field s pmd>
-                            <Text res color='var(--color-middle)' sm>
+                            <Text caption res color='var(--color-middle)' sm>
                                 nniclas © Copyright 2023
                             </Text>
                         </Field>
