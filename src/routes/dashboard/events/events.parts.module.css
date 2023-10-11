@@ -37,7 +37,7 @@
     background: var(--primary-bg);
 }
 .row.open {
-    height: 180px;
+    height: 170px;
 }
 .headercell {
     min-width: 0px;

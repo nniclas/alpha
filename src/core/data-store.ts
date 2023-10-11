@@ -62,7 +62,7 @@ function createDataState() {
     const [
         selectedMachineStatisticsResolution,
         setSelectedMachineStatisticsResolution,
-    ] = createSignal<Resolution>('week')
+    ] = createSignal<Resolution>('month')
     const [
         selectedEventsStatisticsResolution,
         setSelectedEventsStatisticsResolution,

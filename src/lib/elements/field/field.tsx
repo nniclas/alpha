@@ -50,7 +50,6 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
         }
 
         // if (JSON.stringify(a.res) != JSON.stringify(resArgs())) {
-        //     console.log('hej')
         // }
     }, resArgs())
 

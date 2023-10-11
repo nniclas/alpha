@@ -128,10 +128,10 @@ export const MachineControlArea = () => {
     return (
         <Area header='Machine control' secondary>
             <Field s style='gap:4px'>
-                <Button w={160} h={60} md res={{ w: 120 }} secondary>
+                <Button w={160} h={60} md res={{ w: 120 }} primary>
                     <Text>Reboot</Text>
                 </Button>
-                <Button w={160} h={60} md res={{ w: 120 }} secondary>
+                <Button w={160} h={60} md res={{ w: 120 }} primary>
                     <Text>Run diagnostics</Text>
                 </Button>
             </Field>

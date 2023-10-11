@@ -83,7 +83,7 @@ export const LineChart = (a: Args) => {
 
                             <Text caption res color='var(--color-lighter)'>
                                 <Responsive
-                                    compact={a.labels![i()].substring(0, 2)}
+                                    compact={a.labels![i()].substring(0, 4)}
                                 >
                                     {a.labels![i()]}
                                 </Responsive>

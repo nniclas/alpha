@@ -170,7 +170,7 @@ export const BarChart = (a: Args) => {
                                         <Responsive
                                             compact={a.labels![i()].substring(
                                                 0,
-                                                2
+                                                4
                                             )}
                                         >
                                             {a.labels![i()]}

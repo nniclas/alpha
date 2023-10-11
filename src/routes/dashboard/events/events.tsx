@@ -193,7 +193,6 @@ export const Events = (a: Args) => {
                                                     return (
                                                         <EntryRow
                                                             e={e}
-                                                            t={et}
                                                             compact={
                                                                 as.section() !=
                                                                 a.section

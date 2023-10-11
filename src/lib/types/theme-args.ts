@@ -4,7 +4,6 @@ export interface ThemeArgs {
     tertiary?: boolean
     accent?: boolean
     focus?: boolean
-    illume?: boolean
 
     br?: boolean
 }

@@ -67,23 +67,34 @@
 .primary:hover,
 .primary:active {
     background-color: var(--primary-color);
+}
+.primary:hover > span,
+.primary:active > span {
     color: var(--primary-bg);
 }
 .secondary:hover,
 .secondary:active {
     background-color: var(--secondary-color);
+}
+.secondary:hover > span,
+.secondary:active > span {
     color: var(--secondary-bg);
 }
-
 .tertiary:hover,
 .tertiary:active {
     background-color: var(--tertiary-color);
+}
+.tertiary:hover > span,
+.tertiary:active > span {
     color: var(--tertiary-bg);
 }
 
 .accent:hover,
 .accent:active {
     background-color: var(--accent-color);
+}
+.accent:hover > span,
+.accent:active > span {
     color: var(--accent-bg);
 }
 
@@ -92,9 +103,9 @@
 .focus:active {
     background-color: var(--focus-bg);
 }
-.illume:hover,
-.illume:active {
-    background-color: var(--illume-bg);
+.focus:hover > span,
+.focus:active > span {
+    color: var(--focus-color);
 }
 
 /* --- EFFECTS --- */

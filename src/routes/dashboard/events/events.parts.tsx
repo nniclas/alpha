@@ -21,7 +21,7 @@ import { date } from '../../../common/date-utils'
 import Modal from '../../../lib/components/modal/modal'
 import { Label } from '../../../lib/components/label/label'
 import Dropdown from '../../../lib/components/dropdown/dropdown'
-import { measures } from '../../../common/constants'
+import { events, measures, tags } from '../../../common/constants'
 
 // const eventsSectionName = 'secondary'
 
@@ -29,7 +29,7 @@ const iconStyle = { size: 18, color: 'var(--color-accent)' }
 
 const Details = (a: { entry: Entry; compact?: boolean }) => {
     const field = (h: string, val?: string) => (
-        <Field pwsm gsm>
+        <Field pwxs gsm>
             <Text accent sm res>
                 {h}
             </Text>
@@ -45,9 +45,14 @@ const Details = (a: { entry: Entry; compact?: boolean }) => {
                 {/* <For each={Object.keys(a.entry)}>
                     {(k, i) => field(k, Object.values(a.entry)[i()])}
                 </For> */}
-                {a.entry.notes && field('Notes', a.entry.notes)}
+                {field('Date', date(a.entry.date))}
+                {field(
+                    'Event',
+                    events.find((t) => t.value == a.entry.event)?.title
+                )}
                 {a.entry.measure &&
                     field('Measure', measures[a.entry.measure - 1].title)}
+                {a.entry.notes && field('Notes', a.entry.notes)}
                 <Responsive
                     compact={a.entry.user && field('User', a.entry.user.email)}
                     // addRule={as.section() != eventsSectionName}
@@ -57,67 +62,25 @@ const Details = (a: { entry: Entry; compact?: boolean }) => {
     )
 }
 
-export const EntryRow = (a: {
-    e: Entry
-    t: ValueIdTitle
-    compact: boolean
-}) => {
-    const [open, setOpen] = createSignal<boolean>(false)
-    const [details, setDetails] = createSignal<boolean>(false)
+export const EntryRow = (a: { e: Entry; compact: boolean }) => {
+    const [openDetails, setOpenDetails] = createSignal<boolean>(false)
 
     return (
-        <Row open={details()} onClick={(e: any) => setDetails(!details())}>
+        <Row
+            open={openDetails()}
+            onClick={(e: any) => setOpenDetails(!openDetails())}
+        >
             <Cell>
                 <Field rel>
-                    {/* {a.e.notes && (
-                    <Field
-                        layer
-                        rel
-                        style='position:fixed;top:50%;pointer-events:none'
-                    >
-                        <Responsive
-                            compact={
-                                <Modal jcc open={details()}>
-                                    <Details compact entry={a.e} />
-                                </Modal>
-                            }
-                        >
-                            <Dropdown
-                                jce
-                                dock='left'
-                                open={details()}
-                                items={[<Details entry={a.e} />]}
-                            />
-                        </Responsive>
-                    </Field>
-                )} */}
-
                     <Field gsm>
-                        <EventIcon value={a.t.value} />
+                        <EventIcon value={a.e.tag} />
                         <Text res xs tertiary>
-                            {a.t.title}
+                            {tags.find((t) => t.value == a.e.tag)?.title}
                         </Text>
                     </Field>
-                    {/* <Responsive
-                        compact={
-                            <Field gsm>
-                                <EventIcon value={a.t.value} />
-                                <Text res xs tertiary>
-                                    {a.t.title}
-                                </Text>
-                            </Field>
-                        }
-                        addRule={as.section() != eventsSectionName}
-                    >
-                        <Field gsm>
-                            <EventIcon value={a.t.value} />
-                            <Text xs tertiary>
-                                {a.t.title}
-                            </Text>
-                        </Field>
-                    </Responsive> */}
+
                     <Field layer style='top:32px; left:18px'>
-                        {details() && <Details entry={a.e} />}
+                        {openDetails() && <Details entry={a.e} />}
                     </Field>
                 </Field>
             </Cell>
