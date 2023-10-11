@@ -34,7 +34,7 @@
 }
 .row:hover,
 .row:active {
-    background: var(--color-strongest);
+    background: var(--primary-bg);
 }
 .row.open {
     height: 180px;

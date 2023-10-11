@@ -12,26 +12,15 @@ import { User } from 'types/entities/user'
 import { Entry } from 'types/entities/entry'
 import appStore from './app-store'
 import { delay } from '../common/utils'
-import {
-    statResolutions,
-    stats,
-    unitColors,
-    unitColorsDarker,
-} from '../common/constants'
+import { statResolutions, stats, unitColors } from '../common/constants'
 import { MachineStatData, Resolution, StatCategory } from 'types/_types'
 
 const getWithAuth = async <T>(path: string, simDelay = true): Promise<T> => {
-    // !!!! todo: also enable [Authorize] and checks in backend
-
     if (simDelay) await delay(500) // intentional additional delay for demo purposes
 
-    if (!appStore.session()?.token) {
-        return [] as any /// just disable api calls ?????
-    }
+    if (!appStore.session()?.token) return [] as any
 
-    // console.log('authenticated..')
-
-    return await get<T>(path)
+    return await get<T>(path, true)
 }
 
 const addItem = async <T>(
@@ -82,6 +71,8 @@ function createDataState() {
     createEffect(() => {})
 
     const initialize = async () => {
+        if (!appStore.session()?.token) return [] as any
+
         const us = await unitsResActions.refetch()
         if (us && us?.length > 0) {
             setSelectedUnitId(us[0].id)

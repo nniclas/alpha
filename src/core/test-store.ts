@@ -4,10 +4,6 @@ import { Unit } from 'types/entities/unit'
 import { Entry } from 'types/entities/entry'
 import { delay } from '../common/utils'
 
-const getItems = async <T>(path: string): Promise<T> => {
-    return await get<T>(path)
-}
-
 const fetchUnits = async (): Promise<Unit[]> => {
     await delay(2000)
     throw 0

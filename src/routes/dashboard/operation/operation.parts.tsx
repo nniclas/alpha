@@ -117,7 +117,7 @@ export const ProcessorUsageArea = () => {
 export const ChargeControlArea = () => {
     return (
         <Area header='Charge threshold' secondary>
-            <Field col gsm>
+            <Field col gsm pwmd>
                 <Mover />
             </Field>
         </Area>

@@ -71,7 +71,7 @@ export const Mover = (a: Args) => {
                 onPointerMove={move}
                 onPointerUp={end}
                 onPointerLeave={end}
-                secondary
+                primary
                 style={`width:${w}px; height:${s}px; border-radius:${s}px`}
             >
                 <Field s rel>
