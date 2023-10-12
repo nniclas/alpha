@@ -22,10 +22,10 @@ import Settings from '../settings/settings'
 
 const iconStyle = { size: 18, color: 'var(--color-medium)' }
 
-const meterColors = {
-    meterColor: 'var(--color-strong)',
-    valueColor: 'var(--color-middle)',
-}
+// const meterColors = {
+//     meterColor: 'var(--color-strong)',
+//     valueColor: 'var(--color-middle)',
+// }
 
 const ps = 60
 
@@ -120,12 +120,12 @@ export const MainMenu = () => {
             compact={
                 <Field s>
                     <Dropdown
-                        style='z-index:2'
+                        // style='z-index:2'
                         dock='topfix'
                         buttonContent={
                             <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
                                 <FiMenu
-                                    color='var(--color-secondary)'
+                                    color='var(--secondary-color)'
                                     size={20}
                                 />
                             </Field>
@@ -148,9 +148,7 @@ export const MainMenu = () => {
                                 jcc
                                 buttonContent={
                                     <Field s h={80} w={80} c>
-                                        <Button>
-                                            <FiSettings {...iconStyle} />
-                                        </Button>
+                                        <FiSettings {...iconStyle} />
                                     </Field>
                                 }
                             >
@@ -158,10 +156,7 @@ export const MainMenu = () => {
                             </Modal>
                             <Field s>
                                 <Button w={80} h={80} onClick={logOut}>
-                                    <FiLogOut
-                                        color='var(--color-strong)'
-                                        size={18}
-                                    />
+                                    <FiLogOut {...iconStyle} size={18} />
                                 </Button>
                             </Field>
                         </Field>

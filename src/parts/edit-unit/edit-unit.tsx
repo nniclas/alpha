@@ -77,11 +77,11 @@ export default (a: Args) => {
                                     Machine ID
                                 </Text>
                                 <Textfield
-                                    xs
+                                    primary
+                                    md
+                                    psm
                                     placeholder='36 letter unique hardware ID'
                                     value={unit().machineId}
-                                    primary
-                                    psm
                                     color='var(--color-middle)'
                                     style='pointer-events:none; user-select:none' // simplify demo
                                     // change={(v) => ...}
@@ -92,17 +92,18 @@ export default (a: Args) => {
                                     Name
                                 </Text>
                                 <Textfield
-                                    xs
+                                    primary
+                                    md
+                                    psm
                                     placeholder='Unit name'
                                     value={unit().name}
-                                    primary
-                                    psm
                                     color='var(--color-middle)'
                                     change={(v) => {
                                         const u = { ...unit() }
                                         u.name = v
                                         setUnit(u)
                                     }}
+                                    error={unit().name.length == 0}
                                 />
                             </Field>
                         </Field>
@@ -113,11 +114,7 @@ export default (a: Args) => {
                                     s
                                     c
                                     buttonContent={
-                                        <Field
-                                            s
-                                            style='background:rgb(200,120,120)'
-                                            psm
-                                        >
+                                        <Field s bg='var(--color-error)' psm>
                                             <FiTrash2 {...iconStyle} />
                                         </Field>
                                     }

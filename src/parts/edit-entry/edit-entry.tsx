@@ -174,9 +174,10 @@ export default (a: Args) => {
                                     </Text>
                                     <Textfield
                                         tertiary
+                                        md
+                                        psm
                                         placeholder='Today'
                                         value={entry()?.notes}
-                                        psm
                                         color='var(--color-accent)'
                                         change={(v) => {
                                             ///,...............
@@ -193,10 +194,10 @@ export default (a: Args) => {
                                 </Text>
                                 <Textfield
                                     // multiline
-                                    xs
+                                    tertiary
+                                    md
                                     placeholder='Notes'
                                     value={entry()?.notes}
-                                    tertiary
                                     psm
                                     color='var(--color-accent)'
                                     change={(v) => {

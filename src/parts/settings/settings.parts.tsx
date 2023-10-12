@@ -134,7 +134,7 @@ export const UserSettings = () => {
                         Id
                     </Text>
                     <Textfield
-                        xs
+                        md
                         placeholder='36 letter unique hardware ID'
                         value={as.session()?.username}
                         primary
@@ -149,7 +149,7 @@ export const UserSettings = () => {
                         Access
                     </Text>
                     <Textfield
-                        xs
+                        md
                         placeholder='36 letter unique hardware ID'
                         // value={as.session()?.user?.access}
                         value={'READ_WRITE'}

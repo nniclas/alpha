@@ -17,7 +17,7 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & TextArgs) => {
     const cs = customStyles(a, styleMap)
 
     return (
-        <span class={`${styles.text} ${ss}`} style={cs} {...a}>
+        <span class={`${styles.text} ${ss}`} style={cs} {...(a as any)}>
             {a.children}
         </span>
     )

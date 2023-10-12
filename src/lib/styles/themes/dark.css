@@ -20,6 +20,10 @@
     --color-black: hsl(var(--th-hue), var(--th-saturation), 12%);
 
     --color-accent: hsl(50, 36%, 62%);
+
+    --color-success: rgb(120, 200, 120);
+    --color-error: rgb(200, 120, 120);
+
     /* --color-accent-light: hsl(50, 36%, 72%); */
     /* --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
     --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5); */

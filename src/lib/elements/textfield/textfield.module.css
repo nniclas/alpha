@@ -1,5 +1,5 @@
 .textfield {
-    background: none;
+    /* background: none; */
     border: none;
     outline: none;
     font-family: var(--text-font);
@@ -12,7 +12,6 @@
 .textfield::placeholder {
     color: var(--color-middle);
 }
-
 .textfield.lg {
     height: 64px;
     font-family: var(--text-font);
@@ -38,6 +37,25 @@
     font-size: var(--text-size-xs);
     /* font-weight: 700; */
 }
+
+.indicator {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    /* border-bottom: 2px solid var(--color-accent); */
+}
+.container > .indicator {
+    height: 2px;
+    width: 100%;
+    transition: 0.2s ease border;
+}
+.container:hover > .indicator {
+    border-bottom: 2px solid var(--color-accent);
+}
+/* .container > .indicator.error {
+    border-bottom: 2px solid tomato;
+} */
+
 /* @media only screen and (max-width: 1400px) {
     .textfield.lg.res {
         font-size: var(--text-size-md);

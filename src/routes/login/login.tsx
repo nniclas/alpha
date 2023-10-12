@@ -24,11 +24,18 @@ export const Login: Component = () => {
     const [user, setUser] = createSignal<{ email: string; pwd: string }>(
         demoUsers[0]
     )
+    const [selectedEmail, setSelectedEmail] = createSignal<string>(
+        demoUsers[0].email
+    )
 
     const logIn = async () => {
         if (await signIn(user().email, user().pwd)) {
             navigate('/dashboard', { replace: true })
         }
+    }
+
+    const setField = (p: any) => {
+        setUser({ ...user(), ...p })
     }
 
     const demoUsersDropdown = () => {
@@ -41,12 +48,18 @@ export const Login: Component = () => {
                         buttonContent={
                             <Button w={180} h={80}>
                                 <Text xs color='var(--color-dim)'>
-                                    {user().email}
+                                    {selectedEmail()}
                                 </Text>
                             </Button>
                         }
                         items={demoUsers.map((u) => (
-                            <Button secondary onClick={() => setUser(u)}>
+                            <Button
+                                secondary
+                                onClick={() => {
+                                    setUser(u)
+                                    setSelectedEmail(u.email)
+                                }}
+                            >
                                 <Field s col gxs w={180} h={80} c>
                                     <Text xs primary>
                                         {u.email}
@@ -73,14 +86,14 @@ export const Login: Component = () => {
                 </Field>
                 <Field s>
                     <Textfield
+                        secondary
                         md
+                        psm
                         placeholder='Email'
                         value={user().email}
-                        primary
-                        psm
                         bg={bg}
                         color={color}
-                        change={(v) => setUser({ ...user(), email: v })}
+                        change={(v) => setField({ email: v })}
                     />
                 </Field>
                 <Field s>
@@ -92,15 +105,13 @@ export const Login: Component = () => {
                         bg={bg}
                         color={color}
                         psm
-                        change={(v) => setUser({ ...user(), pwd: v })}
+                        change={(v) => setField({ pwd: v })}
                     />
                 </Field>
                 <Field s jce>
                     <Field s>
-                        <Button bg={bg} md onClick={logIn}>
-                            <Text color={color} caption>
-                                Sign in
-                            </Text>
+                        <Button secondary md onClick={logIn}>
+                            <Text caption>Sign in</Text>
                         </Button>
                     </Field>
                 </Field>

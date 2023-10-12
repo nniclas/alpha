@@ -14,4 +14,5 @@ export interface TextFieldArgs {
     pxl?: boolean
 
     change?: (val: string) => void
+    error?: boolean
 }
