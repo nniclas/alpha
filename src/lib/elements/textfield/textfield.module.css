@@ -42,7 +42,6 @@
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
-    /* border-bottom: 2px solid var(--color-accent); */
 }
 .container > .indicator {
     height: 2px;
@@ -50,7 +49,7 @@
     transition: 0.2s ease border;
 }
 .container:hover > .indicator {
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-dim);
 }
 /* .container > .indicator.error {
     border-bottom: 2px solid tomato;

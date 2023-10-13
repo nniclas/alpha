@@ -9,7 +9,7 @@ interface Args {
     value: number
 }
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 export const EntryTagIcon = (a: Args) => {
     const tagIcons: ValueIconPair[] = [

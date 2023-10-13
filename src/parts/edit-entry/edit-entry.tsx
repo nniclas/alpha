@@ -19,11 +19,8 @@ interface Args {
     entry?: Entry
 }
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
-
 const btnStyle = {
     tertiary: true,
-    // style: 'border-bottom:2px solid var(--color-accent);',
 }
 
 export default (a: Args) => {
@@ -178,7 +175,7 @@ export default (a: Args) => {
                                         psm
                                         placeholder='Today'
                                         value={entry()?.notes}
-                                        color='var(--color-accent)'
+                                        accent
                                         change={(v) => {
                                             ///,...............
                                         }}
@@ -199,7 +196,7 @@ export default (a: Args) => {
                                     placeholder='Notes'
                                     value={entry()?.notes}
                                     psm
-                                    color='var(--color-accent)'
+                                    accent
                                     change={(v) => {
                                         const u = { ...entry() }
                                         // u.name = v

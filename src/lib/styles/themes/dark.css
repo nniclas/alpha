@@ -1,67 +1,16 @@
 :root {
-    --th-hue: 190;
-    --th-saturation: 12%;
-
-    /* PALETTE */
-    --color-lightest: hsl(var(--th-hue), var(--th-saturation), 85%);
-    --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
-    --color-light: hsl(var(--th-hue), var(--th-saturation), 65%);
-
-    --color-dim: hsl(var(--th-hue), var(--th-saturation), 55%);
-
-    --color-middle: hsl(var(--th-hue), var(--th-saturation), 40%);
-
-    --color-medium: hsl(var(--th-hue), var(--th-saturation), 30%);
-
-    --color-strong: hsl(var(--th-hue), var(--th-saturation), 23%);
-    --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
-    --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
-    --color-intense: hsl(var(--th-hue), var(--th-saturation), 15%);
-    --color-black: hsl(var(--th-hue), var(--th-saturation), 12%);
-
-    --color-accent: hsl(50, 36%, 62%);
-
-    --color-success: rgb(120, 200, 120);
-    --color-error: rgb(200, 120, 120);
-
-    /* --color-accent-light: hsl(50, 36%, 72%); */
-    /* --color-tr-light: hsla(var(--th-hue), var(--th-saturation), 60%, 0.5);
-    --color-tr-dark: hsla(var(--th-hue), var(--th-saturation), 13%, 0.5); */
-
     /* THEME VARIANTS */
-    --primary-bg: var(--color-strong);
-    --secondary-bg: var(--color-stronger);
-    --tertiary-bg: var(--color-strongest);
-    --focus-bg: var(--color-intense);
-    --accent-bg: var(--color-accent);
+    --dark-primary-bg: var(--color-strong);
+    --dark-secondary-bg: var(--color-stronger);
+    --dark-tertiary-bg: var(--color-strongest);
+    --dark-focus-bg: var(--color-intense);
+    --dark-accent-bg: hsl(50, 36%, 62%);
 
-    --primary-color: var(--color-light);
-    --secondary-color: var(--color-medium);
-    --tertiary-color: var(--color-lightest);
-    --focus-color: var(--color-strong);
-    --accent-color: var(--color-accent);
+    --dark-primary-color: var(--color-light);
+    --dark-secondary-color: var(--color-medium);
+    --dark-tertiary-color: var(--color-lightest);
+    --dark-focus-color: var(--color-strong);
+    --dark-accent-color: hsl(50, 36%, 62%);
 
-    /* LAYOUT */
-    --xxs: 4px;
-    --xs: 8px;
-    --sm: 16px;
-    --md: 32px;
-    --lg: 64px;
-    --xl: 128px;
-    --xxl: 256px;
-    --xxxl: 512px;
-    --rounding: 12px;
-    --border: none;
-
-    /* TEXT */
-    --text-font: 'Sofia Pro Regular';
-    --text-size-xxxs: 10px;
-    --text-size-xxs: 12px;
-    --text-size-xs: 13px;
-    --text-size-sm: 14px;
-    --text-size-md: 18px;
-    --text-size-lg: 28px;
-
-    /* MISC */
-    --transition: 0.4s ease all; /* "all"...? */
+    /* OTHER ... */
 }

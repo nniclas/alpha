@@ -1,0 +1,11 @@
+:root {
+    /* LAYOUT */
+    --ltcondensed-xxs: 2px;
+    --ltcondensed-xs: 4px;
+    --ltcondensed-sm: 8px;
+    --ltcondensed-md: 16px;
+    --ltcondensed-lg: 32px;
+    --ltcondensed-xl: 64px;
+    --ltcondensed-xxl: 128px;
+    --ltcondensed-xxxl: 256px;
+}

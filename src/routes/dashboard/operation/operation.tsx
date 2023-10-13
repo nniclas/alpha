@@ -38,7 +38,7 @@ import { Resolution, Section } from 'types/_types'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { statResolutions, stats } from '../../../common/constants'
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 

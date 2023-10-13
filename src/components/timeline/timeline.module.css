@@ -9,5 +9,5 @@
 }
 
 .item:hover {
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-dim);
 }

@@ -17,7 +17,7 @@ interface Args {
     value: number
 }
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 export const EventIcon = (a: Args) => {
     const tagIcons: ValueIconPair[] = [
         { value: 1, icon: <FiCheckCircle {...iconStyle} /> },

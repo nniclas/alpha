@@ -40,9 +40,9 @@ export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                                 s
                                 layer
                                 a
-                                style={`height:2px; top:58px; background:var(--color-${
-                                    selected() == i() ? 'accent' : 'primary'
-                                })`}
+                                style={`height:2px; top:58px; background:var(--${
+                                    selected() == i() ? 'tertiary' : ''
+                                }-color)`}
                             >
                                 {c}
                             </Field>

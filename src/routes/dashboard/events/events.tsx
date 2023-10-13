@@ -45,7 +45,7 @@ import appStore from '../../../core/app-store'
 import { Section } from 'types/_types'
 import EditEntry from '../../../parts/edit-entry/edit-entry'
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 interface Args {
     section: Section

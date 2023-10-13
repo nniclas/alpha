@@ -27,7 +27,7 @@ interface Args {
     // unit?: Unit
 }
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 export default (a: Args) => {
     const [page, setPage] = createSignal<number>(0)

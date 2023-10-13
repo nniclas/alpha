@@ -127,12 +127,7 @@ export const Login: Component = () => {
 
             <Field layer ais pevn>
                 <Field s plg col gxs>
-                    <Text
-                        lg
-                        res
-                        color='var(--color-accent)'
-                        style='letter-spacing:12px'
-                    >
+                    <Text lg res accent style='letter-spacing:12px'>
                         ALPHA
                     </Text>
                     <Text md res color='var(--color-middle)'>

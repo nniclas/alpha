@@ -30,7 +30,7 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                             o={selected() == i() ? '_1' : '_0.6'}
                             bb={`2px solid ${
                                 selected() == i()
-                                    ? 'var(--color-accent)'
+                                    ? 'var(--color-dim)'
                                     : 'transparent'
                             }`}
                             onClick={(e) => {

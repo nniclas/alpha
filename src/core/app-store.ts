@@ -1,6 +1,8 @@
 import { Section, Session, Theme } from '../types/_types'
 import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
 import { createSignal, createRoot, createEffect } from 'solid-js'
+import { setVars } from '../lib/styles/themes/_theme-helper'
+
 function createDataState() {
     const [session, setSession] = createSignal<Session>()
 
@@ -33,12 +35,12 @@ function createDataState() {
 
     const changeTheme = (theme: Theme) => {
         setTheme(theme)
-        setThemeAttribute(theme)
+        setVars(theme)
     }
 
     const changeCondensed = (condensed: boolean) => {
         setCondensed(condensed)
-        setCondensedAttribute(condensed)
+        setVars(condensed ? 'ltcondensed' : 'ltstandard')
     }
 
     return {

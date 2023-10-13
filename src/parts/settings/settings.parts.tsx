@@ -13,7 +13,7 @@ import Textfield from '../../lib/elements/textfield/textfield'
 import { SelectButton } from '../../components/select-button/select-button'
 import EditUnit from '../../parts/edit-unit/edit-unit'
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 export const AppSettings = () => {
     // console.log(as.condensed())

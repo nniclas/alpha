@@ -35,7 +35,7 @@ export const TimeLine = () => {
                                     class={styles.item}
                                     style={` ${
                                         w == ds.selectedWeek() &&
-                                        'border-bottom:2px solid var(--color-accent);  '
+                                        'border-bottom:2px solid var(--color-dim);  '
                                     } `}
                                 >
                                     <Field layer c>
@@ -49,7 +49,7 @@ export const TimeLine = () => {
                                             // }
                                             style={`color:${
                                                 w == ds.selectedWeek()
-                                                    ? 'var(--color-accent)'
+                                                    ? 'var(--color-dim)'
                                                     : 'var(--color-middle)'
                                             }`}
                                         >

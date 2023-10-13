@@ -1,0 +1,11 @@
+:root {
+    /* LAYOUT */
+    --ltstandard-xxs: 4px;
+    --ltstandard-xs: 8px;
+    --ltstandard-sm: 16px;
+    --ltstandard-md: 32px;
+    --ltstandard-lg: 64px;
+    --ltstandard-xl: 128px;
+    --ltstandard-xxl: 256px;
+    --ltstandard-xxxl: 512px;
+}

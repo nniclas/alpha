@@ -5,6 +5,14 @@ import './lib/styles/easing.css'
 import './lib/styles/transitions.css'
 import './lib/styles/fonts.css'
 
+// theme resources
+// import './lib/styles/themes/_theme-helpers.ts'
+import './lib/styles/themes/_vars.css'
+import './lib/styles/themes/dark.css'
+import './lib/styles/themes/lite.css'
+import './lib/styles/themes/layout-standard.css'
+import './lib/styles/themes/layout-condensed.css'
+
 import '../index.css'
 
 import Field from './lib/elements/field/field'

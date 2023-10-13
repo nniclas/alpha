@@ -23,7 +23,7 @@ import { SliderButton } from '../../../components/slider-button/slider-button'
 import Shifter from '../../../components/shifter/shifter'
 import { EventsChartArea, MachineChartArea } from './statistics.parts'
 
-const iconStyle = { size: 18, color: 'var(--color-accent)' }
+const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 interface Args {
     section: Section
