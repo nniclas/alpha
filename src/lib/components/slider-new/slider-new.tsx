@@ -8,18 +8,15 @@ interface Args {
     w?: number
 }
 
-export const SliderVTwo = (a: Args & BaseArgs & ThemeArgs) => {
+export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     let layerRef: any
 
     const [index, setIndex] = createSignal<number>(0)
 
     const [drag, setDrag] = createSignal<boolean>(false)
-    const [x, setX] = createSignal<number>(0)
+    const [pos, setPos] = createSignal<number>(0)
+    const [offset, setOffset] = createSignal<number>(0)
     const [w, setW] = createSignal<number>(a.w || 0)
-
-    const start = (e: any) => {
-        setDrag(true)
-    }
 
     onMount(() => {
         if (a.w == undefined) {
@@ -29,56 +26,73 @@ export const SliderVTwo = (a: Args & BaseArgs & ThemeArgs) => {
         // console.log(a.children.map((c: any) => c.content.innerHTML))
     })
 
+    const start = (e: any) => {
+        setDrag(true)
+        setOffset(e.clientX - pos())
+    }
+
     const move = (e: any) => {
-        const margin = 0 // todo?
-
         if (drag()) {
-            const itemStopRange = w() - margin * 3
-            const dir = e.movementX < 0 ? -1 : 1
-            let movement = e.movementX * 40
+            // console.log(e.clientX)
 
-            if (Math.abs(movement) > 5) {
-                //////////////////////////////
-                //////////// FIXED STOPS MOVING
-                // let x -= itemStopRange * dir
-                // boundaries
-                let xl = x()
-
-                xl -= itemStopRange * dir
-                const range = w() * a.children.length // assuming full window width: ;
-                if (xl < 0) xl = 0
-                if (xl > range - itemStopRange) xl = range - itemStopRange
-
-                setX(xl)
-                setIndex(xl / w())
-            }
-
-            setDrag(false)
+            let pos = e.clientX - offset()
+            setPos(pos)
         }
+    }
+
+    const stop = (e: any) => {
+        setDrag(false)
     }
 
     // createEffect(() => {
     //     console.log(index())
     // })
 
+    // const margin = 0 // todo?
+    // if (drag()) {
+    //     const itemStopRange = w() - margin * 3
+    //     const dir = e.movementX < 0 ? -1 : 1
+    //     let movement = e.movementX * 40
+    //     if (Math.abs(movement) > 5) {
+    //         //////////////////////////////
+    //         //////////// FIXED STOPS MOVING
+    //         // let x -= itemStopRange * dir
+    //         // boundaries
+    //         let xl = x()
+    //         xl -= itemStopRange * dir
+    //         const range = w() * a.children.length // assuming full window width: ;
+    //         if (xl < 0) xl = 0
+    //         if (xl > range - itemStopRange) xl = range - itemStopRange
+    //         setX(xl)
+    //         setIndex(xl / w())
+    //     }
+    //     setDrag(false)
+    // }
+
     return (
         <Field
             {...a}
             w={w()}
-            style='overflow:hidden;'
+            style='overflow:hidden; touch-action:none'
             onPointerDown={start}
             onPointerMove={move}
+            onPointerUp={stop}
+            onPointerLeave={stop}
             rel
         >
             <Field
                 s
-                a
-                style={`transform:translateX(-${x()}px); width: ${w() * 3}px`}
+                style={`transform:translateX(${pos()}px); width: ${
+                    w() * 3
+                }px; transition: ${
+                    drag() ? '.1s ease transform' : '.6s ease transform'
+                }`}
+                gsm
             >
                 <For each={a.children}>
                     {(c, i) => {
                         return (
-                            <Field s w={w()} style={`width: ${w()}px`}>
+                            <Field s style={`width: ${w() - 64}px`}>
                                 {c}
                             </Field>
                         )
@@ -87,7 +101,7 @@ export const SliderVTwo = (a: Args & BaseArgs & ThemeArgs) => {
             </Field>
             <Field layer ref={layerRef} style='pointer-events:none'></Field>
             <Field layer aie jcs style='pointer-events:none'>
-                <Field pmd gxs s>
+                {/* <Field pmd gxs s>
                     <For each={Array(a.children.length).fill(0)}>
                         {(c, i) => {
                             return (
@@ -107,7 +121,7 @@ export const SliderVTwo = (a: Args & BaseArgs & ThemeArgs) => {
                             )
                         }}
                     </For>
-                </Field>
+                </Field> */}
             </Field>
         </Field>
     )

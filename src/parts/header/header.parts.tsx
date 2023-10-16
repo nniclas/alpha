@@ -27,7 +27,7 @@ const iconStyle = { size: 18, color: 'var(--color-medium)' }
 //     valueColor: 'var(--color-middle)',
 // }
 
-const ps = 60
+// const ps = 60
 
 export const MiniUnit = (a: { u: Unit }) => {
     // const c = stateColors.find((sc) => sc.id == a.u.state)?.value
@@ -35,13 +35,12 @@ export const MiniUnit = (a: { u: Unit }) => {
     return (
         <Field
             gxs
-            res={{ psm: true }}
             onClick={(e) => {
                 ds.setSelectedUnitId(a.u.id)
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
-            style='cursor:pointer;cursor:hand'
+            style='cursor:pointer;cursor:hand; padding:16px 0'
         >
             <Field
                 col
@@ -68,7 +67,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                     </Field>
                 </Field>
                 <Field>
-                    <Field w={200} h={40} psm gxs>
+                    <Field w={200} h={20} psm gxs>
                         <FiBatteryCharging
                             {...iconStyle}
                             color={unitColors[ds.getUnitIndex(a.u.id)]}

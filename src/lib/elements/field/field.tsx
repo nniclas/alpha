@@ -107,7 +107,7 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & FieldArgs) => {
     return (
         <div
             class={`${styles.field} ${ss()} ${ac}`}
-            style={`${cs()};${st}`}
+            style={`${cs()};${st};`}
             {...a}
         />
     )

@@ -14,6 +14,7 @@ import { SectionHeader } from '../section-header/section-header'
 import Button from '../../lib/elements/button/button'
 import { Label } from '../../lib/components/label/label'
 import Logo from '../../assets/logo.svg?component-solid'
+import { SliderNew } from '../../lib/components/slider-new/slider-new'
 
 export const Header: Component = () => {
     // const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
@@ -70,11 +71,11 @@ export const Header: Component = () => {
                                 <Responsive
                                     compact={
                                         <Field>
-                                            <Slider>
+                                            <SliderNew>
                                                 {ds.unitsRes()?.map((u) => (
                                                     <MiniUnit u={u} />
                                                 ))}
-                                            </Slider>
+                                            </SliderNew>
                                         </Field>
                                     }
                                 >
