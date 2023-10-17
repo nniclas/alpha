@@ -102,7 +102,7 @@ export const EventsChartArea = () => {
             visible={as.showCharts()}
             data={chartData()?.data}
             labels={chartData()?.titles}
-            color='var(--color-middle)'
+            color={unitColors[ds.getUnitIndex(ds.selectedUnitId())]}
         />
     )
 

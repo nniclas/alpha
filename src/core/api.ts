@@ -1,16 +1,25 @@
 import axios, { AxiosError, ResponseType } from 'axios'
-import appStore from '../core/app-store'
+import as from '../core/app-store'
+import { Navigate } from '@solidjs/router'
 
 const authHeaders = () => {
     return {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${appStore.session()?.token}`,
+        Authorization: `Bearer ${as.session()?.token}`,
     }
 }
 
 const instance = axios.create({
     baseURL: import.meta.env.VITE_API_ENDPOINT,
 })
+
+const handleErrorCodes = (error: AxiosError): number => {
+    if (error.message.includes('401')) {
+        as.removeSession(true)
+        return 401
+    }
+    return -1
+}
 
 export const get = async <T>(path: string, auth?: boolean): Promise<T> => {
     return await instance
@@ -22,7 +31,7 @@ export const get = async <T>(path: string, auth?: boolean): Promise<T> => {
             return result.data
         })
         .catch((error: AxiosError) => {
-            console.log(error)
+            return handleErrorCodes(error)
         })
 }
 
@@ -35,7 +44,7 @@ export const post = async <T>(path: string, data: T): Promise<T> => {
             return result.data
         })
         .catch((error: AxiosError) => {
-            console.log(error)
+            return handleErrorCodes(error)
         })
 }
 
@@ -48,7 +57,7 @@ export const put = async <T>(path: string, data: T): Promise<T> => {
             return result.data
         })
         .catch((error: AxiosError) => {
-            console.log(error)
+            return handleErrorCodes(error)
         })
 }
 
@@ -61,7 +70,7 @@ export const del = async (path: string): Promise<any> => {
             return result.data
         })
         .catch((error: AxiosError) => {
-            console.log(error)
+            return handleErrorCodes(error)
         })
 }
 

@@ -76,9 +76,10 @@ export const Operation = (a: Args) => {
         }
     })
 
-    // createEffect(() => {
-    //     console.log(mds.loadedRes())
-    // })
+    createEffect(() => {
+        if (isCompact() && as.section() != a.section && container)
+            container.scrollTop = 0
+    })
 
     const scrollHandler = (e: Event) => {
         if (isCompact() && as.section() != a.section && container)

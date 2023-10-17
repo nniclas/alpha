@@ -31,11 +31,16 @@ interface Args {
     pages?: Page[] // either a fixed set of pages based on conditions
     children?: any // or just an updated new child
     tr?: string
+    nl?: boolean
 }
 
 export default (a: Args) => {
+    const lyr = a.nl != true ? true : false
+
+    console.log(lyr, a.nl)
+
     const create = (content: any) => {
-        return <Field layer>{content}</Field>
+        return <Field layer={lyr}>{content}</Field>
     }
 
     return (
@@ -44,7 +49,11 @@ export default (a: Args) => {
                 {a.children && create(a.children)}
                 {a.pages && (
                     <For each={a.pages}>
-                        {(p) => p.condition && <Field layer>{p.content}</Field>}
+                        {(p) =>
+                            p.condition && (
+                                <Field layer={lyr}>{p.content}</Field>
+                            )
+                        }
                     </For>
                 )}
             </Transition>

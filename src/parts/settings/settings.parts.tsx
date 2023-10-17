@@ -80,7 +80,7 @@ export const UnitSettings = () => {
     const createPage = (u: Unit | undefined) => <EditUnit unit={u} />
 
     return (
-        <Field res={{ col: true }}>
+        <Field res={{ col: true }} style='overflow: scroll'>
             <Field s secondary plg col gxs aic>
                 <For each={ds.unitsRes()}>
                     {(u, i) => {
@@ -117,7 +117,7 @@ export const UnitSettings = () => {
                     </Button>
                 </Field>
             </Field>
-            <Field>
+            <Field res={{ s: true, h: 400 }}>
                 {/* <Shifter>{createPage(unit())}</Shifter> */}
                 <Shifter>{createPage(unit())}</Shifter>
             </Field>

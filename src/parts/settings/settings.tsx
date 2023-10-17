@@ -52,7 +52,7 @@ export default (a: Args) => {
             <Field a col>
                 <Field s h={60} focus>
                     <ButtonGroup
-                        secondary
+                        tertiary
                         w={160}
                         res={{ w: 'auto', span: true }}
                         change={(i) => setPage(i)}

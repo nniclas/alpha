@@ -2,8 +2,11 @@ import { Section, Session, Theme } from '../types/_types'
 import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
 import { createSignal, createRoot, createEffect } from 'solid-js'
 import { setVars } from '../lib/styles/themes/_theme-helper'
+import { useNavigate } from '@solidjs/router'
 
 function createDataState() {
+    // const navigate = useNavigate()
+
     const [session, setSession] = createSignal<Session>()
 
     const [theme, setTheme] = createSignal<Theme>('dark')
@@ -28,9 +31,14 @@ function createDataState() {
         setSession({ username: username, token: token })
     }
 
-    const removeSession = () => {
+    const removeSession = (navOut?: boolean) => {
         sessionStorage.removeItem('username')
         sessionStorage.removeItem('token')
+
+        if (navOut) {
+            const navigate = useNavigate()
+            navigate('/login', { replace: true })
+        }
     }
 
     const changeTheme = (theme: Theme) => {

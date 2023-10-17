@@ -40,7 +40,7 @@ export const MiniUnit = (a: { u: Unit }) => {
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
-            style='cursor:pointer;cursor:hand; padding:16px 0'
+            style='cursor:pointer;cursor:hand;'
         >
             <Field
                 col
@@ -85,11 +85,11 @@ export const MiniUnit = (a: { u: Unit }) => {
 }
 
 export const MainMenu = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const logOut = () => {
-        appStore.removeSession()
-        navigate('/login', { replace: true })
+        appStore.removeSession(true)
+        // navigate('/login', { replace: true })
     }
 
     const compactActions = [

@@ -64,7 +64,7 @@ export const Header: Component = () => {
                                 </Field>
                             }
                         >
-                            <Field layer col>
+                            <Field layer col s res={{ h: 126 }}>
                                 {/* <Field gsm psm>
                                     {units()}
                                 </Field> */}
