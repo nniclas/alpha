@@ -108,7 +108,7 @@ export const EventsChartArea = () => {
 
     return (
         <Field col>
-            <Field s pwlg col>
+            <Field s col p='32px 8px'>
                 <SliderButton
                     w={100}
                     h={40}
@@ -123,6 +123,7 @@ export const EventsChartArea = () => {
                     values={statResolutions}
                 />
             </Field>
+
             <Field s h={64} />
 
             <Responsive compact={chart()}>
