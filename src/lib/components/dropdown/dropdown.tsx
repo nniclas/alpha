@@ -6,8 +6,9 @@ import Button from '../../elements/button/button'
 
 interface Args {
     dock?: 'left' | 'right' | 'topfix'
+    side?: 'left' | 'right'
     buttonContent?: any
-    items: any[]
+    items: any
     open?: boolean
 }
 
@@ -65,8 +66,8 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         // return false
                     }}
                 >
-                    <Field col>
-                        <For each={a.items}>{(item, i) => item}</For>
+                    <Field col aie={a.side == 'left'} ais={a.side == 'right'}>
+                        {a.items}
                     </Field>
                 </Field>
             </Field>

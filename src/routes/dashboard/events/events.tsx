@@ -121,42 +121,13 @@ export const Events = (a: Args) => {
                             </Field>
                         </Field>
 
-                        {/* <SectionHeader
-                        title=''
-                        icon={
-                            <Field>
-                                <Field s w={60} h={60} c>
-                                    <FiTrendingUp {...iconStyle} />
-                                </Field>
-                                <Text>Stats</Text>
-                            </Field>
-                        }
-                        iconTheme='tertiary'
-                        tool={
-                            // as.section() == 'events' ? (
-                            <Button
-                                onClick={() => {
-                                    as.setSection('events')
-                                    setEntryMenuOpen(true)
-                                }}
-                            >
-                                <Field s w={80} res={{ w: 60 }} c>
-                                    <Label
-                                        size='md'
-                                        icon={<FiPlusCircle />}
-                                        iconTheme='accent'
-                                    />
-                                </Field>
-                            </Button>
-                        }
-                        click={() => as.setSection('events')}
-                    /> */}
-                        {/* <Field>
-                <Statistics />
-            </Field> */}
-
                         <Field>
-                            <Field s w={80} res={{ w: 60 }}></Field>
+                            <Field
+                                s
+                                a
+                                w={80}
+                                style={`width:${as.showCharts() ? 60 : 20}px`}
+                            ></Field>
                             <Field col>
                                 <Field s pmd res={{ pwxs: true }}>
                                     <TimeLine />

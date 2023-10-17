@@ -33,7 +33,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
 
             <Field
                 a
-                style={`opacity:${open() ? 1 : 0}; pointer-events:${
+                style={`z-index:2; opacity:${open() ? 1 : 0}; pointer-events:${
                     open() ? 'opacity' : 'none'
                 };`}
                 layer

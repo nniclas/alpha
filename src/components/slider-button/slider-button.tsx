@@ -7,6 +7,7 @@ import { ButtonArgs } from '../../lib/types/button-args'
 import styles from './slider-button.module.css'
 import Text from '../../lib/elements/text/text'
 import { Transition } from 'solid-transition-group'
+import { FieldArgs } from 'lib/types/field-args'
 
 interface Args {
     value: number
@@ -38,8 +39,9 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
             >
                 <Text
                     noselect
-                    color='var(--tertiary-color)'
-                    xs
+                    color='var(--accent-color)'
+                    res
+                    title
                     // style='font-weight:bold; '
                 >
                     {v}
@@ -58,55 +60,6 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
             <Transition name='slide-fade'>
                 {content(a.values[selected()])}
             </Transition>
-            {/* <For each={a.values}>
-                {(v, i) => {
-                    return (
-                        <Field s col gxs w={20} c>
-                            <Field
-                                a
-                                s
-                                col
-                                class={`${styles.option}
-                                
-                                `}
-                                style={`${
-                                    selected() == i() &&
-                                    'background:teal; border:2px solid var(--color-dim);'
-                                }`}
-                            />
-                            <Field s>
-                                <Text xs style='font-weight:bold'>
-                                    {v}
-                                </Text>
-                            </Field>
-                        </Field>
-
-                        <Button
-                            id={i() == 1 ? 'hello' : ''}
-                            a
-                            o={selected() == i() ? '_1' : '_0.6'}
-                            bb={`2px solid ${
-                                selected() == i()
-                                    ? 'var(--color-accent)'
-                                    : 'transparent'
-                            }`}
-                            onClick={(e) => {
-                                a.change(i())
-                                setSelected(i())
-                                e.stopPropagation()
-                            }}
-                            // style={`border-bottom:4px solid ${
-                            //     selected() == 1
-                            //         ? 'var(--color-accent)'
-                            //         : 'transparent'
-                            // }`}
-                            {...a}
-                        >
-                            {c}
-                        </Button>
-                    )
-                }}
-            </For> */}
         </Field>
     )
 }

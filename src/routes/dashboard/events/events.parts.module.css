@@ -1,5 +1,6 @@
 .tablecontainer {
     overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     flex: 1;

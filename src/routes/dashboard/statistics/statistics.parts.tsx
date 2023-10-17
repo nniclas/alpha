@@ -20,7 +20,12 @@ import { date } from '../../../common/date-utils'
 import Modal from '../../../lib/components/modal/modal'
 import { Label } from '../../../lib/components/label/label'
 import Dropdown from '../../../lib/components/dropdown/dropdown'
-import { measures, statResolutions, stats } from '../../../common/constants'
+import {
+    measures,
+    statResolutions,
+    stats,
+    unitColors,
+} from '../../../common/constants'
 import { SliderButton } from '../../../components/slider-button/slider-button'
 import { LineChart } from '../../../components/line-chart/line-chart'
 import ds from '../../../core/data-store'
@@ -42,7 +47,7 @@ export const MachineChartArea = () => {
 
     return (
         <Field col>
-            <Field s pwlg col gsm>
+            <Field s col p='32px 8px'>
                 <SliderButton
                     w={100}
                     h={40}
@@ -73,7 +78,7 @@ export const MachineChartArea = () => {
                 data={chartData()?.data}
                 labels={chartData()?.titles}
                 scale={{ min: 0, max: 150 }}
-                areaColor='var(--color-middle)'
+                areaColor={unitColors[ds.getUnitIndex(ds.selectedUnitId())]}
             />
         </Field>
     )

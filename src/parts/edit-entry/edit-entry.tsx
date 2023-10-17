@@ -1,7 +1,6 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
-import { FiX, FiXCircle } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
 import { For, createEffect, createSignal } from 'solid-js'
 import { Unit } from '../../types/entities/unit'
@@ -68,17 +67,8 @@ export default (a: Args) => {
                                 )}
                             </Field>
                             <Field>
-                                <Text accent>{entry()?.id ?? 'New entry'}</Text>
+                                <Text accent>{entry()?.id ?? 'New event'}</Text>
                             </Field>
-                            {/* <Button
-                                w={48}
-                                h={48}
-                                onClick={(e) => {
-                                    if (!isABtn(e.target)) e.stopPropagation()
-                                }}
-                            >
-                                <FiXCircle {...iconStyle} />
-                            </Button> */}
                         </Field>
 
                         <Field plg col gmd res={{ glg: true }} c secondary>

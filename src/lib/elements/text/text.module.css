@@ -31,13 +31,13 @@
 }
 .text.caption {
     font-family: var(--text-font);
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: var(--text-size-xxs);
     letter-spacing: 1px;
 }
 .text.title {
     font-family: var(--text-font);
-    font-weight: bold;
+    /* font-weight: bold; */
     font-size: var(--text-size-xs);
     letter-spacing: 1px;
 }

@@ -93,24 +93,32 @@ export const MainMenu = () => {
     }
 
     const compactActions = [
-        <Modal
-            buttonContent={
-                <Field tertiary h={60} c>
-                    <FiSettings color='var(--color-light)' size={16} />
-                    <Label size='md' iconTheme='secondary'>
-                        settings
-                    </Label>
+        <Field pxs col s w={240}>
+            <Modal
+                buttonContent={
+                    <Field tertiary h={60}>
+                        <Field s w={60} h={60} c secondary>
+                            <FiSettings color='var(--color-light)' size={16} />
+                        </Field>
+                        <Field h={60} secondary aic>
+                            <Text>settings</Text>
+                        </Field>
+                    </Field>
+                }
+            >
+                <Settings />
+            </Modal>
+            <Button tertiary onClick={logOut} style='justify-content:start'>
+                <Field s w={60} h={60} c>
+                    <FiLogOut color='var(--accent-color)' size={16} />
                 </Field>
-            }
-        >
-            <Settings />
-        </Modal>,
-        <Button tertiary onClick={logOut}>
-            <Field s h={60} aic gsm>
-                <FiLogOut color='var(--color-light)' size={16} />{' '}
-                <Text xs>{appStore.session()?.username}</Text>
-            </Field>
-        </Button>,
+                <Field s h={60} c col>
+                    <Text xs accent>
+                        {appStore.session()?.username}
+                    </Text>
+                </Field>
+            </Button>
+        </Field>,
     ]
 
     return (
@@ -129,6 +137,7 @@ export const MainMenu = () => {
                                 />
                             </Field>
                         }
+                        side='left'
                         items={compactActions}
                     />
                 </Field>

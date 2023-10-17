@@ -27,7 +27,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             setW(layerRef.clientWidth)
         }
 
-        goTo(undefined, 1)
+        goTo(undefined, 0)
 
         // console.log(a.children.map((c: any) => c.content.innerHTML))
     })
@@ -48,7 +48,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
 
             const movement = Math.round(e.clientX - relOffset())
 
-            if (Math.abs(movement) > 50) {
+            if (Math.abs(movement) > 80) {
                 goTo(pos, undefined, movement > 0 ? 'next' : 'prev')
             } else setPos(pos)
         }

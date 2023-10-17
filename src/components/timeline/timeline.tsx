@@ -20,10 +20,6 @@ export const TimeLine = () => {
             <Field s gsm>
                 <For each={TESTWEEKS}>
                     {(w, i) => {
-                        // const c =
-                        //     i() == TESTWEEKS.length - 1
-                        //         ? 'var(--color-medium)'
-                        //         : 'var(--color-stronger)'
                         return (
                             <Field
                                 rel
@@ -35,21 +31,15 @@ export const TimeLine = () => {
                                     class={styles.item}
                                     style={` ${
                                         w == ds.selectedWeek() &&
-                                        'border-bottom:2px solid var(--color-dim);  '
+                                        'border-bottom:2px solid var(--accent-color);  '
                                     } `}
                                 >
                                     <Field layer c>
                                         <Text
                                             sm
-                                            // class={styles.text}
-                                            // color={
-                                            //     w == ds.selectedWeek()
-                                            //         ? 'var(--color-accent)'
-                                            //         : 'var(--color-middle)'
-                                            // }
                                             style={`color:${
                                                 w == ds.selectedWeek()
-                                                    ? 'var(--color-dim)'
+                                                    ? 'var(--accent-color)'
                                                     : 'var(--color-middle)'
                                             }`}
                                         >

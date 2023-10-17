@@ -33,8 +33,6 @@ export const SvgUnitMeter = (a: Args) => {
 
     const baseStyle: any = {
         transition: '.6s ease all',
-        'stroke-width': size * 6,
-        'stroke-dasharray': size,
     }
 
     return (
@@ -45,6 +43,8 @@ export const SvgUnitMeter = (a: Args) => {
                     stroke: a.meterColor,
                 }}
                 d={fullPath}
+                stroke-width={size * 6}
+                stroke-dasharray={size.toString()}
             />
             <path
                 style={{
@@ -52,6 +52,8 @@ export const SvgUnitMeter = (a: Args) => {
                     stroke: a.valueColor,
                 }}
                 d={path()}
+                stroke-width={size * 6}
+                stroke-dasharray={size.toString()}
             />
         </svg>
     )

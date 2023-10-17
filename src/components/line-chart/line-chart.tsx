@@ -73,17 +73,17 @@ export const LineChart = (a: Args) => {
 
     const labels = () => (
         <Field layer aie>
-            <Field h={96}>
+            <Field h={96} p='0 64px'>
                 <For each={a.data?.filter((v) => v != -1)}>
                     {(n, i) => (
                         <Field c col gxs class={styles.anim}>
                             <Text caption res color='var(--color-lighter)'>
-                                {n}%
+                                {n}
                             </Text>
 
-                            <Text caption res color='var(--color-lighter)'>
+                            <Text caption res color='var(--color-dim)'>
                                 <Responsive
-                                    compact={a.labels![i()].substring(0, 4)}
+                                    compact={a.labels![i()].substring(0, 1)}
                                 >
                                     {a.labels![i()]}
                                 </Responsive>
