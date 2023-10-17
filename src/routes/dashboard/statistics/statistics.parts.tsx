@@ -77,7 +77,7 @@ export const MachineChartArea = () => {
                 visible={as.showCharts()}
                 data={chartData()?.data}
                 labels={chartData()?.titles}
-                scale={{ min: 0, max: 150 }}
+                scale={{ min: 0, max: 100 }}
                 areaColor={unitColors[ds.getUnitIndex(ds.selectedUnitId())]}
             />
         </Field>
@@ -123,7 +123,7 @@ export const EventsChartArea = () => {
                     values={statResolutions}
                 />
             </Field>
-            <Field s h={128} />
+            <Field s h={64} />
 
             <Responsive compact={chart()}>
                 <Field style='padding:0 128px'>{chart()}</Field>
