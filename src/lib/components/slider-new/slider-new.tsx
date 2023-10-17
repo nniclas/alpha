@@ -27,12 +27,11 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             setW(layerRef.clientWidth)
         }
 
-        goTo(undefined, 0)
-
         // console.log(a.children.map((c: any) => c.content.innerHTML))
     })
 
     createEffect(() => {
+        if (layerRef.clientWidth > 0) goTo(undefined, 0)
         // console.log(pos())
     })
 

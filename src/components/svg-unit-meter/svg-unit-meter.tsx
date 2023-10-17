@@ -11,7 +11,7 @@ interface Args {
 
 const scale = 100
 const size = 2
-const startPath = 'M0 10 L0 10'
+const startPath = 'M0 10 L0 10 Z'
 const fullPath = `M0 10 L200 10`
 
 const createPath = (val: number, scale: number) => {
@@ -31,30 +31,32 @@ export const SvgUnitMeter = (a: Args) => {
         }
     })
 
-    const baseStyle: any = {
-        transition: '.6s ease all',
-    }
+    const baseStyle = { transition: '.6s ease d' }
 
     return (
-        <svg height='100%' xmlns='http://www.w3.org/2000/svg'>
-            <path
-                style={{
-                    ...{ ...baseStyle },
-                    stroke: a.meterColor,
-                }}
-                d={fullPath}
-                stroke-width={size * 6}
-                stroke-dasharray={size.toString()}
-            />
-            <path
-                style={{
-                    ...{ ...baseStyle },
-                    stroke: a.valueColor,
-                }}
-                d={path()}
-                stroke-width={size * 6}
-                stroke-dasharray={size.toString()}
-            />
-        </svg>
+        <div>
+            <svg
+                width='100%'
+                height='100%'
+                preserveAspectRatio='none'
+                // viewBox={`0 0 10 10`}
+                xmlns='http://www.w3.org/2000/svg'
+            >
+                <path
+                    style={{ ...baseStyle }}
+                    d={fullPath}
+                    stroke-width={size * 6}
+                    stroke-dasharray={size.toString()}
+                    stroke={a.meterColor}
+                />
+                <path
+                    style={{ ...baseStyle }}
+                    d={path()}
+                    stroke-width={size * 6}
+                    stroke-dasharray={size.toString()}
+                    stroke={a.valueColor}
+                />
+            </svg>
+        </div>
     )
 }
