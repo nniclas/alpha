@@ -28,7 +28,7 @@ export const Sidemenu = (a: Args & FieldArgs) => {
                 layer
                 style={`opacity:${open() ? 1 : 0}; 
                         pointer-events:${open() ? 'auto' : 'none'}; 
-                        position:fixed;z-index:101; background:rgba(0,0,0,0.2);`}
+                        position:fixed;z-index:101; background:rgba(0,0,0,0.2); `}
                 onClick={(e) => {
                     setOpen(false)
 
@@ -38,7 +38,7 @@ export const Sidemenu = (a: Args & FieldArgs) => {
             />
             <Field
                 class={`${styles.content}`}
-                style={`z-index:102; ${
+                style={`z-index:102; overflow: scroll; ${
                     a.maxWidth ? `max-width:${a.maxWidth}px;` : ''
                 } ${open() ? 'transform: translateX(0);' : ''}`}
             >
