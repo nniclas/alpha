@@ -85,11 +85,11 @@ export const MiniUnit = (a: { u: Unit }) => {
 }
 
 export const MainMenu = () => {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const logOut = () => {
-        appStore.removeSession(true)
-        // navigate('/login', { replace: true })
+        appStore.removeSession()
+        navigate('/login', { replace: true })
     }
 
     const compactActions = [
