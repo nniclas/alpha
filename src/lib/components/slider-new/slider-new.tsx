@@ -1,4 +1,4 @@
-import { For, createSignal, onMount } from 'solid-js'
+import { For, createEffect, createSignal, onMount } from 'solid-js'
 import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import Field from '../../elements/field/field'
@@ -6,10 +6,13 @@ import Field from '../../elements/field/field'
 interface Args {
     children: any
     w?: number
+    p?: number
 }
 
 export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     let layerRef: any
+
+    let p = a.p || 64
 
     const [index, setIndex] = createSignal<number>(0)
 
@@ -23,7 +26,13 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             setW(layerRef.clientWidth)
         }
 
+        goTo(undefined, 0)
+
         // console.log(a.children.map((c: any) => c.content.innerHTML))
+    })
+
+    createEffect(() => {
+        // console.log(pos())
     })
 
     const start = (e: any) => {
@@ -42,6 +51,16 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
 
     const stop = (e: any) => {
         setDrag(false)
+
+        goTo(pos())
+    }
+
+    const goTo = (pos?: number, i?: number) => {
+        let index = i || 0
+        if (pos) index = Math.round(pos / (w() - p))
+        const nearestPos = index * (w() - (p - p / 4)) + p / 2
+        setIndex(index)
+        setPos(nearestPos)
     }
 
     // createEffect(() => {
@@ -77,22 +96,23 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             onPointerDown={start}
             onPointerMove={move}
             onPointerUp={stop}
-            onPointerLeave={stop}
+            // onPointerLeave={stop}
             rel
         >
             <Field
                 s
-                style={`transform:translateX(${pos()}px); width: ${
+                style={`gap:${
+                    p / 4
+                }px; transform:translateX(${pos()}px); width: ${
                     w() * 3
                 }px; transition: ${
-                    drag() ? '.1s ease transform' : '.6s ease transform'
+                    drag() ? '.1s ease transform' : '.3s ease transform'
                 }`}
-                gsm
             >
                 <For each={a.children}>
                     {(c, i) => {
                         return (
-                            <Field s style={`width: ${w() - 64}px`}>
+                            <Field s style={`width: ${w() - p}px`}>
                                 {c}
                             </Field>
                         )
