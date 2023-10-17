@@ -19,6 +19,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     const [drag, setDrag] = createSignal<boolean>(false)
     const [pos, setPos] = createSignal<number>(0)
     const [offset, setOffset] = createSignal<number>(0)
+    const [relOffset, setRelOffset] = createSignal<number>(0)
     const [w, setW] = createSignal<number>(a.w || 0)
 
     onMount(() => {
@@ -26,7 +27,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             setW(layerRef.clientWidth)
         }
 
-        goTo(undefined, 0)
+        goTo(undefined, 1)
 
         // console.log(a.children.map((c: any) => c.content.innerHTML))
     })
@@ -38,55 +39,37 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     const start = (e: any) => {
         setDrag(true)
         setOffset(e.clientX - pos())
+        setRelOffset(e.clientX)
     }
 
     const move = (e: any) => {
         if (drag()) {
-            // console.log(e.clientX)
-
             let pos = e.clientX - offset()
-            setPos(pos)
+
+            const movement = Math.round(e.clientX - relOffset())
+
+            if (Math.abs(movement) > 50) {
+                goTo(pos, undefined, movement > 0 ? 'next' : 'prev')
+            } else setPos(pos)
         }
     }
 
     const stop = (e: any) => {
-        setDrag(false)
-
         goTo(pos())
     }
 
-    const goTo = (pos?: number, i?: number) => {
+    const goTo = (pos?: number, i?: number, push?: 'next' | 'prev') => {
         let index = i || 0
-        if (pos) index = Math.round(pos / (w() - p))
-        const nearestPos = index * (w() - (p - p / 4)) + p / 2
+        if (pos) index = -Math.round(pos / (w() - p))
+        if (push) index += push == 'next' ? -1 : 1
+        if (index < 0) index = 0
+        if (index > a.children.length - 1) index = a.children.length - 1
+
+        const nearestPos = -index * (w() - (p - p / 4)) + p / 2
         setIndex(index)
         setPos(nearestPos)
+        setDrag(false)
     }
-
-    // createEffect(() => {
-    //     console.log(index())
-    // })
-
-    // const margin = 0 // todo?
-    // if (drag()) {
-    //     const itemStopRange = w() - margin * 3
-    //     const dir = e.movementX < 0 ? -1 : 1
-    //     let movement = e.movementX * 40
-    //     if (Math.abs(movement) > 5) {
-    //         //////////////////////////////
-    //         //////////// FIXED STOPS MOVING
-    //         // let x -= itemStopRange * dir
-    //         // boundaries
-    //         let xl = x()
-    //         xl -= itemStopRange * dir
-    //         const range = w() * a.children.length // assuming full window width: ;
-    //         if (xl < 0) xl = 0
-    //         if (xl > range - itemStopRange) xl = range - itemStopRange
-    //         setX(xl)
-    //         setIndex(xl / w())
-    //     }
-    //     setDrag(false)
-    // }
 
     return (
         <Field
