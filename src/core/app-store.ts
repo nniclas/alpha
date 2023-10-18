@@ -32,7 +32,7 @@ function createDataState() {
             changeTheme(theme())
             changeCondensed(condensed())
             changeRounding(rounding())
-        }, 400) //////// IOS.... use around 400 ms, check why onMount is not working properly with ios safari page first load
+        }, 2000) //////// IOS.... use around 2000 ms, check why onMount is not working properly with ios safari page first load
     })
 
     const updateSession = (token: string, username: string) => {
