@@ -13,9 +13,9 @@ import Dropdown from '../../lib/components/dropdown/dropdown'
 
 //...
 const demoUsers = [
-    { email: 'demo@user.com', pwd: 'bananer', access: 'READ' },
-    { email: 'john@doe.com', pwd: 'eple', access: 'ADMIN' },
-    { email: 'jane@doe.com', pwd: 'saft', access: 'READ_WRITE' },
+    { email: 'demo@user.com', pwd: 'bananer', access: 'READ_WRITE' },
+    { email: 'wyatt@smith.com', pwd: 'saft', access: 'READ n/a' },
+    { email: 'john@doe.com', pwd: 'eple', access: 'ADMIN n/a' },
 ]
 
 export const Login: Component = () => {
@@ -56,8 +56,11 @@ export const Login: Component = () => {
                             <Button
                                 secondary
                                 onClick={() => {
-                                    setUser(u)
-                                    setSelectedEmail(u.email)
+                                    /////////////////////////////////
+                                    /// USER ROLES NOT READY FOR DEMO , commenting out here
+                                    /////////////////////////////////
+                                    // setUser(u)
+                                    // setSelectedEmail(u.email)
                                 }}
                             >
                                 <Field s col gxs w={180} h={80} c>
