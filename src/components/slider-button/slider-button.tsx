@@ -28,6 +28,7 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
     const content = (v: string) => (
         <Field layer>
             <Button
+                primary
                 w={a.w}
                 h={a.h}
                 onClick={() => {
@@ -39,7 +40,6 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
             >
                 <Text
                     noselect
-                    color='var(--accent-color)'
                     res
                     title
                     // style='font-weight:bold; '

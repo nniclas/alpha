@@ -22,7 +22,6 @@ export default (a: Args) => {
     const [action, setAction] = createSignal<'edit' | 'add'>(
         a.unit ? 'edit' : 'add'
     )
-    // const [done, setDone] = createSignal<boolean>(false)
     const [isUnitChanged, setIsUnitChanged] = createSignal<boolean>(false)
     const [unit, setUnit] = createSignal<Unit>(
         a.unit ?? {
@@ -118,6 +117,7 @@ export default (a: Args) => {
                                             <FiTrash2 {...iconStyle} />
                                         </Field>
                                     }
+                                    buttonArgs={{ primary: true }}
                                 >
                                     <ConfirmModal
                                         header='Delete unit?'

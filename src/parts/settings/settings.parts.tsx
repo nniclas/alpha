@@ -13,7 +13,7 @@ import Textfield from '../../lib/elements/textfield/textfield'
 import { SelectButton } from '../../components/select-button/select-button'
 import EditUnit from '../../parts/edit-unit/edit-unit'
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 export const AppSettings = () => {
     return (
@@ -62,7 +62,7 @@ export const AppSettings = () => {
                             </SelectButton>
                         </Field>
                     </Field>
-                    <Field s col primary pmd>
+                    <Field s col primary pmd br>
                         <Text sm>Rounding</Text>
                         <Field s psm>
                             <SelectButton
@@ -105,6 +105,7 @@ export const UnitSettings = () => {
 
                         return (
                             <Button
+                                br
                                 a
                                 secondary
                                 tertiary={sel(unit()!)}
@@ -121,6 +122,7 @@ export const UnitSettings = () => {
                 </For>
                 <Field aie>
                     <Button
+                        br
                         a
                         tertiary
                         md

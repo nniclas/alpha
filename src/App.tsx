@@ -39,7 +39,7 @@ export const App: Component = () => {
         //     <Text secondary>hello there</Text>
         // </Field>
         <Router>
-            <Field layer col bg='var(--secondary-bg)' trim>
+            <Field layer col bg='var(--primary-bg)'>
                 <Field s col>
                     <Header />
                 </Field>
@@ -64,11 +64,11 @@ export const App: Component = () => {
                         <SectionHeader
                             bg='var(--color-intense)'
                             title='Alert'
-                            titleColor='var(--color-accent)'
+                            titleColor='var(--color-dim)'
                             aux={
                                 <Field aic gmd>
                                     <FiAlertTriangle {...iconStyle} />
-                                    <Text xs>
+                                    <Text xs accent>
                                         {
                                             'Some units are offline, check status.'
                                         }

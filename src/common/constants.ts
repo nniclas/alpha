@@ -32,7 +32,7 @@ export const trendColors: string[] = [
     'rgb(110,150,110)',
 ]
 
-// anyway a maximum of 6 units
+// anyway a maximum of 6 units (demo puropse)
 export const unitColors: string[] = [
     'rgb(80,80,110)',
     'rgb(80,110,80)',
@@ -41,6 +41,21 @@ export const unitColors: string[] = [
     'rgb(110,110,80)',
     'rgb(110,80,110)',
 ]
+// anyway a maximum of 6 units (demo purpose
+export const unitColorsDarker: string[] = [
+    'rgb(60,60,90)',
+    'rgb(60,90,60)',
+    'rgb(60,90,90)',
+    'rgb(90,60,60)',
+    'rgb(90,90,60)',
+    'rgb(90,60,90)',
+]
+
+export const brl =
+    'border-top-left-radius:var(--rounding); border-bottom-left-radius:var(--rounding);'
+export const brr =
+    'border-top-right-radius:var(--rounding); border-bottom-right-radius:var(--rounding);'
+
 // export const unitColorsLighter: string[] = [
 //     'rgb(100,100,130)',
 //     'rgb(75,105,75)',

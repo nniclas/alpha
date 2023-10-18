@@ -25,6 +25,7 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                 {(c, i) => {
                     return (
                         <Button
+                            tertiary
                             a
                             o={selected() == i() ? '_1' : '_0.6'}
                             bb={`2px solid ${
@@ -37,11 +38,14 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                                 setSelected(i())
                                 e.stopPropagation()
                             }}
-                            // style={`border-bottom:4px solid ${
-                            //     selected() == 1
-                            //         ? 'var(--color-accent)'
-                            //         : 'transparent'
-                            // }`}
+                            // style={`
+                            //     ${
+                            //         i() == 0
+                            //             ? brl
+                            //             : i() == a.children.length - 1
+                            //             ? brr
+                            //             : 'none'
+                            //     }`}
                             {...a}
                         >
                             {c}

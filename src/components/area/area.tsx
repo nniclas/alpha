@@ -12,6 +12,8 @@ interface Args {
 export const Area = (a: Args & ThemeArgs) => {
     return (
         <Field
+            br
+            trim
             col
             {...a}
             // style='border:2px solid var(--color-strongest)'

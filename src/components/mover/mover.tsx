@@ -1,23 +1,7 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-    onCleanup,
-    onMount,
-} from 'solid-js'
+import { createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
-import appStore from '../../core/app-store'
-import ds from '../../core/data-store'
-
-import { Transition } from 'solid-transition-group'
-import { Unit } from '../../types/entities/unit'
-import { Loader } from '../loader/loader'
-import Responsive from '../../lib/components/responsive/responsive'
-import { isCompact } from '../../lib/utils'
+import styles from './mover.module.css'
 
 const flexClosed = 'flex-basis:400px; min-width:400px'
 const flexOpen = 'flex-basis:calc(100% - 400px)'
@@ -64,7 +48,7 @@ export const Mover = (a: Args) => {
     }
 
     return (
-        <Field gsm s h={wu} aic>
+        <Field gsm s h={wu} aic class={styles.mover}>
             <Field
                 s
                 onPointerDown={start}

@@ -25,7 +25,7 @@ import { events, measures, tags } from '../../../common/constants'
 
 // const eventsSectionName = 'secondary'
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 const Details = (a: { entry: Entry; compact?: boolean }) => {
     const field = (h: string, val?: string) => (

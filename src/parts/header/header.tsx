@@ -17,7 +17,7 @@ import Logo from '../../assets/logo.svg?component-solid'
 import { SliderNew } from '../../lib/components/slider-new/slider-new'
 
 const TopBar = () => (
-    <Field s bg='var(--color-light)'>
+    <Field s bg='hsl(var(--th-hue), var(--th-saturation), 80%);'>
         <Responsive
             compact={
                 <Field p='0 0 0 16px  ' gxs>
@@ -52,16 +52,11 @@ const TopBar = () => (
 
 export const Header: Component = () => {
     return (
-        <Field
-            s
-            h={300}
-            res={{ h: 166, bg: 'var(--color-light)' }}
-            bg='var(--color-light)'
-        >
+        <Field s h={300} res={{ h: 146, bg: 'var(--color-light)' }}>
             <Field col>
                 <TopBar />
 
-                <Field rel>
+                <Field rel bg='hsl(var(--th-hue), var(--th-saturation), 80%);'>
                     <Transition name='fade'>
                         <Suspense
                             fallback={
@@ -70,7 +65,7 @@ export const Header: Component = () => {
                                 </Field>
                             }
                         >
-                            <Field layer col s res={{ h: 90 }}>
+                            <Field layer col s res={{ h: 70 }}>
                                 {/* <Field gsm psm>
                                     {units()}
                                 </Field> */}

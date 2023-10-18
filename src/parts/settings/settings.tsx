@@ -27,7 +27,7 @@ interface Args {
     // unit?: Unit
 }
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 export default (a: Args) => {
     const [page, setPage] = createSignal<number>(0)
@@ -44,7 +44,7 @@ export default (a: Args) => {
             w={800}
             h={600}
             s
-            res={{ s: false, w: 'auto', h: 'auto' }}
+            res={{ br: false, s: false, w: 'auto', h: 'auto' }}
             secondary
             onClick={(e: any) => {
                 // console.log('bsshh')

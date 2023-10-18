@@ -51,12 +51,7 @@ export const Dashboard: Component = () => {
     return (
         <Field col>
             {/* <Text>{machineDataStore.testCount()}</Text> */}
-            <Field
-                a
-                style={`height:8px; flex:none; background: ${
-                    unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-                }`}
-            />
+
             <Field rel>
                 {ds.selectedUnitRes() && (
                     <Minimizer
@@ -68,6 +63,12 @@ export const Dashboard: Component = () => {
                     />
                 )}
             </Field>
+            <Field
+                a
+                style={`height:8px; flex:none; background: ${
+                    unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+                }`}
+            />
         </Field>
     )
 }

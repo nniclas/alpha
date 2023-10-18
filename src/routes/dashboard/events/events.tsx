@@ -47,7 +47,7 @@ import EditEntry from '../../../parts/edit-entry/edit-entry'
 
 import styles from '../../../common/common.module.css'
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 interface Args {
     section: Section
@@ -76,7 +76,7 @@ export const Events = (a: Args) => {
     }
 
     return (
-        <Field rel a secondary>
+        <Field rel a>
             <Transition name='fade'>
                 <Suspense
                     fallback={
@@ -85,7 +85,7 @@ export const Events = (a: Args) => {
                         </Field>
                     }
                 >
-                    <Field rel col>
+                    <Field rel col secondary>
                         <Field
                             aic
                             s

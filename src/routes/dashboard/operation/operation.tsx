@@ -39,7 +39,7 @@ import SelectField from '../../../lib/components/select-field/select-field'
 import { statResolutions, stats } from '../../../common/constants'
 import styles from '../../../common/common.module.css'
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 

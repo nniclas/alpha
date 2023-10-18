@@ -15,7 +15,7 @@ import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
 import { Label } from '../../lib/components/label/label'
-import { unitColors } from '../../common/constants'
+import { unitColors, unitColorsDarker } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
 import { randInt } from '../../common/utils'
 import Settings from '../settings/settings'
@@ -40,25 +40,30 @@ export const MiniUnit = (a: { u: Unit }) => {
                 // u.selected = true
                 // machineDataStore.setPollingActive(false)
             }}
-            style='cursor:pointer;cursor:hand;'
+            res={{ aie: true }}
         >
             <Field
                 a
+                br
+                trim
                 col
-                style={`;width:240px; background: ${
+                style={`cursor:pointer;cursor:hand;width:240px; background: ${
                     ds.selectedUnitId() == a.u.id
-                        ? 'var(--color-lightest)'
+                        ? unitColors[ds.getUnitIndex(a.u.id)]
                         : 'var(--color-lighter)'
                 }`}
             >
                 <Field
                     s
-                    h={40}
                     aic
                     gxs
-                    bg={unitColors[ds.getUnitIndex(a.u.id)]}
+                    style={`background: ${
+                        ds.selectedUnitId() == a.u.id
+                            ? unitColorsDarker[ds.getUnitIndex(a.u.id)]
+                            : unitColors[ds.getUnitIndex(a.u.id)]
+                    }`}
                 >
-                    <Field psm>
+                    <Field p='0 24px'>
                         <Text sm color='var(--color-lighter)' title>
                             {a.u.name}
                         </Text>
@@ -67,19 +72,23 @@ export const MiniUnit = (a: { u: Unit }) => {
                         <UnitStateIcon value={a.u.state} />
                     </Field>
                 </Field>
-                <Field>
-                    <Field w={200} h={20} psm gxs>
-                        <FiBatteryCharging
-                            {...iconStyle}
-                            color={unitColors[ds.getUnitIndex(a.u.id)]}
-                        />
-                        <SvgUnitMeter
-                            value={randInt(30, 80)}
-                            valueColor={unitColors[ds.getUnitIndex(a.u.id)]}
-                            meterColor='var(--color-light)'
-                        />
+                <Responsive compact={<></>}>
+                    <Field>
+                        <Field w={200} h={20} psm gxs>
+                            <FiBatteryCharging
+                                {...iconStyle}
+                                color='var(--color-light)'
+                            />
+                            <SvgUnitMeter
+                                value={randInt(30, 80)}
+                                meterColor={
+                                    unitColorsDarker[ds.getUnitIndex(a.u.id)]
+                                }
+                                valueColor='var(--color-light)'
+                            />
+                        </Field>
                     </Field>
-                </Field>
+                </Responsive>
             </Field>
         </Field>
     )

@@ -22,7 +22,7 @@ const meterColors = {
     valueColor: 'var(--color-light)',
 }
 
-const iconStyle = { size: 26, color: 'var(--color-dim)' }
+const iconStyle = { size: 26, color: 'var(--color-middle)' }
 
 export const SignalStrengthArea = () => {
     return (

@@ -24,7 +24,7 @@ import Shifter from '../../../components/shifter/shifter'
 import { EventsChartArea, MachineChartArea } from './statistics.parts'
 import styles from '../../../common/common.module.css'
 
-const iconStyle = { size: 18, color: 'var(--color-dim)' }
+const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
 interface Args {
     section: Section
