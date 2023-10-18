@@ -6,7 +6,6 @@ import './lib/styles/transitions.css'
 import './lib/styles/fonts.css'
 
 // theme resources
-// import './lib/styles/themes/_theme-helpers.ts'
 import './lib/styles/theming/_vars.css'
 import './lib/styles/theming/dark.css'
 import './lib/styles/theming/lite.css'
