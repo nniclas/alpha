@@ -43,8 +43,9 @@ export const MiniUnit = (a: { u: Unit }) => {
             style='cursor:pointer;cursor:hand;'
         >
             <Field
+                a
                 col
-                style={`border:0px solid var(--color-lighter);width:240px; background: ${
+                style={`;width:240px; background: ${
                     ds.selectedUnitId() == a.u.id
                         ? 'var(--color-lightest)'
                         : 'var(--color-lighter)'
@@ -137,6 +138,7 @@ export const MainMenu = () => {
                                 />
                             </Field>
                         }
+                        buttonArgs={{ focus: true }}
                         side='left'
                         items={compactActions}
                     />
@@ -159,11 +161,12 @@ export const MainMenu = () => {
                                         <FiSettings {...iconStyle} />
                                     </Field>
                                 }
+                                buttonArgs={{ focus: true }}
                             >
                                 <Settings />
                             </Modal>
                             <Field s>
-                                <Button w={80} h={80} onClick={logOut}>
+                                <Button focus w={80} h={80} onClick={logOut}>
                                     <FiLogOut {...iconStyle} size={18} />
                                 </Button>
                             </Field>

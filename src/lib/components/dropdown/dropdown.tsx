@@ -8,6 +8,7 @@ interface Args {
     dock?: 'left' | 'right' | 'topfix'
     side?: 'left' | 'right'
     buttonContent?: any
+    buttonArgs?: any
     items: any
     open?: boolean
 }
@@ -29,6 +30,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                         setOpen(true)
                         e.stopPropagation()
                     }}
+                    {...a.buttonArgs}
                 >
                     {a.buttonContent}
                 </Button>

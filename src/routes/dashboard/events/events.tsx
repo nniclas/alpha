@@ -45,6 +45,8 @@ import appStore from '../../../core/app-store'
 import { Section } from 'types/_types'
 import EditEntry from '../../../parts/edit-entry/edit-entry'
 
+import styles from '../../../common/common.module.css'
+
 const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 interface Args {
@@ -94,6 +96,7 @@ export const Events = (a: Args) => {
                                 as.setSection(a.section)
                                 as.setShowCharts(false)
                             }}
+                            class={styles.sectionheader}
                         >
                             <Field s w={80} h={80} c res={{ w: 60, h: 60 }}>
                                 <FiAlertCircle {...iconStyle} />

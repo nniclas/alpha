@@ -22,6 +22,7 @@ import { BarChart } from '../../../components/bar-chart/bar-chart'
 import { SliderButton } from '../../../components/slider-button/slider-button'
 import Shifter from '../../../components/shifter/shifter'
 import { EventsChartArea, MachineChartArea } from './statistics.parts'
+import styles from '../../../common/common.module.css'
 
 const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
@@ -43,6 +44,7 @@ export const Statistics = (a: Args) => {
                     as.setSection(a.section)
                     as.setShowCharts(true)
                 }}
+                class={styles.sectionheader}
             >
                 <Field s w={80} h={80} res={{ w: 60, h: 60 }} c>
                     <FiTrendingUp {...iconStyle} />
@@ -60,13 +62,13 @@ export const Statistics = (a: Args) => {
                             w={80}
                             res={{ w: 60, h: 60 }}
                             col
+
                             // style='z-index:1'
                         >
                             <SelectField
                                 // index={entry()?.measure}
                                 items={cats.map((c: string) => (
                                     <Field
-                                        primary
                                         c
                                         w={100}
                                         h={80}

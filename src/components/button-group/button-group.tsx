@@ -41,7 +41,7 @@ export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                                 layer
                                 a
                                 style={`height:2px; top:58px; background:var(--${
-                                    selected() == i() ? 'tertiary' : ''
+                                    selected() == i() ? 'accent' : ''
                                 }-color)`}
                             >
                                 {c}

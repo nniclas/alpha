@@ -29,6 +29,9 @@ import Responsive from './lib/components/responsive/responsive'
 import Text from './lib/elements/text/text'
 import { SectionHeader } from './parts/section-header/section-header'
 import { FiAlertTriangle } from 'solid-icons/fi'
+import { trendColors } from './common/constants'
+
+const iconStyle = { size: 18, color: trendColors[0] }
 
 export const App: Component = () => {
     return (
@@ -61,16 +64,17 @@ export const App: Component = () => {
                         <SectionHeader
                             bg='var(--color-intense)'
                             title='Alert'
+                            titleColor='var(--color-accent)'
                             aux={
-                                <Field aic>
-                                    <Text xs accent>
+                                <Field aic gmd>
+                                    <FiAlertTriangle {...iconStyle} />
+                                    <Text xs>
                                         {
                                             'Some units are offline, check status.'
                                         }
                                     </Text>
                                 </Field>
                             }
-                            titleColor='var(--color-middle)'
                             iconTheme='accent'
                             icon={<FiAlertTriangle />}
                         />

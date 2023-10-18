@@ -7,6 +7,7 @@ import Button from '../../elements/button/button'
 interface Args {
     children: any // modal content
     buttonContent?: any
+    buttonArgs?: any
     open?: boolean
 }
 
@@ -31,6 +32,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
         <Field rel style={` z-index: ${open() ? 100 : 'auto'};`} {...a}>
             {a.buttonContent && (
                 <Button
+                    {...a.buttonArgs}
                     span
                     onClick={(e) => {
                         setOpen(true)

@@ -23,32 +23,31 @@ export const AppSettings = () => {
     return (
         <Field pmd>
             <Field col gmd>
-                <Field s col focus pmd>
+                <Field s col primary pmd>
                     <Text sm>Theme</Text>
                     <Field s psm>
                         <SelectButton
+                            primary
                             value={themes.indexOf(as.theme())}
                             change={(i) => as.changeTheme(themes[i])}
                             w={80}
                             h={40}
                         >
-                            <Field gsm c>
-                                <Text sm res>
-                                    Dark
-                                </Text>
-                            </Field>
-                            <Field gsm c>
-                                <Text sm res>
-                                    Lite
-                                </Text>
-                            </Field>
+                            <Text sm res>
+                                Dark
+                            </Text>
+
+                            <Text sm res>
+                                Lite
+                            </Text>
                         </SelectButton>
                     </Field>
                 </Field>
-                <Field s col focus pmd>
+                <Field s col primary pmd>
                     <Text sm>Margins</Text>
                     <Field s psm>
                         <SelectButton
+                            primary
                             value={cond}
                             change={(i) =>
                                 as.changeCondensed(i == 0 ? false : true)
@@ -56,16 +55,13 @@ export const AppSettings = () => {
                             w={120}
                             h={40}
                         >
-                            <Field gsm c>
-                                <Text sm res>
-                                    Standard
-                                </Text>
-                            </Field>
-                            <Field gsm c>
-                                <Text sm res>
-                                    Condensed
-                                </Text>
-                            </Field>
+                            <Text sm res>
+                                Standard
+                            </Text>
+
+                            <Text sm res>
+                                Condensed
+                            </Text>
                         </SelectButton>
                     </Field>
                 </Field>

@@ -1,5 +1,5 @@
 import { BaseArgs } from '../../types/base-args'
-import { For, createSignal } from 'solid-js'
+import { For, createEffect, createSignal } from 'solid-js'
 import { FieldArgs } from 'lib/types/field-args'
 import Field from '../../elements/field/field'
 import Button from '../../elements/button/button'
@@ -15,20 +15,17 @@ export default (a: Args & BaseArgs & FieldArgs) => {
     const [open, setOpen] = createSignal<boolean>(false)
     const [index, setIndex] = createSignal<number>(a.index ?? 0)
 
-    // createEffect(() => {
-    //     console.log(a.items)
-    // })
-
     return (
         <Field rel {...a}>
             <Button
+                a
                 {...a.buttonArgs}
                 onClick={(e) => {
                     setOpen(true)
                     e.stopPropagation()
                 }}
             >
-                {a.items[index()]}
+                {!open() && a.items[index()]}
             </Button>
 
             <Field

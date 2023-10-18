@@ -3,13 +3,13 @@
     --dark-primary-bg: var(--color-strong);
     --dark-secondary-bg: var(--color-stronger);
     --dark-tertiary-bg: var(--color-strongest);
-    --dark-focus-bg: var(--color-intense);
+    --dark-focus-bg: var(--color-dim);
     --dark-accent-bg: hsl(50, 36%, 62%);
 
     --dark-primary-color: var(--color-light);
     --dark-secondary-color: var(--color-medium);
     --dark-tertiary-color: var(--color-lightest);
-    --dark-focus-color: var(--color-strong);
+    --dark-focus-color: var(--color-dim);
     --dark-accent-color: hsl(50, 36%, 62%);
 
     /* OTHER ... */

@@ -35,12 +35,10 @@ interface Args {
 }
 
 export default (a: Args) => {
-    const lyr = a.nl != true ? true : false
-
-    console.log(lyr, a.nl)
+    const layer = a.nl != true ? true : false
 
     const create = (content: any) => {
-        return <Field layer={lyr}>{content}</Field>
+        return <Field layer={layer}>{content}</Field>
     }
 
     return (
@@ -51,7 +49,7 @@ export default (a: Args) => {
                     <For each={a.pages}>
                         {(p) =>
                             p.condition && (
-                                <Field layer={lyr}>{p.content}</Field>
+                                <Field layer={layer}>{p.content}</Field>
                             )
                         }
                     </For>

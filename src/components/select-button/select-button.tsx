@@ -25,12 +25,11 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                 {(c, i) => {
                     return (
                         <Button
-                            id={i() == 1 ? 'hello' : ''}
                             a
                             o={selected() == i() ? '_1' : '_0.6'}
                             bb={`2px solid ${
                                 selected() == i()
-                                    ? 'var(--color-dim)'
+                                    ? 'var(--accent-color)'
                                     : 'transparent'
                             }`}
                             onClick={(e) => {

@@ -1,0 +1,8 @@
+.sectionheader {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.sectionheader:hover {
+    background: var(--secondary-bg);
+}

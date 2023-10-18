@@ -1,6 +1,6 @@
 import { Section, Session, Theme } from '../types/_types'
 import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
-import { createSignal, createRoot, createEffect } from 'solid-js'
+import { createSignal, createRoot, createEffect, onMount } from 'solid-js'
 import { setVars } from '../lib/styles/themes/_theme-helper'
 import { useNavigate } from '@solidjs/router'
 
@@ -23,6 +23,11 @@ function createDataState() {
         if (username != null && token != null) {
             setSession({ username: username, token: token })
         }
+    })
+
+    onMount(() => {
+        // init default theme
+        changeTheme(theme())
     })
 
     const updateSession = (token: string, username: string) => {

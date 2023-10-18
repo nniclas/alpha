@@ -50,7 +50,7 @@ export default (a: Args) => {
             }}
         >
             <Field a col>
-                <Field s h={60} focus>
+                <Field s h={60} tertiary>
                     <ButtonGroup
                         tertiary
                         w={160}

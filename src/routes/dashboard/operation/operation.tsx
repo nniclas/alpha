@@ -37,6 +37,7 @@ import {
 import { Resolution, Section } from 'types/_types'
 import SelectField from '../../../lib/components/select-field/select-field'
 import { statResolutions, stats } from '../../../common/constants'
+import styles from '../../../common/common.module.css'
 
 const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
@@ -116,6 +117,7 @@ export const Operation = (a: Args) => {
                                         as.setSection(a.section)
                                         as.setShowCharts(false)
                                     }}
+                                    class={styles.sectionheader}
                                 >
                                     <Field
                                         s

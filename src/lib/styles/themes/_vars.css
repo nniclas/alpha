@@ -46,16 +46,16 @@
     /* MISC */
     --transition: 0.4s ease all; /* "all"...? */
 
-    /* THEME VARIANTS */
-    --primary-bg: var(--color-strong);
-    --secondary-bg: var(--color-stronger);
-    --tertiary-bg: var(--color-strongest);
-    --focus-bg: var(--color-intense);
-    --accent-bg: var(--color-accent);
+    /* THEME VARIANTS, define in theme files like this "--<theme>-primary-bg" etc.  */
+    --primary-bg: '';
+    --secondary-bg: '';
+    --tertiary-bg: '';
+    --focus-bg: '';
+    --accent-bg: '';
 
-    --primary-color: var(--color-light);
-    --secondary-color: var(--color-medium);
-    --tertiary-color: var(--color-lightest);
-    --focus-color: var(--color-strong);
-    --accent-color: var(--color-accent);
+    --primary-color: '';
+    --secondary-color: '';
+    --tertiary-color: '';
+    --focus-color: '';
+    --accent-color: '';
 }

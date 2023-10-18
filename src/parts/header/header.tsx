@@ -16,44 +16,50 @@ import { Label } from '../../lib/components/label/label'
 import Logo from '../../assets/logo.svg?component-solid'
 import { SliderNew } from '../../lib/components/slider-new/slider-new'
 
-export const Header: Component = () => {
-    // const units = () => ds.unitsRes()?.map((u) => <MiniUnit u={u} />)
-
-    const header = (auxText?: any) => (
-        <SectionHeader
-            bg='var(--color-light)'
-            title='A L P H A'
-            aux={
-                <Field aic>
-                    <Text xs secondary>
-                        {auxText}
-                    </Text>
+const TopBar = () => (
+    <Field s bg='var(--color-light)'>
+        <Responsive
+            compact={
+                <Field p='0 0 0 16px  ' gxs>
+                    <Field s h={35} p='6px 0'>
+                        <Logo />
+                    </Field>
+                    <Field c s>
+                        <Text sm secondary>
+                            A L P H A
+                        </Text>
+                    </Field>
                 </Field>
             }
-            icon={
-                <Field s w={60} h={60}>
+        >
+            <Field s p='0 0 0 24px  ' h={80} gxs>
+                <Field s h={55} p='3px 0'>
                     <Logo />
                 </Field>
-            }
-            titleColor='var(--color-strong)'
-            tool={<MainMenu />}
-        />
-    )
+                <Field c s>
+                    <Text md secondary>
+                        A L P H A
+                    </Text>
+                </Field>
+            </Field>
+        </Responsive>
 
-    createEffect(() => {})
+        <Field jce>
+            <MainMenu />
+        </Field>
+    </Field>
+)
 
+export const Header: Component = () => {
     return (
         <Field
             s
             h={300}
-            res={{ h: 200, bg: 'var(--color-light)' }}
+            res={{ h: 166, bg: 'var(--color-light)' }}
             bg='var(--color-light)'
         >
             <Field col>
-                {header()}
-                {/* <Responsive s compact={header()}>
-                    {header()}
-                </Responsive> */}
+                <TopBar />
 
                 <Field rel>
                     <Transition name='fade'>
@@ -64,7 +70,7 @@ export const Header: Component = () => {
                                 </Field>
                             }
                         >
-                            <Field layer col s res={{ h: 126 }}>
+                            <Field layer col s res={{ h: 90 }}>
                                 {/* <Field gsm psm>
                                     {units()}
                                 </Field> */}
