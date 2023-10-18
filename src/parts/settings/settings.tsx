@@ -38,6 +38,8 @@ export default (a: Args) => {
 
     return (
         <Field
+            br
+            trim
             rel
             w={800}
             h={600}

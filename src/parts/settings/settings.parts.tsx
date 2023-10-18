@@ -2,7 +2,7 @@ import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import as from '../../core/app-store'
 import { themes } from '../../common/constants'
-import { For, createSignal } from 'solid-js'
+import { For, createSignal, onMount } from 'solid-js'
 import ds from '../../core/data-store'
 import Button from '../../lib/elements/button/button'
 import { Unit } from 'types/entities/unit'
@@ -16,14 +16,10 @@ import EditUnit from '../../parts/edit-unit/edit-unit'
 const iconStyle = { size: 18, color: 'var(--color-dim)' }
 
 export const AppSettings = () => {
-    // console.log(as.condensed())
-
-    const cond = as.condensed() ? 1 : 0
-
     return (
         <Field pmd>
             <Field col gmd>
-                <Field s col primary pmd>
+                <Field s col primary pmd br>
                     <Text sm>Theme</Text>
                     <Field s psm>
                         <SelectButton
@@ -43,26 +39,50 @@ export const AppSettings = () => {
                         </SelectButton>
                     </Field>
                 </Field>
-                <Field s col primary pmd>
-                    <Text sm>Margins</Text>
-                    <Field s psm>
-                        <SelectButton
-                            primary
-                            value={cond}
-                            change={(i) =>
-                                as.changeCondensed(i == 0 ? false : true)
-                            }
-                            w={120}
-                            h={40}
-                        >
-                            <Text sm res>
-                                Standard
-                            </Text>
+                <Field res={{ col: true }} primary br>
+                    <Field s col pmd>
+                        <Text sm>Margins</Text>
+                        <Field s psm>
+                            <SelectButton
+                                primary
+                                value={as.condensed() ? 1 : 0}
+                                change={(i) =>
+                                    as.changeCondensed(i == 0 ? false : true)
+                                }
+                                w={120}
+                                h={40}
+                            >
+                                <Text sm res>
+                                    Standard
+                                </Text>
 
-                            <Text sm res>
-                                Condensed
-                            </Text>
-                        </SelectButton>
+                                <Text sm res>
+                                    Condensed
+                                </Text>
+                            </SelectButton>
+                        </Field>
+                    </Field>
+                    <Field s col primary pmd>
+                        <Text sm>Rounding</Text>
+                        <Field s psm>
+                            <SelectButton
+                                primary
+                                value={as.rounding() ? 0 : 1}
+                                change={(i) =>
+                                    as.changeRounding(i == 0 ? true : false)
+                                }
+                                w={120}
+                                h={40}
+                            >
+                                <Text sm res>
+                                    Enabled
+                                </Text>
+
+                                <Text sm res>
+                                    Disabled
+                                </Text>
+                            </SelectButton>
+                        </Field>
                     </Field>
                 </Field>
             </Field>

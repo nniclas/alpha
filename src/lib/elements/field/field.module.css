@@ -98,6 +98,7 @@
 /* --- MODIFIERS --- */
 .br {
     border-radius: var(--rounding);
+    transition: 0.4s ease border-radius; /* note! transition can be overriden */
 }
 .pevn {
     pointer-events: none;

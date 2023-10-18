@@ -31,7 +31,7 @@
     --xl: 128px;
     --xxl: 256px;
     --xxxl: 512px;
-    --rounding: 12px;
+    --rounding: none;
     --border: none;
 
     /* TEXT */
@@ -44,7 +44,7 @@
     --text-size-lg: 28px;
 
     /* MISC */
-    --transition: 0.4s ease all; /* "all"...? */
+    --transition: 0.4s ease all; /* "all"..................? */
 
     /* THEME VARIANTS, define in theme files like this "--<theme>-primary-bg" etc.  */
     --primary-bg: '';

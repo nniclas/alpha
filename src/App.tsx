@@ -7,11 +7,11 @@ import './lib/styles/fonts.css'
 
 // theme resources
 // import './lib/styles/themes/_theme-helpers.ts'
-import './lib/styles/themes/_vars.css'
-import './lib/styles/themes/dark.css'
-import './lib/styles/themes/lite.css'
-import './lib/styles/themes/layout-standard.css'
-import './lib/styles/themes/layout-condensed.css'
+import './lib/styles/theming/_vars.css'
+import './lib/styles/theming/dark.css'
+import './lib/styles/theming/lite.css'
+import './lib/styles/theming/layout.css'
+import './lib/styles/theming/rounding.css'
 
 import '../index.css'
 

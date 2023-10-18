@@ -24,10 +24,6 @@ export interface Session {
     user?: User // TODO add from api
 }
 
-export type Theme = 'dark' | 'lite'
-
-export type Section = 'primary' | 'secondary'
-
 export interface StatData {
     data: number[]
     titles: string[]
@@ -37,6 +33,9 @@ export interface StatData {
 export interface MachineStatData {
     [statData: string]: StatData[]
 }
+
+export type Theme = 'dark' | 'lite'
+export type Section = 'primary' | 'secondary'
 
 export type StatCategory = 'machine' | 'events'
 export type Resolution = 'week' | 'month' | 'quarter'

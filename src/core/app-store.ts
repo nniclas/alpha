@@ -1,7 +1,6 @@
 import { Section, Session, Theme } from '../types/_types'
-import { setCondensedAttribute, setThemeAttribute } from '../common/utils'
 import { createSignal, createRoot, createEffect, onMount } from 'solid-js'
-import { setVars } from '../lib/styles/themes/_theme-helper'
+import { setVars } from '../lib/styles/theming/_theme-helpers'
 import { useNavigate } from '@solidjs/router'
 
 function createDataState() {
@@ -11,6 +10,7 @@ function createDataState() {
 
     const [theme, setTheme] = createSignal<Theme>('dark')
     const [condensed, setCondensed] = createSignal<boolean>(false)
+    const [rounding, setRounding] = createSignal<boolean>(true)
     const [section, setSection] = createSignal<Section>('primary') // main dashboard sections, left/right or top/bottom
     const [showCharts, setShowCharts] = createSignal<boolean>(false)
 
@@ -26,8 +26,10 @@ function createDataState() {
     })
 
     onMount(() => {
-        // init default theme
+        // init defaults after dom is ready
         changeTheme(theme())
+        changeCondensed(condensed())
+        changeRounding(rounding())
     })
 
     const updateSession = (token: string, username: string) => {
@@ -56,12 +58,19 @@ function createDataState() {
         setVars(condensed ? 'ltcondensed' : 'ltstandard')
     }
 
+    const changeRounding = (rounding: boolean) => {
+        setRounding(rounding)
+        setVars(rounding ? 'rndon' : 'rndoff')
+    }
+
     return {
         session,
         theme,
         changeTheme,
         condensed,
         changeCondensed,
+        rounding,
+        changeRounding,
         updateSession,
         removeSession,
         section,

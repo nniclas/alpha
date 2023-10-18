@@ -163,7 +163,9 @@ export const MainMenu = () => {
                                 }
                                 buttonArgs={{ focus: true }}
                             >
-                                <Settings />
+                                <Field s plg>
+                                    <Settings />
+                                </Field>
                             </Modal>
                             <Field s>
                                 <Button focus w={80} h={80} onClick={logOut}>
