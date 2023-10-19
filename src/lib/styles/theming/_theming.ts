@@ -1,5 +1,20 @@
+import { themeVars } from './_imports'
+
 export const setVars = (theme: string) => {
-    const vars = getAllVars()
+    // const vars = getAllVarsFromDocumentStylesheets()
+
+    // console.log(vars)
+
+    const vars = getRootVars(themeVars)
+
+    // console.log(vars)
+    // console.log(vars2)
+    // console.log(document.styleSheets[0])
+
+    // ;(document.styleSheets[0] as any).onload = function () {
+    //     console.log('hejs')
+    //     // Do something interesting; the sheet has been loaded
+    // }
 
     vars.forEach((v: string) => {
         if (v.includes(theme)) {
@@ -15,7 +30,19 @@ export const setVars = (theme: string) => {
     })
 }
 
-const getAllVars = () =>
+const getRootVars = (inlines: string[]) => {
+    const list: string[] = []
+    inlines.forEach((il: string) => {
+        const regex = /--(.*):/g
+        const vars = il.match(regex)
+
+        list.push(...vars!.map((v) => v.toString().replace(':', '')))
+    })
+
+    return list
+}
+
+const getAllVarsFromDocumentStylesheets = () =>
     Array.from(document.styleSheets)
         .filter(
             (sheet) =>

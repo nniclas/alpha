@@ -1,6 +1,6 @@
 import { Section, Session, Theme } from '../types/_types'
 import { createSignal, createRoot, createEffect, onMount } from 'solid-js'
-import { setVars } from '../lib/styles/theming/_theme-helpers'
+import { setVars } from '../lib/styles/theming/_theming'
 import { useNavigate } from '@solidjs/router'
 
 function createDataState() {
@@ -28,11 +28,13 @@ function createDataState() {
     onMount(() => {
         // init defaults after dom is ready
 
-        setTimeout(() => {
-            changeTheme(theme())
-            changeCondensed(condensed())
-            changeRounding(rounding())
-        }, 2000) //////// IOS.... use around 2000 ms, check why onMount is not working properly with ios safari page first load
+        changeTheme(theme())
+        changeCondensed(condensed())
+        changeRounding(rounding())
+
+        // setTimeout(() => {
+
+        // }, 2000) //////// IOS.... use around 2000 ms, check why onMount is not working properly with ios safari page first load
     })
 
     const updateSession = (token: string, username: string) => {

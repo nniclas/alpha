@@ -6,17 +6,12 @@ import './lib/styles/transitions.css'
 import './lib/styles/fonts.css'
 
 // theme resources
-import './lib/styles/theming/_vars.css'
-import './lib/styles/theming/dark.css'
-import './lib/styles/theming/lite.css'
-import './lib/styles/theming/layout.css'
-import './lib/styles/theming/rounding.css'
+import './lib/styles/theming/_theming.ts'
 
 import '../index.css'
 
 import Field from './lib/elements/field/field'
 import { Header } from './parts/header/header'
-import { Footer } from './parts/footer/footer'
 
 import { Route, Router, Routes } from '@solidjs/router' // 👈 Import the router
 import { Dashboard } from './routes/dashboard/dashboard'
