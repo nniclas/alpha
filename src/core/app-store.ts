@@ -3,6 +3,22 @@ import { createSignal, createRoot, createEffect, onMount } from 'solid-js'
 import { setVars } from '../lib/styles/theming/_theming'
 import { useNavigate } from '@solidjs/router'
 
+// WORKAROUND TO SET STYLES ON IOS, POLL FOR STYLESHEETS LOADED
+let pollTimerId: NodeJS.Timer | undefined
+const checkStylesAndSetCssTheming = (action: () => void) => {
+    pollTimerId = setInterval(() => {
+        if (
+            document.styleSheets[0] &&
+            document.styleSheets[0].cssRules.length &&
+            document.styleSheets[0].cssRules.length > 0
+        ) {
+            clearInterval(pollTimerId)
+            pollTimerId = undefined
+            action()
+        }
+    }, 10)
+}
+
 function createDataState() {
     // const navigate = useNavigate()
 
@@ -25,16 +41,34 @@ function createDataState() {
         }
     })
 
+    // let pollTimerId: NodeJS.Timer | undefined
+    // let timer = 0
     onMount(() => {
-        // init defaults after dom is ready
+        checkStylesAndSetCssTheming(() => {
+            changeTheme(theme())
+            changeCondensed(condensed())
+            changeRounding(rounding())
+            console.log('sets')
+        })
+        // pollTimerId = setInterval(() => {
+        //     if (
+        //         document.styleSheets[0] &&
+        //         document.styleSheets[0].cssRules.length &&
+        //         document.styleSheets[0].cssRules.length > 0
+        //     ) {
+        //         // alert(timer)
+        //         // alert(document.styleSheets[0].cssRules.length)
+        //         clearInterval(pollTimerId)
+        //         pollTimerId = undefined
 
-        changeTheme(theme())
-        changeCondensed(condensed())
-        changeRounding(rounding())
+        //         changeTheme(theme())
+        //         changeCondensed(condensed())
+        //         changeRounding(rounding())
+        //     }
 
-        // setTimeout(() => {
-
-        // }, 2000) //////// IOS.... use around 2000 ms, check why onMount is not working properly with ios safari page first load
+        //     timer += 10
+        //     console.log(timer)
+        // }, 10)
     })
 
     const updateSession = (token: string, username: string) => {

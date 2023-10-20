@@ -1,26 +1,39 @@
+/* ///////////////////////////////////////////// */
+/* BASE VALUES can be overriden with theme files */
+/* ///////////////////////////////////////////// */
+
 :root {
+    /* PALETTE */
     --th-hue: 190;
     --th-saturation: 12%;
 
-    /* PALETTE */
     --color-lightest: hsl(var(--th-hue), var(--th-saturation), 85%);
     --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
     --color-light: hsl(var(--th-hue), var(--th-saturation), 65%);
-
     --color-dim: hsl(var(--th-hue), var(--th-saturation), 55%);
     --color-middle: hsl(var(--th-hue), var(--th-saturation), 40%);
     --color-medium: hsl(var(--th-hue), var(--th-saturation), 30%);
-
     --color-strong: hsl(var(--th-hue), var(--th-saturation), 23%);
     --color-stronger: hsl(var(--th-hue), var(--th-saturation), 20%);
     --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
     --color-intense: hsl(var(--th-hue), var(--th-saturation), 15%);
     --color-black: hsl(var(--th-hue), var(--th-saturation), 12%);
-
     --color-accent: hsl(50, 36%, 62%);
-
     --color-success: rgb(120, 200, 120);
     --color-error: rgb(200, 120, 120);
+
+    /* THEME VARIANTS, define like "--<theme>-primary-bg" etc.  */
+    --primary-bg: _;
+    --secondary-bg: _;
+    --tertiary-bg: _;
+    --focus-bg: _;
+    --accent-bg: _;
+
+    --primary-color: _;
+    --secondary-color: _;
+    --tertiary-color: _;
+    --focus-color: _;
+    --accent-color: _;
 
     /* LAYOUT */
     --xxs: 4px;
@@ -45,17 +58,4 @@
 
     /* MISC */
     --transition: 0.4s ease all; /* "all"..................? */
-
-    /* THEME VARIANTS, define in theme files like this "--<theme>-primary-bg" etc.  */
-    --primary-bg: '';
-    --secondary-bg: '';
-    --tertiary-bg: '';
-    --focus-bg: '';
-    --accent-bg: '';
-
-    --primary-color: '';
-    --secondary-color: '';
-    --tertiary-color: '';
-    --focus-color: '';
-    --accent-color: '';
 }

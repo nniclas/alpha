@@ -1,5 +1,5 @@
 :root {
-    /* LAYOUT */
+    /* STANDARD */
     --ltstandard-xxs: 4px;
     --ltstandard-xs: 8px;
     --ltstandard-sm: 16px;
@@ -9,6 +9,7 @@
     --ltstandard-xxl: 256px;
     --ltstandard-xxxl: 512px;
 
+    /* CONDENSED */
     --ltcondensed-xxs: 2px;
     --ltcondensed-xs: 4px;
     --ltcondensed-sm: 8px;
@@ -17,4 +18,8 @@
     --ltcondensed-xl: 64px;
     --ltcondensed-xxl: 128px;
     --ltcondensed-xxxl: 256px;
+
+    /* ROUNDING */
+    --rndon-rounding: 16px;
+    --rndoff-rounding: none;
 }

@@ -1,26 +1,17 @@
 import { themeVars } from './_imports'
 
 export const setVars = (theme: string) => {
-    // const vars = getAllVarsFromDocumentStylesheets()
+    const vars = getAllVarsFromDocumentStylesheets()
 
-    // console.log(vars)
-
-    const vars = getRootVars(themeVars)
-
-    // console.log(vars)
-    // console.log(vars2)
-    // console.log(document.styleSheets[0])
-
-    // ;(document.styleSheets[0] as any).onload = function () {
-    //     console.log('hejs')
-    //     // Do something interesting; the sheet has been loaded
-    // }
+    console.log(themeVars)
+    console.log(vars)
 
     vars.forEach((v: string) => {
         if (v.includes(theme)) {
             const current = v.replace(`${theme}-`, '')
             if (current) {
                 var style = getComputedStyle(document.body)
+
                 document.documentElement.style.setProperty(
                     current,
                     style.getPropertyValue(v)
@@ -30,15 +21,17 @@ export const setVars = (theme: string) => {
     })
 }
 
+// wip - experimental
 const getRootVars = (inlines: string[]) => {
     const list: string[] = []
     inlines.forEach((il: string) => {
-        const regex = /--(.*):/g
-        const vars = il.match(regex)
-
-        list.push(...vars!.map((v) => v.toString().replace(':', '')))
+        //const regex = /--(.*):/g
+        // var result = il.match(/(?<=--\s+).*?(?=\s+:)/gs)
+        // const vars = il.match(regex)
+        // list.push(...vars!.map((v) => v.toString().replace(':', '')))
+        const matches = il.matchAll(/--(.*?):/g)
+        list.push(...Array.from(matches, (x) => `--${x[1]}`))
     })
-
     return list
 }
 
