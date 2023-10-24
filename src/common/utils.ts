@@ -31,3 +31,24 @@ export const avg = (values: number[], round = false) => {
 
 export const capFirst = (str: string) =>
     `${str.charAt(0).toUpperCase()}${str.slice(1)}`
+
+// WORKAROUND TO SET STYLES ON IOS, POLL FOR STYLESHEETS LOADED
+let pollTimerId: NodeJS.Timer | undefined
+let timerElapsed = 0
+export const checkStylesAndSetCssTheming = (action: () => void) => {
+    pollTimerId = setInterval(() => {
+        timerElapsed++
+        if (
+            document.styleSheets[0] &&
+            document.styleSheets[0].cssRules.length &&
+            document.styleSheets[0].cssRules.length > 0
+        ) {
+            clearInterval(pollTimerId)
+            pollTimerId = undefined
+            action()
+        }
+        if (timerElapsed > 1000)
+            // better break at some point just in case
+            clearInterval(pollTimerId)
+    }, 10)
+}

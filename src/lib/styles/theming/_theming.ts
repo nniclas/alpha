@@ -1,10 +1,8 @@
+import './_imports' // load all base imports
 import { themeVars } from './_imports'
 
 export const setVars = (theme: string) => {
     const vars = getAllVarsFromDocumentStylesheets()
-
-    console.log(themeVars)
-    console.log(vars)
 
     vars.forEach((v: string) => {
         if (v.includes(theme)) {

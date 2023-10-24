@@ -2,22 +2,7 @@ import { Section, Session, Theme } from '../types/_types'
 import { createSignal, createRoot, createEffect, onMount } from 'solid-js'
 import { setVars } from '../lib/styles/theming/_theming'
 import { useNavigate } from '@solidjs/router'
-
-// WORKAROUND TO SET STYLES ON IOS, POLL FOR STYLESHEETS LOADED
-let pollTimerId: NodeJS.Timer | undefined
-const checkStylesAndSetCssTheming = (action: () => void) => {
-    pollTimerId = setInterval(() => {
-        if (
-            document.styleSheets[0] &&
-            document.styleSheets[0].cssRules.length &&
-            document.styleSheets[0].cssRules.length > 0
-        ) {
-            clearInterval(pollTimerId)
-            pollTimerId = undefined
-            action()
-        }
-    }, 10)
-}
+import { checkStylesAndSetCssTheming } from '../common/utils'
 
 function createDataState() {
     // const navigate = useNavigate()
@@ -41,34 +26,12 @@ function createDataState() {
         }
     })
 
-    // let pollTimerId: NodeJS.Timer | undefined
-    // let timer = 0
     onMount(() => {
         checkStylesAndSetCssTheming(() => {
             changeTheme(theme())
             changeCondensed(condensed())
             changeRounding(rounding())
-            console.log('sets')
         })
-        // pollTimerId = setInterval(() => {
-        //     if (
-        //         document.styleSheets[0] &&
-        //         document.styleSheets[0].cssRules.length &&
-        //         document.styleSheets[0].cssRules.length > 0
-        //     ) {
-        //         // alert(timer)
-        //         // alert(document.styleSheets[0].cssRules.length)
-        //         clearInterval(pollTimerId)
-        //         pollTimerId = undefined
-
-        //         changeTheme(theme())
-        //         changeCondensed(condensed())
-        //         changeRounding(rounding())
-        //     }
-
-        //     timer += 10
-        //     console.log(timer)
-        // }, 10)
     })
 
     const updateSession = (token: string, username: string) => {
