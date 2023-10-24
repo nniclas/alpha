@@ -7,7 +7,7 @@
     --dark-accent-bg: hsl(50, 36%, 62%);
 
     --dark-primary-color: var(--color-light);
-    --dark-secondary-color: var(--color-medium);
+    --dark-secondary-color: var(--color-middle);
     --dark-tertiary-color: var(--color-lightest);
     --dark-focus-color: var(--color-dim);
     --dark-accent-color: hsl(50, 36%, 62%);

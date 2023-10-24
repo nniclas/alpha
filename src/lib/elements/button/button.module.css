@@ -5,6 +5,7 @@
     border: none;
     cursor: pointer;
     cursor: hand;
+    transition: 0.3s ease color, 0.2s ease background;
 }
 
 .span {
@@ -46,6 +47,11 @@
 .btn:active {
     background-color: var(--primary-bg);
     color: var(--primary-color);
+}
+
+.btn span,
+.btn svg {
+    transition: 0.3s ease color;
 }
 
 /* --- THEMING --- */
