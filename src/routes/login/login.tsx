@@ -114,7 +114,9 @@ export const Login: Component = () => {
                 <Field s jce>
                     <Field s>
                         <Button secondary md onClick={logIn}>
-                            <Text caption>Sign in</Text>
+                            <Text title res>
+                                Sign in
+                            </Text>
                         </Button>
                     </Field>
                 </Field>
@@ -129,13 +131,23 @@ export const Login: Component = () => {
             <Field layer s class={styles.bg} pevn />
 
             <Field layer ais pevn>
-                <Field s plg col gxs>
-                    <Text lg res accent style='letter-spacing:12px'>
-                        ALPHA
-                    </Text>
-                    <Text md res color='var(--color-middle)'>
-                        Remote technical tool.
-                    </Text>
+                <Field s plg col gsm>
+                    <Field s aie gxs>
+                        <Field s w={70} res={{ w: 45 }}>
+                            <Logo />
+                        </Field>
+                        <Text lg res accent style='letter-spacing:12px'>
+                            ALPHA
+                        </Text>
+                    </Field>
+                    <Field s aie col>
+                        <Text title res color='var(--color-middle)'>
+                            Remote technical tool
+                        </Text>
+                        <Text title res color='var(--color-medium)'>
+                            ver 0.1
+                        </Text>
+                    </Field>
                 </Field>
             </Field>
 

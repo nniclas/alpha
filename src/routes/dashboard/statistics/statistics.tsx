@@ -50,7 +50,7 @@ export const Statistics = (a: Args) => {
                     <FiTrendingUp {...iconStyle} />
                 </Field>
                 <Field aic>
-                    <Text res title tertiary>
+                    <Text res title>
                         Statistics
                     </Text>
                 </Field>

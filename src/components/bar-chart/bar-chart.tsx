@@ -162,11 +162,11 @@ export const BarChart = (a: Args) => {
                         <For each={a.data}>
                             {(n, i) => (
                                 <Field c col gxs>
-                                    <Text caption color='var(--color-lighter)'>
+                                    <Text title color='var(--color-lighter)'>
                                         {n}
                                     </Text>
 
-                                    <Text caption color='var(--color-lighter)'>
+                                    <Text title color='var(--color-lighter)'>
                                         <Responsive
                                             compact={a.labels![i()].substring(
                                                 0,

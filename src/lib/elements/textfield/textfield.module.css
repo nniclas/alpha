@@ -8,6 +8,8 @@
     flex: 1;
     resize: none; /* applicable to textarea only */
     box-sizing: border-box;
+    cursor: pointer;
+    cursor: hand;
 }
 .textfield::placeholder {
     color: var(--color-middle);

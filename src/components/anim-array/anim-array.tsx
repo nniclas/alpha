@@ -6,7 +6,6 @@ import { TransitionGroup } from 'solid-transition-group'
 import Button from '../../lib/elements/button/button'
 
 interface Args {
-    //units: Unit[]
     items?: any[]
     template: (a: any) => void
 }
@@ -15,9 +14,6 @@ interface Unit {
     id: string
     element: any
 }
-
-// https://github.com/solidjs/solid/issues/39
-// https://codesandbox.io/s/basic-css-transition-36rln?file=/index.js:3422-3437
 
 export default (a: Args) => {
     const [list, setList] = createSignal<any[]>([])
@@ -78,24 +74,12 @@ export default (a: Args) => {
 
     return (
         <Field>
-            {/* {a.items?.length} */}
-            {/* <Button md primary onClick={() => add()}>
-                <Text secondary>Add</Text>
-            </Button> */}
-
             <Field gxs>
                 <TransitionGroup name='list-item'>
                     <For each={a.items || list()}>
                         {(u, i) => (
                             <div class='list-item'>
                                 <Field s col>
-                                    {/* <Button
-                                    md
-                                    secondary
-                                    onClick={() => remove(i())}
-                                >
-                                    <Text accent>Remove</Text>
-                                </Button> */}
                                     <Field s>{a.template(u)}</Field>
                                 </Field>
                             </div>
@@ -103,12 +87,6 @@ export default (a: Args) => {
                     </For>
                 </TransitionGroup>
             </Field>
-
-            {/* <For each={units()}>
-                {(u, i) => {
-                    return <FaderField show={u.show}>{u.field}</FaderField>
-                }}
-            </For> */}
         </Field>
     )
 }

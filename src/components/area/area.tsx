@@ -26,7 +26,7 @@ export const Area = (a: Args & ThemeArgs) => {
                 pwmd
                 // res={{ pwsm: true }}
             >
-                <Text sm primary caption>
+                <Text sm primary title>
                     {a.header}
                 </Text>
             </Field>

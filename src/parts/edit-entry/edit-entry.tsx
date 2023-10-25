@@ -165,7 +165,6 @@ export default (a: Args) => {
                                         psm
                                         placeholder='Today'
                                         value={entry()?.notes}
-                                        accent
                                         change={(v) => {
                                             ///,...............
                                         }}
@@ -186,7 +185,6 @@ export default (a: Args) => {
                                     placeholder='Notes'
                                     value={entry()?.notes}
                                     psm
-                                    accent
                                     change={(v) => {
                                         const u = { ...entry() }
                                         // u.name = v

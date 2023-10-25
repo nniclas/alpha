@@ -128,7 +128,7 @@ export const Operation = (a: Args) => {
                                     >
                                         <FiMonitor {...iconStyle} />
                                     </Field>
-                                    <Text res title tertiary>
+                                    <Text res title>
                                         Operation
                                     </Text>
                                     {/* <Field jce>
