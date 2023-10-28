@@ -1,12 +1,6 @@
 import {
-    FiShuffle,
-    FiBell,
-    FiOctagon,
-    FiTrello,
     FiAlertCircle,
     FiXCircle,
-    FiZap,
-    FiEdit2,
     FiEdit,
     FiCornerRightUp,
     FiCheckCircle,

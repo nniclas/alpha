@@ -1,22 +1,9 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-    onCleanup,
-    onMount,
-} from 'solid-js'
+import { For, createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
-import Text from '../../lib/elements/text/text'
-import appStore from '../../core/app-store'
-import ds from '../../core/data-store'
 import Button from '../../lib/elements/button/button'
 import { BaseArgs } from '../../lib/types/base-args'
 import { ThemeArgs } from '../../lib/types/theme-args'
 import { ButtonArgs } from 'lib/types/button-args'
-import { isABtn } from '../../common/utils'
 
 interface Args {
     children: any[]
@@ -25,10 +12,6 @@ interface Args {
 
 export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
     const [selected, setSelected] = createSignal<number>(0)
-
-    // createEffect(() => {
-    //     console.log(selected())
-    // })
 
     return (
         <Field>
@@ -49,7 +32,6 @@ export const ButtonGroup = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                             <Button
                                 {...a}
                                 a
-                                // secondary={selected() == i()}
                                 onClick={(e) => {
                                     a.change(i())
                                     setSelected(i())

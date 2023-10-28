@@ -1,7 +1,6 @@
 .list-item {
     transition: all 0.5s;
     display: inline-block;
-    /* margin-right: 10px; */
 }
 
 .list-item-enter,

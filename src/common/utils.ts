@@ -47,8 +47,7 @@ export const checkStylesAndSetCssTheming = (action: () => void) => {
             pollTimerId = undefined
             action()
         }
-        if (timerElapsed > 1000)
-            // better break at some point just in case
-            clearInterval(pollTimerId)
+        // better break at some point just in case
+        if (timerElapsed > 1000) clearInterval(pollTimerId)
     }, 10)
 }

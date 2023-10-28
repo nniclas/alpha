@@ -13,18 +13,7 @@ export const stats = {
     events: null, // todo view multiple event params
 }
 
-// export const statCategories: StatCategory[] = ['Machine', 'Events']
 export const statResolutions: Resolution[] = ['week', 'month', 'quarter']
-
-// export const machineElements = ['Signal', 'Battery', 'Processor']
-
-// export const stateColors: IdValuePair[] = [
-//     { id: 1, value: 'rgb(80,80,110)' },
-//     { id: 2, value: 'rgb(80,110,80)' },
-//     { id: 3, value: 'rgb(80,110,110)' },
-//     { id: 4, value: 'rgb(110,80,80)' },
-//     { id: 5, value: 'var(--color-middle)' },
-// ]
 
 export const trendColors: string[] = [
     'rgb(150,110,110)',
@@ -32,7 +21,7 @@ export const trendColors: string[] = [
     'rgb(110,150,110)',
 ]
 
-// anyway a maximum of 6 units (demo puropse)
+// anyway a maximum of 6 units (demo purpose)
 export const unitColors: string[] = [
     'rgb(80,80,110)',
     'rgb(80,110,80)',
@@ -41,7 +30,7 @@ export const unitColors: string[] = [
     'rgb(110,110,80)',
     'rgb(110,80,110)',
 ]
-// anyway a maximum of 6 units (demo purpose
+// anyway a maximum of 6 units (demo purpose)
 export const unitColorsDarker: string[] = [
     'rgb(60,60,90)',
     'rgb(60,90,60)',
@@ -55,17 +44,6 @@ export const brl =
     'border-top-left-radius:var(--rounding); border-bottom-left-radius:var(--rounding);'
 export const brr =
     'border-top-right-radius:var(--rounding); border-bottom-right-radius:var(--rounding);'
-
-// export const unitColorsLighter: string[] = [
-//     'rgb(100,100,130)',
-//     'rgb(75,105,75)',
-//     'rgb(75,105,105)',
-//     'rgb(105,75,75)',
-//     'rgb(105,105,75)',
-//     'rgb(105,75,105)',
-// ]
-
-// names in default EN
 
 export const states: ValueIdTitle[] = [
     { value: 1, identifier: 'IDLE', title: 'Idle' },

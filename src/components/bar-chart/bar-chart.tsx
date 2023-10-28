@@ -2,14 +2,9 @@ import { For, createEffect, createSignal, onMount } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import {
     Point,
-    bezierCommand,
-    connectPathAsArea,
     dataToPctData,
     dataToPoints,
     getBarsPath,
-    getSplineLinePath,
-    // timedPointCountSwitch,
-    zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
 import Responsive from '../../lib/components/responsive/responsive'
@@ -56,12 +51,6 @@ export const BarChart = (a: Args) => {
             setBars(bPath)
             lastps = ps
         }
-
-        // if (reset && lastps != undefined) {
-        //     timedPointCountSwitch(set, ps, lastps)
-        //     return
-        // }
-
         set(ps)
     }
 
@@ -69,8 +58,6 @@ export const BarChart = (a: Args) => {
 
     createEffect(() => {
         if (a.data) update()
-
-        // console.log('baars')
     })
 
     createEffect(() => {
@@ -97,17 +84,6 @@ export const BarChart = (a: Args) => {
                     viewBox={`0 0 ${mp} ${mp}`}
                     xmlns='http://www.w3.org/2000/svg'
                 >
-                    {/* {a.areaColor && (
-                        <g class='area'>
-                            <path
-                                vector-effect='non-scaling-stroke'
-                                style={{ ...baseStyle }}
-                                d={`${area()}`}
-                                fill={a.areaColor}
-                            />
-                        </g>
-                    )} */}
-
                     {a.color && (
                         <g class='line'>
                             <path

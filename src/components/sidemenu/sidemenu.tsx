@@ -1,9 +1,6 @@
 import Field from '../../lib/elements/field/field'
-import { Transition } from 'solid-transition-group'
 import styles from './sidemenu.module.css'
 import { createEffect, createSignal } from 'solid-js'
-import { BaseArgs } from 'lib/types/base-args'
-import { ThemeArgs } from 'lib/types/theme-args'
 import { FieldArgs } from 'lib/types/field-args'
 
 interface Args {
@@ -26,9 +23,10 @@ export const Sidemenu = (a: Args & FieldArgs) => {
             <Field
                 a
                 layer
-                style={`opacity:${open() ? 1 : 0}; 
-                        pointer-events:${open() ? 'auto' : 'none'}; 
-                        position:fixed;z-index:101; background:rgba(0,0,0,0.2); `}
+                class={styles.backdrop}
+                style={`opacity:${open() ? 1 : 0}; pointer-events:${
+                    open() ? 'auto' : 'none'
+                };`}
                 onClick={(e) => {
                     setOpen(false)
 

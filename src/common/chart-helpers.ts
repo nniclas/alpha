@@ -145,9 +145,6 @@ export const dataToPoints = (
     return result
 }
 
-// export const getBarsPath = (points: Point[]) =>
-//     points.reduce((acc, p, i) => `M ${p.x},${p.y} L ${p.x},${p.y}`)
-
 export const getBarsPath = (points: Point[]) =>
     points.reduce(
         (acc, point, i, a) =>
@@ -159,19 +156,3 @@ export const getBarsPath = (points: Point[]) =>
     )
 
 export const zeroLine = (ps: Point[]) => ps.map((p) => ({ x: p.x, y: 100 }))
-
-// export const timedPointCountSwitch = (
-//     set: (ps: Point[]) => void,
-//     newps: Point[],
-//     lastps: Point[]
-// ) => {
-//     set(zeroLine(lastps))
-
-//     setTimeout(() => {
-//         set(zeroLine(newps))
-//     }, 500)
-
-//     setTimeout(() => {
-//         set(newps)
-//     }, 1000)
-// }

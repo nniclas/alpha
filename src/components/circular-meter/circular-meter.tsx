@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 
 interface Args {
@@ -32,7 +32,6 @@ export const CircularMeter = (a: Args) => {
     const [c, setC] = createSignal<CircleCalc>(calcCircle(a.value))
 
     createEffect(() => {
-        // console.log(a.value)
         setC(calcCircle(a.value))
     })
 

@@ -6,13 +6,9 @@ import {
     connectPathAsArea,
     dataToPoints,
     getSplineLinePath,
-    // timedPointCountSwitch,
-    zeroLine,
 } from '../../common/chart-helpers'
 import Text from '../../lib/elements/text/text'
 import Responsive from '../../lib/components/responsive/responsive'
-import Shifter from '../../components/shifter/shifter'
-import { Transition, TransitionGroup } from 'solid-transition-group'
 import styles from './line-chart.module.css'
 
 const mp = 100 // multipler
@@ -62,12 +58,6 @@ export const LineChart = (a: Args) => {
             if (a.areaColor) setArea(apath)
             lastps = ps
         }
-
-        // if (reset && lastps != undefined) {
-        //     timedPointCountSwitch(set, ps, lastps)
-        //     return
-        // }
-
         set(ps)
     }
 

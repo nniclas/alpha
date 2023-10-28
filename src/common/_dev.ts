@@ -107,7 +107,7 @@ export const generateSomeEntries = (
 }
 
 //////////////////////////////////////////////////////
-/////////////// CONSOLE LOG SQL SCRIPTS (comment/uncomment to run/disable)
+/////////////// CONSOLE LOG SQL SCRIPTS (uncomment to run)
 //////////////////////////////////////////////////////
 
 //console.log(generateSomeStats([1, 2, 3, 4], 100))

@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal } from 'solid-js'
+import { For, createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import { BaseArgs } from '../../lib/types/base-args'
@@ -13,11 +13,6 @@ interface Args {
 
 export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
     const [selected, setSelected] = createSignal<number>(a.value)
-
-    // createEffect(() => {
-    //     setSelected(a.value)
-    //     console.log(a.value)
-    // })
 
     return (
         <Field rel>
@@ -38,14 +33,6 @@ export const SelectButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                                 setSelected(i())
                                 e.stopPropagation()
                             }}
-                            // style={`
-                            //     ${
-                            //         i() == 0
-                            //             ? brl
-                            //             : i() == a.children.length - 1
-                            //             ? brr
-                            //             : 'none'
-                            //     }`}
                             {...a}
                         >
                             {c}

@@ -1,9 +1,7 @@
 import Field from '../../lib/elements/field/field'
-import Text from '../../lib/elements/text/text'
 import { For, createEffect, createSignal } from 'solid-js'
 import './anim-array.css'
 import { TransitionGroup } from 'solid-transition-group'
-import Button from '../../lib/elements/button/button'
 
 interface Args {
     items?: any[]
@@ -19,8 +17,6 @@ export default (a: Args) => {
     const [list, setList] = createSignal<any[]>([])
 
     createEffect(() => {
-        // console.log(a.items)
-
         if (a.items) {
             const listIds = list().map((u) => u.id)
             const incomingIds = a.items.map((inu) => inu.id)

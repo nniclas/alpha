@@ -1,7 +1,6 @@
 .container {
     padding: 16px 64px 64px 64px;
     display: grid;
-    /* justify-content: center; */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }

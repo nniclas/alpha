@@ -1,17 +1,13 @@
 import { For, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import Field from '../../lib/elements/field/field'
-import appStore from '../../core/app-store'
-
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../lib/utils'
 
-// todo: in constants
 const COMPACT_HEADER_SIZE = 60
 
 interface Args {
     sections: any[]
     names: string[]
-    // openAction: (s: string) => void
     minSize: number
     section: string
     colRes?: boolean

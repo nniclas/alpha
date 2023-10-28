@@ -11,3 +11,9 @@
 .move {
     animation: move-in-steps 1.6s 1 cubic-bezier(0.19, 1, 0.22, 1);
 }
+
+.container {
+    width: 200px;
+    gap: 4px;
+    background: var(--primary-bg);
+}

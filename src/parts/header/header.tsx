@@ -21,7 +21,7 @@ const TopBar = () => (
         <Responsive
             compact={
                 <Field p='0 0 0 16px  ' gxs>
-                    <Field id='hej' s h={35} p='6px 0'>
+                    <Field s h={35} p='6px 0'>
                         <Logo />
                     </Field>
                     <Field c s>
