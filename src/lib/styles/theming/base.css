@@ -18,6 +18,8 @@
     --color-strongest: hsl(var(--th-hue), var(--th-saturation), 18%);
     --color-intense: hsl(var(--th-hue), var(--th-saturation), 15%);
     --color-black: hsl(var(--th-hue), var(--th-saturation), 12%);
+    --color-layer-dark: rgba(0, 0, 0, 0.15);
+    --color-layer-light: rgba(255, 255, 255, 0.1);
     --color-accent: hsl(50, 36%, 62%);
     --color-success: rgb(120, 200, 120);
     --color-error: rgb(200, 120, 120);

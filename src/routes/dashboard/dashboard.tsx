@@ -63,12 +63,6 @@ export const Dashboard: Component = () => {
                     />
                 )}
             </Field>
-            <Field
-                a
-                style={`height:8px; flex:none; background: ${
-                    unitColors[ds.getUnitIndex(ds.selectedUnitId())]
-                }`}
-            />
         </Field>
     )
 }

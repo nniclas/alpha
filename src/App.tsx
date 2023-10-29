@@ -21,7 +21,8 @@ import Responsive from './lib/components/responsive/responsive'
 import Text from './lib/elements/text/text'
 import { SectionHeader } from './parts/section-header/section-header'
 import { FiAlertTriangle } from 'solid-icons/fi'
-import { trendColors } from './common/constants'
+import { trendColors, unitColors } from './common/constants'
+import ds from './core/data-store'
 
 const iconStyle = { size: 18, color: trendColors[0] }
 
@@ -61,14 +62,18 @@ export const App: Component = () => {
                                 <Field aic gmd>
                                     <FiAlertTriangle {...iconStyle} />
                                     <Text xs accent>
-                                        {
-                                            'Some units are offline, check status.'
-                                        }
+                                        {'Some units are offline..'}
                                     </Text>
                                 </Field>
                             }
                             iconTheme='accent'
                             icon={<FiAlertTriangle />}
+                        />
+                        <Field
+                            a
+                            style={`height:8px; flex:none; background: ${
+                                unitColors[ds.getUnitIndex(ds.selectedUnitId())]
+                            }`}
                         />
                     </Responsive>
                 </Field>

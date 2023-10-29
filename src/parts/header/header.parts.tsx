@@ -47,17 +47,22 @@ export const MiniUnit = (a: { u: Unit }) => {
                 br
                 trim
                 col
-                style={`cursor:pointer;cursor:hand;width:240px; background: ${
-                    ds.selectedUnitId() == a.u.id
-                        ? unitColors[ds.getUnitIndex(a.u.id)]
-                        : 'var(--color-lighter)'
+                style={` cursor:pointer;cursor:hand; background: ${
+                    unitColors[ds.getUnitIndex(a.u.id)]
                 }`}
+                // style={`cursor:pointer;cursor:hand;width:240px; background: ${
+                //     ds.selectedUnitId() == a.u.id
+                //         ? unitColors[ds.getUnitIndex(a.u.id)]
+                //         : 'var(--color-lighter)'
+                // }`}
             >
                 <Field
+                    a
                     s
                     aic
                     gxs
-                    style={`background: ${
+                    style={`
+                    }; background: ${
                         ds.selectedUnitId() == a.u.id
                             ? unitColorsDarker[ds.getUnitIndex(a.u.id)]
                             : unitColors[ds.getUnitIndex(a.u.id)]

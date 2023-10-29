@@ -23,20 +23,20 @@ export const trendColors: string[] = [
 
 // anyway a maximum of 6 units (demo purpose)
 export const unitColors: string[] = [
-    'rgb(80,80,110)',
+    'rgb(110,110,80)',
     'rgb(80,110,80)',
     'rgb(80,110,110)',
     'rgb(110,80,80)',
-    'rgb(110,110,80)',
+    'rgb(80,80,110)',
     'rgb(110,80,110)',
 ]
 // anyway a maximum of 6 units (demo purpose)
 export const unitColorsDarker: string[] = [
-    'rgb(60,60,90)',
+    'rgb(90,90,60)',
     'rgb(60,90,60)',
     'rgb(60,90,90)',
     'rgb(90,60,60)',
-    'rgb(90,90,60)',
+    'rgb(60,60,90)',
     'rgb(90,60,90)',
 ]
 

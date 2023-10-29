@@ -25,7 +25,7 @@ export const UnitStateIcon = (a: Args) => {
         { value: 2, icon: <FiPower {...color} /> },
         { value: 3, icon: <FiLoader {...color} /> },
         { value: 4, icon: <FiTool {...color} /> },
-        { value: 5, icon: <FiX {...color} /> },
+        { value: 5, icon: <FiZapOff {...color} /> },
     ]
 
     return stateIcons.find((s) => s.value == a.value)?.icon

@@ -18,8 +18,8 @@ import Button from '../../../lib/elements/button/button'
 import { createEffect, onMount } from 'solid-js'
 
 const meterColors = {
-    meterColor: 'var(--color-medium)',
-    valueColor: 'var(--color-accent)',
+    meterColor: 'var(--color-layer-dark)',
+    valueColor: 'var(--accent-color)',
 }
 
 const iconStyle = { size: 26, color: 'var(--color-middle)' }
