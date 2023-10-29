@@ -1,12 +1,10 @@
-import { For, createEffect, createSignal, onMount } from 'solid-js'
-import Field from '../../lib/elements/field/field'
+import { createEffect, createSignal } from 'solid-js'
 
 interface Args {
     value: number // pct value
     valueColor: string
     meterColor: string
     style?: any
-    // scale: number // how long scale (independent of pct value)
 }
 
 const scale = 100
@@ -25,7 +23,6 @@ export const SvgUnitMeter = (a: Args) => {
     const [path, setPath] = createSignal<string>(startPath)
 
     createEffect(() => {
-        //console.log(a.value)
         if (a.value) {
             setPath(createPath(a.value, scale))
         }
@@ -39,7 +36,6 @@ export const SvgUnitMeter = (a: Args) => {
                 width='100%'
                 height='100%'
                 preserveAspectRatio='none'
-                // viewBox={`0 0 10 10`}
                 xmlns='http://www.w3.org/2000/svg'
             >
                 <path

@@ -1,18 +1,11 @@
-import { Component, For, Suspense, createEffect } from 'solid-js'
+import { Component, Suspense } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Text from '../../lib/elements/text/text'
 import ds from '../../core/data-store'
-import { FiAlertTriangle, FiMoreHorizontal } from 'solid-icons/fi'
 import { Transition } from 'solid-transition-group'
 import { Loader } from '../../components/loader/loader'
-import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
-import Dropdown from '../../lib/components/dropdown/dropdown'
 import { MainMenu, MiniUnit } from './header.parts'
-import { Slider } from '../../lib/components/slider/slider'
-import { SectionHeader } from '../section-header/section-header'
-import Button from '../../lib/elements/button/button'
-import { Label } from '../../lib/components/label/label'
 import Logo from '../../assets/logo.svg?component-solid'
 import { SliderNew } from '../../lib/components/slider-new/slider-new'
 
@@ -71,9 +64,6 @@ export const Header: Component = () => {
                             }
                         >
                             <Field layer col s res={{ h: 70 }}>
-                                {/* <Field gsm psm>
-                                    {units()}
-                                </Field> */}
                                 <Responsive
                                     compact={
                                         <Field>

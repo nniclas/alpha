@@ -1,40 +1,17 @@
 import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
-import {
-    FiAnchor,
-    FiEdit3,
-    FiList,
-    FiPlusCircle,
-    FiSettings,
-    FiUser,
-    FiUsers,
-    FiX,
-    FiXCircle,
-} from 'solid-icons/fi'
-import Modal from '../../lib/components/modal/modal'
+import { FiList, FiSettings, FiUser, FiX } from 'solid-icons/fi'
 import { createEffect, createSignal, onMount } from 'solid-js'
-import { Unit } from '../../types/entities/unit'
-import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
-import { v4 as uuidv4 } from 'uuid'
-import { Transition } from 'solid-transition-group'
 import { AppSettings, UnitSettings, UserSettings } from './settings.parts'
 import { ButtonGroup } from '../../components/button-group/button-group'
 import Shifter from '../../components/shifter/shifter'
 
-interface Args {
-    // unit?: Unit
-}
-
 const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
-export default (a: Args) => {
+export default () => {
     const [page, setPage] = createSignal<number>(0)
-
-    createEffect(() => {
-        // console.log(page())
-    })
 
     return (
         <Field
@@ -47,7 +24,6 @@ export default (a: Args) => {
             res={{ br: false, s: false, w: 'auto', h: 'auto' }}
             secondary
             onClick={(e: any) => {
-                // console.log('bsshh')
                 if (!isABtn(e.target)) e.stopPropagation()
             }}
         >

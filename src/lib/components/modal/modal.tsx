@@ -24,8 +24,6 @@ export default (a: Args & BaseArgs & FieldArgs) => {
         }
 
         if (a.open != undefined) setOpen(a.open)
-
-        // console.log(a.open)
     })
 
     return (
@@ -65,14 +63,7 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                     style={`position:fixed; z-index:102; transform:translateY(${
                         open() ? 0 : -20
                     }px); `}
-                    onClick={(e) => {
-                        setOpen(false)
-                        // clicking anywhere in menu will close
-                        // handle close targets in child like this: if (!isABtn(e.target)) e.stopPropagation()
-                        // e.preventDefault()
-                        // e.stopPropagation()
-                        // return false
-                    }}
+                    onClick={(e) => setOpen(false)}
                 >
                     {children() ?? <></>}
                 </Field>

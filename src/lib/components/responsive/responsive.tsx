@@ -33,9 +33,7 @@ export default (a: Args & any) => {
 
     return (
         <Field col {...a}>
-            {/* <Transition name='slide-fade'> */}
             {compact() == true ? a.compact : a.children}
-            {/* </Transition> */}
         </Field>
     )
 }

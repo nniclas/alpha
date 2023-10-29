@@ -1,0 +1,9 @@
+.fix {
+    position: fixed;
+    z-index: 100;
+}
+
+.container {
+    z-index: 101;
+    height: auto;
+}

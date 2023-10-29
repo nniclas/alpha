@@ -16,12 +16,6 @@ interface Args {
 }
 
 export const Label = (a: Args & TextArgs & ThemeArgs) => {
-    // if (a.titleTheme) {
-    //     console.log(
-    //         `color:var(--${a.titleTheme ? a.titleTheme : thToStr(a)}-color)`
-    //     )
-    // }
-
     const color = a.color && { color: a.color }
 
     return (
@@ -37,14 +31,7 @@ export const Label = (a: Args & TextArgs & ThemeArgs) => {
                 </div>
             )}
             {a.children && (
-                <Text
-                    res
-                    size={a.size}
-                    // style={`color:var(--${
-                    //     a.titleTheme ? a.titleTheme : thToStr(a)
-                    // }-color)`}
-                    {...color}
-                >
+                <Text res size={a.size} {...color}>
                     {a.children}
                 </Text>
             )}

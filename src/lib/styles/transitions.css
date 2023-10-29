@@ -1,8 +1,4 @@
-/* 
-    ///
-    solid-transition-group basic transitions 
-    ///
-*/
+/*  solid-transition-group basic transitions  */
 
 /* --- */
 .bump-fade-enter-active,
@@ -35,7 +31,8 @@
 /* --- */
 .foo-enter-active,
 .foo-exit-active {
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.2s;
+    transition-timing-function: cubic-bezier(0.75, 0.25, 0.25, 0.75);
 }
 .foo-enter,
 .foo-exit-to {
@@ -49,8 +46,8 @@
 /* --- */
 .bar-enter-active,
 .bar-exit-active {
-    transition: opacity 0.3s, transform 0.3s;
-    transition-timing-function: ease-out;
+    transition: opacity 0.3s, transform 0.2s;
+    transition-timing-function: cubic-bezier(0.75, 0.25, 0.25, 0.75);
 }
 .bar-enter,
 .bar-exit-to {
@@ -71,6 +68,6 @@
 .fade-exit-to {
     opacity: 0;
 }
-.fade-enter {
-    /* */
-}
+/* .fade-enter {
+ 
+} */

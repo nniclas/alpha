@@ -5,8 +5,6 @@ import { useNavigate } from '@solidjs/router'
 import { checkStylesAndSetCssTheming } from '../common/utils'
 
 function createDataState() {
-    // const navigate = useNavigate()
-
     const [session, setSession] = createSignal<Session>()
 
     const [theme, setTheme] = createSignal<Theme>('dark')
@@ -14,8 +12,6 @@ function createDataState() {
     const [rounding, setRounding] = createSignal<boolean>(true)
     const [section, setSection] = createSignal<Section>('primary') // main dashboard sections, left/right or top/bottom
     const [showCharts, setShowCharts] = createSignal<boolean>(false)
-
-    // const [week, setWeek] = createSignal<string>('2023-32') ////////////////////////
 
     createEffect(() => {
         // reassign to data store if browser refreshes

@@ -15,7 +15,6 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     let p = a.p || 64
 
     const [index, setIndex] = createSignal<number>(0)
-
     const [drag, setDrag] = createSignal<boolean>(false)
     const [pos, setPos] = createSignal<number>(0)
     const [offset, setOffset] = createSignal<number>(0)
@@ -23,16 +22,11 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     const [w, setW] = createSignal<number>(a.w || 0)
 
     onMount(() => {
-        if (a.w == undefined) {
-            setW(layerRef.clientWidth)
-        }
-
-        // console.log(a.children.map((c: any) => c.content.innerHTML))
+        if (a.w == undefined) setW(layerRef.clientWidth)
     })
 
     createEffect(() => {
         if (layerRef.clientWidth > 0) goTo(undefined, 0)
-        // console.log(pos())
     })
 
     const start = (e: any) => {
@@ -44,9 +38,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     const move = (e: any) => {
         if (drag()) {
             let pos = e.clientX - offset()
-
             const movement = Math.round(e.clientX - relOffset())
-
             if (Math.abs(movement) > 80) {
                 goTo(pos, undefined, movement > 0 ? 'next' : 'prev')
             } else setPos(pos)
@@ -78,7 +70,6 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
             onPointerDown={start}
             onPointerMove={move}
             onPointerUp={stop}
-            // onPointerLeave={stop}
             rel
         >
             <Field
@@ -102,29 +93,7 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
                 </For>
             </Field>
             <Field layer ref={layerRef} style='pointer-events:none'></Field>
-            <Field layer aie jcs style='pointer-events:none'>
-                {/* <Field pmd gxs s>
-                    <For each={Array(a.children.length).fill(0)}>
-                        {(c, i) => {
-                            return (
-                                <Field
-                                    s
-                                    a
-                                    br
-                                    w={8}
-                                    h={8}
-                                    style={`width: 8px; height: 8px; background:${
-                                        index() == i()
-                                            ? 'rgba(255,255,255,0.4)'
-                                            : 'rgba(0,0,0,0.4)'
-                                    }`}
-                                    focus
-                                />
-                            )
-                        }}
-                    </For>
-                </Field> */}
-            </Field>
+            <Field layer aie jcs style='pointer-events:none'></Field>
         </Field>
     )
 }

@@ -1,22 +1,10 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-    onCleanup,
-    onMount,
-} from 'solid-js'
-
+import { Suspense, createEffect, onCleanup, onMount } from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
 import mds from '../../../core/machine-data-store'
-import { FiMonitor, FiSettings, FiSunrise } from 'solid-icons/fi'
-import { SectionHeader } from '../../../parts/section-header/section-header'
-
+import { FiMonitor } from 'solid-icons/fi'
 import { Container } from '../../../components/area/container'
 import { isCompact } from '../../../lib/utils'
 import { Transition } from 'solid-transition-group'
@@ -26,7 +14,6 @@ import {
     getBatteryLevel,
     getProcessorUsage,
 } from '../../../core/machine-readers'
-import { LineChart } from '../../../components/line-chart/line-chart'
 import {
     BatteryLevelArea,
     ChargeControlArea,
@@ -34,13 +21,11 @@ import {
     ProcessorUsageArea,
     SignalStrengthArea,
 } from './operation.parts'
-import { Resolution, Section } from 'types/_types'
-import SelectField from '../../../lib/components/select-field/select-field'
-import { statResolutions, stats } from '../../../common/constants'
+import { Section } from 'types/_types'
+import { stats } from '../../../common/constants'
 import styles from '../../../common/common.module.css'
 
 const iconStyle = { size: 18, color: 'var(--color-middle)' }
-
 const readers = [getSignalStrength, getBatteryLevel, getProcessorUsage]
 
 interface Args {
@@ -131,51 +116,7 @@ export const Operation = (a: Args) => {
                                     <Text res title>
                                         Operation
                                     </Text>
-                                    {/* <Field jce>
-                                        <Field
-                                            s
-                                            w={100}
-                                            h={80}
-                                            c
-                                            res={{ w: 100, h: 60 }}
-                                        >
-                                            <SelectField
-                                                index={statResolutions.indexOf(
-                                                    ds.selectedMachineStatisticsResolution()
-                                                )}
-                                                items={statResolutions.map(
-                                                    (r) => (
-                                                        <Field
-                                                            secondary
-                                                            c
-                                                            w={100}
-                                                            h={80}
-                                                            res={{
-                                                                w: 100,
-                                                                h: 60,
-                                                            }}
-                                                        >
-                                                            <Text xs accent>
-                                                                {r}
-                                                            </Text>
-                                                        </Field>
-                                                    )
-                                                )}
-                                                onChange={(v) => {
-                                                    ds.setSelectedMachineStatisticsResolution(
-                                                        statResolutions[v]
-                                                    )
-                                                }}
-                                            />
-                                        </Field>
-                                    </Field> */}
                                 </Field>
-                                {/* <SectionHeader
-                                    title='Operation'
-                                    icon={<FiSettings />}
-                                    iconTheme='tertiary'
-                                    click={() => as.setSection(a.section)}
-                                /> */}
 
                                 <Field s pwmd gmd>
                                     <Text md accent>

@@ -1,50 +1,27 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-} from 'solid-js'
-
+import { For, Suspense, createEffect, createSignal } from 'solid-js'
 import Field from '../../../lib/elements/field/field'
 import Text from '../../../lib/elements/text/text'
 import as from '../../../core/app-store'
 import ds from '../../../core/data-store'
-import {
-    FiAlertCircle,
-    FiPlusCircle,
-    FiTrendingUp,
-    FiX,
-    FiZap,
-} from 'solid-icons/fi'
-import { Unit } from '../../../types/entities/unit'
+import { FiAlertCircle, FiPlusCircle, FiX } from 'solid-icons/fi'
 import { tags } from '../../../common/constants'
 import { Transition } from 'solid-transition-group'
 import { isCompact } from '../../../lib/utils'
-import Modal from '../../../lib/components/modal/modal'
 import {
     EntryRow,
     Table,
     Row,
-    Cell,
     TableContainer,
     HeaderCell,
 } from './events.parts'
 import Responsive from '../../../lib/components/responsive/responsive'
-import { SectionHeader } from '../../../parts/section-header/section-header'
-import SelectField from '../../../lib/components/select-field/select-field'
 import { Label } from '../../../lib/components/label/label'
 import { TimeLine } from '../../../components/timeline/timeline'
 import { Loader } from '../../../components/loader/loader'
 import { Sidemenu } from '../../../components/sidemenu/sidemenu'
 import Button from '../../../lib/elements/button/button'
-import { Statistics } from '../statistics/statistics'
-import { Minimizer } from '../../../components/minimizer/minimizer'
-import appStore from '../../../core/app-store'
 import { Section } from 'types/_types'
 import EditEntry from '../../../parts/edit-entry/edit-entry'
-
 import styles from '../../../common/common.module.css'
 
 const iconStyle = { size: 18, color: 'var(--color-middle)' }
@@ -183,12 +160,6 @@ export const Events = (a: Args) => {
                     </Field>
                 </Suspense>
             </Transition>
-            {/* <Collapser
-                sections={[<Evts />, <Stats />]}
-                names={['evts', 'stats']}
-                openAction={(sec: any) => console.log('hej')}
-            /> */}
-
             <Sidemenu maxWidth={500} open={entryMenuOpen()}>
                 <Field>
                     <EditEntry />

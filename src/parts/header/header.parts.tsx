@@ -1,20 +1,15 @@
-import { Component, For, Suspense, createEffect, createSignal } from 'solid-js'
 import { useNavigate } from '@solidjs/router'
-
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Text from '../../lib/elements/text/text'
 import appStore from '../../core/app-store'
 import ds from '../../core/data-store'
-
-import Logo from '../../assets/logo.svg?component-solid'
 import { Unit } from '../../types/entities/unit'
 import { UnitStateIcon } from '../../components/unit-state-icon/unit-state-icon'
 import { FiBatteryCharging, FiLogOut, FiMenu, FiSettings } from 'solid-icons/fi'
 import Modal from '../../lib/components/modal/modal'
 import Responsive from '../../lib/components/responsive/responsive'
 import Dropdown from '../../lib/components/dropdown/dropdown'
-import { Label } from '../../lib/components/label/label'
 import { unitColors, unitColorsDarker } from '../../common/constants'
 import { SvgUnitMeter } from '../../components/svg-unit-meter/svg-unit-meter'
 import { randInt } from '../../common/utils'
@@ -22,24 +17,11 @@ import Settings from '../settings/settings'
 
 const iconStyle = { size: 18, color: 'var(--color-medium)' }
 
-// const meterColors = {
-//     meterColor: 'var(--color-strong)',
-//     valueColor: 'var(--color-middle)',
-// }
-
-// const ps = 60
-
 export const MiniUnit = (a: { u: Unit }) => {
-    // const c = stateColors.find((sc) => sc.id == a.u.state)?.value
-
     return (
         <Field
             gxs
-            onClick={(e) => {
-                ds.setSelectedUnitId(a.u.id)
-                // u.selected = true
-                // machineDataStore.setPollingActive(false)
-            }}
+            onClick={(e) => ds.setSelectedUnitId(a.u.id)}
             res={{ aie: true }}
         >
             <Field
@@ -50,11 +32,6 @@ export const MiniUnit = (a: { u: Unit }) => {
                 style={` cursor:pointer;cursor:hand; background: ${
                     unitColors[ds.getUnitIndex(a.u.id)]
                 }`}
-                // style={`cursor:pointer;cursor:hand;width:240px; background: ${
-                //     ds.selectedUnitId() == a.u.id
-                //         ? unitColors[ds.getUnitIndex(a.u.id)]
-                //         : 'var(--color-lighter)'
-                // }`}
             >
                 <Field
                     a

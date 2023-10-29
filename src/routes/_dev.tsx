@@ -1,17 +1,5 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-} from 'solid-js'
-import { Outlet, useNavigate } from '@solidjs/router'
-import Logo from '../../assets/logo.svg?component-solid'
-
+import { Component, For, Suspense, createEffect } from 'solid-js'
 import Field from '../lib/elements/field/field'
-
-import { Transition } from 'solid-transition-group'
 import Button from '../lib/elements/button/button'
 import Text from '../lib/elements/text/text'
 import testStore from '../core/test-store'

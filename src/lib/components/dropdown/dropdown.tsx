@@ -1,5 +1,5 @@
 import { BaseArgs } from '../../types/base-args'
-import { For, createEffect, createSignal, onMount } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 import { FieldArgs } from 'lib/types/field-args'
 import Field from '../../elements/field/field'
 import Button from '../../elements/button/button'
@@ -54,18 +54,12 @@ export default (a: Args & BaseArgs & FieldArgs) => {
 
                 <Field
                     a
-                    // jcs
-
-                    // jce={a.dock == 'right'}
                     style={`${
                         a.dock == 'topfix' &&
                         'position:fixed; left:0; width:100%;'
                     } left:0;z-index:101;  height:auto;`}
                     onClick={(e) => {
                         setOpen(false) // clicking anywhere in menu or outside will close menu
-                        // e.preventDefault()
-                        // e.stopPropagation()
-                        // return false
                     }}
                 >
                     <Field col aie={a.side == 'left'} ais={a.side == 'right'}>

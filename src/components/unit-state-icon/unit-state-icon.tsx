@@ -1,12 +1,4 @@
-import {
-    FiZap,
-    FiZapOff,
-    FiTool,
-    FiMoon,
-    FiLoader,
-    FiPower,
-    FiX,
-} from 'solid-icons/fi'
+import { FiZapOff, FiTool, FiMoon, FiLoader, FiPower } from 'solid-icons/fi'
 
 interface ValueIconPair {
     value: number

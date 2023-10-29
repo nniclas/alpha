@@ -1,5 +1,4 @@
 import { Unit } from './unit'
-import { User } from './user'
 
 export interface Stat {
     id?: number

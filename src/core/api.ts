@@ -1,6 +1,5 @@
-import axios, { AxiosError, ResponseType } from 'axios'
+import axios, { AxiosError } from 'axios'
 import as from '../core/app-store'
-import { Navigate } from '@solidjs/router'
 
 const authHeaders = () => {
     return {

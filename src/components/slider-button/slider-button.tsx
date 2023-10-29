@@ -1,13 +1,11 @@
-import { For, createEffect, createSignal } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import { BaseArgs } from '../../lib/types/base-args'
 import { ThemeArgs } from '../../lib/types/theme-args'
 import { ButtonArgs } from '../../lib/types/button-args'
-import styles from './slider-button.module.css'
 import Text from '../../lib/elements/text/text'
 import { Transition } from 'solid-transition-group'
-import { FieldArgs } from 'lib/types/field-args'
 
 interface Args {
     value: number
@@ -22,7 +20,6 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
 
     createEffect(() => {
         setSelected(a.value)
-        // console.log(a.value)
     })
 
     const content = (v: string) => (
@@ -38,12 +35,7 @@ export const SliderButton = (a: Args & ButtonArgs & BaseArgs & ThemeArgs) => {
                     a.change(i)
                 }}
             >
-                <Text
-                    noselect
-                    res
-                    title
-                    // style='font-weight:bold; '
-                >
+                <Text noselect res title>
                     {v}
                 </Text>
             </Button>

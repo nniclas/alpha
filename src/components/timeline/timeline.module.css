@@ -1,7 +1,6 @@
 .item {
     width: 42px;
     height: 42px;
-    /* border-radius: 32px; */
     box-sizing: border-box;
     transition: 0.1s ease border;
     cursor: pointer;

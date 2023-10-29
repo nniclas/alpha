@@ -9,13 +9,13 @@
     display: flex;
     justify-content: end;
     overflow: auto;
-    transition: 0.2s ease transform;
+    transition: 0.2s cubic-bezier(0.75, 0.25, 0.25, 0.75) transform;
 }
 
 .content {
     pointer-events: auto;
     transform: translateX(100%);
-    transition: 0.4s ease all;
+    transition: 0.3s cubic-bezier(0.75, 0.25, 0.25, 0.75) all;
     background: var(--color-stronger);
 }
 

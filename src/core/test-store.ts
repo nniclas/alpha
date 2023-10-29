@@ -1,5 +1,4 @@
 import { createSignal, createRoot, createResource } from 'solid-js'
-import { get } from './api'
 import { Unit } from 'types/entities/unit'
 import { Entry } from 'types/entities/entry'
 import { delay } from '../common/utils'

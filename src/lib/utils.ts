@@ -1,4 +1,3 @@
-import { FieldArgs } from '../lib/types/field-args'
 import { ThemeArgs } from './types/theme-args'
 
 export const scopeStyles = (modulesStyles: any, args: any) => {
@@ -83,10 +82,6 @@ export const isCompact = (breakPoint = 1400) => {
 // merge-function . todo investigate if Object.assign will work here
 export const replaceWithLayeredStyles = (original: any, layered: any) => {
     if (layered == undefined) return original
-
-    // todo..
-    // Object.assign(target, source);
-
     const result: any = {}
     Object.keys(original).forEach((k) => {
         const lkeys = Object.keys(layered)
@@ -96,8 +91,6 @@ export const replaceWithLayeredStyles = (original: any, layered: any) => {
             if (lk[0] == k[0] && lk.length == k.length) foundKey = lk
         })
 
-        // investigate this: when parent has a res prop all Field children is rendered twice.
-        // this section causes it...
         if (foundKey) result[foundKey] = layered[foundKey]
         else result[k] = original[k]
     })

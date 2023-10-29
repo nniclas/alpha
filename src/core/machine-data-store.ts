@@ -7,7 +7,7 @@ import {
 import { clear, tick } from '../common/timer-utils'
 import { delay } from '../common/utils'
 
-// simulator!
+// some kind of simulator!
 
 interface UnitEntry {
     measures: MachineMeasure[]
@@ -22,7 +22,6 @@ interface MachineMeasure {
 function createDataState() {
     const [selectedUnit, setSelectedUnit] = createSignal<number>(0)
     const [data, setData] = createSignal<UnitEntry[]>() //
-    // const [loaded, setLoaded] = createSignal<boolean>(false) //
 
     // intentional set-loaded resource
     const [loadedRes] = createResource<boolean, number>(
@@ -33,18 +32,8 @@ function createDataState() {
         }
     )
 
-    // createEffect(() => {
-    //     console.log(data())
-    // })
-
     const read = (ui: number, mi: number) => {
-        // console.log('reading from the depths of the mysterious catacombs..')
-
-        //////////////
-        //////////////
-        //////////////
-        //////////////
-        // total destructuring for immutability..
+        //// todo: destructure state a little nicer
         const d = [...data()!]
         const ud = { ...d[ui] }
         const udm = { ...[...ud.measures][mi] }
@@ -52,22 +41,14 @@ function createDataState() {
         udm.value = val
         ud.measures[mi] = udm
         d[ui] = ud
-        setData(d) // update state ///////////////////////////////////////////////
-        //////////////
-        //////////////
-        //////////////
-        //////////////
+        setData(d) // update state /
+        ////
     }
 
     //
     const startRead = async (ui: number, mi?: number) => {
-        // setLoaded(false)
-
         tick(
-            data()![ui].measures.map((m, mi) => () => {
-                // console.log('read ', ui, mi)
-                read(ui, mi)
-            }),
+            data()![ui].measures.map((m, mi) => () => read(ui, mi)),
             true,
             true
         )

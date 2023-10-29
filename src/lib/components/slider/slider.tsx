@@ -25,10 +25,7 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
             setX(0)
         }
     }
-    onMount(() => {
-        // console.log(a.children.map((c: any) => c.content.innerHTML))
-        reset()
-    })
+    onMount(() => reset())
 
     const resetSize = () => {
         if (isCompact()) {
@@ -44,7 +41,7 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
     }
 
     const move = (e: any) => {
-        const margin = 0 // todo?
+        const margin = 0
 
         if (drag()) {
             const itemStopRange = w() - margin * 3
@@ -52,14 +49,10 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
             let movement = e.movementX * 40
 
             if (Math.abs(movement) > 5) {
-                //////////////////////////////
-                //////////// FIXED STOPS MOVING
-                // let x -= itemStopRange * dir
-                // boundaries
                 let xl = x()
 
                 xl -= itemStopRange * dir
-                const range = w() * a.children.length // assuming full window width: ;
+                const range = w() * a.children.length
                 if (xl < 0) xl = 0
                 if (xl > range - itemStopRange) xl = range - itemStopRange
 
@@ -70,10 +63,6 @@ export const Slider = (a: Args & BaseArgs & ThemeArgs) => {
             setDrag(false)
         }
     }
-
-    // createEffect(() => {
-    //     console.log(index())
-    // })
 
     return (
         <Field

@@ -6,38 +6,31 @@
 .text.lg {
     font-family: var(--text-font);
     font-size: var(--text-size-lg);
-    /* font-weight: 700; */
 }
 
 .text.md {
     font-family: var(--text-font);
     font-size: var(--text-size-md);
-    /* font-weight: 700; */
 }
 .text.sm {
     font-family: var(--text-font);
     font-size: var(--text-size-sm);
-    /* font-weight: 700; */
 }
 .text.xs {
     font-family: var(--text-font);
     font-size: var(--text-size-xs);
-    /* font-weight: 700; */
 }
 .text.xxs {
     font-family: var(--text-font);
     font-size: var(--text-size-xxs);
-    /* font-weight: 700; */
 }
 .text.caption {
     font-family: var(--text-font);
-    /* font-weight: bold; */
     font-size: var(--text-size-xxs);
     letter-spacing: 1px;
 }
 .text.title {
     font-family: var(--text-font);
-    /* font-weight: bold; */
     font-size: var(--text-size-xs);
     letter-spacing: 1px;
 }

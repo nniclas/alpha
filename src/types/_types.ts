@@ -16,12 +16,10 @@ export interface IdValuePair {
     value: string
 }
 
-////////////////////////////////////////
-
 export interface Session {
     username: string
     token: string
-    user?: User // TODO add from api
+    user?: User
 }
 
 export interface StatData {
@@ -29,7 +27,6 @@ export interface StatData {
     titles: string[]
 }
 
-// define object like { key1: {}, key2: {}, ...keyn: {} }
 export interface MachineStatData {
     [statData: string]: StatData[]
 }

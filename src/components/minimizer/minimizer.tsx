@@ -22,7 +22,7 @@ export const Minimizer = (a: Args) => {
     const flexOpen = `flex-basis:calc(100% - ${a.minSize}px)`
     const flexClosedCompact = `flex-basis:${COMPACT_HEADER_SIZE}px; min-height:${COMPACT_HEADER_SIZE}px`
     const flexOpenCompact = `flex-basis:calc(100% - ${COMPACT_HEADER_SIZE}px)`
-    const style = `transition:1s cubic-bezier(0.19, 1, 0.22, 1) all`
+    const style = `transition:.8s cubic-bezier(0.19, 1, 0.22, 1) all`
 
     createEffect(() => {
         if (a.section) setSection(a.section)

@@ -38,19 +38,6 @@ export default (a: BaseArgs & ThemeArgs & EffectArgs & ButtonArgs) => {
         }
     }, resArgs())
 
-    // createEffect(() => {
-    //     if (a.res && isCompact()) {
-    //         ssRes = scopeStyles(styles, replaceWithLayeredStyles(a, a.res))
-    //         setSs(ssRes)
-    //         setCs(csRes)
-
-    //         console.log('hjeh')
-    //     } else {
-    //         setSs(scopeStyles(styles, a))
-    //         setCs(customStyles(a, styleMap))
-    //     }
-    // })
-
     // when manually using class prop
     let ac
     if (a.class) {

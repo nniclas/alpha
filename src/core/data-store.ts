@@ -1,19 +1,16 @@
 import {
     createSignal,
-    createMemo,
     createRoot,
     createEffect,
     createResource,
 } from 'solid-js'
-// import { Activity } from 'types/activity'
 import { get, post, put, del } from './api'
 import { Unit } from 'types/entities/unit'
-import { User } from 'types/entities/user'
 import { Entry } from 'types/entities/entry'
 import appStore from './app-store'
 import { delay } from '../common/utils'
-import { statResolutions, stats, unitColors } from '../common/constants'
-import { MachineStatData, Resolution, StatCategory } from 'types/_types'
+import { stats } from '../common/constants'
+import { Resolution, StatCategory } from 'types/_types'
 
 const getWithAuth = async <T>(path: string, simDelay = true): Promise<T> => {
     if (simDelay) await delay(500) // intentional additional delay for demo purposes
@@ -50,7 +47,6 @@ const deleteItem = async (path: string, refetch?: () => void) => {
 
 function createDataState() {
     const [units] = createSignal<Unit[]>([])
-    // const [entries] = createSignal<Entry[]>([])
     const [selectedUnitId, setSelectedUnitId] = createSignal<number>()
     const [selectedWeek, setSelectedWeek] = createSignal<string>('2023-33')
     const [selectedStatCategory, setSelectedStatCategory] =
@@ -85,7 +81,6 @@ function createDataState() {
     const [unitsRes, unitsResActions] = createResource<Unit[], Unit[]>(
         units,
         async () => {
-            // console.log('trying to fetch all units..')
             return await getWithAuth<Unit[]>('units')
         }
     )
@@ -95,13 +90,6 @@ function createDataState() {
         (id) => getWithAuth<Unit>(`units/${id}`)
     )
 
-    // const [entriesRes] = createResource<Entry[], number>(
-    //     selectedUnitId,
-    //     (unitId) => getItems<Entry[]>(`entries/byUnit/${unitId}`)
-    // )
-    /////////////
-    /////////////
-    // see https://docs.solidjs.com/references/api-reference/basic-reactivity/createResource
     const [entriesRes] = createResource(
         () => [selectedUnitId(), selectedWeek()] as const,
         async ([unitId, week]) => {
@@ -152,28 +140,25 @@ function createDataState() {
         setSelectedUnitId(unitsRes()![0].id)
     }
 
-    /////// WIP WIP
+    /////// WIP
     const addEntry = async (e: Entry) => {
         await addItem<Entry>(e, 'entries')
-        // refresh here??? update units resource
+        // refresh here? update units resource
     }
 
-    /////// WIP WIP
+    /////// WIP
     const updateEntry = async (e: Entry) => {
         await updateItem<Entry>(e, `entries/${e.id}`)
-        // refresh here??? update units resource
     }
 
-    /////// WIP WIP
+    /////// WIP
     const deleteEntry = async (e: Entry) => {
         await deleteItem(`entries/${e.id}`)
-        // refresh here??? update units resource
     }
 
     const getUnitIndex = (unitId?: number) => {
         if (!unitsRes()) return 0
 
-        // default is selected unit
         return unitsRes()!.indexOf(
             unitsRes()!.filter(
                 (u) => u.id == unitId ?? selectedUnitRes()!.id

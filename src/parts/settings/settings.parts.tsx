@@ -2,12 +2,11 @@ import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import as from '../../core/app-store'
 import { themes } from '../../common/constants'
-import { For, createSignal, onMount } from 'solid-js'
+import { For, createSignal } from 'solid-js'
 import ds from '../../core/data-store'
 import Button from '../../lib/elements/button/button'
 import { Unit } from 'types/entities/unit'
 import Shifter from '../../components/shifter/shifter'
-import { Transition } from 'solid-transition-group'
 import { FiPlus } from 'solid-icons/fi'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { SelectButton } from '../../components/select-button/select-button'
@@ -136,7 +135,6 @@ export const UnitSettings = () => {
                 </Field>
             </Field>
             <Field res={{ s: true, h: 400 }}>
-                {/* <Shifter>{createPage(unit())}</Shifter> */}
                 <Shifter>{createPage(unit())}</Shifter>
             </Field>
         </Field>
@@ -159,7 +157,6 @@ export const UserSettings = () => {
                         psm
                         color='var(--color-middle)'
                         style='pointer-events:none; user-select:none' // simplify demo
-                        // change={(v) => ...}
                     />
                 </Field>
                 <Field s col w={240} gxs>
@@ -169,7 +166,6 @@ export const UserSettings = () => {
                     <Textfield
                         md
                         placeholder='36 letter unique hardware ID'
-                        // value={as.session()?.user?.access}
                         value={'READ_WRITE'}
                         primary
                         psm

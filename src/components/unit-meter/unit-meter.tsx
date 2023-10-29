@@ -1,8 +1,5 @@
-import { For, createEffect, createSignal, onMount } from 'solid-js'
+import { For } from 'solid-js'
 import Field from '../../lib/elements/field/field'
-import { Transition, TransitionGroup } from 'solid-transition-group'
-
-import styles from './unit-meter.module.css'
 
 interface Args {
     value: number
@@ -12,21 +9,6 @@ interface Args {
 }
 
 export const UnitMeter = (a: Args) => {
-    const [ready, setReady] = createSignal<boolean>(false)
-    const [value, setValue] = createSignal<number>(0)
-
-    createEffect(() => {
-        // if (!ready()) {
-        //     for (let i = 0; i < a.value; i++) {
-        //         setTimeout(() => {
-        //             setValue(i)
-        //             if (i == a.value - 1) setReady(true)
-        //         }, 8 * i)
-        //     }
-        // }
-        // if (ready()) setValue(a.value)
-    })
-
     return (
         <Field rel h={8}>
             <Field s c>

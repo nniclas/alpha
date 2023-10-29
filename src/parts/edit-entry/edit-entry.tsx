@@ -2,11 +2,9 @@ import Text from '../../lib/elements/text/text'
 import Field from '../../lib/elements/field/field'
 import Button from '../../lib/elements/button/button'
 import Modal from '../../lib/components/modal/modal'
-import { For, createEffect, createSignal } from 'solid-js'
-import { Unit } from '../../types/entities/unit'
+import { createEffect, createSignal } from 'solid-js'
 import Textfield from '../../lib/elements/textfield/textfield'
 import { isABtn } from '../../common/utils'
-import { v4 as uuidv4 } from 'uuid'
 import ConfirmModal from '../../components/confirm-modal/confirm-modal'
 import { Transition } from 'solid-transition-group'
 import { Entry } from '../../types/entities/entry'
@@ -39,15 +37,11 @@ export default (a: Args) => {
     )
     createEffect(() => {
         setIsEntryChanged(JSON.stringify(a.entry) != JSON.stringify(entry()))
-
-        // console.log(entry()?.tag)
     })
 
     return (
         <Field
             rel
-            // h={800}
-
             res={{ s: false, w: 'auto', h: 'auto' }}
             onClick={(e: any) => {
                 if (!isABtn(e.target)) e.stopPropagation()
@@ -179,7 +173,6 @@ export default (a: Args) => {
                                     Notes
                                 </Text>
                                 <Textfield
-                                    // multiline
                                     tertiary
                                     md
                                     placeholder='Notes'
@@ -231,16 +224,8 @@ export default (a: Args) => {
                             </Button>
                         </Field>
                     </Field>
-
-                    {/* {(firstOpen() || action == 'edit') && (
-                        <Field a focus></Field>
-                    )} */}
                 </Transition>
             </Field>
-            {/* <Transition name='fade'>
-                {showOptions() && <Field layer>{options()}</Field>}
-                {!showOptions() && <Field layer>{manage()}</Field>}
-            </Transition> */}
         </Field>
     )
 }

@@ -1,8 +1,9 @@
 import { BaseArgs } from '../../types/base-args'
-import { For, createEffect, createSignal } from 'solid-js'
+import { For, createSignal } from 'solid-js'
 import { FieldArgs } from 'lib/types/field-args'
 import Field from '../../elements/field/field'
 import Button from '../../elements/button/button'
+import styles from './select-field.module.css'
 
 interface Args {
     index?: number // default selected
@@ -38,16 +39,14 @@ export default (a: Args & BaseArgs & FieldArgs) => {
                 <Field
                     layer
                     s
-                    style='position:fixed;z-index:100'
-                    onClick={(e) => {
-                        setOpen(false)
-                    }}
+                    class={styles.fix}
+                    onClick={(e) => setOpen(false)}
                 />
 
                 <Field
                     layer
                     a
-                    style={`z-index:101;  height:auto`}
+                    class={styles.container}
                     onClick={(e) => {
                         setOpen(false) // clicking anywhere in menu or outside will close menu
                         e.preventDefault()

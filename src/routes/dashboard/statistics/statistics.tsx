@@ -1,25 +1,11 @@
-import {
-    Component,
-    For,
-    Suspense,
-    createEffect,
-    createSignal,
-    lazy,
-    onMount,
-} from 'solid-js'
-
-import { LineChart } from '../../../components/line-chart/line-chart'
-import { statResolutions, stats, unitColors } from '../../../common/constants'
+import { stats } from '../../../common/constants'
 import ds from '../../../core/data-store'
 import Field from '../../../lib/elements/field/field'
 import { FiTrendingUp } from 'solid-icons/fi'
 import Text from '../../../lib/elements/text/text'
 import { Section, StatCategory } from 'types/_types'
 import as from '../../../core/app-store'
-import { avg } from '../../../common/utils'
 import SelectField from '../../../lib/components/select-field/select-field'
-import { BarChart } from '../../../components/bar-chart/bar-chart'
-import { SliderButton } from '../../../components/slider-button/slider-button'
 import Shifter from '../../../components/shifter/shifter'
 import { EventsChartArea, MachineChartArea } from './statistics.parts'
 import styles from '../../../common/common.module.css'
@@ -56,17 +42,8 @@ export const Statistics = (a: Args) => {
                 </Field>
                 <Field jce>
                     <Field rel s w={100} res={{ w: 100 }}>
-                        <Field
-                            layer
-                            s
-                            w={80}
-                            res={{ w: 60, h: 60 }}
-                            col
-
-                            // style='z-index:1'
-                        >
+                        <Field layer s w={80} res={{ w: 60, h: 60 }} col>
                             <SelectField
-                                // index={entry()?.measure}
                                 items={cats.map((c: string) => (
                                     <Field
                                         c
