@@ -18,7 +18,7 @@ const TopBar = () => (
                         <Logo />
                     </Field>
                     <Field c s>
-                        <Text sm secondary>
+                        <Text sm color='var(--color-medium)'>
                             A L P H A
                         </Text>
                     </Field>
@@ -30,7 +30,7 @@ const TopBar = () => (
                     <Logo />
                 </Field>
                 <Field c s>
-                    <Text md secondary>
+                    <Text md color='var(--color-medium)'>
                         A L P H A
                     </Text>
                 </Field>

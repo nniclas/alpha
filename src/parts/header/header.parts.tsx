@@ -90,7 +90,7 @@ export const MainMenu = () => {
                 buttonContent={
                     <Field tertiary h={60}>
                         <Field s w={60} h={60} c secondary>
-                            <FiSettings color='var(--color-light)' size={16} />
+                            <FiSettings color='var(--color-dim)' size={16} />
                         </Field>
                         <Field h={60} secondary aic>
                             <Text>settings</Text>
@@ -123,10 +123,7 @@ export const MainMenu = () => {
                         dock='topfix'
                         buttonContent={
                             <Field s c w={80} h={80} res={{ w: 60, h: 60 }}>
-                                <FiMenu
-                                    color='var(--secondary-color)'
-                                    size={20}
-                                />
+                                <FiMenu color='var(--color-medium)' size={20} />
                             </Field>
                         }
                         buttonArgs={{ focus: true }}

@@ -67,7 +67,7 @@ export default (a: Args) => {
 
                         <Field plg col gmd res={{ glg: true }} c secondary>
                             <Field s gmd col>
-                                <Field s col gxs>
+                                <Field s col gxs res={{ w: 200, h: 60 }}>
                                     <Text xs primary>
                                         Event
                                     </Text>
@@ -88,7 +88,7 @@ export default (a: Args) => {
                                         buttonArgs={btnStyle}
                                     />
                                 </Field>
-                                <Field s col gxs>
+                                <Field s col gxs res={{ w: 200, h: 60 }}>
                                     <Text xs primary>
                                         Measure
                                     </Text>
@@ -116,7 +116,7 @@ export default (a: Args) => {
                                     col
                                     gxs
                                     w={200}
-                                    res={{ w: 200, h: 48 }}
+                                    res={{ w: 200, h: 80 }}
                                 >
                                     <Text xs primary>
                                         Tag
@@ -128,7 +128,7 @@ export default (a: Args) => {
                                                 c
                                                 h={48}
                                                 w={200}
-                                                res={{ w: 200, h: 48 }}
+                                                res={{ w: 200, h: 60 }}
                                             >
                                                 <Text xs accent>
                                                     {t.title}
