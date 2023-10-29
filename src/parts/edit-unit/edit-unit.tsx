@@ -27,7 +27,7 @@ export default (a: Args) => {
         a.unit ?? {
             name: 'New unit',
             machineId: uuidv4(),
-            state: 0,
+            state: 1,
         }
     )
 
