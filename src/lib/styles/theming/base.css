@@ -5,7 +5,7 @@
 :root {
     /* PALETTE */
     --th-hue: 190;
-    --th-saturation: 12%;
+    --th-saturation: 8%;
 
     --color-lightest: hsl(var(--th-hue), var(--th-saturation), 85%);
     --color-lighter: hsl(var(--th-hue), var(--th-saturation), 75%);
