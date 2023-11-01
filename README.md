@@ -7,7 +7,12 @@
   <br>
 </div>
 
-<h4 align="center">A basic example operating and monitoring app built with the intent of learning new tech.</h4>
+<h4 align="center">A basic example operating and monit
+
+![demo1_3](https://github.com/nniclas/alpha/assets/16818091/1453c948-b01a-4466-b4a9-6cab32e79411)
+
+
+oring app built with the intent of learning new tech.</h4>
 
 <p align="center">
   <a href="#demo">Demo</a> •
@@ -17,8 +22,6 @@
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
 </p>
-
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
 ## Demo
 
