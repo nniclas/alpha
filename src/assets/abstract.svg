@@ -12,13 +12,13 @@
         d=" M 0 400 L 0 100 
             C 50 80 150 110 400 80
             L 400 300 L 400 400 Z"
-        fill="hsl(190, 12%, 21%)"
+        fill="hsl(190, 8%, 21%)"
     />
       <path
         d=" M 0 400 L 0 50 
             C 50 120 300 80 400 110
             L 400 300 L 400 400 Z"
-        fill="hsl(190, 12%, 25%)"
+        fill="hsl(190, 8%, 25%)"
     />
   <!-- <path
         d=" 
@@ -39,7 +39,7 @@
             S 300 100 400 100 
        
             "
-        stroke="hsla(200, 12%, 26%, 1)"
+        stroke="hsla(200, 8%, 26%, 1)"
         stroke-width="1"
         fill="transparent"
         vector-effect="non-scaling-stroke"
@@ -49,9 +49,9 @@
         cx="300"
         cy="50"
         r="20"
-        stroke="hsla(200, 12%, 26%, 1)"
+        stroke="hsla(200, 8%, 26%, 1)"
         stroke-width="1"
-        fill="hsla(200, 12%, 26%, 1)"
+        fill="hsla(200, 8%, 26%, 1)"
         vector-effect="non-scaling-stroke"
     /> -->
       <!-- <path
@@ -73,7 +73,7 @@
             S 300 300 300 100 
         
             "
-        stroke="hsla(200, 12%, 22%, 1)"
+        stroke="hsla(200, 8%, 22%, 1)"
         stroke-width="1"
         fill="transparent"
         vector-effect="non-scaling-stroke"

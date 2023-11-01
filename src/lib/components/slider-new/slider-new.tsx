@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal, onMount } from 'solid-js'
+import { For, createEffect, createSignal, onCleanup, onMount } from 'solid-js'
 import { BaseArgs } from '../../types/base-args'
 import { ThemeArgs } from '../../types/theme-args'
 import Field from '../../elements/field/field'
@@ -22,12 +22,21 @@ export const SliderNew = (a: Args & BaseArgs & ThemeArgs) => {
     const [w, setW] = createSignal<number>(a.w || 0)
 
     onMount(() => {
-        if (a.w == undefined) setW(layerRef.clientWidth)
+        setWidth()
+        window.addEventListener('resize', setWidth)
+    })
+
+    onCleanup(() => {
+        window.removeEventListener('resize', setWidth)
     })
 
     createEffect(() => {
         if (layerRef.clientWidth > 0) goTo(undefined, 0)
     })
+
+    const setWidth = () => {
+        if (a.w == undefined) setW(layerRef.clientWidth)
+    }
 
     const start = (e: any) => {
         setDrag(true)
