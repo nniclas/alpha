@@ -136,7 +136,12 @@ export const Login: Component = () => {
                         <Field s w={70} res={{ w: 45 }}>
                             <Logo />
                         </Field>
-                        <Text lg res accent style='letter-spacing:12px'>
+                        <Text
+                            lg
+                            res
+                            color='var(--color-middle)'
+                            style='letter-spacing:12px'
+                        >
                             ALPHA
                         </Text>
                     </Field>
