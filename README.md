@@ -12,9 +12,7 @@
 <p align="center">
   <a href="#demo">Demo</a> •
   <a href="#direction">Direction</a> •
-  <a href="#features-and-tech">Features and tech stack</a> •
-  <a href="#architecture">Architecture</a> •
-  <a href="#usage-areas">Usage areas</a> •
+  <a href="#features-and-tech">Features and tech</a> •
   <a href="#credits">Credits</a> •
   <a href="#copyright">Copyright</a>
 </p>
