@@ -3,3 +3,4 @@ dist
 .env.local
 
 _INFO_DEPLOY_ETC.txt
+README_template.md
