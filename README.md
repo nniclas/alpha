@@ -7,7 +7,7 @@
   <br>
 </div>
 
-![demo1_3](https://github.com/nniclas/alpha/assets/16818091/1453c948-b01a-4466-b4a9-6cab32e79411)
+![demo1_3](https://github.com/nniclas/alpha/assets/16818091/dc0ac224-df5b-46e3-a28f-e8c6374c4f27)
 
 <p align="center">
   <a href="#demo">Demo</a> •
