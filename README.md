@@ -19,7 +19,9 @@
 
 ## Demo
 
-[Alpha demo app](http://alpha.uicso.com/)
+[ALPHA DEMO APP](http://alpha.uicso.com/)
+
+[Backend code base](https://github.com/nniclas/alpha-api/)
 
 ## Direction
 
@@ -59,4 +61,4 @@ This project mainly uses the following tech
 
 ## Copyright
 
-nniclas / uicso © Copyright 2023 | All rights reserved
+nniclas / uicso © Copyright 2023 | Frontend, Backend
