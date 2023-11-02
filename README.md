@@ -25,7 +25,7 @@
 
 ## Direction
 
-<h4>The app is a work in progress project, primarily for the intention of learning and trying out new tech, improving code and architecture. </h4>
+<h4>The app is a work in progress project, primarily for the intention of learning and trying out new tech, improving code and architecture in a full stack environment.</h4>
 
 ## Features and Tech
 
