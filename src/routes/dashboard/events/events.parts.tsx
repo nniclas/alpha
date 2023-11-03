@@ -8,6 +8,8 @@ import styles from './events.parts.module.css'
 import Responsive from '../../../lib/components/responsive/responsive'
 import { date } from '../../../common/date-utils'
 import { events, measures, tags } from '../../../common/constants'
+import Shifter from '../../../components/shifter/shifter'
+import { Transition } from 'solid-transition-group'
 
 const iconStyle = { size: 18, color: 'var(--color-middle)' }
 
@@ -60,7 +62,9 @@ export const EntryRow = (a: { e: Entry; compact: boolean }) => {
                     </Field>
 
                     <Field layer style='top:32px; left:18px'>
-                        {openDetails() && <Details entry={a.e} />}
+                        <Transition name='foo'>
+                            {openDetails() && <Details entry={a.e} />}
+                        </Transition>
                     </Field>
                 </Field>
             </Cell>
