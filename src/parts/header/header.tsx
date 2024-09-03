@@ -49,7 +49,7 @@ export const Header: Component = () => {
             s
             h={300}
             res={{ h: 146, accent: true, bg: 'var(--color-dim)' }}
-            bg='var(--color-dim)'
+            bg='var(--color-lighter)'
         >
             <Field col>
                 <TopBar />

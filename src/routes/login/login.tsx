@@ -14,7 +14,7 @@ import Dropdown from '../../lib/components/dropdown/dropdown'
 //...
 const demoUsers = [
     { email: 'demo@user.com', pwd: 'bananer', access: 'READ_WRITE' },
-    { email: 'wyatt@smith.com', pwd: 'saft', access: 'READ n/a' },
+    { email: 'another@user.com', pwd: 'saft', access: 'READ n/a' },
     { email: 'john@doe.com', pwd: 'eple', access: 'ADMIN n/a' },
 ]
 
@@ -128,10 +128,10 @@ export const Login: Component = () => {
         <Field fixed bg='var(--color-strongest)'>
             <Field layer s class={styles.abstract} pevn />
 
-            <Field layer s class={styles.bg} pevn />
+            {/* <Field layer s class={styles.bg} pevn /> */}
 
-            <Field layer ais pevn>
-                <Field s plg col gsm>
+            <Field layer ais pevn >
+                <Field s p="60px 240px" res={{plg:true}} col gsm >
                     <Field s aie gxs>
                         <Field s w={70} res={{ w: 45 }}>
                             <Logo />
@@ -139,17 +139,17 @@ export const Login: Component = () => {
                         <Text
                             lg
                             res
-                            color='var(--color-middle)'
+                            color='var(--color-dim)'
                             style='letter-spacing:12px'
                         >
                             ALPHA
                         </Text>
                     </Field>
                     <Field s aie col>
-                        <Text title res color='var(--color-middle)'>
+                        <Text title res color='var(--color-accent)'>
                             Remote technical tool
                         </Text>
-                        <Text title res color='var(--color-medium)'>
+                        <Text title res color='var(--color-dim)'>
                             ver 0.1
                         </Text>
                     </Field>
@@ -171,8 +171,8 @@ export const Login: Component = () => {
                     compact={
                         <Field c plg>
                             {form(
-                                'var(--color-lighter)',
-                                'var(--color-medium)'
+                                'var(--color-stronger)',
+                                'var(--color-lighter)'
                             )}
                         </Field>
                     }
@@ -190,7 +190,7 @@ export const Login: Component = () => {
                             </Field>
                         </Field>
 
-                        {form('var(--color-stronger)', 'var(--color-dim)')}
+                        {form('var(--color-stronger)', 'var(--color-lighter)')}
                     </Field>
                 </Responsive>
             </Field>
@@ -199,7 +199,7 @@ export const Login: Component = () => {
                 <Responsive>
                     <Field layer jcc aie pevn>
                         <Field s pmd>
-                            <Text caption res color='var(--color-middle)' sm>
+                            <Text caption res color='var(--color-dim)' sm>
                                 nniclas © Copyright 2023
                             </Text>
                         </Field>
