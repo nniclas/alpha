@@ -130,7 +130,7 @@ export const Login: Component = () => {
 
             {/* <Field layer s class={styles.bg} pevn /> */}
 
-            <Field layer ais pevn >
+            <Field layer jcc ais pevn >
                 <Field s p="60px 240px" res={{plg:true}} col gsm >
                     <Field s aie gxs>
                         <Field s w={70} res={{ w: 45 }}>
@@ -200,7 +200,7 @@ export const Login: Component = () => {
                     <Field layer jcc aie pevn>
                         <Field s pmd>
                             <Text caption res color='var(--color-dim)' sm>
-                                nniclas © Copyright 2023
+                                Niclas © Copyright 2023
                             </Text>
                         </Field>
                     </Field>
